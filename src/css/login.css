@@ -1,0 +1,139 @@
+#login-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: url("../assets/bg.jpg") no-repeat;
+    background-size: 100% 100%;
+    height: 100%;
+    width: 100%;
+    z-index: -10;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="assets/bg.jpg");
+}
+
+#login-box {
+    margin: 0 auto;
+    position: relative;
+    top: 200px;
+    height: 450px;
+    width: 360px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+#login-icon-part {
+    margin: 0 auto;
+    /*left: 120px;*/
+    top: 10px;
+    position: relative;
+}
+
+#user-login-icon {
+    height: 120px;
+    width: 120px;
+    position: relative;
+    left: 120px;
+    border-radius: 50%;
+}
+
+#user-login-info {
+    position: relative;
+    background: rgba(255, 240, 233, 0.7);
+    height: 200px;
+}
+
+#user-login-icon:hover {
+    filter: brightness(110%);
+}
+
+#login-logo {
+    position: relative;
+}
+
+input.login-info-input {
+    position: relative;
+    bottom: 5px;
+    left: 35px;
+    height: 24px;
+    width: 220px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+}
+
+input.identifying-code {
+    top: 135px;
+    width: 120px;
+}
+
+input.login-info-input:hover {
+    filter: brightness(120%);
+}
+
+#login-submit {
+    font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+    position: relative;
+    height: 35px;
+    width: 80px;
+    left: 120px;
+    font-size: 20px;
+    border: rgba(255, 208, 140, 0.8) solid 2px;
+    background-color: rgba(255, 213, 167, 0.8);
+}
+
+a.login-concerned-href {
+    font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+    font-weight: bold;
+    position: absolute;
+    top: 170px;
+    text-decoration: none;
+    color: #444444;
+}
+
+a.register {
+    left: 20px;
+}
+
+a.forget-pwd {
+    right: 20px;
+}
+
+a.more-info-href {
+    font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+    font-weight: bolder;
+    top: 90px;
+    font-size: 15px;
+    position: absolute;
+    text-decoration: none;
+    color: #888888;
+}
+
+a.more-info {
+    left: 10px;
+}
+
+a.contact-us {
+    right: 10px;
+}
+
+
+img.logo {
+    position: relative;
+    top: 0px;
+    left: 125px;
+    height: 110px;
+    width: 110px;
+}
+
+div.login-bar {
+    position: relative;
+    top: 20px;
+    margin: 20px;
+    /*background-color: #817fe3;*/
+}
+
+.login-icon {
+    font-size: 25px;
+    position: relative;
+    left: 25px;
+}
+

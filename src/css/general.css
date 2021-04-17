@@ -1,0 +1,11 @@
+.hidden {
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
+}
+
+.round-corner {
+    border-radius: 5px;
+}

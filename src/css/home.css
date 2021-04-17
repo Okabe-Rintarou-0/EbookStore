@@ -1,0 +1,46 @@
+#home-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: url("../assets/home-bg.jpg") no-repeat;
+    background-size: 100% 100%;
+    height: 100%;
+    width: 100%;
+    opacity: 15%;
+    z-index: 0;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../assets/home-bg.jpg");
+}
+
+div.recommend-title {
+    position: relative;
+    margin: 50px auto 0 auto;
+    text-align: center;
+    /*background-color: yellow;*/
+}
+
+div.recommend-title div.horizontal-line {
+    margin-bottom: 50px;
+}
+
+b.title {
+    font-family: Arial, serif;
+    color: #fabe5b;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+div.horizontal-line {
+    background-color: #fabe5b;
+    height: 2px;
+    width: 100%;
+}
+
+span.circle-word {
+    text-align: center;
+    background-color: #fabe5b;
+    font-size: 40px;
+    font-weight: bolder;
+    font-family: Arial, serif;
+    color: white;
+    border-radius: 50%;
+}

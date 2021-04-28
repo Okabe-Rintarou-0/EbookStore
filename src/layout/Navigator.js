@@ -3,6 +3,7 @@ import "../css/general.css"
 import '../css/navigator.css'
 import logoUrl from "../assets/logo.png"
 import iconUrl from "../assets/icon.gif"
+import {logout, getUser, setUserSignature} from "../service/userService";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
     faBookReader,
@@ -36,8 +37,23 @@ class Navigator extends React.Component {
         this.state = {
             showPersonConfigModal: false,
             editSignature: false,
-            personalizedSignature: "ずっと真夜でいいのに"
+            userSignature: "",
+            username: "",
+            userId: 0,
         };
+    }
+
+    handleUserInfo = data => {
+        this.setState({
+            userSignature: data.userSignature,
+            username: data.username,
+            userId: data.userId,
+        });
+    };
+
+    componentDidMount() {
+        console.log("hi!");
+        getUser(this.handleUserInfo);
     }
 
     renderLogo = () => {
@@ -67,7 +83,7 @@ class Navigator extends React.Component {
                     <Menu mode="horizontal" style={{backgroundColor: "antiquewhite"}}>
                         <Menu.Item key="main">
                             <FontAwesomeIcon icon={faHome} className={"nav-icon"}/>
-                            <Link exact to={"/home"}>主页</Link>
+                            <Link exact to={"/"}>主页</Link>
                         </Menu.Item>
                         <Menu.Item key="cart">
                             <FontAwesomeIcon icon={faShoppingCart} className={"nav-icon"}/>
@@ -75,7 +91,7 @@ class Navigator extends React.Component {
                         </Menu.Item>
                         <Menu.Item key="favor">
                             <FontAwesomeIcon icon={faStar} className={"nav-icon"}/>
-                            <Link exact to={"/home"}>收藏夹</Link>
+                            <Link exact to={"/"}>收藏夹</Link>
                         </Menu.Item>
                         <Menu.Item key="service" disabled>
                             <FontAwesomeIcon icon={faPhone} className={"nav-icon"}/>
@@ -113,7 +129,7 @@ class Navigator extends React.Component {
                     个人设置
                 </Menu.Item>
                 <Menu.Item key="1" icon={<LogoutOutlined/>}>
-                    <Link exact to={"/"}>退出登录</Link>
+                    <Link exact to={"/Link"} onClick={logout}>退出登录</Link>
                 </Menu.Item>
             </Menu>
         );
@@ -128,7 +144,7 @@ class Navigator extends React.Component {
                             <Dropdown overlay={menu}>
                                 <a className="ant-dropdown-link"
                                    style={{textDecoration: 'none', color: 'black'}}>
-                                    孤独の観測者 <DownOutlined/>
+                                    {this.state.username} <DownOutlined/>
                                 </a>
                             </Dropdown>
                         </Col>
@@ -139,35 +155,38 @@ class Navigator extends React.Component {
     };
 
     showPersonalConfig = (e) => {
-        console.log(e);
         this.setState({
             showPersonalConfigModal: true,
         })
     };
 
     onPersonalConfigModalOK = () => {
+        setUserSignature(this.state.userSignature);
         this.setState({
             showPersonalConfigModal: false,
+            editSignature: false,
         })
     };
 
     onPersonalConfigModalCancel = () => {
         this.setState({
             showPersonalConfigModal: false,
+            editSignature: false,
         })
     };
 
     endEdit = (e) => {
+        let userSignature = e.target.value;
         this.setState({
+            userSignature: userSignature,
             editSignature: false,
-            personalizedSignature: e.target.value,
         })
     };
 
-    renderPersonalizedSignature = () => {
+    renderUserSignature = () => {
         if (this.state.editSignature)
             return (<Input placeholder="请输入新的个性签名" onPressEnter={this.endEdit}/>);
-        else return (<p onDoubleClick={this.edit}>{this.state.personalizedSignature}</p>);
+        else return (<p onDoubleClick={this.edit}>{this.state.userSignature}</p>);
     };
 
     edit = () => {
@@ -195,7 +214,7 @@ class Navigator extends React.Component {
                     <Row style={{marginTop: '10px'}}>
                         <Col span={8}>
                             <b>个性签名:&nbsp;</b>
-                            {this.renderPersonalizedSignature()}
+                            {this.renderUserSignature()}
                         </Col>
                     </Row>
                 </Modal>

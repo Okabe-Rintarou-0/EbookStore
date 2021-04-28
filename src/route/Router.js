@@ -1,8 +1,9 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Redirect} from 'react-router-dom';
 import {history} from "../utils/history";
 import LoginView from '../view/LoginView'
 import LoginRoute from "./LoginRoute";
+import PrivateRoute from "./PrivateRoute";
 import HomeView from "../view/HomeView";
 import BookView from "../view/BookView";
 import ShoppingCartView from "../view/ShoppingCartView";
@@ -13,18 +14,22 @@ class BasicRoute extends React.Component {
 
     constructor(props) {
         super(props);
+        history.listen((location, action) => {
+            // clear alert on location change
+            console.log(location, action);
+        });
     }
 
     render() {
         return (
             <Router history={history}>
                 <Switch>
-                    <Route exact path="/" component={LoginView}/>
-                    <Route path="/home" component={HomeView}/>
-                    <Route path="/book" component={BookView}/>
-                    <Route path="/cart" component={ShoppingCartView}/>
-                    <Route path="/browse" component={BookBrowseView}/>
-                    <Route path="/status" component={PaymentResult}/>
+                    <PrivateRoute exact path="/" component={HomeView}/>
+                    <LoginRoute exact path="/login" component={LoginView}/>
+                    <PrivateRoute path="/book/:bookId" component={BookView}/>
+                    <PrivateRoute exact path="/cart" component={ShoppingCartView}/>
+                    <PrivateRoute exact path="/browse" component={BookBrowseView}/>
+                    <PrivateRoute exact path="/status" component={PaymentResult}/>
                     <Redirect from={'/*'} to={{pathname: "/"}}/>
                 </Switch>
             </Router>

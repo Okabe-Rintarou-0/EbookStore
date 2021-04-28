@@ -58,7 +58,7 @@ class SiderBar extends React.Component {
                             <a href={"/browse"}>自然科学</a>
                         </Menu.Item>
                     </Menu.ItemGroup>
-                    <Menu.ItemGroup key="g2" title="教辅">
+                    <Menu.ItemGroup key="g3" title="教辅">
                         <Menu.Item key="11">
                             <a href={"/browse"}>中学教辅</a>
                         </Menu.Item>
@@ -69,27 +69,27 @@ class SiderBar extends React.Component {
                             <a href={"/browse"}>婴幼儿读物</a>
                         </Menu.Item>
                     </Menu.ItemGroup>
-                    <Menu.ItemGroup key="g2" title="小说">
+                    <Menu.ItemGroup key="g4" title="小说">
                         <Menu.Item key="14">
                             <a href={"/browse"}>悬疑推理</a>
                         </Menu.Item>
                         <Menu.Item key="15">
                             <a href={"/browse"}>浪漫言情</a>
                         </Menu.Item>
-                        <Menu.Item key="15">
+                        <Menu.Item key="16">
                             <a href={"/browse"}>文艺治愈</a>
                         </Menu.Item>
                     </Menu.ItemGroup>
                 </SubMenu>
                 <SubMenu key="sub2" icon={<FireOutlined/>} title="热销榜">
-                    <Menu.Item key="16">鬼灭之刃</Menu.Item>
-                    <Menu.Item key="17">王者天下</Menu.Item>
-                    <Menu.Item key="18">海贼王</Menu.Item>
+                    <Menu.Item key="17">鬼灭之刃</Menu.Item>
+                    <Menu.Item key="18">王者天下</Menu.Item>
+                    <Menu.Item key="19">海贼王</Menu.Item>
                 </SubMenu>
                 <SubMenu key="sub3" icon={<GiftFilled/>} title="新书推荐">
-                    <Menu.Item key="19">React从入门到入土</Menu.Item>
-                    <Menu.Item key="20">图解HTTP</Menu.Item>
-                    <Menu.Item key="21">图解TCP/IP</Menu.Item>
+                    <Menu.Item key="20">React从入门到入土</Menu.Item>
+                    <Menu.Item key="21">图解HTTP</Menu.Item>
+                    <Menu.Item key="22">图解TCP/IP</Menu.Item>
                 </SubMenu>
             </Menu>
         );

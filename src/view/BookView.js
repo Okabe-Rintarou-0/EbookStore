@@ -8,6 +8,14 @@ import {Layout} from "antd";
 const {Footer, Content, Sider} = Layout;
 
 class BookView extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            bookId: props.match.params.bookId,
+        }
+    }
+
     render() {
         return (
             <>
@@ -20,7 +28,7 @@ class BookView extends React.Component {
                             <SiderBar/>
                         </Sider>
                         <Content>
-                            <BookDetails/>
+                            <BookDetails bookId={this.state.bookId}/>
                             <BookComments/>
                         </Content>
                     </Layout>

@@ -3,6 +3,7 @@ import "../css/book.css"
 import PropTypes from 'prop-types'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCartArrowDown, faShare, faStar} from "@fortawesome/free-solid-svg-icons";
+import {Link} from "react-router-dom";
 
 class BookPreview extends React.Component {
     constructor(props) {
@@ -10,7 +11,6 @@ class BookPreview extends React.Component {
         this.state = {
             data: this.props.data,
         };
-        console.log(this.props.data);
     }
 
     static propTypes = {
@@ -23,7 +23,7 @@ class BookPreview extends React.Component {
                 <div className="preview-book-background">
                 </div>
                 <div className="preview-book-img">
-                    <a href="/book"> <img src={this.props.data.bookSrc} alt=""/></a>
+                    <Link to={`/book/${this.state.data.bookId}`}> <img src={this.state.data.bookCover} alt=""/></Link>
                 </div>
                 <div className="preview-book-info">
                     <div className="preview-book-title">

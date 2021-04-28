@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, Redirect} from 'react-router-dom'
 import {checkSession} from "../service/userService";
 
-export class LoginRoute extends React.Component {
+export class PrivateRoute extends React.Component {
 
     constructor(props) {
         super(props);
@@ -13,8 +13,8 @@ export class LoginRoute extends React.Component {
     }
 
     checkAuthority = data => {
+        console.log(data);
         let isAuthorized = (data.status === 0);
-        console.log(isAuthorized);
         this.setState({
             isAuthorized: isAuthorized,
             hasChecked: true
@@ -32,15 +32,15 @@ export class LoginRoute extends React.Component {
 
         return <Route path={path} exact={exact} strict={strict} render={props => (
             this.state.isAuthorized ? (
+                <Component {...props}/>
+            ) : (
                 <Redirect to={{
-                    pathname: '/',
+                    pathname: '/login',
                     state: {from: props.location}
                 }}/>
-            ) : (
-                <Component {...props}/>
             )
         )}/>
     }
 }
 
-export default LoginRoute;
+export default PrivateRoute;

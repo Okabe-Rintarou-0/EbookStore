@@ -29,7 +29,7 @@ class BookView extends React.Component {
                         </Sider>
                         <Content>
                             <BookDetails bookId={this.state.bookId}/>
-                            <BookComments/>
+                            <BookComments bookId={this.state.bookId}/>
                         </Content>
                     </Layout>
                 </Layout>

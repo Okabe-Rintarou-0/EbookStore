@@ -5,6 +5,7 @@ import com.catstore.entity.User;
 import com.catstore.entity.UserAuthority;
 import com.catstore.repository.UserAuthorityRepository;
 import com.catstore.repository.UserRepository;
+import com.catstore.utils.sessionUtils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -35,15 +36,9 @@ public class UserDaoImplement implements UserDao {
 
     @Override
     public User getUser() {
-        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        if (servletRequestAttributes != null) {
-            HttpServletRequest request = servletRequestAttributes.getRequest();
-            HttpSession session = request.getSession(false);
-            if (session != null) {
-                Integer userId = (Integer) session.getAttribute("userId");
-                return userRepository.getUserById(userId);
-            }
-        }
+        Integer userId = SessionUtil.getUserId();
+        if (userId != null)
+            return userRepository.getUserById(userId);
         return null;
     }
 
@@ -57,6 +52,23 @@ public class UserDaoImplement implements UserDao {
                 Integer userId = (Integer) session.getAttribute("userId");
                 userRepository.setUserSignature(userId, userSignature);
             }
+        }
+    }
+
+    @Override
+    public Float getUserProperty() {
+        Integer userId = SessionUtil.getUserId();
+        if (userId != null) {
+            return userRepository.getUserPropertyByUserId(userId);
+        }
+        return null;
+    }
+
+    @Override
+    public void updateUserProperty(Float delta) {
+        Integer userId = SessionUtil.getUserId();
+        if (userId != null) {
+            userRepository.updateUserProperty(userId, delta);
         }
     }
 }

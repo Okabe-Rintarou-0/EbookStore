@@ -6,32 +6,29 @@ import imgSrc from '../assets/icon.gif'
 
 import icon_1_url from '../assets/display/icon_1.jpg'
 import icon_2_url from '../assets/display/icon_2.jpg'
-
-const data = [
-    {
-        username: '孤独の観測者',
-        imgSrc: imgSrc,
-        userComment: '読んでしまって、嬉しいやら悲しいやらで複雑な気持ちがしました。',
-        likes: '950',
-        dislikes: '5'
-    },
-    {
-        username: '淡幽',
-        imgSrc: icon_1_url,
-        userComment: '我想和你一起去旅行，看看那些故事里的虫。 哈哈，也许那个时候，我已经是个老太婆了。',
-        likes: '800',
-        dislikes: '0'
-    },
-    {
-        username: '銀古',
-        imgSrc: icon_2_url,
-        userComment: '可以啊，如果在那之前我还活着。。。的话',
-        likes: '750',
-        dislikes: '0'
-    },
-];
+import {getCommentsById} from "../service/bookService";
+import {getUser, getUserById} from "../service/userService";
 
 class BookComments extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            comments: [],
+        }
+    }
+
+    handleCommentsInfo = data => {
+        console.log(data);
+        this.setState({
+            comments: data,
+        })
+    };
+
+    componentDidMount() {
+        getCommentsById(this.props.bookId, this.handleCommentsInfo);
+    }
+
     render() {
         return (
             <div id={"comments-container"}>
@@ -46,13 +43,13 @@ class BookComments extends React.Component {
                     className="comment-list"
                     // header={`Hot comments`}
                     itemLayout="horizontal"
-                    dataSource={data}
+                    dataSource={this.state.comments}
                     renderItem={item => (
                         <li>
                             <BookComment
                                 username={item.username}
-                                imgSrc={item.imgSrc}
-                                userComment={item.userComment}
+                                imgSrc={item.user_icon}
+                                userComment={item.comment_content}
                                 likes={item.likes}
                                 dislikes={item.dislikes}
                             />

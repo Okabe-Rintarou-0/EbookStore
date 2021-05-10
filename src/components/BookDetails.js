@@ -2,6 +2,8 @@ import React from "react";
 import '../css/bookDetails.css'
 import {Image, Dropdown, Menu, Button, message} from "antd";
 import {getBookById} from "../service/bookService";
+import {addToCart} from "../service/orderService";
+import {addFavouriteBook} from "../service/favouriteService";
 
 class BookDetails extends React.Component {
 
@@ -14,6 +16,7 @@ class BookDetails extends React.Component {
             bookDescription: null,
             bookPrice: null,
             bookCover: null,
+            tags: [],
         };
     }
 
@@ -25,21 +28,46 @@ class BookDetails extends React.Component {
             bookCover: data.bookCover,
             bookDescription: data.bookDescription,
             bookAuthor: data.bookAuthor,
-        });
+            tags: data.bookTag.split(' '),
+        }, () => console.log(this.state.tags));
     };
 
     componentDidMount() {
         getBookById(this.props.bookId, this.handleBookInfo);
     }
 
-    sendMessage = (e) => {
+    onAddToCart = (e) => {
         let text = e.target.innerText;
         message
             .loading(text + '中...', 1)
-            .then(() => message.success(text + '成功！', 1.5));
+            .then(
+                () => {
+                    addToCart(this.props.bookId, () => {
+                    });
+                }
+            )
+            .then(() => {
+                message.success(text + '成功！', 1)
+            });
     };
 
-    static defaultProps = {
+    onAddToFavourite = e => {
+        let text = e.target.innerText;
+        message
+            .loading(text + '中...', 1)
+            .then(
+                () => {
+                    addFavouriteBook(this.props.bookId, () => {
+                    });
+                }
+            )
+            .then(() => {
+                message.success(text + '成功！', 1)
+            });
+    };
+
+    static
+    defaultProps = {
         selectedRegion: "上海",
     };
 
@@ -87,9 +115,9 @@ class BookDetails extends React.Component {
                 <div className="browse-book-info">
                     <div className="browse-book-title">{`《${this.state.bookTitle}》`}</div>
                     <div className="browse-book-labels">
-                        <span className="book-label">奇幻</span>
-                        <span className="book-label">治愈</span>
-                        <span className="book-label">文艺</span>
+                        <span className="book-tag">{this.state.tags[0]}</span>
+                        <span className="book-tag">{this.state.tags[1]}</span>
+                        <span className="book-tag">{this.state.tags[2]}</span>
                     </div>
                     <div className="browse-book-price">
                         <b>价格</b>
@@ -111,16 +139,16 @@ class BookDetails extends React.Component {
                     <div className="browse-book-option">
                     <span className="browse-book-button">
                         <button className="pay-now">
-                            立即购买
+                            分享本书
                         </button>
                     </span>
                         <span className="browse-book-button">
-                        <Button className="add-to-favourite" onClick={this.sendMessage}>
+                        <Button className="add-to-favourite" onClick={this.onAddToFavourite}>
                             加入收藏
                         </Button>
                     </span>
                         <span className="browse-book-button">
-                        <button className="add-to-cart" onClick={this.sendMessage}>
+                        <button className="add-to-cart" onClick={this.onAddToCart}>
                             加入购物车
                         </button>
                     </span>

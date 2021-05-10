@@ -1,16 +1,12 @@
 import React from 'react'
-import Navigator from "../layout/Navigator";
 import {Layout} from "antd";
+import Navigator from "../layout/Navigator";
 import CartContent from "../components/CartContent";
-import '../css/shoppingcart.css'
+import FavouriteContent from "../components/FavouriteContent";
 
 const {Content} = Layout;
 
-class ShoppingCartView extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
+class FavouriteView extends React.Component {
     render() {
         return (
             <>
@@ -20,7 +16,7 @@ class ShoppingCartView extends React.Component {
                     <Navigator/>
                     <Layout>
                         <Content>
-                            <CartContent/>
+                            <FavouriteContent/>
                         </Content>
                     </Layout>
                 </Layout>
@@ -29,4 +25,4 @@ class ShoppingCartView extends React.Component {
     }
 }
 
-export default ShoppingCartView;
+export default FavouriteView;

@@ -1,184 +1,50 @@
 import React from 'react'
-import {Table, Image, Row, Col, Timeline, Input, Statistic, Button, Layout, Modal, Form, Drawer, Select} from "antd";
-import BookSrc from '../assets/books/CSAPP.jpg'
+import {Button, Col, Drawer, Form, Image, Input, Layout, Modal, Row, Select, Statistic, Table, Timeline} from "antd";
 import {ClockCircleOutlined} from "@ant-design/icons";
 import '../css/searchBar.css'
 import {Redirect} from "react-router-dom";
+import {deleteOrder, getAllOrders, modifyOrder, placeOrder} from "../service/orderService";
+import {history} from "../utils/history";
+import {getUserProperty} from "../service/userService";
 
 const {Option} = Select;
 const {Footer} = Layout;
 const {Search} = Input;
-const data = [
-    {
-        key: '1',
-        name: 'CSAPP',
-        receiver: "孤独の観測者",
-        price: 124,
-        phoneNumber: '10086',
-        address: "上海交通大学闵行校区",
-        state: "有货",
-        type: '科学'
-    },
-    {
-        key: '2',
-        name: '数据结构',
-        receiver: "孤独の観測者",
-        price: 124,
-        phoneNumber: '10086',
-        address: "上海交通大学闵行校区",
-        state: "已购",
-        type: '科学'
-    },
-    {
-        key: '3',
-        name: '数据结构',
-        receiver: "孤独の観測者",
-        price: 134,
-        phoneNumber: '10086',
-        address: "复旦大学",
-        state: "有货",
-        type: '科学'
-    },
-    {
-        key: '4',
-        name: 'CSAPP',
-        receiver: "孤独の観測者",
-        price: 124,
-        phoneNumber: '10086',
-        address: "上海交通大学闵行校区",
-        state: "已购",
-        type: '科学'
-    },
-    {
-        key: '5',
-        name: 'CSAPP',
-        receiver: "孤独の観測者",
-        price: 124,
-        phoneNumber: '10086',
-        address: "上海交通大学闵行校区",
-        state: "已购",
-        type: '科学'
-    },
-    {
-        key: '6',
-        name: 'CSAPP',
-        receiver: "孤独の観測者",
-        price: 124,
-        phoneNumber: '10086',
-        address: "上海交通大学闵行校区",
-        state: "已购",
-        type: '科学'
-    },
-    {
-        key: '7',
-        name: 'CSAPP',
-        receiver: "孤独の観測者",
-        price: 124,
-        phoneNumber: '10086',
-        address: "上海交通大学闵行校区",
-        state: "已购",
-        type: '科学'
-    },
-    {
-        key: '8',
-        name: 'CSAPP',
-        receiver: "孤独の観測者",
-        price: 124,
-        phoneNumber: '10086',
-        address: "上海交通大学闵行校区",
-        state: "已购",
-        type: '科学'
-    },
-    {
-        key: '9',
-        name: 'CSAPP',
-        receiver: "孤独の観測者",
-        price: 124,
-        phoneNumber: '10086',
-        address: "上海交通大学闵行校区",
-        state: "已购",
-        type: '科学'
-    },
-    {
-        key: '10',
-        name: 'CSAPP',
-        receiver: "孤独の観測者",
-        price: 124,
-        phoneNumber: '10086',
-        address: "上海交通大学徐汇校区",
-        state: "已购",
-        type: '科学'
-    },
-    {
-        key: '11',
-        name: 'CSAPP',
-        receiver: "孤独の観測者",
-        price: 124,
-        phoneNumber: '10086',
-        address: "上海交通大学徐汇校区",
-        state: "已购",
-        type: '科学'
-    },
-    {
-        key: '12',
-        name: 'CSAPP',
-        receiver: "孤独の観測者",
-        price: 124,
-        phoneNumber: '10086',
-        address: "复旦大学",
-        state: "有货",
-        type: '科学'
-    },
-    {
-        key: '13',
-        name: 'CSAPP',
-        receiver: "孤独の観測者",
-        price: 124,
-        phoneNumber: '10086',
-        address: "上海交通大学闵行校区",
-        state: "已购",
-        type: '科学'
-    },
-    {
-        key: '14',
-        name: 'CSAPP',
-        receiver: "孤独の観測者",
-        price: 124,
-        phoneNumber: '10086',
-        address: "上海交通大学闵行校区",
-        state: "已购",
-        type: '科学'
-    },
-    {
-        key: '15',
-        name: '虫师',
-        receiver: "孤独の観測者",
-        price: 30,
-        phoneNumber: '10086',
-        address: "上海交通大学闵行校区",
-        state: "有货",
-        type: '漫画'
-    },
-];
 
 class CartContent extends React.Component {
 
-    static originalData;
+    static originalOrders;
+
+    handleOrdersInfo = data => {
+        console.log("orders: ", data);
+        data.map((order, index) => {
+            order.key = String(index);
+        });
+        this.setState({
+            orders: data,
+        }, () => {
+            CartContent.originalOrders = [...data];
+        });
+    };
+
+    componentDidMount() {
+        getAllOrders(this.handleOrdersInfo);
+    }
+
 
     constructor(props) {
         super(props);
         this.state = {
             selectedRowKeys: [], // Check here to configure the default column
             loading: false,
-            data: data,
             totalPrice: 0,
             searchValue: "",
             showDeleteModal: false,
             showPaymentModal: false,
             editRowKey: -1,
             redirect: false,
+            orders: [],
         };
-        CartContent.originalData = data;
     }
 
     render() {
@@ -195,25 +61,14 @@ class CartContent extends React.Component {
         );
     }
 
-    start = () => {
-        this.setState({loading: true});
-        // ajax request after empty completing
-        setTimeout(() => {
-            this.setState({
-                selectedRowKeys: [],
-                loading: false,
-            });
-        }, 1000);
-    };
-
     filter = (value) => {
         value = value.toLowerCase();
-        let data = CartContent.originalData;
+        let orders = [...CartContent.originalOrders];
         this.setState({
-            data: data.filter((element, index) => {
-                return (element.name.toLowerCase().indexOf(value) !== -1 || element.type.indexOf(value) !== -1 ||
-                    element.address.toLowerCase().indexOf(value) !== -1 || element.receiver.toLowerCase().indexOf(value) !== -1 ||
-                    element.state.indexOf(value) !== -1) || this.state.selectedRowKeys.indexOf((index + 1).toString()) !== -1;
+            orders: orders.filter((element, index) => {
+                return (element.book_title.toLowerCase().indexOf(value) !== -1 || element.order_address.toLowerCase().indexOf(value) !== -1 ||
+                    element.order_receiver.toLowerCase().indexOf(value) !== -1 ||
+                    element.order_state.indexOf(value) !== -1) || this.state.selectedRowKeys.indexOf((index + 1).toString()) !== -1;
             }),
         });
     };
@@ -232,9 +87,9 @@ class CartContent extends React.Component {
 
     calcTotalPrice = () => {
         let totalPrice = 0;
-        for (let i = 0; i < this.state.data.length; ++i) {
-            let state = this.state.data[i].state;
-            totalPrice += state === '有货' ? Number(this.state.data[i].price) : 0;
+        for (let i = 0; i < this.state.orders.length; ++i) {
+            let state = this.state.orders[i].order_state;
+            totalPrice += state === '未购买' ? Number(this.state.orders[i].book_price) : 0;
         }
         return totalPrice;
     };
@@ -244,9 +99,9 @@ class CartContent extends React.Component {
     };
 
     deleteSelections = () => {
-        for (let i = 0; i < CartContent.originalData.length; ++i) {
-            if (this.state.selectedRowKeys.indexOf(CartContent.originalData[i].key) !== -1)
-                CartContent.originalData.splice(i, 1);
+        for (let i = 0; i < CartContent.originalOrders.length; ++i) {
+            if (this.state.selectedRowKeys.indexOf(CartContent.originalOrders[i].key) !== -1)
+                CartContent.originalOrders.splice(i, 1);
         }
 
         this.setState(
@@ -265,13 +120,17 @@ class CartContent extends React.Component {
                 });
     };
 
+    handleUserProperty = data => {
+        this.setState({
+            property: data,
+            showPaymentModal: true,
+        })
+    };
+
     onPaymentClick = () => {
-        if (this.state.selectedRowKeys.length)
-            this.setState(
-                {
-                    showPaymentModal: true,
-                });
-        else {
+        if (this.state.selectedRowKeys.length) {
+            getUserProperty(this.handleUserProperty)
+        } else {
             Modal.error({
                 title: '支付失败',
                 content: '请选中书籍再点击支付按键。',
@@ -291,18 +150,42 @@ class CartContent extends React.Component {
     };
 
     onPaymentOk = () => {
-        if (this.state.showPaymentModal)
-            this.setState({
-                showPaymentModal: false,
-                redirect: true,
-            });
+        this.state.selectedRowKeys.map(key => {
+            console.log("place order: ", this.state.orders[key].order_id);
+            placeOrder(this.state.orders[key].order_id)
+        });
+        this.setState({
+            showPaymentModal: false,
+            redirect: true,
+        });
     };
 
     onDeleteOk = () => {
+        // this.deleteSelections();
+        this.state.selectedRowKeys.map(key => {
+            console.log("key: ", this.state.orders[key].order_id);
+            deleteOrder(this.state.orders[key].order_id, () => {
+            });
+        });
+        setTimeout(() => {
+            history.go(0)
+        }, 300);
         this.setState({
             showDeleteModal: false,
         });
-        this.deleteSelections();
+    };
+
+    onModifyOrder = (order, values) => {
+        console.log(this.state.editRowKey);
+        console.log(this.state.orders[this.state.editRowKey]);
+        console.log("order: ", order);
+        modifyOrder(order.order_id, values.receiver, values.address, values.phoneNumber, () => {
+        });
+        this.setState({
+            editRowKey: -1,
+        }, () => {
+            history.go(0);
+        });
     };
 
     onClose = () => {
@@ -312,7 +195,7 @@ class CartContent extends React.Component {
     };
 
     onActionClick = (key) => {
-        console.log(key);
+        console.log("key:", key);
         this.setState({
             editRowKey: key
         })
@@ -323,7 +206,7 @@ class CartContent extends React.Component {
     }
 
     onSelect = (record, selected) => {
-        let delta = selected ? Number(record['price']) : -Number(record['price']);
+        let delta = selected ? Number(record['book_price']) : -Number(record['book_price']);
         this.adjustTotalPrice(delta);
     };
 
@@ -366,6 +249,8 @@ class CartContent extends React.Component {
                         <Option value="credit-card">信用卡</Option>
                         <Option value="change">零钱</Option>
                     </Select>
+                    <br/>
+                    <b>账户余额:{this.state.property}元</b>
                 </Modal>);
         } else return null;
     };
@@ -390,22 +275,9 @@ class CartContent extends React.Component {
                     onClose={this.onClose}
                     visible={this.state.editRowKey !== -1}
                     bodyStyle={{paddingBottom: 80}}
-                    footer={
-                        <div
-                            style={{
-                                textAlign: 'right',
-                            }}
-                        >
-                            <Button onClick={this.onClose} style={{marginRight: 8}}>
-                                取消
-                            </Button>
-                            <Button onClick={this.onClose} type="primary">
-                                确定
-                            </Button>
-                        </div>
-                    }
                 >
-                    <Form layout="vertical" hideRequiredMark>
+                    <Form layout="vertical" hideRequiredMark
+                          onFinish={this.onModifyOrder.bind(this, this.state.orders[this.state.editRowKey])}>
                         <Row gutter={16}>
                             <Col span={12}>
                                 <Form.Item
@@ -444,12 +316,28 @@ class CartContent extends React.Component {
                                     label="备注"
                                     rules={[
                                         {
-                                            required: true,
+                                            required: false,
                                             message: 'please enter url description',
                                         },
                                     ]}
                                 >
                                     <Input.TextArea rows={4} placeholder="如有特殊需求，请填写备注。"/>
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        <Row justify={'space-between'}>
+                            <Col span={4}>
+                                <Form.Item>
+                                    <Button type="primary" htmlType="submit">
+                                        确认修改
+                                    </Button>
+                                </Form.Item>
+                            </Col>
+                            <Col span={4}>
+                                <Form.Item>
+                                    <Button type="default" onClick={this.onClose}>
+                                        取消
+                                    </Button>
                                 </Form.Item>
                             </Col>
                         </Row>
@@ -500,32 +388,28 @@ class CartContent extends React.Component {
         const columns = [
             {
                 title: '商品名称',
-                dataIndex: 'name',
-            },
-            {
-                title: '商品类型',
-                dataIndex: 'type',
+                dataIndex: 'book_title',
             },
             {
                 title: '价格',
                 sorter: {
-                    compare: (a, b) => a.price - b.price,
+                    compare: (a, b) => a.bookPrice - b.bookPrice,
                     multiple: 2,
                 },
-                dataIndex: 'price',
+                dataIndex: 'book_price',
 
             },
             {
                 title: '收货人',
-                dataIndex: 'receiver',
+                dataIndex: 'order_receiver',
             },
             {
                 title: '联系方式',
-                dataIndex: 'phoneNumber',
+                dataIndex: 'order_tel',
             },
             {
                 title: '地址',
-                dataIndex: 'address',
+                dataIndex: 'order_address',
             },
             {
                 title: '商品状态',
@@ -533,10 +417,10 @@ class CartContent extends React.Component {
                 sorter: {
                     multiple: 1,
                     compare: (a, b) => {
-                        return a.state.localeCompare(b.state);
+                        return a.order_state.localeCompare(b.order_state);
                     },
                 },
-                dataIndex: 'state',
+                dataIndex: 'order_state',
             },
             {
                 title: '',
@@ -551,25 +435,6 @@ class CartContent extends React.Component {
             }
         ];
 
-        const MoreInfo = (
-            <Row align={"center"}>
-                <Col span={4}>
-                    <Image style={{height: '150px', width: '120px'}} src={BookSrc}>
-                    </Image>
-                </Col>
-                <Col span={8}>
-                    <Timeline>
-                        <Timeline.Item color="green">用户下单 2021/3/17 19:40</Timeline.Item>
-                        <Timeline.Item color="green">商家发货 2021/3/17 20:40</Timeline.Item>
-                        <Timeline.Item dot={<ClockCircleOutlined className="timeline-clock-icon"/>}>
-                            快递员派送中 2021/3/18 15:20
-                        </Timeline.Item>
-                        <Timeline.Item color="red">确认收货</Timeline.Item>
-                    </Timeline>
-                </Col>
-            </Row>
-        );
-
         const {selectedRowKeys} = this.state;
         const rowSelection = {
             selectedRowKeys,
@@ -577,16 +442,35 @@ class CartContent extends React.Component {
             onSelect: this.onSelect,
             onSelectAll: this.onSelectAll,
             getCheckboxProps: (record) => ({
-                disabled: record.state === '已购' || record.state === '无货', // Column configuration not to be checked
+                disabled: record.order_state === '已购买', // Column configuration not to be checked
             }),
         };
         return (
             <Table columns={columns}
-                   dataSource={this.state.data}
+                   dataSource={this.state.orders}
                    scroll={{y: 350}}
                    rowSelection={rowSelection}
                    expandable={{
-                       expandedRowRender: record => (MoreInfo),
+                       expandedRowRender: (record) => {
+                           return (
+                               <Row align={"center"}>
+                                   <Col span={4}>
+                                       <Image style={{height: '150px', width: '120px'}} src={record.book_cover}>
+                                       </Image>
+                                   </Col>
+                                   <Col span={8}>
+                                       <Timeline>
+                                           <Timeline.Item color="green">用户下单 2021/3/17 19:40</Timeline.Item>
+                                           <Timeline.Item color="green">商家发货 2021/3/17 20:40</Timeline.Item>
+                                           <Timeline.Item dot={<ClockCircleOutlined className="timeline-clock-icon"/>}>
+                                               快递员派送中 2021/3/18 15:20
+                                           </Timeline.Item>
+                                           <Timeline.Item color="red">确认收货</Timeline.Item>
+                                       </Timeline>
+                                   </Col>
+                               </Row>
+                           );
+                       },
                        rowExpandable: record => record.name !== 'Not Expandable',
                    }}
             />

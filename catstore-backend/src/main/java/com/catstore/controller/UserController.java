@@ -4,6 +4,7 @@ import com.catstore.entity.User;
 import com.catstore.entity.UserAuthority;
 import com.catstore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,5 +38,10 @@ public class UserController {
             userService.setUserSignature(userSignature);
             System.out.println(userSignature);
         }
+    }
+
+    @RequestMapping("/getUserProperty")
+    Float getUserProperty() {
+        return userService.getUserProperty();
     }
 }

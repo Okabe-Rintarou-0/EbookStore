@@ -7,8 +7,8 @@ import PrivateRoute from "./PrivateRoute";
 import HomeView from "../view/HomeView";
 import BookView from "../view/BookView";
 import ShoppingCartView from "../view/ShoppingCartView";
-import BookBrowseView from "../view/BookBrowseView";
 import PaymentResult from "../components/PaymentResult";
+import FavouriteView from "../view/FavouriteView";
 
 class BasicRoute extends React.Component {
 
@@ -28,7 +28,7 @@ class BasicRoute extends React.Component {
                     <LoginRoute exact path="/login" component={LoginView}/>
                     <PrivateRoute path="/book/:bookId" component={BookView}/>
                     <PrivateRoute exact path="/cart" component={ShoppingCartView}/>
-                    <PrivateRoute exact path="/browse" component={BookBrowseView}/>
+                    <PrivateRoute exact path="/favourite" component={FavouriteView}/>
                     <PrivateRoute exact path="/status" component={PaymentResult}/>
                     <Redirect from={'/*'} to={{pathname: "/"}}/>
                 </Switch>

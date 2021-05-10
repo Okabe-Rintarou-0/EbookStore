@@ -9,5 +9,9 @@ public interface UserDao {
     User getUser();
 
     void setUserSignature(String userSignature);
+
+    Float getUserProperty();
+
+    void updateUserProperty(Float delta);
 }
 

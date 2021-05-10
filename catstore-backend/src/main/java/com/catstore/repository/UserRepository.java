@@ -15,4 +15,11 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Modifying
     @Query("update User set userSignature = :userSignature where userId = :userId ")
     void setUserSignature(@Param("userId") Integer userId, @Param("userSignature") String userSignature);
+
+    @Query(value = "select userProperty from User where userId =?1")
+    Float getUserPropertyByUserId(Integer userId);
+
+    @Modifying
+    @Query(value = "update User set userProperty = userProperty + ?2 where userId =?1")
+    void updateUserProperty(Integer userId, Float delta);
 }

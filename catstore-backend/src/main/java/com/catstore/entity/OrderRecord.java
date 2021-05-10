@@ -5,17 +5,14 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Data
 @Entity
+@Table(name = "order_record")
 @JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer", "fieldHandler"})
-public class Comment {
+public class OrderRecord {
     @Id
-    private Integer commentId;
-    private Integer bookId;
-    private Integer userId;
-    private String commentContent;
-    private String commentDate;
-    private Integer likes;
-    private Integer dislikes;
+    Integer orderId;
+    Integer userId;
 }

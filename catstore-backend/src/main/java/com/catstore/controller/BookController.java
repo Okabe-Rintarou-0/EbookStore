@@ -24,6 +24,16 @@ public class BookController {
         return bookService.getBooks();
     }
 
+    @RequestMapping("/getBookTitle")
+    String getBookTitleByBookId(@RequestParam("bookId") Integer bookId) {
+        return bookService.getBookTitleByBookId(bookId);
+    }
+
+    @RequestMapping("/getBooksByKeyword")
+    List<Book> getBooksByKeyword(@RequestParam("keyword") String keyword) {
+        return bookService.getBooksByKeyword(keyword);
+    }
+
     @RequestMapping("/getBookById")
     Book getBookById(@RequestParam("bookId") Integer bookId) {
         return bookService.getBookById(bookId);

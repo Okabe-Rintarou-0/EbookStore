@@ -1,5 +1,5 @@
 // import config from 'config'
-import postRequest from "../utils/ajax";
+import {postRequest} from "../utils/ajax";
 import {message} from "antd";
 import {history} from "../utils/history";
 
@@ -39,6 +39,11 @@ export function logout() {
 
 export function getUser(callback) {
     const url = 'http://localhost:8080/getUser';
+    postRequest(url, {}, callback);
+}
+
+export function getUserProperty(callback) {
+    const url = 'http://localhost:8080/getUserProperty';
     postRequest(url, {}, callback);
 }
 

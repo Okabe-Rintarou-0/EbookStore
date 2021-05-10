@@ -13,6 +13,8 @@ public class Book {
     @Id
     private Integer bookId;
     private String bookTitle;
+    private String bookTag;
+    private String bookType;
     private String bookCover;
     private String bookAuthor;
     private Float bookPrice;

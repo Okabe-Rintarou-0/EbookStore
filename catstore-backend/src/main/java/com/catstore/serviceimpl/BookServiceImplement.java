@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BookServiceImplement implements BookService {
@@ -26,5 +27,15 @@ public class BookServiceImplement implements BookService {
     @Override
     public Book getBookById(Integer bookId) {
         return bookDao.getBookById(bookId);
+    }
+
+    @Override
+    public List<Book> getBooksByKeyword(String keyword) {
+        return bookDao.getBooksByKeyword(keyword);
+    }
+
+    @Override
+    public String getBookTitleByBookId(Integer bookId) {
+        return bookDao.getBookTitleByBookId(bookId);
     }
 }

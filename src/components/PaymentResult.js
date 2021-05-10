@@ -11,7 +11,11 @@ class PaymentResult extends React.Component {
         redirect: false
     };
 
-    randomResult = () => (Math.random() >= 0.5);
+    randomResult = () => true;
+    //(
+    //Math.random() >= 0.5
+    // true
+    //);
 
     Redirect = () => {
         this.setState({

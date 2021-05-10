@@ -32,4 +32,10 @@ public class UserServiceImplement implements UserService {
     public void setUserSignature(String userSignature) {
         userDao.setUserSignature(userSignature);
     }
+
+    @Override
+    public Float getUserProperty() {
+        return userDao.getUserProperty();
+    }
+
 }

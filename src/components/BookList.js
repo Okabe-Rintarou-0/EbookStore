@@ -1,47 +1,98 @@
 import React from "react";
 import BookPreview from "./BookPreview";
-import {Col, Pagination} from "antd";
+import {Col, Input, Pagination, Row} from "antd";
 import 'antd/dist/antd.css'
-import {getBooks} from "../service/bookService";
+import {getBooks, getBooksByKeyword} from "../service/bookService";
+import BookCarousel from "./Carousel";
+import {scrollBackToTop} from "../utils/auxfunc";
+
+const {Search} = Input;
 
 class BookList extends React.Component {
 
     state = {
-        data: []
+        books: [],
+        browser: false,
+        pageIndex: 1,
     };
 
-    handleBooks = data => {
-        console.log(data);
+    onSearch = (value) => {
+        let keyword = value.toLowerCase();
+        getBooksByKeyword(keyword, this.handleBooksInfo);
         this.setState({
-            data: data
+            browser: true,
         })
     };
 
+    handleBooksInfo = data => {
+        console.log(data);
+        this.setState({
+            books: data,
+        });
+    };
+
     componentDidMount() {
-        getBooks(this.handleBooks);
+        getBooks(this.handleBooksInfo);
+    }
+
+    renderSearchBar = () => {
+        return (
+            <Row align={"center"}>
+                <Col span={12} style={{margin: '20px'}}>
+                    <Search
+                        placeholder="请输入搜索关键词"
+                        allowClear
+                        enterButton="Search"
+                        size="large"
+                        onSearch={this.onSearch}
+                    />
+                </Col>
+            </Row>
+        );
+    };
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        scrollBackToTop();
     }
 
     renderBooks = () => {
         let renderContent = [];
-        let data = this.state.data;
-        let bookNumber = data.length >= 9 ? 9 : data.length;
-        for (let i = 0; i < bookNumber; ++i)
+        for (let i = 15 * (this.state.pageIndex - 1); (i < this.state.books.length && i < this.state.pageIndex * 15); ++i)
             renderContent.push(
                 <Col span={8}>
-                    <BookPreview data={data[i]}/>
+                    <BookPreview data={this.state.books[i]}/>
                 </Col>
             );
+
         return renderContent;
+    };
+
+    renderCarousel = () => {
+        return !this.state.browser ? <BookCarousel/> : null;
+    };
+
+    handlePageChange = pageIndex => {
+        this.setState({
+            pageIndex: pageIndex,
+        })
     };
 
     render() {
         return (
-            <div className="books-container">
-                {this.renderBooks()}
-                <div className="pagination">
-                    <Pagination simple defaultCurrent={1} total={50}/>
-                </div>
-            </div>
+            <>
+                {this.renderSearchBar()}
+                {/*{this.renderCarousel()}*/}
+                <Row>
+                    {this.renderBooks()}
+                </Row>
+                <Row justify={"end"}>
+                    <Col span={4}>
+                        <Pagination simple current={this.state.pageIndex} defaultCurrent={1}
+                                    total={this.state.books.length} pageSize={15}
+                                    style={{marginBottom: '20px'}} onChange={this.handlePageChange}/>
+                    </Col>
+                </Row>
+            </>
         );
     }
 }

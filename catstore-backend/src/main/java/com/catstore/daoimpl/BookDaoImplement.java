@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class BookDaoImplement implements BookDao {
@@ -26,5 +27,15 @@ public class BookDaoImplement implements BookDao {
     @Override
     public Book getBookById(Integer bookId) {
         return bookRepository.getBookById(bookId);
+    }
+
+    @Override
+    public List<Book> getBooksByKeyword(String keyword) {
+        return bookRepository.getBooksByKeyword(keyword);
+    }
+
+    @Override
+    public String getBookTitleByBookId(Integer bookId) {
+        return bookRepository.getBookById(bookId).getBookTitle();
     }
 }

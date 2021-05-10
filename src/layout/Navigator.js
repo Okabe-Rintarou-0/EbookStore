@@ -2,7 +2,6 @@ import React from "react";
 import "../css/general.css"
 import '../css/navigator.css'
 import logoUrl from "../assets/logo.png"
-import iconUrl from "../assets/icon.gif"
 import {logout, getUser, setUserSignature} from "../service/userService";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
@@ -39,20 +38,21 @@ class Navigator extends React.Component {
             editSignature: false,
             userSignature: "",
             username: "",
+            userIcon: "",
             userId: 0,
         };
     }
 
     handleUserInfo = data => {
         this.setState({
-            userSignature: data.userSignature,
+            userSignature: data.userSignature === '' ? '这个人很懒，一句话也没有留下。' : data.userSignature,
             username: data.username,
             userId: data.userId,
+            userIcon: data.userIcon,
         });
     };
 
     componentDidMount() {
-        console.log("hi!");
         getUser(this.handleUserInfo);
     }
 
@@ -91,7 +91,7 @@ class Navigator extends React.Component {
                         </Menu.Item>
                         <Menu.Item key="favor">
                             <FontAwesomeIcon icon={faStar} className={"nav-icon"}/>
-                            <Link exact to={"/"}>收藏夹</Link>
+                            <Link exact to={"/favourite"}>收藏夹</Link>
                         </Menu.Item>
                         <Menu.Item key="service" disabled>
                             <FontAwesomeIcon icon={faPhone} className={"nav-icon"}/>
@@ -137,7 +137,7 @@ class Navigator extends React.Component {
             <Col span={4}>
                 <Row>
                     <Col span={8} offset={4}>
-                        <Avatar size={64} src={iconUrl}/>
+                        <Avatar size={64} src={this.state.userIcon}/>
                     </Col>
                     <Row align="bottom">
                         <Col span={24}>
@@ -203,7 +203,7 @@ class Navigator extends React.Component {
                        okText={"确认修改"} cancelText={"取消"}>
                     <Row>
                         <Col span={8}>
-                            <Avatar size={128} src={iconUrl}/>
+                            <Avatar size={128} src={this.state.userIcon}/>
                         </Col>
                     </Row>
                     <Row style={{marginTop: '10px'}}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Route, Redirect} from 'react-router-dom'
 import {checkSession} from "../service/userService";
+import {scrollBackToTop} from "../utils/auxfunc";
 
 export class PrivateRoute extends React.Component {
 
@@ -9,7 +10,7 @@ export class PrivateRoute extends React.Component {
         this.state = {
             isAuthorized: false,
             hasChecked: false
-        }
+        };
     }
 
     checkAuthority = data => {
@@ -23,6 +24,10 @@ export class PrivateRoute extends React.Component {
 
     componentDidMount() {
         checkSession(this.checkAuthority);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        scrollBackToTop();
     }
 
     render() {

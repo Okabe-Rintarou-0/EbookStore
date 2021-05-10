@@ -5,17 +5,19 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.sql.Timestamp;
 
 @Data
 @Entity
 @JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer", "fieldHandler"})
-public class Comment {
+public class UserOrder {
     @Id
-    private Integer commentId;
-    private Integer bookId;
-    private Integer userId;
-    private String commentContent;
-    private String commentDate;
-    private Integer likes;
-    private Integer dislikes;
+    Integer orderId;
+    Timestamp orderTime;
+    String orderState;
+    String orderAddress;
+    String orderTel;
+    String orderReceiver;
+    Integer purchaseNumber;
+    Integer bookId;
 }

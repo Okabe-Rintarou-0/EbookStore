@@ -9,4 +9,7 @@ public interface UserService {
     User getUser();
 
     void setUserSignature(String userSignature);
+
+    Float getUserProperty();
+
 }

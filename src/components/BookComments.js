@@ -19,7 +19,6 @@ class BookComments extends React.Component {
     }
 
     handleCommentsInfo = data => {
-        console.log(data);
         this.setState({
             comments: data,
         })
@@ -47,6 +46,7 @@ class BookComments extends React.Component {
                     renderItem={item => (
                         <li>
                             <BookComment
+                                comment_id={item.comment_id}
                                 username={item.username}
                                 imgSrc={item.user_icon}
                                 userComment={item.comment_content}

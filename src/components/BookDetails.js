@@ -1,9 +1,11 @@
 import React from "react";
 import '../css/bookDetails.css'
-import {Image, Dropdown, Menu, Button, message} from "antd";
-import {getBookById} from "../service/bookService";
+import {Image, Dropdown, Menu, Button, message, Modal, Row, Col, Card} from "antd";
+import {getBookById, getConcernedBookInfo} from "../service/bookService";
 import {addToCart} from "../service/orderService";
 import {addFavouriteBook} from "../service/favouriteService";
+
+const {Meta} = Card;
 
 class BookDetails extends React.Component {
 
@@ -16,7 +18,9 @@ class BookDetails extends React.Component {
             bookDescription: null,
             bookPrice: null,
             bookCover: null,
+            showConcernedBookInfo: false,
             tags: [],
+            concernedBookInfo: [],
         };
     }
 
@@ -29,12 +33,70 @@ class BookDetails extends React.Component {
             bookDescription: data.bookDescription,
             bookAuthor: data.bookAuthor,
             tags: data.bookTag.split(' '),
-        }, () => console.log(this.state.tags));
+        }, () => {
+        });
     };
 
     componentDidMount() {
         getBookById(this.props.bookId, this.handleBookInfo);
     }
+
+    closeModal = () => {
+        this.setState({
+            showConcernedBookInfo: false,
+        })
+    };
+
+    handleConcernedInfo = data => {
+        console.log(data);
+        this.setState({
+            concernedBookInfo: data,
+        })
+    };
+
+    showConcernedInfo = () => {
+        this.setState({
+            showConcernedBookInfo: true,
+        });
+        getConcernedBookInfo(this.state.bookTitle, this.handleConcernedInfo)
+    };
+
+    renderConcernedBooks = () => {
+        let books = [];
+        this.state.concernedBookInfo.map(book => {
+            books.push((
+                <Col span={8}>
+                    <Card
+                        hoverable
+                        style={{width: 240}}
+                        cover={<img alt="book"
+                                    src={book.bookCover}/>}
+                    >
+                        <Meta title={"价格: " + book.bookPrice} description={"源网址: " + book.bookLink}/>
+                        <a href={book.bookLink} target={'_blank'}>访问</a>
+                    </Card>,
+                </Col>
+            ))
+        });
+        return books;
+    };
+
+    renderConcernedBookInfoModal = () => {
+        return this.state.showConcernedBookInfo ? (
+            <Modal title="相关图书/周边"
+                   width={'800px'}
+                   visible={true}
+                   onCancel={this.closeModal}
+                   footer={
+                       <Button key="back" onClick={this.closeModal}>
+                       </Button>
+                   }>
+                <Row>
+                    {this.renderConcernedBooks()}
+                </Row>
+            </Modal>
+        ) : null;
+    };
 
     onAddToCart = (e) => {
         let text = e.target.innerText;
@@ -134,12 +196,12 @@ class BookDetails extends React.Component {
                     </div>
                     <div className="browse-book-description">
                         <div className="author">{`作者：${this.state.bookAuthor}`}</div>
-                        {this.state.bookDetails !== '' ? this.state.bookDetails : this.state.bookDescription}
+                        {this.state.bookDetails !== null ? (this.state.bookDetails.length > 334 ? this.state.bookDetails.slice(0, 334) + "..." : this.state.bookDetails) : null}
                     </div>
                     <div className="browse-book-option">
                     <span className="browse-book-button">
-                        <button className="pay-now">
-                            分享本书
+                        <button className="pay-now" onClick={this.showConcernedInfo}>
+                            价位对比
                         </button>
                     </span>
                         <span className="browse-book-button">
@@ -154,6 +216,7 @@ class BookDetails extends React.Component {
                     </span>
                     </div>
                 </div>
+                {this.renderConcernedBookInfoModal()}
             </div>
         );
     }

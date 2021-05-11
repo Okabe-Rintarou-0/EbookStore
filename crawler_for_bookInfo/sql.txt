@@ -1,0 +1,107 @@
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('堕落 流放与王国','https://bkimg.cdn.bcebos.com/pic/023b5bb5c9ea15ce9de27e10b4003af33a87b29f?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'(法) 加缪','《堕落·流放与王国》是2011年译林出版社出版的一本图书，作者是加缪，译者是郭宏安。
+','《堕落·流放与王国》是2011年译林出版社出版的一本图书，作者是加缪，译者是郭宏安。
+主要内容为告诉人们，没有希望并不等同于绝望，清醒也不导致顺从，人应该认识到他的唯一的财富是生命，而生命既是必然要消逝的，同时也是可以尽量加以开发的，人应该而且能够在这个世界中获得生存的勇气，甚至幸福。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('局外人 西绪福斯神话','https://bkimg.cdn.bcebos.com/pic/8b82b9014a90f60359bf70b63b12b31bb051ed30?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'加缪','《局外人西绪福斯神话》是2011年6月1日译林出版社出版的图书，作者是加缪。
+','《局外人西绪福斯神话》是2011年6月1日译林出版社出版的图书，作者是加缪。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('反与正 婚礼集 夏天集','https://bkimg.cdn.bcebos.com/pic/5ab5c9ea15ce36d34c8176693af33a87e850b1e6?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'(法) 加缪','《反与正·婚礼集·夏天集》是2011年07月译林出版社出版的图书，作者是（法）加缪。该书主要收录了作者关于童年生活的散文以及讲述生活、死亡的散文等内容。
+','《反与正·婚礼集·夏天集》是2011年07月译林出版社出版的图书，作者是（法）加缪。该书主要收录了作者关于童年生活的散文以及讲述生活、死亡的散文等内容。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('波希米亚女郎','https://bkimg.cdn.bcebos.com/pic/e1fe9925bc315c603f1ad0fa8fb1cb1349547713?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'薇拉·凯瑟','《波希米亚女郎》是2006年由人民文学出版社出版，作者是薇拉·凯瑟。
+','《波希米亚女郎》是2006年由人民文学出版社出版，作者是薇拉·凯瑟。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('平成史讲义','https://bkimg.cdn.bcebos.com/pic/359b033b5bb5c9ea15ce4de71675a1003af33a871528?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'吉见俊哉','《平成史讲义》是一部由[日]吉见俊哉所著书籍，东方出版中心出版发行。
+','《平成史讲义》是一部由[日]吉见俊哉所著书籍，东方出版中心出版发行。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('煤炭资源型城市工业循环经济发展机理与调控','https://bkimg.cdn.bcebos.com/pic/562c11dfa9ec8a136327abe4bf4f868fa0ec08fa6a28?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'于会录、李世泰','《煤炭资源型城市工业循环经济发展机理与调控》是2020年1月1日中国社会科学出版社出版的图书，作者是于会录、李世泰。 
+','《煤炭资源型城市工业循环经济发展机理与调控》是2020年1月1日中国社会科学出版社出版的图书，作者是于会录、李世泰。 
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('犬皮肤病诊断--基于临床类型的诊断方法(精)/世界兽医经典著作译丛','https://bkimg.cdn.bcebos.com/pic/c995d143ad4bd11373f02a8b76e3b30f4bfbfbedaf7c?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'梅特·维德·阿里巴斯','《犬皮肤病诊断--基于临床类型的诊断方法（精）/世界兽医经典著作译丛》是2020年中国农业出版社出版的图书，作者是梅特·维德·阿里巴斯。
+','《犬皮肤病诊断--基于临床类型的诊断方法（精）/世界兽医经典著作译丛》是2020年中国农业出版社出版的图书，作者是梅特·维德·阿里巴斯。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('口腔种植学词典','https://bkimg.cdn.bcebos.com/pic/f703738da9773912b31b8e0849529118367adab4440c?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'宿玉成','《口腔种植学词典》是一本人民卫生出版社出版的图书，作者是宿玉成，收录了口腔种植学的词条。 
+','《口腔种植学词典》是一本人民卫生出版社出版的图书，作者是宿玉成，收录了口腔种植学的词条。 
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('日本怪谈故事','https://bkimg.cdn.bcebos.com/pic/6f061d950a7b02087bf4d4394995e5d3572c10df629c?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,' 小泉八云','《日本怪谈故事》是2020年国际文化出版公司出版的图书，作者是[日] 小泉八云。
+','《日本怪谈故事》是2020年国际文化出版公司出版的图书，作者是[日] 小泉八云。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('中美钢铁产业结构调整对比--思考与借鉴','https://bkimg.cdn.bcebos.com/pic/a5c27d1ed21b0ef41bd5de5c958846da81cb39db90d7?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'张寿荣、王一德、殷瑞钰','《中美钢铁产业结构调整对比--思考与借鉴》是2020年冶金工业出版社出版的图书，作者是张寿荣、王一德、殷瑞钰。
+','《中美钢铁产业结构调整对比--思考与借鉴》是2020年冶金工业出版社出版的图书，作者是张寿荣、王一德、殷瑞钰。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('青年马克思与施泰因','https://bkimg.cdn.bcebos.com/pic/fcfaaf51f3deb48f8c54c6d2d7532d292df5e0fed221?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'王淑娟','《青年马克思与施泰因》是2020年社会科学文献出版社出版的图书，作者是王淑娟。
+','《青年马克思与施泰因》是2020年社会科学文献出版社出版的图书，作者是王淑娟。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('内向游戏','https://bkimg.cdn.bcebos.com/pic/a6efce1b9d16fdfaaf512c2323c39b5494eef11fcde3?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'愚公子','《内向游戏》是一部由愚公子所著的书籍，北京联合出版公司出版发行。
+','《内向游戏》是一部由愚公子所著的书籍，北京联合出版公司出版发行。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('新中国宪法发展70年','https://bkimg.cdn.bcebos.com/pic/0eb30f2442a7d933c89546cc9407c61373f08202ab72?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'韩大元','《新中国宪法发展70年》是2020年广东人民出版社出版的图书，作者是韩大元。 
+','《新中国宪法发展70年》是2020年广东人民出版社出版的图书，作者是韩大元。 
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('咖啡事典','https://bkimg.cdn.bcebos.com/pic/8ad4b31c8701a18b917edb5d9c2f07082838fe0f?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'(日)伊藤博编','《咖啡事典》是2000年5月中国轻工业出版社出版的图书，作者是(日)伊藤博
+','《咖啡事典》是2000年5月中国轻工业出版社出版的图书，作者是(日)伊藤博
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('英汉修辞格比较与翻译','https://bkimg.cdn.bcebos.com/pic/c83d70cf3bc79f3df8dce50dcee8da11728b471083ff?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'陈科芳','《英汉修辞格比较与翻译》是2017年12月中国社会科学出版社出版的图书，作者是陈科芳。
+','《英汉修辞格比较与翻译》是2017年12月中国社会科学出版社出版的图书，作者是陈科芳。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('“可以不用长大”世界经典故事集','https://bkimg.cdn.bcebos.com/pic/9e3df8dcd100baa1cd11c5efb35aae12c8fcc3ce8006?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'圣埃克苏佩里','《“可以不用长大”世界经典故事集“》是一套天地出版社出版的图书，包含《夜莺与玫瑰》《小银与我》《鸢尾花》《银河铁道之夜》《爱丽丝梦游仙境》《小王子》 
+','《“可以不用长大”世界经典故事集“》是一套天地出版社出版的图书，包含《夜莺与玫瑰》《小银与我》《鸢尾花》《银河铁道之夜》《爱丽丝梦游仙境》《小王子》 
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('夜莺与玫瑰','https://bkimg.cdn.bcebos.com/pic/242dd42a2834349b73338169c3ea15ce36d3be21?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'畸藤斋','《夜莺与玫瑰》是网络小说作家畸藤斋在澄文中文网创作的一篇精美动人的短篇都市言情小说，主打“复仇”元素，展现出现代都市人的情感困惑，已完结。
+','《夜莺与玫瑰》是网络小说作家畸藤斋在澄文中文网创作的一篇精美动人的短篇都市言情小说，主打“复仇”元素，展现出现代都市人的情感困惑，已完结。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('小银和我','https://bkimg.cdn.bcebos.com/pic/c2fdfc039245d688a3efd3c4a7c27d1ed31b24e4?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'胡安· 拉蒙·希梅内斯 ','《小银和我》是1956年出版的散文诗集，作者是西班牙作家胡安· 拉蒙·希梅内斯。
+','《小银和我》是1956年出版的散文诗集，作者是西班牙作家胡安· 拉蒙·希梅内斯。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('Scala编程（第4版）','https://bkimg.cdn.bcebos.com/pic/7e3e6709c93d70cf3bc7051ff497c600baa1cd11fdc4?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'【德】Martin Odersky（ 马丁·奥德斯基）、【美】Lex Spoon（莱斯·彭） 、【美】Bill Venners （比尔·文纳斯）','《Scala编程（第4版）》由电子工业出版社于2020年12月出版，作者是【德】Martin Odersky（ 马丁·奥德斯基）、【美】Lex Spoon（莱斯·彭）、【美】Bill Venners （比尔·文纳斯），译者是高宇翔。 
+','《Scala编程（第4版）》由电子工业出版社于2020年12月出版，作者是【德】Martin Odersky（ 马丁·奥德斯基）、【美】Lex Spoon（莱斯·彭）、【美】Bill Venners （比尔·文纳斯），译者是高宇翔。 
+本书作者Martin Odersky教授2001年率领团队开发了Scala语言、类库和编译器，其核心成员精心编写了这本官方教程。
+本书全面涵盖整个编程语言、重要类库及其背后理念，经多版本迭代优化后，编排、组织和示例设置堪称语言学习典范。
+第4版大幅增加新内容，覆盖Scala 2.13新特性并重塑集合类库：集合类继承关系|集合类型实现|集合方法|自定义|视图。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('gRPC与云原生应用开发','https://bkimg.cdn.bcebos.com/pic/4afbfbedab64034f78f03780b38f6e310a55b219b7ab?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'卡山·因德拉西里（Kasun Indrasiri），丹尼什·库鲁普（Danesh Kuruppu）','《gRPC与云原生应用开发》是2021年人民邮电出版社出版的图书，作者是卡山·因德拉西里（Kasun Indrasiri），丹尼什·库鲁普（Danesh Kuruppu）。
+','《gRPC与云原生应用开发》是2021年人民邮电出版社出版的图书，作者是卡山·因德拉西里（Kasun Indrasiri），丹尼什·库鲁普（Danesh Kuruppu）。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('魔法中的科学','https://bkimg.cdn.bcebos.com/pic/902397dda144ad345982a41eeeee1bf431adcbef2f5c?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,' 米歇尔·贝隆','《魔法中的科学》是2021年重庆出版社出版的图书，作者是[意] 米歇尔·贝隆。 
+','《魔法中的科学》是2021年重庆出版社出版的图书，作者是[意] 米歇尔·贝隆。 
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('花森安治的手艺','https://bkimg.cdn.bcebos.com/pic/3b292df5e0fe9925bc317bd86de349df8db1ca13dbaa?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'生活手帖社','《花森安治的手艺：生活手帖的设计美学》是2020年书海出版社出版的图书，作者是[日]生活手帖社。 
+','《花森安治的手艺：生活手帖的设计美学》是2020年书海出版社出版的图书，作者是[日]生活手帖社。 
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('改变日本生活的男人','https://bkimg.cdn.bcebos.com/pic/203fb80e7bec54e736d169ed98748c504fc2d4623ca6?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'津野海太郎','《改变日本生活的男人》是2020年12月1日书海出版社出版的图书，作者是[日]津野海太郎。 
+','《改变日本生活的男人》是2020年12月1日书海出版社出版的图书，作者是[日]津野海太郎。 
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('缪斯之艺','https://bkimg.cdn.bcebos.com/pic/b219ebc4b74543a98226982e905b9d82b9014b90beb7?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'  丹尼尔·奥尔布赖特','《缪斯之艺》是2021年1月1日南京大学出版社出版的图书，作者是[美]  丹尼尔·奥尔布赖特 。 
+','《缪斯之艺》是2021年1月1日南京大学出版社出版的图书，作者是[美]  丹尼尔·奥尔布赖特 。 
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('5分钟生物课','https://bkimg.cdn.bcebos.com/pic/a686c9177f3e6709c93d6cb7b38b883df8dcd100ff6d?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'冯智','《5分钟生物课》是2021年1月浙江人民出版社出版的图书，作者是冯智。 
+','《5分钟生物课》是2021年1月浙江人民出版社出版的图书，作者是冯智。 
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('中国美食地理','https://bkimg.cdn.bcebos.com/pic/37d3d539b6003af303dec921362ac65c1038b60e?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'美食联盟','《中国美食地理：23个名城的经典美食》是2007年中国工人出版社出版的图书，作者是美食联盟。
+','《中国美食地理：23个名城的经典美食》是2007年中国工人出版社出版的图书，作者是美食联盟。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('雨花英烈精神解读','https://bkimg.cdn.bcebos.com/pic/962bd40735fae6cdd97dade901b30f2443a70f68?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'南京大学文化与自然遗产研究所 等','《雨花英烈精神解读》是2019年江苏人民出版社出版的图书，作者是南京大学文化与自然遗产研究所、雨花台烈士陵园管理局。该书从六个方面对雨花英烈精神进行了全面解读。 
+','《雨花英烈精神解读》是2019年江苏人民出版社出版的图书，作者是南京大学文化与自然遗产研究所、雨花台烈士陵园管理局。该书从六个方面对雨花英烈精神进行了全面解读。 
+2019年6月6日上午，《雨花英烈精神解读》新书发布会在南京雨花台烈士纪念馆举办。 
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('关于那个人的备忘录','https://bkimg.cdn.bcebos.com/pic/79f0f736afc379310a55b8a23e8fa04543a98326bbaf?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'小林泰三','《关于那个人的备忘录》是一部由[日]小林泰三所著科幻小说，新星出版社出版发行。
+','《关于那个人的备忘录》是一部由[日]小林泰三所著科幻小说，新星出版社出版发行。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('双城记：明清清淮地区城市地理研究','https://bkimg.cdn.bcebos.com/pic/d043ad4bd11373f082022dc2fa435cfbfbedab64ae10?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'王聪明','《双城记：明清清淮地区城市地理研究》是2020年12月1日社会科学文献出版社出版的图书，作者是王聪明。 
+','《双城记：明清清淮地区城市地理研究》是2020年12月1日社会科学文献出版社出版的图书，作者是王聪明。 
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('我去你留两秋天','https://bkimg.cdn.bcebos.com/pic/b58f8c5494eef01f3a298a2635b58e25bc315d60d7b6?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,' 正冈子规','《我去你留两秋天》是一部 [日]正冈子规的俳句作品集，北京联合出版公司出版发行。
+','《我去你留两秋天》是一部 [日]正冈子规的俳句作品集，北京联合出版公司出版发行。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('废柴狐阿桔子 4','https://bkimg.cdn.bcebos.com/pic/91ef76c6a7efce1b9d16acac8c1de4deb48f8c54cf0b?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'狐泥，麦克嗲','《废柴狐阿桔子 4》是2021年安徽美术出版社出版的图书，作者是狐泥，麦克嗲。
+','《废柴狐阿桔子 4》是2021年安徽美术出版社出版的图书，作者是狐泥，麦克嗲。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('临县民俗文化','https://bkimg.cdn.bcebos.com/pic/0b55b319ebc4b74535f906aeccfc1e178a82151c?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'郭丕汉 姜玉生','《临县民俗文化》从临县社会民俗、生产生活方式、方言俗语、节日礼仪等方面，对临县的各类民风民俗作了翔实的记载，突出地方特色，彰显地域文化精华，是一部内容全面、特色鲜明、图文并荗的民俗专著，对临县地方文化的传承具有积极作用。
+','《临县民俗文化》从临县社会民俗、生产生活方式、方言俗语、节日礼仪等方面，对临县的各类民风民俗作了翔实的记载，突出地方特色，彰显地域文化精华，是一部内容全面、特色鲜明、图文并荗的民俗专著，对临县地方文化的传承具有积极作用。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('一个摄影家眼中的美国','https://bkimg.cdn.bcebos.com/pic/38dbb6fd5266d01682aee464942bd40734fa35c2?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'尹欣','《一个摄影家眼中的美国》作者是中国摄影家协会理事，云南省摄影家协会主席，曾在云南曲靖、西双版纳工作，现任职于云南省委宣传部。多年来酷爱摄影艺术，工作之余大部分时间流连于山水田野，进行民俗风情和自然风光的创作。喜欢以大自然为伴，以各族群众为友。几十年的业余艺术实践，积累了较为丰富的世界人文和异国风光图片资料。愿将自己对摄影艺术的点滴感受汇编成册，与一切有兴趣的朋友分享。
+','《一个摄影家眼中的美国》作者是中国摄影家协会理事，云南省摄影家协会主席，曾在云南曲靖、西双版纳工作，现任职于云南省委宣传部。多年来酷爱摄影艺术，工作之余大部分时间流连于山水田野，进行民俗风情和自然风光的创作。喜欢以大自然为伴，以各族群众为友。几十年的业余艺术实践，积累了较为丰富的世界人文和异国风光图片资料。愿将自己对摄影艺术的点滴感受汇编成册，与一切有兴趣的朋友分享。
+','','');
+insert into book(book_title, book_cover, book_price, book_author, book_description, book_details, book_type, book_tag) values('特奎拉日升','https://bkimg.cdn.bcebos.com/pic/8ad4b31c8701a18b721c3a2f9c2f07082938fedf?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg',30,'文泽尔','《特奎拉日升》是2007年8月1日北方文艺出版社出版的图书，作者是文泽尔。
+','《特奎拉日升》是2007年8月1日北方文艺出版社出版的图书，作者是文泽尔。
+','','');

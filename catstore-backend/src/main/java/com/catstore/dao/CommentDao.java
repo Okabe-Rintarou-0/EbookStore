@@ -8,5 +8,13 @@ import java.util.Map;
 public interface CommentDao {
     List<Map<String, String>> getCommentsByBookId(Integer bookId);
 
-    void addLike(Integer commentId);
+    void addLikes(Integer commentId);
+
+    void cancelLikes(Integer commentId);
+
+    void addDislikes(Integer commentId);
+
+    void cancelDislikes(Integer commentId);
+
+    String existedCommentAction(Integer commentId);
 }

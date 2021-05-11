@@ -38,4 +38,9 @@ public class BookServiceImplement implements BookService {
     public String getBookTitleByBookId(Integer bookId) {
         return bookDao.getBookTitleByBookId(bookId);
     }
+
+    @Override
+    public List<Map<String, String>> getConcernedBookInfo(String bookTitle) {
+        return bookDao.getConcernedBookInfo(bookTitle);
+    }
 }

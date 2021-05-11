@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class BookController {
@@ -37,5 +38,10 @@ public class BookController {
     @RequestMapping("/getBookById")
     Book getBookById(@RequestParam("bookId") Integer bookId) {
         return bookService.getBookById(bookId);
+    }
+
+    @RequestMapping("/getConcernedBookInfo")
+    List<Map<String, String>> getConcernedBookInfo(@RequestParam("bookTitle") String bookTitle) {
+        return bookService.getConcernedBookInfo(bookTitle);
     }
 }

@@ -107,7 +107,8 @@ class Navigator extends React.Component {
                         </Menu.Item>
                         <SubMenu key="SubMenu" icon={<InfoCircleFilled/>} title="更多信息">
                             <Menu.ItemGroup title="联系我们">
-                                <Menu.Item key="setting:1" icon={<GithubFilled/>}>Github</Menu.Item>
+                                <Menu.Item key="setting:1" icon={<GithubFilled/>}><a
+                                    href={'https://gitee.com/ymwm233/cat-store/'} target={'_blank'}/>Github</Menu.Item>
                                 <Menu.Item key="setting:2" icon={<WechatFilled/>}>Wechat</Menu.Item>
                                 <Menu.Item key="setting:3" icon={<QqCircleFilled/>}>QQ</Menu.Item>
                             </Menu.ItemGroup>

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 // import moment from 'moment';
 import '../css/bookComments.css'
 import {DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled} from '@ant-design/icons';
+import {getCommentAction, postCommentAction} from "../service/commentService";
 
 class BookComment extends React.Component {
     static defaultProps = {
@@ -16,6 +17,7 @@ class BookComment extends React.Component {
     };
 
     static propTypes = {
+        comment_id: PropTypes.number.isRequired,
         likes: PropTypes.number.isRequired,
         dislikes: PropTypes.number.isRequired,
         action: PropTypes.string,
@@ -35,6 +37,16 @@ class BookComment extends React.Component {
         this.dislike = this.dislike.bind(this);
     };
 
+    handleCommentAction = data => {
+        this.setState({
+            action: data === '' ? 'none' : data
+        })
+    };
+
+    componentDidMount() {
+        getCommentAction(this.props.comment_id, this.handleCommentAction);
+    }
+
 
     setLikes(value) {
         this.setState({likes: value})
@@ -49,28 +61,42 @@ class BookComment extends React.Component {
     }
 
     like() {
-        this.setLikes(Number(this.props.likes) + 1);
-        this.setDislikes(this.props.dislikes);
-        this.setAction('liked');
+        if (this.state.action !== 'like') {
+            this.setLikes(Number(this.state.likes) + 1);
+            if (this.state.action === 'dislike') this.setDislikes(Number(this.state.dislikes) - 1);
+            this.setAction('like');
+        } else {
+            this.setLikes(Number(this.state.likes) - 1);
+            this.setAction('none');
+        }
     }
 
     dislike() {
-        this.setLikes(this.props.likes);
-        this.setDislikes(Number(this.props.dislikes) + 1);
-        this.setAction('disliked');
+        if (this.state.action !== 'dislike') {
+            this.setDislikes(Number(this.state.dislikes) + 1);
+            if (this.state.action === 'like') this.setLikes(Number(this.state.likes) - 1);
+            this.setAction('dislike');
+        } else {
+            this.setDislikes(Number(this.state.dislikes) - 1);
+            this.setAction('none');
+        }
+    }
+
+    componentWillUnmount() {
+        postCommentAction(this.props.comment_id, this.state.likes - this.props.likes, this.state.dislikes - this.props.dislikes);
     }
 
     render() {
         const actions = [
             <Tooltip key="comment-basic-like" title="Like">
       <span onClick={this.like}>
-        {createElement(this.state.action === 'liked' ? LikeFilled : LikeOutlined)}
+        {createElement(this.state.action === 'like' ? LikeFilled : LikeOutlined)}
           <span className="comment-action">{this.state.likes}</span>
       </span>
             </Tooltip>,
             <Tooltip key="comment-basic-dislike" title="Dislike">
       <span onClick={this.dislike}>
-        {React.createElement(this.state.action === 'disliked' ? DislikeFilled : DislikeOutlined)}
+        {React.createElement(this.state.action === 'dislike' ? DislikeFilled : DislikeOutlined)}
           <span className="comment-action">{this.state.dislikes}</span>
       </span>
             </Tooltip>,

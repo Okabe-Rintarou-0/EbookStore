@@ -16,7 +16,7 @@ class BasicRoute extends React.Component {
         super(props);
         history.listen((location, action) => {
             // clear alert on location change
-            console.log(location, action);
+            // console.log(location, action);
         });
     }
 

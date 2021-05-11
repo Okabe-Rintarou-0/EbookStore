@@ -1,6 +1,6 @@
 import React from "react";
 import BookPreview from "./BookPreview";
-import {Col, Input, Pagination, Row} from "antd";
+import {Col, Input, Pagination, Row, Modal, Button} from "antd";
 import 'antd/dist/antd.css'
 import {getBooks, getBooksByKeyword} from "../service/bookService";
 import BookCarousel from "./Carousel";
@@ -25,7 +25,6 @@ class BookList extends React.Component {
     };
 
     handleBooksInfo = data => {
-        console.log(data);
         this.setState({
             books: data,
         });
@@ -34,6 +33,7 @@ class BookList extends React.Component {
     componentDidMount() {
         getBooks(this.handleBooksInfo);
     }
+
 
     renderSearchBar = () => {
         return (

@@ -37,10 +37,10 @@ class BookPreview extends React.Component {
                 </div>
                 <div className="preview-book-info">
                     <div className="preview-book-title">
-                        {this.props.data.bookTitle}
+                        {this.props.data.bookTitle.length > 6 ? this.props.data.bookTitle.slice(0, 5) + "..." : this.props.data.bookTitle}
                     </div>
                     <div className="preview-book-description">
-                        {this.props.data.bookDescription}
+                        {this.props.data.bookDescription.length > 50 ? this.props.data.bookDescription.slice(0, 50) + "..." : this.props.data.bookDescription}
                     </div>
                 </div>
                 <div className="preview-book-option">

@@ -13,4 +13,6 @@ public interface BookDao {
     List<Book> getBooksByKeyword(String keyword);
 
     String getBookTitleByBookId(Integer bookId);
+
+    List<Map<String, String>> getConcernedBookInfo(String bookTitle);
 }

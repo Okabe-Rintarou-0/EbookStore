@@ -1,5 +1,6 @@
 package com.catstore.daoimpl;
 
+import com.catstore.crawlers.BookCrawler;
 import com.catstore.dao.BookDao;
 import com.catstore.entity.Book;
 import com.catstore.repository.BookRepository;
@@ -14,9 +15,16 @@ public class BookDaoImplement implements BookDao {
 
     BookRepository bookRepository;
 
+    BookCrawler bookCrawler;
+
     @Autowired
     void setBookRepository(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
+    }
+
+    @Autowired
+    void setBookCrawler(BookCrawler bookCrawler) {
+        this.bookCrawler = bookCrawler;
     }
 
     @Override
@@ -37,5 +45,10 @@ public class BookDaoImplement implements BookDao {
     @Override
     public String getBookTitleByBookId(Integer bookId) {
         return bookRepository.getBookById(bookId).getBookTitle();
+    }
+
+    @Override
+    public List<Map<String, String>> getConcernedBookInfo(String bookTitle) {
+        return bookCrawler.crawlBooks(bookTitle);
     }
 }

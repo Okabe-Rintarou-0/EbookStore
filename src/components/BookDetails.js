@@ -1,11 +1,12 @@
 import React from "react";
 import '../css/bookDetails.css'
-import {Image, Dropdown, Menu, Button, message, Modal, Row, Col, Card} from "antd";
+import {Image, Dropdown, Menu, Button, message, Modal, Row, Col, Card, Select} from "antd";
 import {getBookById, getConcernedBookInfo} from "../service/bookService";
-import {addToCart} from "../service/orderService";
+import {addToCart} from "../service/cartSerivce";
 import {addFavouriteBook} from "../service/favouriteService";
 
 const {Meta} = Card;
+const {Option} = Select;
 
 class BookDetails extends React.Component {
 
@@ -21,6 +22,7 @@ class BookDetails extends React.Component {
             showConcernedBookInfo: false,
             tags: [],
             concernedBookInfo: [],
+            readyToShowSelector: false,
         };
     }
 
@@ -32,6 +34,7 @@ class BookDetails extends React.Component {
             bookCover: data.bookCover,
             bookDescription: data.bookDescription,
             bookAuthor: data.bookAuthor,
+            bookStock: data.bookStock,
             tags: data.bookTag.split(' '),
         }, () => {
         });
@@ -44,6 +47,7 @@ class BookDetails extends React.Component {
     closeModal = () => {
         this.setState({
             showConcernedBookInfo: false,
+            readyToShowSelector: false,
         })
     };
 
@@ -51,6 +55,7 @@ class BookDetails extends React.Component {
         console.log(data);
         this.setState({
             concernedBookInfo: data,
+            readyToShowSelector: true,
         })
     };
 
@@ -58,7 +63,7 @@ class BookDetails extends React.Component {
         this.setState({
             showConcernedBookInfo: true,
         });
-        getConcernedBookInfo(this.state.bookTitle, this.handleConcernedInfo)
+        getConcernedBookInfo(this.state.bookTitle, "Tmall", this.handleConcernedInfo);
     };
 
     renderConcernedBooks = () => {
@@ -81,6 +86,22 @@ class BookDetails extends React.Component {
         return books;
     };
 
+    handleChange = value => {
+        console.log("value", value);
+        getConcernedBookInfo(this.state.bookTitle, value, this.handleConcernedInfo);
+    };
+
+    renderSelector = () => (
+        this.state.readyToShowSelector ?
+            <>
+                <Select defaultValue="Jingdong" style={{width: 120}} onChange={this.handleChange}>
+                    <Option value="Jingdong">Jingdong</Option>
+                    <Option value="Tmall">Tmall</Option>
+                    <Option value="Dangdang">Dangdang</Option>
+                </Select>
+            </> : null
+    );
+
     renderConcernedBookInfoModal = () => {
         return this.state.showConcernedBookInfo ? (
             <Modal title="相关图书/周边"
@@ -94,6 +115,9 @@ class BookDetails extends React.Component {
                 <Row>
                     {this.renderConcernedBooks()}
                 </Row>
+                <Row>
+                    {this.renderSelector()}
+                </Row>
             </Modal>
         ) : null;
     };
@@ -104,13 +128,9 @@ class BookDetails extends React.Component {
             .loading(text + '中...', 1)
             .then(
                 () => {
-                    addToCart(this.props.bookId, () => {
-                    });
+                    addToCart(this.props.bookId);
                 }
             )
-            .then(() => {
-                message.success(text + '成功！', 1)
-            });
     };
 
     onAddToFavourite = e => {
@@ -119,13 +139,9 @@ class BookDetails extends React.Component {
             .loading(text + '中...', 1)
             .then(
                 () => {
-                    addFavouriteBook(this.props.bookId, () => {
-                    });
+                    addFavouriteBook(this.props.bookId);
                 }
             )
-            .then(() => {
-                message.success(text + '成功！', 1)
-            });
     };
 
     static
@@ -185,14 +201,9 @@ class BookDetails extends React.Component {
                         <b>价格</b>
                         <span className="price">{`¥${this.state.bookPrice}`}</span>
                     </div>
-                    <div className="browse-book-postal-fee">
-                        <b>运费</b>
-                        <Dropdown overlay={menu} placement="bottomCenter">
-                            <Button style={{
-                                fontFamily: 'Arial serif',
-                                marginLeft: '10px'
-                            }}>{this.state.selectedRegion}</Button>
-                        </Dropdown>
+                    <div className="browse-book-stock">
+                        <b>库存</b>
+                        <span className="stock">{`${this.state.bookStock}件`}</span>
                     </div>
                     <div className="browse-book-description">
                         <div className="author">{`作者：${this.state.bookAuthor}`}</div>

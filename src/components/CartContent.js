@@ -1,34 +1,47 @@
 import React from 'react'
-import {Button, Col, Drawer, Form, Image, Input, Layout, Modal, Row, Select, Statistic, Table, Timeline} from "antd";
-import {ClockCircleOutlined} from "@ant-design/icons";
+import {
+    Button,
+    Col,
+    Drawer,
+    Form,
+    Image,
+    Input,
+    Layout,
+    Modal,
+    Row,
+    Select,
+    Statistic,
+    Table,
+    Typography
+} from "antd";
 import '../css/searchBar.css'
-import {Redirect} from "react-router-dom";
-import {deleteOrder, getAllOrders, modifyOrder, placeOrder} from "../service/orderService";
 import {history} from "../utils/history";
-import {getUserProperty} from "../service/userService";
+import {getUser, getUserProperty} from "../service/userService";
+import {deleteCart, getAllCartItems, addToCart} from "../service/cartSerivce";
+import PaymentModal from "./PaymentModal";
 
-const {Option} = Select;
+const {Title, Paragraph, Text, Link} = Typography;
 const {Footer} = Layout;
 const {Search} = Input;
 
 class CartContent extends React.Component {
 
-    static originalOrders;
+    static originalCartItems;
 
-    handleOrdersInfo = data => {
-        console.log("orders: ", data);
-        data.map((order, index) => {
-            order.key = String(index);
+    handleCartItemsInfo = data => {
+        console.log("cartItems: ", data);
+        data.map((cartItem, index) => {
+            cartItem.key = String(index);
         });
         this.setState({
-            orders: data,
+            cartItems: data,
         }, () => {
-            CartContent.originalOrders = [...data];
+            CartContent.originalCartItems = [...data];
         });
     };
 
     componentDidMount() {
-        getAllOrders(this.handleOrdersInfo);
+        getAllCartItems(this.handleCartItemsInfo);
     }
 
 
@@ -42,8 +55,11 @@ class CartContent extends React.Component {
             showDeleteModal: false,
             showPaymentModal: false,
             editRowKey: -1,
-            redirect: false,
             orders: [],
+            userAddress: '',
+            username: '',
+            userTel: '',
+            userProperty: 0,
         };
     }
 
@@ -52,10 +68,8 @@ class CartContent extends React.Component {
             <>
                 {this.renderSearchBar()}
                 {this.renderTable()}
-                {this.renderDrawer()}
                 {this.renderDeleteModal()}
                 {this.renderPaymentModal()}
-                {this.renderRedirect()}
                 {this.renderFooter()}
             </>
         );
@@ -63,12 +77,12 @@ class CartContent extends React.Component {
 
     filter = (value) => {
         value = value.toLowerCase();
-        let orders = [...CartContent.originalOrders];
+        let cartItems = [...CartContent.originalCartItems];
         this.setState({
-            orders: orders.filter((element, index) => {
-                return (element.book_title.toLowerCase().indexOf(value) !== -1 || element.order_address.toLowerCase().indexOf(value) !== -1 ||
-                    element.order_receiver.toLowerCase().indexOf(value) !== -1 ||
-                    element.order_state.indexOf(value) !== -1) || this.state.selectedRowKeys.indexOf((index + 1).toString()) !== -1;
+            cartItems: cartItems.filter((element, index) => {
+                return (element.book_title.toLowerCase().indexOf(value) !== -1 || element.cart_address.toLowerCase().indexOf(value) !== -1 ||
+                    element.cart_receiver.toLowerCase().indexOf(value) !== -1 ||
+                    element.cart_state.indexOf(value) !== -1) || this.state.selectedRowKeys.indexOf((index + 1).toString()) !== -1;
             }),
         });
     };
@@ -87,29 +101,14 @@ class CartContent extends React.Component {
 
     calcTotalPrice = () => {
         let totalPrice = 0;
-        for (let i = 0; i < this.state.orders.length; ++i) {
-            let state = this.state.orders[i].order_state;
-            totalPrice += state === '未购买' ? Number(this.state.orders[i].book_price) : 0;
+        for (let i = 0; i < this.state.cartItems.length; ++i) {
+            totalPrice += Number(this.state.cartItems[i].book_price) * Number(this.state.cartItems[i].purchase_number);
         }
         return totalPrice;
     };
 
     onSelectAll = (selected) => {
         selected ? this.setState({totalPrice: this.calcTotalPrice()}) : this.setState({totalPrice: 0});
-    };
-
-    deleteSelections = () => {
-        for (let i = 0; i < CartContent.originalOrders.length; ++i) {
-            if (this.state.selectedRowKeys.indexOf(CartContent.originalOrders[i].key) !== -1)
-                CartContent.originalOrders.splice(i, 1);
-        }
-
-        this.setState(
-            {
-                totalPrice: 0,
-                selectedRowKeys: [],
-            });
-        this.filter(this.state.searchValue);
     };
 
     onDeleteClick = () => {
@@ -120,16 +119,20 @@ class CartContent extends React.Component {
                 });
     };
 
-    handleUserProperty = data => {
+    handleUserInfo = data => {
+        console.log(data);
         this.setState({
-            property: data,
+            userProperty: data.userProperty,
+            username: data.username,
+            userAddress: data.userAddress,
+            userTel: data.userTel,
             showPaymentModal: true,
         })
     };
 
     onPaymentClick = () => {
         if (this.state.selectedRowKeys.length) {
-            getUserProperty(this.handleUserProperty)
+            getUser(this.handleUserInfo);
         } else {
             Modal.error({
                 title: '支付失败',
@@ -138,33 +141,16 @@ class CartContent extends React.Component {
         }
     };
 
-    onPaymentCancel = () => {
-        this.setState({
-            showPaymentModal: false,
-        });
-    };
     onDeleteCancel = () => {
         this.setState({
             showDeleteModal: false,
         });
     };
 
-    onPaymentOk = () => {
-        this.state.selectedRowKeys.map(key => {
-            console.log("place order: ", this.state.orders[key].order_id);
-            placeOrder(this.state.orders[key].order_id)
-        });
-        this.setState({
-            showPaymentModal: false,
-            redirect: true,
-        });
-    };
-
     onDeleteOk = () => {
-        // this.deleteSelections();
         this.state.selectedRowKeys.map(key => {
-            console.log("key: ", this.state.orders[key].order_id);
-            deleteOrder(this.state.orders[key].order_id, () => {
+            console.log("key: ", this.state.cartItems[key].cart_id);
+            deleteCart(this.state.cartItems[key].cart_id, () => {
             });
         });
         setTimeout(() => {
@@ -172,19 +158,6 @@ class CartContent extends React.Component {
         }, 300);
         this.setState({
             showDeleteModal: false,
-        });
-    };
-
-    onModifyOrder = (order, values) => {
-        console.log(this.state.editRowKey);
-        console.log(this.state.orders[this.state.editRowKey]);
-        console.log("order: ", order);
-        modifyOrder(order.order_id, values.receiver, values.address, values.phoneNumber, () => {
-        });
-        this.setState({
-            editRowKey: -1,
-        }, () => {
-            history.go(0);
         });
     };
 
@@ -207,7 +180,7 @@ class CartContent extends React.Component {
 
     onSelect = (record, selected) => {
         let delta = selected ? Number(record['book_price']) : -Number(record['book_price']);
-        this.adjustTotalPrice(delta);
+        this.adjustTotalPrice(delta * Number(record['purchase_number']));
     };
 
     renderSearchBar = () => {
@@ -238,113 +211,20 @@ class CartContent extends React.Component {
 
     renderPaymentModal = () => {
         if (this.state.showPaymentModal) {
-            return (
-                <Modal title="提示" visible={true} onOk={this.onPaymentOk} onCancel={this.onPaymentCancel}
-                       okText={"确认支付"}
-                       cancelText={"取消"}>
-                    <b>请选择支付方式:&nbsp;</b>
-                    <Select defaultValue="微信" style={{width: 120}}>
-                        <Option value="wechat">微信</Option>
-                        <Option value="alipay">支付宝</Option>
-                        <Option value="credit-card">信用卡</Option>
-                        <Option value="change">零钱</Option>
-                    </Select>
-                    <br/>
-                    <b>账户余额:{this.state.property}元</b>
-                </Modal>);
-        } else return null;
-    };
-
-    renderRedirect = () => {
-        if (this.state.redirect) {
-            this.setState({
-                redirect: false,
+            let selectedItems = [];
+            this.state.selectedRowKeys.map((itemIndex) => {
+                selectedItems.push(this.state.cartItems[itemIndex]);
             });
             return (
-                <Redirect to={"/status"}/>
-            );
+                <PaymentModal
+                    defaultAddress={this.state.userAddress}
+                    defaultReceiver={this.state.username}
+                    defaultTel={this.state.userTel}
+                    userProperty={this.state.userProperty}
+                    selectedItems={selectedItems}
+                />
+            )
         } else return null;
-    };
-
-    renderDrawer = () => {
-        if (this.state.editRowKey !== -1) {
-            return (
-                <Drawer
-                    title="修改信息"
-                    width={720}
-                    onClose={this.onClose}
-                    visible={this.state.editRowKey !== -1}
-                    bodyStyle={{paddingBottom: 80}}
-                >
-                    <Form layout="vertical" hideRequiredMark
-                          onFinish={this.onModifyOrder.bind(this, this.state.orders[this.state.editRowKey])}>
-                        <Row gutter={16}>
-                            <Col span={12}>
-                                <Form.Item
-                                    name="receiver"
-                                    label="收货人"
-                                    rules={[{required: true, message: 'Please enter user name'}]}
-                                >
-                                    <Input placeholder="请输入收货人姓名。"/>
-                                </Form.Item>
-                            </Col>
-                            <Col span={12}>
-                                <Form.Item
-                                    name="address"
-                                    label="收货人地址"
-                                    rules={[{required: true, message: 'Please enter user name'}]}
-                                >
-                                    <Input placeholder="请输入收货人地址。"/>
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                        <Row gutter={16}>
-                            <Col span={12}>
-                                <Form.Item
-                                    name="phoneNumber"
-                                    label="联系方式"
-                                    rules={[{required: true, message: 'Please enter user name'}]}
-                                >
-                                    <Input placeholder="请输入收货人联系方式。"/>
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                        <Row gutter={16}>
-                            <Col span={24}>
-                                <Form.Item
-                                    name="description"
-                                    label="备注"
-                                    rules={[
-                                        {
-                                            required: false,
-                                            message: 'please enter url description',
-                                        },
-                                    ]}
-                                >
-                                    <Input.TextArea rows={4} placeholder="如有特殊需求，请填写备注。"/>
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                        <Row justify={'space-between'}>
-                            <Col span={4}>
-                                <Form.Item>
-                                    <Button type="primary" htmlType="submit">
-                                        确认修改
-                                    </Button>
-                                </Form.Item>
-                            </Col>
-                            <Col span={4}>
-                                <Form.Item>
-                                    <Button type="default" onClick={this.onClose}>
-                                        取消
-                                    </Button>
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                    </Form>
-                </Drawer>
-            );
-        }
     };
 
     renderFooter = () => {
@@ -400,39 +280,9 @@ class CartContent extends React.Component {
 
             },
             {
-                title: '收货人',
-                dataIndex: 'order_receiver',
+                title: '数量',
+                dataIndex: 'purchase_number',
             },
-            {
-                title: '联系方式',
-                dataIndex: 'order_tel',
-            },
-            {
-                title: '地址',
-                dataIndex: 'order_address',
-            },
-            {
-                title: '商品状态',
-                defaultSortOrder: 'descend',
-                sorter: {
-                    multiple: 1,
-                    compare: (a, b) => {
-                        return a.order_state.localeCompare(b.order_state);
-                    },
-                },
-                dataIndex: 'order_state',
-            },
-            {
-                title: '',
-                render: (data) => {
-                    return (
-                        <span>
-                            {/* eslint-disable-next-line no-script-url */}
-                            <a href='javascript:void(0)' onClick={this.onActionClick.bind(this, data.key)}>修改信息</a>
-                        </span>
-                    );
-                },
-            }
         ];
 
         const {selectedRowKeys} = this.state;
@@ -441,13 +291,10 @@ class CartContent extends React.Component {
             onChange: this.onSelectChange,
             onSelect: this.onSelect,
             onSelectAll: this.onSelectAll,
-            getCheckboxProps: (record) => ({
-                disabled: record.order_state === '已购买', // Column configuration not to be checked
-            }),
         };
         return (
             <Table columns={columns}
-                   dataSource={this.state.orders}
+                   dataSource={this.state.cartItems}
                    scroll={{y: 350}}
                    rowSelection={rowSelection}
                    expandable={{
@@ -459,14 +306,14 @@ class CartContent extends React.Component {
                                        </Image>
                                    </Col>
                                    <Col span={8}>
-                                       <Timeline>
-                                           <Timeline.Item color="green">用户下单 2021/3/17 19:40</Timeline.Item>
-                                           <Timeline.Item color="green">商家发货 2021/3/17 20:40</Timeline.Item>
-                                           <Timeline.Item dot={<ClockCircleOutlined className="timeline-clock-icon"/>}>
-                                               快递员派送中 2021/3/18 15:20
-                                           </Timeline.Item>
-                                           <Timeline.Item color="red">确认收货</Timeline.Item>
-                                       </Timeline>
+                                       <Typography>
+                                           <Title level={3}>
+                                               书籍详情
+                                           </Title>
+                                           <Paragraph>
+                                               {record.book_details.length === 0 ? record.book_description : record.book_details}
+                                           </Paragraph>
+                                       </Typography>
                                    </Col>
                                </Row>
                            );

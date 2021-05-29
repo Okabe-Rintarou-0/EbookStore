@@ -9,10 +9,10 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "order_record")
+@Table(name = "cart_record")
 @JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer", "fieldHandler"})
-public class OrderRecord {
+public class CartRecord {
     @Id
-    Integer orderId;
+    Integer cartId;
     Integer userId;
 }

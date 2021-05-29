@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Repository
 public interface FavouriteDao {
-    void addFavouriteBook(Integer bookId);
+    boolean addFavouriteBook(Integer bookId);
 
     void deleteFavouriteBook(Integer bookId);
 

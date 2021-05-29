@@ -1,10 +1,10 @@
 import React from 'react'
-import {Col, Image, Row, Table, Timeline} from 'antd';
+import {Col, Image, Row, Table} from 'antd';
 import {deleteFavouriteBook, getFavouriteBooks, moveToCart} from "../service/favouriteService";
-import {Typography, Divider, Tag} from 'antd';
+import {Typography, Tag} from 'antd';
 import {history} from "../utils/history";
 
-const {Title, Paragraph, Text, Link} = Typography;
+const {Title, Paragraph} = Typography;
 
 class FavouriteContent extends React.Component {
 
@@ -97,6 +97,7 @@ class FavouriteContent extends React.Component {
         return (
             <Table dataSource={this.state.favourites}
                    columns={columns}
+                   scroll={{y: 535}}
                    expandable={{
                        expandedRowRender: (record) => {
                            return (

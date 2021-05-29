@@ -1,5 +1,6 @@
 package com.catstore.repository;
 
+import com.catstore.dao.FavouriteDao;
 import com.catstore.entity.Favourite;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -17,6 +18,9 @@ public interface FavouriteRepository extends JpaRepository<Favourite, Integer> {
     @Modifying
     @Query(value = "insert into favourite (user_id,book_id) values(?1,?2)", nativeQuery = true)
     void addFavouriteBook(Integer userId, Integer bookId);
+
+    @Query(value = "from Favourite where userId=?1 and bookId =?2")
+    Favourite getFavouriteByUserIdAndBookId(Integer userId, Integer bookId);
 
     @Modifying
     @Query(value = "delete from Favourite where userId = ?1 and bookId = ?2")

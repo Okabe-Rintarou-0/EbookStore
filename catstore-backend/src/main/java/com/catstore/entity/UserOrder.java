@@ -1,23 +1,34 @@
 package com.catstore.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
+@Table(name = "user_order")
 @JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer", "fieldHandler"})
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "orderId")
 public class UserOrder {
     @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     Integer orderId;
-    Timestamp orderTime;
-    String orderState;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "orderId")
+    Set<OrderItem> orders;
+    Integer userId;
     String orderAddress;
     String orderTel;
     String orderReceiver;
-    Integer purchaseNumber;
-    Integer bookId;
+    Timestamp orderTime;
 }

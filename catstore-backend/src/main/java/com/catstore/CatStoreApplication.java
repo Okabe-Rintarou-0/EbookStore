@@ -8,6 +8,5 @@ public class CatStoreApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(CatStoreApplication.class, args);
-
     }
 }

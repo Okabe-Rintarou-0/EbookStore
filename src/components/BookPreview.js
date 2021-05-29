@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCartArrowDown, faShare, faStar} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 import {message} from "antd";
-import {addToCart} from "../service/orderService";
+import {addToCart} from "../service/cartSerivce";
 import {addFavouriteBook} from "../service/favouriteService";
 
 class BookPreview extends React.Component {
@@ -15,16 +15,24 @@ class BookPreview extends React.Component {
 
     onAddToCart = e => {
         e.preventDefault();
-        addToCart(this.props.data.bookId, () => {
-        });
-        message.success("加入购物车成功");
+        message
+            .loading('加入购物车中...', 1)
+            .then(
+                () => {
+                    addToCart(this.props.data.bookId);
+                }
+            );
     };
 
     onAddToFavourite = e => {
         e.preventDefault();
-        addFavouriteBook(this.props.data.bookId, () => {
-        });
-        message.success("加入收藏夹成功");
+        message
+            .loading('加入收藏夹中...', 1)
+            .then(
+                () => {
+                    addFavouriteBook(this.props.data.bookId);
+                }
+            );
     };
 
     render() {

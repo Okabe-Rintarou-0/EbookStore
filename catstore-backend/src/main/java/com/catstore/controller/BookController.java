@@ -41,7 +41,7 @@ public class BookController {
     }
 
     @RequestMapping("/getConcernedBookInfo")
-    List<Map<String, String>> getConcernedBookInfo(@RequestParam("bookTitle") String bookTitle) {
-        return bookService.getConcernedBookInfo(bookTitle);
+    List<Map<String, String>> getConcernedBookInfo(@RequestParam("bookTitle") String bookTitle, @RequestParam("website") String websiteSrc) {
+        return bookService.getConcernedBookInfo(bookTitle, websiteSrc);
     }
 }

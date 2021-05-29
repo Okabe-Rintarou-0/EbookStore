@@ -1,7 +1,7 @@
 import React, {createElement} from "react";
 import {Comment, Tooltip, Avatar, List} from 'antd';
 import PropTypes from 'prop-types'
-// import moment from 'moment';
+
 import '../css/bookComments.css'
 import {DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled} from '@ant-design/icons';
 import {getCommentAction, postCommentAction} from "../service/commentService";

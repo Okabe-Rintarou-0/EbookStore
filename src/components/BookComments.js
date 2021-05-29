@@ -2,12 +2,7 @@ import React from "react";
 import {List, Pagination} from 'antd';
 import BookComment from "./Comment";
 import '../css/bookComments.css'
-import imgSrc from '../assets/icon.gif'
-
-import icon_1_url from '../assets/display/icon_1.jpg'
-import icon_2_url from '../assets/display/icon_2.jpg'
 import {getCommentsById} from "../service/bookService";
-import {getUser, getUserById} from "../service/userService";
 
 class BookComments extends React.Component {
 

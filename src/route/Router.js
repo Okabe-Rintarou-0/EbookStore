@@ -7,8 +7,10 @@ import PrivateRoute from "./PrivateRoute";
 import HomeView from "../view/HomeView";
 import BookView from "../view/BookView";
 import ShoppingCartView from "../view/ShoppingCartView";
-import PaymentResult from "../components/PaymentResult";
+import PaymentSuccess from "../components/PaymentSuccess";
 import FavouriteView from "../view/FavouriteView";
+import PaymentFail from "../components/PaymentFail";
+import OrderView from "../view/OrderView";
 
 class BasicRoute extends React.Component {
 
@@ -29,7 +31,9 @@ class BasicRoute extends React.Component {
                     <PrivateRoute path="/book/:bookId" component={BookView}/>
                     <PrivateRoute exact path="/cart" component={ShoppingCartView}/>
                     <PrivateRoute exact path="/favourite" component={FavouriteView}/>
-                    <PrivateRoute exact path="/status" component={PaymentResult}/>
+                    <PrivateRoute exact path="/order" component={OrderView}/>
+                    <PrivateRoute exact path="/status/success" component={PaymentSuccess}/>
+                    <PrivateRoute exact path="/status/fail" component={PaymentFail}/>
                     <Redirect from={'/*'} to={{pathname: "/"}}/>
                 </Switch>
             </Router>

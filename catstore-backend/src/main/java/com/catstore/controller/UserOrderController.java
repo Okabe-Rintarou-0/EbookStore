@@ -1,15 +1,17 @@
 package com.catstore.controller;
 
-import com.catstore.dao.UserOrderDao;
 import com.catstore.entity.UserOrder;
 import com.catstore.service.UserOrderService;
+import com.catstore.utils.messageUtils.Message;
+import com.catstore.utils.messageUtils.MessageUtil;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,32 +25,16 @@ public class UserOrderController {
         this.userOrderService = userOrderService;
     }
 
-    @RequestMapping("/addToCart")
-    void addToCart(@RequestParam("bookId") Integer bookId) {
-        userOrderService.addToCart(bookId);
-    }
-
     @RequestMapping("/placeOrder")
-    void placeOrder(@RequestParam("orderId") Integer orderId) {
-        userOrderService.placeOrder(orderId);
-    }
-
-    @RequestMapping("/deleteOrder")
-    void deleteOrder(@RequestParam("orderId") Integer orderId) {
-        userOrderService.deleteOrder(orderId);
-    }
-
-    @RequestMapping("/modifyOrder")
-    void modifyUserOrder(@RequestBody Map<String, String> params, @RequestParam("orderId") Integer orderId) {
-        String orderReceiver = (String) params.get("orderReceiver");
-        String orderAddress = (String) params.get("orderAddress");
-        String orderTel = (String) params.get("orderTel");
-        System.out.println(orderId);
-        userOrderService.modifyUserOrder(orderId, orderReceiver, orderAddress, orderTel);
+    Message placeOrder(@RequestBody JSONObject orderItems) {
+        System.out.println(orderItems.toString());
+        if (userOrderService.placeOrder(orderItems))
+            return MessageUtil.createMessage(MessageUtil.PURCHASE_SUCCESS_CODE, MessageUtil.PURCHASE_SUCCESS_MSG);
+        return MessageUtil.createMessage(MessageUtil.PURCHASE_FAIL_CODE, MessageUtil.PURCHASE_FAIL_MSG);
     }
 
     @RequestMapping("/getAllOrders")
-    List<Map<String, String>> getAllOrders() {
+    ArrayList<UserOrder> getAllOrders() {
         return userOrderService.getAllOrders();
     }
 }

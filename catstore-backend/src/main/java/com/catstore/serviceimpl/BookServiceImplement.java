@@ -1,5 +1,6 @@
 package com.catstore.serviceimpl;
 
+import com.catstore.crawlers.BookCrawler;
 import com.catstore.dao.BookDao;
 import com.catstore.entity.Book;
 import com.catstore.service.BookService;
@@ -40,7 +41,7 @@ public class BookServiceImplement implements BookService {
     }
 
     @Override
-    public List<Map<String, String>> getConcernedBookInfo(String bookTitle) {
-        return bookDao.getConcernedBookInfo(bookTitle);
+    public List<Map<String, String>> getConcernedBookInfo(String bookTitle, String websiteSrc) {
+        return bookDao.getConcernedBookInfo(bookTitle,websiteSrc);
     }
 }

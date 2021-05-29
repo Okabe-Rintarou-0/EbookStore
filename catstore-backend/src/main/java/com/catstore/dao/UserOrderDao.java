@@ -1,25 +1,22 @@
 package com.catstore.dao;
 
-import com.catstore.entity.OrderRecord;
 import com.catstore.entity.UserOrder;
+import com.catstore.entity.OrderItem;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 
 public interface UserOrderDao {
 
-    void addUserOrder(String orderState, Integer purchaseNumber, Integer bookId);
+    ArrayList<UserOrder> getAllOrders();
 
-    void placeOrder(Integer orderId);
+    List<OrderItem> getUserOrdersByOrderId(Integer orderId);
 
-    void deleteUserOrderByOrderId(Integer orderId);
+    Integer addOrder(String receiver, String address, String tel);
 
-    void modifyUserOrder(Integer orderId, String orderReceiver, String orderAddress, String orderTel);
-
-    UserOrder getUserOrderByOrderId(Integer orderId);
-
-    OrderRecord getOrderRecordByOrderId(Integer orderId);
-
-    List<Map<String, String>> getAllOrders();
+    void addOrderItem(Integer orderId, Integer bookId, Integer purchaseNumber);
 }

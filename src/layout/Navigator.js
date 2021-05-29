@@ -6,7 +6,7 @@ import {logout, getUser, setUserSignature} from "../service/userService";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
     faBookReader,
-    faHome,
+    faHome, faList,
     faPhone,
     faShare,
     faShoppingCart,
@@ -93,9 +93,9 @@ class Navigator extends React.Component {
                             <FontAwesomeIcon icon={faStar} className={"nav-icon"}/>
                             <Link exact to={"/favourite"}>收藏夹</Link>
                         </Menu.Item>
-                        <Menu.Item key="service" disabled>
-                            <FontAwesomeIcon icon={faPhone} className={"nav-icon"}/>
-                            <a href="">客服</a>
+                        <Menu.Item key="service">
+                            <FontAwesomeIcon icon={faList} className={"nav-icon"}/>
+                            <Link to={"/order"}>订单</Link>
                         </Menu.Item>
                         <Menu.Item key="forum" disabled>
                             <FontAwesomeIcon icon={faBookReader} className={"nav-icon"}/>

@@ -7,6 +7,8 @@ import com.catstore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 
 @Service
 public class UserServiceImplement implements UserService {
@@ -34,7 +36,7 @@ public class UserServiceImplement implements UserService {
     }
 
     @Override
-    public Float getUserProperty() {
+    public BigDecimal getUserProperty() {
         return userDao.getUserProperty();
     }
 

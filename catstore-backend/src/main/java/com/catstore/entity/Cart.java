@@ -2,23 +2,22 @@ package com.catstore.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.math.BigDecimal;
 
 @Data
 @Entity
-@Table(name = "user")
+@Table(name = "user_cart")
 @JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer", "fieldHandler"})
-public class User {
+public class Cart {
     @Id
-    private Integer userId;
-    private String username;
-    private String userSignature;
-    private String userIcon;
-    private String userTel;
-    private String userAddress;
-    private BigDecimal userProperty;
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    Integer cartId;
+    Integer purchaseNumber;
+    Integer bookId;
 }

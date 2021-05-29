@@ -1,5 +1,6 @@
 package com.catstore.dao;
 
+import com.catstore.crawlers.BookCrawler;
 import com.catstore.entity.Book;
 
 import java.util.List;
@@ -14,5 +15,9 @@ public interface BookDao {
 
     String getBookTitleByBookId(Integer bookId);
 
-    List<Map<String, String>> getConcernedBookInfo(String bookTitle);
+    List<Map<String, String>> getConcernedBookInfo(String bookTitle, String websiteSrc);
+
+    void minusBookStockBy(Integer bookId, Integer bookNumber);
+
+    Integer getBookStockByBookId(Integer bookId);
 }

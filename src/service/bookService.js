@@ -25,7 +25,7 @@ export function getBookTitle(bookId, callback) {
     postRequestForText(url, {}, callback);
 }
 
-export function getConcernedBookInfo(bookTitle, callback) {
-    const url = `http://localhost:8080/getConcernedBookInfo?bookTitle=${bookTitle}`;
+export function getConcernedBookInfo(bookTitle, website, callback) {
+    const url = `http://localhost:8080/getConcernedBookInfo?bookTitle=${bookTitle}&website=${website}`;
     postRequest(url, {}, callback);
 }

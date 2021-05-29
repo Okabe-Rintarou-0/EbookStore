@@ -1,9 +1,7 @@
 package com.catstore.serviceimpl;
 
+import com.catstore.dao.CartDao;
 import com.catstore.dao.FavouriteDao;
-import com.catstore.dao.UserOrderDao;
-import com.catstore.entity.Favourite;
-import com.catstore.entity.UserOrder;
 import com.catstore.service.FavouriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +13,7 @@ import java.util.Map;
 public class FavouriteServiceImplement implements FavouriteService {
 
     FavouriteDao favouriteDao;
-    UserOrderDao userOrderDao;
+    CartDao cartDao;
 
     @Autowired
     void setFavouriteDao(FavouriteDao favouriteDao) {
@@ -23,13 +21,13 @@ public class FavouriteServiceImplement implements FavouriteService {
     }
 
     @Autowired
-    void setUserOrderDao(UserOrderDao userOrderDao) {
-        this.userOrderDao = userOrderDao;
+    void setCartDao(CartDao cartDao) {
+        this.cartDao = cartDao;
     }
 
     @Override
-    public void addFavouriteBook(Integer bookId) {
-        favouriteDao.addFavouriteBook(bookId);
+    public boolean addFavouriteBook(Integer bookId) {
+        return favouriteDao.addFavouriteBook(bookId);
     }
 
     @Override
@@ -40,7 +38,8 @@ public class FavouriteServiceImplement implements FavouriteService {
     @Override
     public void moveToCart(Integer bookId) {
         favouriteDao.deleteFavouriteBook(bookId);
-        userOrderDao.addUserOrder("未购买", 1, bookId);
+        if (!cartDao.existsBook(bookId))
+            cartDao.addCartItem(bookId);
     }
 
     @Override

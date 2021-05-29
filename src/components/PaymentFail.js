@@ -5,17 +5,11 @@ import {Link, Redirect} from "react-router-dom";
 
 const {Paragraph, Text} = Typography;
 
-class PaymentResult extends React.Component {
+class PaymentFail extends React.Component {
 
     state = {
         redirect: false
     };
-
-    randomResult = () => true;
-    //(
-    //Math.random() >= 0.5
-    // true
-    //);
 
     Redirect = () => {
         this.setState({
@@ -34,23 +28,6 @@ class PaymentResult extends React.Component {
             this.Redirect, 5000
         );
     }
-
-
-    renderSuccess = () => {
-        return (
-            <Result
-                status="success"
-                title="购买商品成功！"
-                subTitle="页面将在5s后自动跳转。"
-                extra={[
-                    <Button type="primary" key="console">
-                        <Link to={"/cart"}>返回购物车</Link>
-                    </Button>,
-                    <Button key="buy">再买一本！</Button>,
-                ]}
-            />
-        );
-    };
 
     renderFail = () => {
         return (
@@ -94,11 +71,11 @@ class PaymentResult extends React.Component {
     render() {
         return (
             <>
-                {this.randomResult() ? this.renderSuccess() : this.renderFail()}
+                {this.renderFail()}
                 {this.renderRedirect()}
             </>
         );
     }
 }
 
-export default PaymentResult;
+export default PaymentFail;

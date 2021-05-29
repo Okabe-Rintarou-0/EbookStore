@@ -1,17 +1,20 @@
 package com.catstore.service;
 
+import com.catstore.entity.OrderItem;
+import com.catstore.entity.UserOrder;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public interface UserOrderService {
 
-    void addToCart(Integer bookId);
+    boolean placeOrder(JSONObject orderItems);
 
-    void placeOrder(Integer orderId);
+    List<OrderItem> getUserOrdersByOrderId(Integer orderId);
 
-    void modifyUserOrder(Integer orderId, String orderReceiver, String orderAddress, String orderTel);
+    ArrayList<UserOrder> getAllOrders();
 
-    void deleteOrder(Integer orderId);
-
-    List<Map<String, String>> getAllOrders();
 }

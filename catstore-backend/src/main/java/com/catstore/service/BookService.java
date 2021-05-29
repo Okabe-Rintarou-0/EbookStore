@@ -1,5 +1,6 @@
 package com.catstore.service;
 
+import com.catstore.crawlers.BookCrawler;
 import com.catstore.entity.Book;
 
 import java.util.List;
@@ -14,5 +15,5 @@ public interface BookService {
 
     String getBookTitleByBookId(Integer bookId);
 
-    List<Map<String, String>> getConcernedBookInfo(String bookTitle);
+    List<Map<String, String>> getConcernedBookInfo(String bookTitle, String websiteSrc);
 }

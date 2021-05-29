@@ -20,10 +20,15 @@ public class FavouriteDaoImplement implements FavouriteDao {
     }
 
     @Override
-    public void addFavouriteBook(Integer bookId) {
+    public boolean addFavouriteBook(Integer bookId) {
         Integer userId = SessionUtil.getUserId();
-        if (userId != null)
-            favouriteRepository.addFavouriteBook(userId, bookId);
+        if (userId != null) {
+            if (favouriteRepository.getFavouriteByUserIdAndBookId(userId, bookId) == null) {
+                favouriteRepository.addFavouriteBook(userId, bookId);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

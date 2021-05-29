@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 @RestController
@@ -41,7 +42,7 @@ public class UserController {
     }
 
     @RequestMapping("/getUserProperty")
-    Float getUserProperty() {
+    BigDecimal getUserProperty() {
         return userService.getUserProperty();
     }
 }

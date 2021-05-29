@@ -13,6 +13,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 
 @Repository
 public class UserDaoImplement implements UserDao {
@@ -56,7 +57,7 @@ public class UserDaoImplement implements UserDao {
     }
 
     @Override
-    public Float getUserProperty() {
+    public BigDecimal getUserProperty() {
         Integer userId = SessionUtil.getUserId();
         if (userId != null) {
             return userRepository.getUserPropertyByUserId(userId);
@@ -65,7 +66,7 @@ public class UserDaoImplement implements UserDao {
     }
 
     @Override
-    public void updateUserProperty(Float delta) {
+    public void updateUserProperty(BigDecimal delta) {
         Integer userId = SessionUtil.getUserId();
         if (userId != null) {
             userRepository.updateUserProperty(userId, delta);

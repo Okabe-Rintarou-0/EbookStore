@@ -55,6 +55,13 @@ span.price {
     margin: auto 0;
 }
 
+span.stock {
+    font-family: Arial, serif;
+    position: relative;
+    /*top: 5px;*/
+    left: 30px;
+    margin: auto 0;
+}
 
 div.browse-book-title {
     position: relative;
@@ -66,7 +73,7 @@ div.browse-book-title {
     font-size: 35px;
 }
 
-div.browse-book-postal-fee {
+div.browse-book-stock {
     margin-top: 20px;
     position: relative;
     /*background-color: #817fe3;*/
@@ -80,7 +87,7 @@ div.browse-book-postal-fee {
     box-shadow: 0 0 5px #eba160;
 }
 
-div.browse-book-postal-fee b {
+div.browse-book-stock b {
     font-family: Arial, serif;
     position: relative;
     font-weight: lighter;

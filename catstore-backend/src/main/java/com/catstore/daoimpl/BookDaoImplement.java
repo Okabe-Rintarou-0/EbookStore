@@ -48,7 +48,17 @@ public class BookDaoImplement implements BookDao {
     }
 
     @Override
-    public List<Map<String, String>> getConcernedBookInfo(String bookTitle) {
-        return bookCrawler.crawlBooks(bookTitle);
+    public List<Map<String, String>> getConcernedBookInfo(String bookTitle, String websiteSrc) {
+        return bookCrawler.crawlBooks(bookTitle, websiteSrc);
+    }
+
+    @Override
+    public void minusBookStockBy(Integer bookId, Integer bookNumber) {
+        bookRepository.minusBookStockBy(bookId, bookNumber);
+    }
+
+    @Override
+    public Integer getBookStockByBookId(Integer bookId) {
+        return bookRepository.getBookStockByBookId(bookId);
     }
 }

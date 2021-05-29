@@ -3,6 +3,8 @@ package com.catstore.service;
 import com.catstore.entity.User;
 import com.catstore.entity.UserAuthority;
 
+import java.math.BigDecimal;
+
 public interface UserService {
     UserAuthority checkAuthority(String userAccount, String userPassword);
 
@@ -10,6 +12,6 @@ public interface UserService {
 
     void setUserSignature(String userSignature);
 
-    Float getUserProperty();
+    BigDecimal getUserProperty();
 
 }

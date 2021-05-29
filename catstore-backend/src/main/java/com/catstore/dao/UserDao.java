@@ -3,6 +3,8 @@ package com.catstore.dao;
 import com.catstore.entity.User;
 import com.catstore.entity.UserAuthority;
 
+import java.math.BigDecimal;
+
 public interface UserDao {
     UserAuthority checkAuthority(String userAccount, String userPassword);
 
@@ -10,8 +12,8 @@ public interface UserDao {
 
     void setUserSignature(String userSignature);
 
-    Float getUserProperty();
+    BigDecimal getUserProperty();
 
-    void updateUserProperty(Float delta);
+    void updateUserProperty(BigDecimal delta);
 }
 

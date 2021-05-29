@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface FavouriteService {
-    void addFavouriteBook(Integer bookId);
+    boolean addFavouriteBook(Integer bookId);
 
     void deleteFavouriteBook(Integer bookId);
 

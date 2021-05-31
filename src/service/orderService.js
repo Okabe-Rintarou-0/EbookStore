@@ -30,3 +30,14 @@ export function getAllOrders(callback) {
     const url = 'http://localhost:8080/getAllOrders';
     postRequest(url, {}, callback);
 }
+
+export function getAllOrdersForManager(callback) {
+    const url = 'http://localhost:8080/manager/getAllOrders';
+    postRequest(url, {}, callback);
+}
+
+export function searchOrders(startNEndDates, callback) {
+    console.log(startNEndDates);
+    const url = 'http://localhost:8080/manager/searchOrders';
+    postRequest(url, startNEndDates, callback);
+}

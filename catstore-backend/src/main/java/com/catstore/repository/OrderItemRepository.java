@@ -11,5 +11,6 @@ import java.util.Map;
 
 @Transactional
 public interface OrderItemRepository extends JpaRepository<OrderItem, OrderItem.OrderItemId> {
-
+    @Query(value = "from OrderItem where orderItemId.orderId = ?1")
+    List<OrderItem> getUserOrdersByOrderId(Integer orderId);
 }

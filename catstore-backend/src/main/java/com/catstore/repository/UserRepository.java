@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Transactional
 public interface UserRepository extends JpaRepository<User, Integer> {
@@ -21,7 +22,19 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value = "select userProperty from User where userId =?1")
     BigDecimal getUserPropertyByUserId(Integer userId);
 
+    @Query(value = "from User where not userIdentity = 1")
+        //except for the managers
+    List<User> getAllUsers();
+
     @Modifying
     @Query(value = "update User set userProperty = userProperty + ?2 where userId =?1")
     void updateUserProperty(Integer userId, BigDecimal delta);
+
+    @Modifying
+    @Query(value = "update User set userIdentity = 2 where userId = ?1 and not userIdentity = 1")
+    Integer banUserByUserId(Integer userId);
+
+    @Modifying
+    @Query(value = "update User set userIdentity = 0 where userId = ?1 and userIdentity = 2")
+    Integer unbanUserByUserId(Integer userId);
 }

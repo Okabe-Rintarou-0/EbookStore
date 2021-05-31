@@ -12,10 +12,11 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class UserOrderServiceImplement implements UserOrderService {
@@ -45,6 +46,7 @@ public class UserOrderServiceImplement implements UserOrderService {
     }
 
     @Override
+    @Transactional
     public boolean placeOrder(JSONObject orderItems) {
         if (orderItems != null) {
             JSONArray itemList = JSONArray.fromObject(orderItems.get("itemList"));
@@ -72,7 +74,7 @@ public class UserOrderServiceImplement implements UserOrderService {
                     Integer cartId = (Integer) (orderItem.get("cartId"));
                     cartDao.deleteCartItem(cartId);
                     userOrderDao.addOrderItem(orderId, bookId, purchaseNumber);
-                    bookDao.minusBookStockBy(bookId, purchaseNumber);
+                    bookDao.placeOrder(bookId, purchaseNumber);
                 }
                 userDao.updateUserProperty(BigDecimal.valueOf(0).subtract(totalPrice)); //-totalPrice
                 return true;
@@ -90,5 +92,15 @@ public class UserOrderServiceImplement implements UserOrderService {
     @Override
     public ArrayList<UserOrder> getAllOrders() {
         return userOrderDao.getAllOrders();
+    }
+
+    @Override
+    public ArrayList<UserOrder> getAllOrdersForManager() {
+        return userOrderDao.getAllOrdersForManager();
+    }
+
+    @Override
+    public ArrayList<UserOrder> getOrdersInRange(Date start, Date end) {
+        return userOrderDao.getOrdersInRange(start, end);
     }
 }

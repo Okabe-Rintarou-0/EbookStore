@@ -11,14 +11,16 @@ import PaymentSuccess from "../components/PaymentSuccess";
 import FavouriteView from "../view/FavouriteView";
 import PaymentFail from "../components/PaymentFail";
 import OrderView from "../view/OrderView";
+import ManagerRoute from "./ManagerRoute";
+import BookManagementView from "../view/BookManagementView";
+import UserManagementView from "../view/UserManagementView";
+import OrderManagementView from "../view/OrderManagementView";
 
 class BasicRoute extends React.Component {
 
     constructor(props) {
         super(props);
         history.listen((location, action) => {
-            // clear alert on location change
-            // console.log(location, action);
         });
     }
 
@@ -34,6 +36,9 @@ class BasicRoute extends React.Component {
                     <PrivateRoute exact path="/order" component={OrderView}/>
                     <PrivateRoute exact path="/status/success" component={PaymentSuccess}/>
                     <PrivateRoute exact path="/status/fail" component={PaymentFail}/>
+                    <ManagerRoute exact path="/manager/books" component={BookManagementView}/>
+                    <ManagerRoute exact path="/manager/users" component={UserManagementView}/>
+                    <ManagerRoute exact path="/manager/orders" component={OrderManagementView}/>
                     <Redirect from={'/*'} to={{pathname: "/"}}/>
                 </Switch>
             </Router>

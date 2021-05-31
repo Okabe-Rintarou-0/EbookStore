@@ -53,12 +53,22 @@ public class BookDaoImplement implements BookDao {
     }
 
     @Override
-    public void minusBookStockBy(Integer bookId, Integer bookNumber) {
-        bookRepository.minusBookStockBy(bookId, bookNumber);
+    public Boolean deleteBookByBookId(Integer bookId) {
+        return bookRepository.deleteBookByBookId(bookId) > 0;
     }
 
     @Override
-    public Integer getBookStockByBookId(Integer bookId) {
-        return bookRepository.getBookStockByBookId(bookId);
+    public Boolean undercarriageBookByBookId(Integer bookId) {
+        return bookRepository.undercarriageBookByBookId(bookId) > 0;
+    }
+
+    @Override
+    public Boolean putOnSale(Integer bookId) {
+        return bookRepository.putOnSale(bookId) > 0;
+    }
+
+    @Override
+    public void placeOrder(Integer bookId, Integer purchaseNumber) {
+        bookRepository.placeOrder(bookId, purchaseNumber);
     }
 }

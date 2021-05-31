@@ -4,7 +4,6 @@ import com.catstore.entity.UserOrder;
 import com.catstore.service.UserOrderService;
 import com.catstore.utils.messageUtils.Message;
 import com.catstore.utils.messageUtils.MessageUtil;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.Date;
 
 @RestController
 public class UserOrderController {
@@ -36,5 +34,18 @@ public class UserOrderController {
     @RequestMapping("/getAllOrders")
     ArrayList<UserOrder> getAllOrders() {
         return userOrderService.getAllOrders();
+    }
+
+    @RequestMapping("/manager/getAllOrders")
+    ArrayList<UserOrder> getAllOrdersForManager() {
+        return userOrderService.getAllOrdersForManager();
+    }
+
+    @RequestMapping("/manager/searchOrders")
+    ArrayList<UserOrder> searchOrdersForManager(@RequestBody ArrayList<Date> startNEndDates) {
+        System.out.println(startNEndDates.toString());
+        if (startNEndDates.size() == 2)
+            return userOrderService.getOrdersInRange(startNEndDates.get(0), startNEndDates.get(1));
+        return null;
     }
 }

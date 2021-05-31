@@ -49,14 +49,26 @@ public class SessionUtil {
         return false;
     }
 
-    public static Integer getUserId() {
+    private static HttpSession getSession() {
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (requestAttributes != null) {
             HttpServletRequest request = requestAttributes.getRequest();
-            HttpSession session = request.getSession(false);
-            if (session != null)
-                return (Integer) session.getAttribute("userId");
+            return request.getSession(false);
         }
+        return null;
+    }
+
+    public static Integer getUserId() {
+        HttpSession session = getSession();
+        if (session != null)
+            return (Integer) session.getAttribute("userId");
+        return null;
+    }
+
+    public static Integer getUserIdentity() {
+        HttpSession session = getSession();
+        if (session != null)
+            return (Integer) session.getAttribute("userIdentity");
         return null;
     }
 

@@ -14,6 +14,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Repository
 public class UserDaoImplement implements UserDao {
@@ -33,6 +34,11 @@ public class UserDaoImplement implements UserDao {
     @Override
     public UserAuthority checkAuthority(String userAccount, String userPassword) {
         return userAuthorityRepository.checkAuthority(userAccount, userPassword);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.getAllUsers();
     }
 
     @Override
@@ -71,5 +77,15 @@ public class UserDaoImplement implements UserDao {
         if (userId != null) {
             userRepository.updateUserProperty(userId, delta);
         }
+    }
+
+    @Override
+    public Boolean banUserByUserId(Integer userId) {
+        return userRepository.banUserByUserId(userId) > 0 && userAuthorityRepository.banUserByUserId(userId) > 0;
+    }
+
+    @Override
+    public Boolean unbanUserByUserId(Integer userId) {
+        return userRepository.unbanUserByUserId(userId) > 0 && userAuthorityRepository.unbanUserByUserId(userId) > 0;
     }
 }

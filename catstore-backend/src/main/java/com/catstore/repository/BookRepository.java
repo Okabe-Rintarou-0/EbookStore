@@ -22,9 +22,18 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     List<Book> getBooksByKeyword(@Param("keyword") String keyword);
 
     @Modifying
-    @Query(value = "update Book set bookStock = bookStock - ?2 where bookId = ?1")
-    void minusBookStockBy(Integer bookId,Integer bookNumber);
+    @Query(value = "delete from Book where bookId = ?1")
+    Integer deleteBookByBookId(Integer bookId);
 
-    @Query(value = "select bookStock from Book where bookId = ?1")
-    Integer getBookStockByBookId(Integer bookId);
+    @Modifying
+    @Query(value = "update Book set forSale = false where bookId = ?1")
+    Integer undercarriageBookByBookId(Integer bookId);
+
+    @Modifying
+    @Query(value = "update Book set forSale = true where bookId = ?1")
+    Integer putOnSale(Integer bookId);
+
+    @Modifying
+    @Query(value = "update Book set sales = sales + ?2, bookStock = bookStock - ?2 where bookId = ?1")
+    void placeOrder(Integer bookId, Integer increment);
 }

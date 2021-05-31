@@ -4,6 +4,8 @@ import com.catstore.entity.User;
 import com.catstore.entity.UserAuthority;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public interface UserService {
     UserAuthority checkAuthority(String userAccount, String userPassword);
@@ -14,4 +16,9 @@ public interface UserService {
 
     BigDecimal getUserProperty();
 
+    List<User> getAllUsers();
+
+    Boolean banUsers(ArrayList<Integer> userIdList);
+
+    Boolean unbanUsers(ArrayList<Integer> userIdList);
 }

@@ -12,16 +12,12 @@ class BookList extends React.Component {
 
     state = {
         books: [],
-        browser: false,
         pageIndex: 1,
     };
 
     onSearch = (value) => {
         let keyword = value.toLowerCase();
         getBooksByKeyword(keyword, this.handleBooksInfo);
-        this.setState({
-            browser: true,
-        })
     };
 
     handleBooksInfo = data => {
@@ -65,10 +61,6 @@ class BookList extends React.Component {
             );
 
         return renderContent;
-    };
-
-    renderCarousel = () => {
-        return !this.state.browser ? <BookCarousel/> : null;
     };
 
     handlePageChange = pageIndex => {

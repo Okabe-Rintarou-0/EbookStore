@@ -3,6 +3,12 @@ package com.catstore.controller;
 import com.catstore.entity.User;
 import com.catstore.entity.UserAuthority;
 import com.catstore.service.UserService;
+import com.catstore.utils.Constant;
+import com.catstore.utils.messageUtils.Message;
+import com.catstore.utils.messageUtils.MessageUtil;
+import com.catstore.utils.sessionUtils.SessionUtil;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -39,6 +47,39 @@ public class UserController {
             userService.setUserSignature(userSignature);
             System.out.println(userSignature);
         }
+    }
+
+    @RequestMapping("/manager/getAllUsers")
+    Message getAllUsers() {
+        Integer userIdentity = SessionUtil.getUserIdentity();
+        if (userIdentity != null && userIdentity == Constant.MANAGER) {
+            return MessageUtil.createMessage(MessageUtil.GENERAL_SUCCESS_CODE, MessageUtil.GENERAL_SUCCESS_MSG, JSONArray.fromObject(userService.getAllUsers()));
+        }
+        return MessageUtil.createMessage(MessageUtil.HAVE_NO_AUTHORITY_CODE, MessageUtil.HAVE_NO_AUTHORITY_MSG);
+    }
+
+    @RequestMapping("/manager/banUsers")
+    Message banUsers(@RequestBody ArrayList<Integer> userIdList) {
+        Integer userIdentity = SessionUtil.getUserIdentity();
+        if (userIdentity != null && userIdentity == 1) {
+            if (userService.banUsers(userIdList))
+                return MessageUtil.createMessage(MessageUtil.GENERAL_SUCCESS_CODE, MessageUtil.GENERAL_SUCCESS_MSG);
+            else
+                return MessageUtil.createMessage(MessageUtil.GENERAL_FAIL_CODE, MessageUtil.GENERAL_FAIL_MSG);
+        }
+        return MessageUtil.createMessage(MessageUtil.HAVE_NO_AUTHORITY_CODE, MessageUtil.HAVE_NO_AUTHORITY_MSG);
+    }
+
+    @RequestMapping("/manager/unbanUsers")
+    Message unbanUsers(@RequestBody ArrayList<Integer> userIdList) {
+        Integer userIdentity = SessionUtil.getUserIdentity();
+        if (userIdentity != null && userIdentity == 1) {
+            if (userService.unbanUsers(userIdList))
+                return MessageUtil.createMessage(MessageUtil.GENERAL_SUCCESS_CODE, MessageUtil.GENERAL_SUCCESS_MSG);
+            else
+                return MessageUtil.createMessage(MessageUtil.GENERAL_FAIL_CODE, MessageUtil.GENERAL_FAIL_MSG);
+        }
+        return MessageUtil.createMessage(MessageUtil.HAVE_NO_AUTHORITY_CODE, MessageUtil.HAVE_NO_AUTHORITY_MSG);
     }
 
     @RequestMapping("/getUserProperty")

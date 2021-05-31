@@ -3,6 +3,7 @@ package com.catstore.service;
 import com.catstore.crawlers.BookCrawler;
 import com.catstore.entity.Book;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,4 +17,10 @@ public interface BookService {
     String getBookTitleByBookId(Integer bookId);
 
     List<Map<String, String>> getConcernedBookInfo(String bookTitle, String websiteSrc);
+
+    Boolean deleteBooks(ArrayList<Integer> bookIdList);
+
+    Boolean undercarriage(ArrayList<Integer> bookIdList);
+
+    Boolean putOnSale(ArrayList<Integer> bookIdList);
 }

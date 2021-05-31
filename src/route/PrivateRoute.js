@@ -14,7 +14,6 @@ export class PrivateRoute extends React.Component {
     }
 
     checkAuthority = data => {
-        console.log(data);
         let isAuthorized = (data.status === 0);
         this.setState({
             isAuthorized: isAuthorized,

@@ -29,3 +29,18 @@ export function getConcernedBookInfo(bookTitle, website, callback) {
     const url = `http://localhost:8080/getConcernedBookInfo?bookTitle=${bookTitle}&website=${website}`;
     postRequest(url, {}, callback);
 }
+
+export function deleteBooks(bookIdList, callback) {
+    const url = 'http://localhost:8080/manager/deleteBooks';
+    postRequest(url, bookIdList, callback)
+}
+
+export function undercarriageBooks(bookIdList, callback) {
+    const url = 'http://localhost:8080/manager/undercarriage';
+    postRequest(url, bookIdList, callback)
+}
+
+export function putOnSale(bookIdList, callback) {
+    const url = 'http://localhost:8080/manager/putOnSale';
+    postRequest(url, bookIdList, callback)
+}

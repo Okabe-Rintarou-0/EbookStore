@@ -1,10 +1,8 @@
 import React from 'react'
-import {Col, Image, Row, Table} from 'antd';
+import {Table, Tag} from 'antd';
 import {deleteFavouriteBook, getFavouriteBooks, moveToCart} from "../service/favouriteService";
-import {Typography, Tag} from 'antd';
 import {history} from "../utils/history";
-
-const {Title, Paragraph} = Typography;
+import ExpandedBookDetails from "./ExpandedBookDetails";
 
 class FavouriteContent extends React.Component {
 
@@ -99,24 +97,13 @@ class FavouriteContent extends React.Component {
                    columns={columns}
                    scroll={{y: 535}}
                    expandable={{
-                       expandedRowRender: (record) => {
+                       expandedRowRender: (book) => {
                            return (
-                               <Row align={"center"}>
-                                   <Col span={4}>
-                                       <Image style={{height: '150px', width: '120px'}} src={record.book_cover}>
-                                       </Image>
-                                   </Col>
-                                   <Col span={8}>
-                                       <Typography>
-                                           <Title level={3}>
-                                               书籍详情
-                                           </Title>
-                                           <Paragraph>
-                                               {record.book_details.length === 0 ? record.book_description : record.book_details}
-                                           </Paragraph>
-                                       </Typography>
-                                   </Col>
-                               </Row>
+                               <ExpandedBookDetails
+                                   bookCover={book.bookCover}
+                                   bookDescription={book.bookDescription}
+                                   bookDetails={book.bookDetails}
+                               />
                            );
                        },
                        rowExpandable: record => record.name !== 'Not Expandable',

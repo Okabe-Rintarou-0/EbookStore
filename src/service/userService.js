@@ -53,3 +53,18 @@ export function setUserSignature(userSignature, callback) {
     // console.log(JSON.stringify(userSignature));
     postRequest(url, requestBody, callback);
 }
+
+export function getAllUsers(callback) {
+    const url = 'http://localhost:8080/manager/getAllUsers';
+    postRequest(url, {}, callback);
+}
+
+export function banUsers(userIdList, callback) {
+    const url = 'http://localhost:8080/manager/banUsers';
+    postRequest(url, userIdList, callback);
+}
+
+export function unbanUsers(userIdList, callback) {
+    const url = 'http://localhost:8080/manager/unbanUsers';
+    postRequest(url, userIdList, callback);
+}

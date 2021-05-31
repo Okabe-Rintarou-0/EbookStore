@@ -2,6 +2,7 @@ package com.catstore.controller;
 
 import com.catstore.entity.UserAuthority;
 import com.catstore.service.UserService;
+import com.catstore.utils.Constant;
 import com.catstore.utils.messageUtils.Message;
 import com.catstore.utils.messageUtils.MessageUtil;
 import com.catstore.utils.sessionUtils.SessionUtil;
@@ -27,7 +28,7 @@ public class LoginController {
     public Message checkSession() {
         JSONObject authority = SessionUtil.getAuthority();
         if (authority != null) {
-            return MessageUtil.createMessage(MessageUtil.ALREADY_LOGIN_CODE, MessageUtil.ALREADY_LOGIN_MSG);
+            return MessageUtil.createMessage(MessageUtil.ALREADY_LOGIN_CODE, MessageUtil.ALREADY_LOGIN_MSG, authority);
         } else
             return MessageUtil.createMessage(MessageUtil.NOT_LOGIN_CODE, MessageUtil.NOT_LOGIN_MSG);
     }
@@ -39,6 +40,8 @@ public class LoginController {
         UserAuthority userAuthority = userService.checkAuthority(userAccount, userPassword);
         System.out.println(userAuthority);
         if (userAuthority != null) {
+            if (userAuthority.getUserIdentity() == Constant.BANNED_USER)
+                return MessageUtil.createMessage(MessageUtil.BANNED_CODE, MessageUtil.BANNED_MSG);
             JSONObject newSession = new JSONObject();
             newSession.put("userId", userAuthority.getUserId());
             newSession.put("userAccount", userAuthority.getUserAccount());

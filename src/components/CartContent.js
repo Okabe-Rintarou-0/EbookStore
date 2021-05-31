@@ -2,25 +2,21 @@ import React from 'react'
 import {
     Button,
     Col,
-    Drawer,
-    Form,
-    Image,
     Input,
     Layout,
     Modal,
     Row,
-    Select,
     Statistic,
     Table,
-    Typography
+    InputNumber
 } from "antd";
 import '../css/searchBar.css'
 import {history} from "../utils/history";
-import {getUser, getUserProperty} from "../service/userService";
-import {deleteCart, getAllCartItems, addToCart} from "../service/cartSerivce";
+import {getUser} from "../service/userService";
+import {deleteCart, getAllCartItems} from "../service/cartSerivce";
 import PaymentModal from "./PaymentModal";
+import ExpandedBookDetails from "./ExpandedBookDetails";
 
-const {Title, Paragraph, Text, Link} = Typography;
 const {Footer} = Layout;
 const {Search} = Input;
 
@@ -29,9 +25,9 @@ class CartContent extends React.Component {
     static originalCartItems;
 
     handleCartItemsInfo = data => {
-        console.log("cartItems: ", data);
         data.map((cartItem, index) => {
             cartItem.key = String(index);
+            cartItem.state = cartItem.for_sale ? '销售中' : '已下架';
         });
         this.setState({
             cartItems: data,
@@ -95,20 +91,20 @@ class CartContent extends React.Component {
     };
 
     onSelectChange = (selectedRowKeys, selectedRows) => {
-        console.log(selectedRowKeys);
-        this.setState({selectedRowKeys});
+        this.setState({selectedRowKeys}, () => {
+            this.setState({
+                totalPrice: this.calcTotalPrice()
+            })
+        });
     };
 
     calcTotalPrice = () => {
         let totalPrice = 0;
         for (let i = 0; i < this.state.cartItems.length; ++i) {
-            totalPrice += Number(this.state.cartItems[i].book_price) * Number(this.state.cartItems[i].purchase_number);
+            if (this.state.selectedRowKeys.indexOf(i.toString()) !== -1)
+                totalPrice += Number(this.state.cartItems[i].book_price) * Number(this.state.cartItems[i].purchase_number);
         }
         return totalPrice;
-    };
-
-    onSelectAll = (selected) => {
-        selected ? this.setState({totalPrice: this.calcTotalPrice()}) : this.setState({totalPrice: 0});
     };
 
     onDeleteClick = () => {
@@ -120,7 +116,6 @@ class CartContent extends React.Component {
     };
 
     handleUserInfo = data => {
-        console.log(data);
         this.setState({
             userProperty: data.userProperty,
             username: data.username,
@@ -130,9 +125,30 @@ class CartContent extends React.Component {
         })
     };
 
+    checkValidity = () => {
+        let isValid = true;
+        this.state.selectedRowKeys.map(key => {
+            if (this.state.cartItems[key].for_sale !== true) {
+                isValid = false;
+            }
+        });
+        return isValid;
+    };
+
     onPaymentClick = () => {
         if (this.state.selectedRowKeys.length) {
-            getUser(this.handleUserInfo);
+            if (this.checkValidity())
+                getUser(this.handleUserInfo);
+            else {
+                console.log("yes");
+                this.setState({
+                    showPaymentModal: false,
+                });
+                Modal.error({
+                    title: '支付失败',
+                    content: '选中的书籍中包含已下架的书籍。',
+                });
+            }
         } else {
             Modal.error({
                 title: '支付失败',
@@ -149,7 +165,6 @@ class CartContent extends React.Component {
 
     onDeleteOk = () => {
         this.state.selectedRowKeys.map(key => {
-            console.log("key: ", this.state.cartItems[key].cart_id);
             deleteCart(this.state.cartItems[key].cart_id, () => {
             });
         });
@@ -159,28 +174,6 @@ class CartContent extends React.Component {
         this.setState({
             showDeleteModal: false,
         });
-    };
-
-    onClose = () => {
-        this.setState({
-            editRowKey: -1,
-        });
-    };
-
-    onActionClick = (key) => {
-        console.log("key:", key);
-        this.setState({
-            editRowKey: key
-        })
-    };
-
-    adjustTotalPrice(delta) {
-        this.setState({totalPrice: this.state.totalPrice + delta});
-    }
-
-    onSelect = (record, selected) => {
-        let delta = selected ? Number(record['book_price']) : -Number(record['book_price']);
-        this.adjustTotalPrice(delta * Number(record['purchase_number']));
     };
 
     renderSearchBar = () => {
@@ -282,15 +275,28 @@ class CartContent extends React.Component {
             {
                 title: '数量',
                 dataIndex: 'purchase_number',
+                render: (text, book) => {
+                    let onChange = newNum => {
+                        book.purchase_number = newNum;
+                        if (this.state.selectedRowKeys.indexOf(book.key) !== -1) {
+                            this.setState({
+                                totalPrice: this.calcTotalPrice()
+                            });
+                        }
+                    };
+                    return <InputNumber min={1} defaultValue={text} onChange={onChange}/>
+                }
             },
+            {
+                title: '状态',
+                dataIndex: 'state',
+            }
         ];
 
         const {selectedRowKeys} = this.state;
         const rowSelection = {
             selectedRowKeys,
             onChange: this.onSelectChange,
-            onSelect: this.onSelect,
-            onSelectAll: this.onSelectAll,
         };
         return (
             <Table columns={columns}
@@ -298,24 +304,14 @@ class CartContent extends React.Component {
                    scroll={{y: 350}}
                    rowSelection={rowSelection}
                    expandable={{
-                       expandedRowRender: (record) => {
+                       expandedRowRender: (book) => {
+                           console.log("b", book);
                            return (
-                               <Row align={"center"}>
-                                   <Col span={4}>
-                                       <Image style={{height: '150px', width: '120px'}} src={record.book_cover}>
-                                       </Image>
-                                   </Col>
-                                   <Col span={8}>
-                                       <Typography>
-                                           <Title level={3}>
-                                               书籍详情
-                                           </Title>
-                                           <Paragraph>
-                                               {record.book_details.length === 0 ? record.book_description : record.book_details}
-                                           </Paragraph>
-                                       </Typography>
-                                   </Col>
-                               </Row>
+                               <ExpandedBookDetails
+                                   bookCover={book.book_cover}
+                                   bookDescription={book.book_description}
+                                   bookDetails={book.book_details}
+                               />
                            );
                        },
                        rowExpandable: record => record.name !== 'Not Expandable',

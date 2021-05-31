@@ -2,12 +2,12 @@ package com.catstore.service;
 
 import com.catstore.entity.OrderItem;
 import com.catstore.entity.UserOrder;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 
 public interface UserOrderService {
 
@@ -17,4 +17,7 @@ public interface UserOrderService {
 
     ArrayList<UserOrder> getAllOrders();
 
+    ArrayList<UserOrder> getAllOrdersForManager();
+
+    ArrayList<UserOrder> getOrdersInRange(Date start, Date end);
 }

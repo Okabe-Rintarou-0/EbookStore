@@ -5,12 +5,12 @@ import logoUrl from "../assets/logo.png"
 import {logout, getUser, setUserSignature} from "../service/userService";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
-    faBookReader,
+    faBook,
     faHome, faList,
     faPhone,
     faShare,
     faShoppingCart,
-    faStar
+    faStar, faUser
 } from "@fortawesome/free-solid-svg-icons";
 import {Row, Col, Menu, Avatar, Dropdown, Modal} from "antd";
 import {Header} from "antd/es/layout/layout";
@@ -40,6 +40,7 @@ class Navigator extends React.Component {
             username: "",
             userIcon: "",
             userId: 0,
+            userIdentity: -1
         };
     }
 
@@ -49,6 +50,7 @@ class Navigator extends React.Component {
             username: data.username,
             userId: data.userId,
             userIcon: data.userIcon,
+            userIdentity: data.userIdentity,
         });
     };
 
@@ -76,6 +78,46 @@ class Navigator extends React.Component {
         );
     };
 
+    renderMenuItem = () => {
+        let renderContent = [];
+        let identity = this.state.userIdentity;
+        if (identity === 0) { //user
+            renderContent.push(
+                <Menu.Item key="cart">
+                    <FontAwesomeIcon icon={faShoppingCart} className={"nav-icon"}/>
+                    <Link exact to={"/cart"}>购物车</Link>
+                </Menu.Item>);
+            renderContent.push(
+                <Menu.Item key="favor">
+                    <FontAwesomeIcon icon={faStar} className={"nav-icon"}/>
+                    <Link exact to={"/favourite"}>收藏夹</Link>
+                </Menu.Item>);
+            renderContent.push(
+                <Menu.Item key="service">
+                    <FontAwesomeIcon icon={faList} className={"nav-icon"}/>
+                    <Link to={"/order"}>订单</Link>
+                </Menu.Item>
+            )
+        } else if (identity === 1) {
+            renderContent.push(
+                <Menu.Item key="books">
+                    <FontAwesomeIcon icon={faBook} className={"nav-icon"}/>
+                    <Link exact to={"/manager/books"}>书籍管理</Link>
+                </Menu.Item>);
+            renderContent.push(
+                <Menu.Item key="users">
+                    <FontAwesomeIcon icon={faUser} className={"nav-icon"}/>
+                    <Link exact to={"/manager/users"}>用户管理</Link>
+                </Menu.Item>);
+            renderContent.push(
+                <Menu.Item key="orders">
+                    <FontAwesomeIcon icon={faList} className={"nav-icon"}/>
+                    <Link exact to={"/manager/orders"}>订单管理</Link>
+                </Menu.Item>);
+        }
+        return renderContent;
+    };
+
     renderMenu = () => {
         return (
             <Col span={14}>
@@ -85,34 +127,23 @@ class Navigator extends React.Component {
                             <FontAwesomeIcon icon={faHome} className={"nav-icon"}/>
                             <Link exact to={"/"}>主页</Link>
                         </Menu.Item>
-                        <Menu.Item key="cart">
-                            <FontAwesomeIcon icon={faShoppingCart} className={"nav-icon"}/>
-                            <Link exact to={"/cart"}>购物车</Link>
-                        </Menu.Item>
-                        <Menu.Item key="favor">
-                            <FontAwesomeIcon icon={faStar} className={"nav-icon"}/>
-                            <Link exact to={"/favourite"}>收藏夹</Link>
-                        </Menu.Item>
-                        <Menu.Item key="service">
-                            <FontAwesomeIcon icon={faList} className={"nav-icon"}/>
-                            <Link to={"/order"}>订单</Link>
-                        </Menu.Item>
-                        <Menu.Item key="forum" disabled>
-                            <FontAwesomeIcon icon={faBookReader} className={"nav-icon"}/>
-                            <a href="">论坛</a>
-                        </Menu.Item>
-                        <Menu.Item key="share">
-                            <FontAwesomeIcon icon={faShare} className={"nav-icon"}/>
-                            <a href="">分享页面</a>
-                        </Menu.Item>
-                        <SubMenu key="SubMenu" icon={<InfoCircleFilled/>} title="更多信息">
-                            <Menu.ItemGroup title="联系我们">
-                                <Menu.Item key="setting:1" icon={<GithubFilled/>}><a
-                                    href={'https://gitee.com/ymwm233/cat-store/'} target={'_blank'}/>Github</Menu.Item>
-                                <Menu.Item key="setting:2" icon={<WechatFilled/>}>Wechat</Menu.Item>
-                                <Menu.Item key="setting:3" icon={<QqCircleFilled/>}>QQ</Menu.Item>
-                            </Menu.ItemGroup>
-                        </SubMenu>
+                        {this.renderMenuItem()}
+                        {/*<Menu.Item key="forum" disabled>*/}
+                        {/*    <FontAwesomeIcon icon={faBookReader} className={"nav-icon"}/>*/}
+                        {/*    <a href="">论坛</a>*/}
+                        {/*</Menu.Item>*/}
+                        {/*<Menu.Item key="share">*/}
+                        {/*    <FontAwesomeIcon icon={faShare} className={"nav-icon"}/>*/}
+                        {/*    <a href="">分享页面</a>*/}
+                        {/*</Menu.Item>*/}
+                        {/*<SubMenu key="SubMenu" icon={<InfoCircleFilled/>} title="更多信息">*/}
+                        {/*    <Menu.ItemGroup title="联系我们">*/}
+                        {/*        <Menu.Item key="setting:1" icon={<GithubFilled/>}><a*/}
+                        {/*            href={'https://gitee.com/ymwm233/cat-store/'} target={'_blank'}/>Github</Menu.Item>*/}
+                        {/*        <Menu.Item key="setting:2" icon={<WechatFilled/>}>Wechat</Menu.Item>*/}
+                        {/*        <Menu.Item key="setting:3" icon={<QqCircleFilled/>}>QQ</Menu.Item>*/}
+                        {/*    </Menu.ItemGroup>*/}
+                        {/*</SubMenu>*/}
                     </Menu>
                 </Row>
             </Col>

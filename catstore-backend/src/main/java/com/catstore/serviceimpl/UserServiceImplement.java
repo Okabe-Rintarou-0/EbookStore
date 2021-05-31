@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -38,6 +40,29 @@ public class UserServiceImplement implements UserService {
     @Override
     public BigDecimal getUserProperty() {
         return userDao.getUserProperty();
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userDao.getAllUsers();
+    }
+
+    @Override
+    public Boolean banUsers(ArrayList<Integer> userIdList) {
+        for (Integer userId : userIdList) {
+            if (!userDao.banUserByUserId(userId))
+                return false;
+        }
+        return true;
+    }
+
+    @Override
+    public Boolean unbanUsers(ArrayList<Integer> userIdList) {
+        for (Integer userId : userIdList) {
+            if (!userDao.unbanUserByUserId(userId))
+                return false;
+        }
+        return true;
     }
 
 }

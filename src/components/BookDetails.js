@@ -35,6 +35,7 @@ class BookDetails extends React.Component {
             bookDescription: data.bookDescription,
             bookAuthor: data.bookAuthor,
             bookStock: data.bookStock,
+            forSale: data.forSale,
             tags: data.bookTag.split(' '),
         }, () => {
         });
@@ -203,7 +204,7 @@ class BookDetails extends React.Component {
                     </div>
                     <div className="browse-book-stock">
                         <b>库存</b>
-                        <span className="stock">{`${this.state.bookStock}件`}</span>
+                        <span className="stock">{this.state.forSale ? `${this.state.bookStock}件` : '已下架'}</span>
                     </div>
                     <div className="browse-book-description">
                         <div className="author">{`作者：${this.state.bookAuthor}`}</div>
@@ -221,9 +222,9 @@ class BookDetails extends React.Component {
                         </Button>
                     </span>
                         <span className="browse-book-button">
-                        <button className="add-to-cart" onClick={this.onAddToCart}>
+                        <Button className="add-to-cart" onClick={this.onAddToCart} disabled={!this.state.forSale}>
                             加入购物车
-                        </button>
+                        </Button>
                     </span>
                     </div>
                 </div>

@@ -19,6 +19,7 @@ public class User {
     private String userSignature;
     private String userIcon;
     private String userTel;
+    private Integer userIdentity;
     private String userAddress;
     private BigDecimal userProperty;
 }

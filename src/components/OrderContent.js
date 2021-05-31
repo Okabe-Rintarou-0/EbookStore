@@ -1,12 +1,8 @@
 import React from 'react'
 import {Col, Image, Row, Table, Timeline} from 'antd';
-import {deleteFavouriteBook, getFavouriteBooks, moveToCart} from "../service/favouriteService";
-import {Typography, Divider, Tag} from 'antd';
-import {history} from "../utils/history";
 import {ClockCircleOutlined} from "@ant-design/icons";
 import {getAllOrders} from "../service/orderService";
 
-const {Title, Paragraph, Text, Link} = Typography;
 
 class OrderContent extends React.Component {
 
@@ -18,7 +14,6 @@ class OrderContent extends React.Component {
     }
 
     handleAllOrders = data => {
-        console.log(data)
         let itemList = [];
         data.map((dataItem, index) => {
             dataItem.orders.map(order => {
@@ -27,6 +22,7 @@ class OrderContent extends React.Component {
                     orderReceiver: dataItem.orderReceiver,
                     orderTel: dataItem.orderTel,
                     orderAddress: dataItem.orderAddress,
+                    orderTime: dataItem.orderTime,
                     bookTitle: '',
                     bookPrice: '',
                     purchaseNumber: '',
@@ -82,25 +78,29 @@ class OrderContent extends React.Component {
                 title: '数量',
                 dataIndex: 'purchaseNumber',
             },
+            {
+                title: '下单时间',
+                dataIndex: 'orderTime',
+            }
         ];
         return (
             <Table columns={columns}
                    dataSource={this.state.orders}
                    scroll={{y: 535}}
                    expandable={{
-                       expandedRowRender: (record) => {
+                       expandedRowRender: (book) => {
                            return (
                                <Row align={"center"}>
                                    <Col span={4}>
-                                       <Image style={{height: '150px', width: '120px'}} src={record.bookCover}>
+                                       <Image style={{height: '150px', width: '120px'}} src={book.bookCover}>
                                        </Image>
                                    </Col>
                                    <Col span={8}>
                                        <Timeline>
-                                           <Timeline.Item color="green">用户下单 2021/3/17 19:40</Timeline.Item>
-                                           <Timeline.Item color="green">商家发货 2021/3/17 20:40</Timeline.Item>
+                                           <Timeline.Item color="green">用户下单 {book.orderTime}</Timeline.Item>
+                                           <Timeline.Item color="green">商家发货 {book.orderTime}</Timeline.Item>
                                            <Timeline.Item dot={<ClockCircleOutlined className="timeline-clock-icon"/>}>
-                                               快递员派送中 2021/3/18 15:20
+                                               快递员派送中 {book.orderTime}
                                            </Timeline.Item>
                                            <Timeline.Item color="red">确认收货</Timeline.Item>
                                        </Timeline>

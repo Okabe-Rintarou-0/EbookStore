@@ -11,6 +11,9 @@ import java.io.Serializable;
 @Data
 @Entity
 @JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer", "fieldHandler"})
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "orderItemId")
 public class OrderItem {
     @EmbeddedId
     OrderItemId orderItemId;

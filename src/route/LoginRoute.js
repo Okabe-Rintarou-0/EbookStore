@@ -14,7 +14,6 @@ export class LoginRoute extends React.Component {
 
     checkAuthority = data => {
         let isAuthorized = (data.status === 0);
-        console.log(isAuthorized);
         this.setState({
             isAuthorized: isAuthorized,
             hasChecked: true

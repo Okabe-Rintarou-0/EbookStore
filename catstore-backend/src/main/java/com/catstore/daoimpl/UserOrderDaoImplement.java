@@ -9,16 +9,14 @@ import com.catstore.repository.UserOrderRepository;
 import com.catstore.repository.OrderItemRepository;
 import com.catstore.repository.UserRepository;
 import com.catstore.utils.sessionUtils.SessionUtil;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class UserOrderDaoImplement implements UserOrderDao {
@@ -57,8 +55,13 @@ public class UserOrderDaoImplement implements UserOrderDao {
     }
 
     @Override
+    public ArrayList<UserOrder> getAllOrdersForManager() {
+        return userOrderRepository.getAllOrdersForManager();
+    }
+
+    @Override
     public List<OrderItem> getUserOrdersByOrderId(Integer orderId) {
-        return userOrderRepository.getUserOrdersByOrderId(orderId);
+        return orderItemRepository.getUserOrdersByOrderId(orderId);
     }
 
     @Override
@@ -84,7 +87,13 @@ public class UserOrderDaoImplement implements UserOrderDao {
         orderItemId.setBookId(bookId);
         orderItem.setOrderItemId(orderItemId);
         orderItem.setPurchaseNumber(purchaseNumber);
-        orderItem.setBook(bookRepository.getBookById(bookId));
+        Book book = bookRepository.getBookById(bookId);
+        orderItem.setBook(book);
         orderItemRepository.save(orderItem);
+    }
+
+    @Override
+    public ArrayList<UserOrder> getOrdersInRange(Date start, Date end) {
+        return userOrderRepository.getOrdersInRange(start, end);
     }
 }

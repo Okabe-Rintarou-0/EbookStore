@@ -1,13 +1,16 @@
 package com.catstore.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Data
 @Entity
@@ -27,5 +30,7 @@ public class Book {
     private BigDecimal bookPrice;
     private String bookDescription;
     private String bookDetails;
+    private Boolean forSale;
+    private Integer sales;
 }
 

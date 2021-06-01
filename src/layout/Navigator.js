@@ -5,7 +5,7 @@ import logoUrl from "../assets/logo.png"
 import {logout, getUser, setUserSignature} from "../service/userService";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
-    faBook,
+    faBook, faFire,
     faHome, faList,
     faPhone,
     faShare,
@@ -126,6 +126,10 @@ class Navigator extends React.Component {
                         <Menu.Item key="main">
                             <FontAwesomeIcon icon={faHome} className={"nav-icon"}/>
                             <Link exact to={"/"}>主页</Link>
+                        </Menu.Item>
+                        <Menu.Item key="rank">
+                            <FontAwesomeIcon icon={faFire} className={"nav-icon"}/>
+                            <Link exact to={"/rank"}>排行榜</Link>
                         </Menu.Item>
                         {this.renderMenuItem()}
                         {/*<Menu.Item key="forum" disabled>*/}

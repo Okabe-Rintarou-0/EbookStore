@@ -1,16 +1,28 @@
 import React from 'react'
-import {Col, Image, message, Row, Table,} from "antd";
+import {Col, Select, message, Row, Table, Tooltip} from "antd";
 import {deleteBooks, getBooks, getBooksByKeyword, putOnSale, undercarriageBooks} from "../service/bookService";
 import ExpandedBookDetails from "../components/ExpandedBookDetails";
 import Button from "antd/es/button";
 import {history} from "../utils/history";
 import Search from "antd/es/input/Search";
+import CsvUpload from "../components/CsvUpload";
+import Switch from "antd/es/switch";
+import EditableTableItem from "../components/EditableTableItem";
+import {formBookCsvContent} from "../utils/fileUtils";
+
+const {Option} = Select;
 
 class BookManagementList extends React.Component {
+
+    static viewMode = 0;
+    static formMode = 1;
+
     constructor(props) {
         super(props);
         this.state = {
             books: [],
+            addedBooks: [],
+            mode: BookManagementList.viewMode,
         }
     }
 
@@ -100,6 +112,13 @@ class BookManagementList extends React.Component {
         }, 500);
     };
 
+    toggleMode = () => {
+        this.setState({
+            selectedRowKeys: [],
+            mode: (this.state.mode + 1) % 2,
+        })
+    };
+
     handleUndercarriageBooks = () => {
         let bookIdList = [];
         let selectedRowKeys = this.state.selectedRowKeys;
@@ -119,6 +138,241 @@ class BookManagementList extends React.Component {
     };
 
     renderTable = () => {
+        switch (this.state.mode) {
+            case BookManagementList.viewMode:
+                return this.renderTableInViewMode();
+            case BookManagementList.formMode:
+                return this.renderTableInFormMode();
+            default:
+                return null;
+        }
+    };
+
+    addOne = () => {
+        let emptyItem = {
+            bookTitle: '',
+            bookAuthor: '',
+            bookPrice: '',
+            bookStock: '',
+            bookType: '',
+            bookDescription: '',
+            bookDetails: '',
+            bookCover: '',
+            forSale: true,
+            bookTag: '',
+            key: this.state.addedBooks.length ? this.state.addedBooks[this.state.addedBooks.length - 1].key + 1 : 0,
+        };
+        this.setState({
+            addedBooks: [...this.state.addedBooks, emptyItem],
+        })
+    };
+
+    handleDeleteFormBooks = () => {
+        console.log(this.state.selectedRowKeys);
+        let filter = this.state.addedBooks.filter(book => {
+            if (this.state.selectedRowKeys.indexOf(book.key) === -1) {
+                return true;
+            }
+        });
+        this.setState({
+            addedBooks: filter,
+            selectedRowKeys: []
+        })
+    };
+
+    formCsv = () => {
+        let addedBooks = this.state.addedBooks;
+        let len = addedBooks.length;
+        if (len === 0) {
+            message.warn("无法生成Csv文件，因为当前表格为空！");
+            return;
+        }
+        for (let i = 0; i < len; ++i) {
+            let book = addedBooks[i];
+            if (book.bookTitle === '' || book.bookAuthor === '' || book.bookPrice === '' || book.bookTag === '' || book.bookStock === ''
+                || book.bookDetails === '' || book.bookDescription === '' || book.bookCover === '') {
+                message.warn("书籍的任何一项都不得为空！");
+                return;
+            }
+        }
+        formBookCsvContent(this.state.addedBooks);
+    };
+
+    setter = (target, object, value) => {
+        switch (object) {
+            case "bookTitle":
+                target.bookTitle = value;
+                break;
+            case "bookPrice":
+                target.bookPrice = value;
+                break;
+            case "bookStock":
+                target.bookStock = value;
+                break;
+            case "bookDescription":
+                target.bookDescription = value;
+                break;
+            case "bookDetails":
+                target.bookDetails = value;
+                break;
+            case "bookTag":
+                target.bookTag = value;
+                break;
+            case "forSale":
+                target.forSale = value;
+                break;
+            case "bookAuthor":
+                target.bookAuthor = value;
+                break;
+            case "bookCover":
+                target.bookCover = value;
+                break;
+            case "bookType":
+                target.bookType = value;
+            default:
+                break;
+        }
+    };
+
+    onSelectState = (book, value) => {
+        book.forSale = value === '是';
+    };
+
+    renderTableInFormMode = () => {
+        const columns = [
+            {
+                title: '书名',
+                dataIndex: 'bookTitle',
+                render: (text, book) => {
+                    return <EditableTableItem
+                        setter={this.setter.bind(this, book, "bookTitle")}
+                        placeHolder={"双击此处修改"}/>
+                }
+            },
+            {
+                title: '书籍封面',
+                dataIndex: 'bookCover',
+                render: (text, book) => {
+                    return <EditableTableItem
+                        setter={this.setter.bind(this, book, "bookCover")}
+                        placeHolder={"双击此处修改"}/>
+                }
+            },
+            {
+                title: '作者',
+                dataIndex: 'bookAuthor',
+                render: (text, book) => {
+                    return <EditableTableItem
+                        setter={this.setter.bind(this, book, "bookAuthor")}
+                        placeHolder={"双击此处修改"}/>
+                }
+            },
+            {
+                title: '价格',
+                dataIndex: 'bookPrice',
+                render: (text, book) => {
+                    return <EditableTableItem
+                        setter={this.setter.bind(this, book, "bookPrice")}
+                        placeHolder={"双击此处修改"}/>
+                }
+            },
+            {
+                title: '库存',
+                dataIndex: 'bookStock',
+                render: (text, book) => {
+                    return <EditableTableItem
+                        setter={this.setter.bind(this, book, "bookStock")}
+                        placeHolder={"双击此处修改"}/>
+                }
+            },
+            {
+                title: '概述',
+                dataIndex: 'bookDescription',
+                render: (text, book) => {
+                    return <EditableTableItem
+                        setter={this.setter.bind(this, book, "bookDescription")}
+                        placeHolder={"双击此处修改"}/>
+                }
+            },
+            {
+                title: '详情',
+                dataIndex: 'bookDetails',
+                render: (text, book) => {
+                    return <EditableTableItem
+                        setter={this.setter.bind(this, book, "bookDetails")}
+                        placeHolder={"双击此处修改"}/>
+                }
+            },
+            {
+                title: '标签',
+                dataIndex: 'bookTag',
+                render: (text, book) => {
+                    return <EditableTableItem
+                        setter={this.setter.bind(this, book, "bookTag")}
+                        placeHolder={"双击此处修改"}/>
+                }
+            },
+            {
+                title: '书籍类型',
+                dataIndex: 'bookType',
+                render: (text, book) => {
+                    return <EditableTableItem
+                        setter={this.setter.bind(this, book, "bookType")}
+                        placeHolder={"双击此处修改"}/>
+                }
+            },
+            {
+                title: '是否在销售中',
+                dataIndex: 'forSale',
+                render: (text, book) => {
+                    return <Select onSelect={this.onSelectState.bind(this, book)} defaultValue="是" style={{width: 120}}>
+                        <Option value="是">是</Option>
+                        <Option value="否">否</Option>
+                    </Select>
+                }
+            }
+        ];
+        const {selectedRowKeys} = this.state;
+        const rowSelection = {
+            selectedRowKeys,
+            onChange: this.onSelectChange,
+        };
+        return (
+            <div>
+                <Table columns={columns}
+                       rowSelection={rowSelection}
+                       dataSource={this.state.addedBooks}
+                       scroll={{y: 390}}
+                       footer={
+                           () =>
+                               <Row justify="end" gutter={20} align={"middle"}>
+                                   <Col>
+                                       <Button onClick={this.toggleMode}>
+                                           切换到总览模式
+                                       </Button>
+                                   </Col>
+                                   <Col>
+                                       <Button onClick={this.formCsv}>
+                                           生成.csv文件
+                                       </Button>
+                                   </Col>
+                                   <Col>
+                                       <Button onClick={this.addOne} type="primary">
+                                           添加
+                                       </Button>
+                                   </Col>
+                                   <Col>
+                                       <Button onClick={this.handleDeleteFormBooks} type="primary" danger>
+                                           删除
+                                       </Button>
+                                   </Col>
+                               </Row>}
+                />
+            </div>
+        );
+    };
+
+    renderTableInViewMode = () => {
         const columns = [
             {
                 title: '商品名称',
@@ -149,8 +403,6 @@ class BookManagementList extends React.Component {
         const rowSelection = {
             selectedRowKeys,
             onChange: this.onSelectChange,
-            onSelect: this.onSelect,
-            onSelectAll: this.onSelectAll,
         };
         return (
             <div>
@@ -158,7 +410,7 @@ class BookManagementList extends React.Component {
                 <Table columns={columns}
                        rowSelection={rowSelection}
                        dataSource={this.state.books}
-                       scroll={{y: 473}}
+                       scroll={{y: 390}}
                        expandable={{
                            expandedRowRender: (book) => {
                                return (
@@ -173,7 +425,13 @@ class BookManagementList extends React.Component {
                        }}
                        footer={
                            () =>
-                               <Row justify="end" gutter={20}>
+                               <Row justify="end" gutter={20} align={"middle"}>
+                                   <Col>
+                                       <Button onClick={this.toggleMode}>
+                                           切换到在线生成模式
+                                       </Button>
+                                   </Col>
+                                   <CsvUpload/>
                                    <Col>
                                        <Button onClick={this.handlePutOnSale} type="primary" danger>
                                            上架

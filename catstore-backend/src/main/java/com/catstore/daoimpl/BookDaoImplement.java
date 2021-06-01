@@ -7,6 +7,7 @@ import com.catstore.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -70,5 +71,16 @@ public class BookDaoImplement implements BookDao {
     @Override
     public void placeOrder(Integer bookId, Integer purchaseNumber) {
         bookRepository.placeOrder(bookId, purchaseNumber);
+    }
+
+    @Override
+    public ArrayList<Book> getRankedBooks() {
+        return bookRepository.getRankedBooks();
+    }
+
+    @Override
+    public void saveBook(Book book) {
+        if (book != null)
+            bookRepository.save(book);
     }
 }

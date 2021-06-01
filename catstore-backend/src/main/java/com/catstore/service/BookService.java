@@ -23,4 +23,6 @@ public interface BookService {
     Boolean undercarriage(ArrayList<Integer> bookIdList);
 
     Boolean putOnSale(ArrayList<Integer> bookIdList);
+
+    ArrayList<Book> getRankedBooks();
 }

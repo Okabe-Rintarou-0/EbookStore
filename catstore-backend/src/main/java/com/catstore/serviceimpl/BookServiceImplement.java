@@ -72,4 +72,9 @@ public class BookServiceImplement implements BookService {
         }
         return true;
     }
+
+    @Override
+    public ArrayList<Book> getRankedBooks() {
+        return bookDao.getRankedBooks();
+    }
 }

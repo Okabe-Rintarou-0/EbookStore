@@ -26,7 +26,11 @@ public class MessageUtil {
     public static final String BANNED_MSG = "您的账号已被封禁！请联系管理员。";
     public static final String GENERAL_SUCCESS_MSG = "操作成功！";
     public static final String GENERAL_FAIL_MSG = "操作失败！";
+    public static final String WRONG_FILE_FORMAT_MSG = "上传失败！请上传正确的csv文件！";
+    public static final String UPLOAD_SUCCESS_MSG = "上传成功！";
 
+    public static final int UPLOAD_SUCCESS_CODE = 13;
+    public static final int WRONG_FILE_FORMAT_CODE = -13;
     public static final int PUT_ON_SALE_FAIL_CODE = -12;
     public static final int PUT_ON_SALE_SUCCESS_CODE = 10;
     public static final int BANNED_CODE = -10;

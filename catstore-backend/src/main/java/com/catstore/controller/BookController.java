@@ -89,4 +89,9 @@ public class BookController {
         }
         return MessageUtil.createMessage(MessageUtil.HAVE_NO_AUTHORITY_CODE, MessageUtil.HAVE_NO_AUTHORITY_MSG);
     }
+
+    @RequestMapping("/getRankedBooks")
+    ArrayList<Book> getRankedBooks() {
+        return bookService.getRankedBooks();
+    }
 }

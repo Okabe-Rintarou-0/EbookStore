@@ -44,3 +44,8 @@ export function putOnSale(bookIdList, callback) {
     const url = 'http://localhost:8080/manager/putOnSale';
     postRequest(url, bookIdList, callback)
 }
+
+export function getRankedBooks(callback) {
+    const url = 'http://localhost:8080/getRankedBooks';
+    postRequest(url, {}, callback);
+}

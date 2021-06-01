@@ -4,6 +4,7 @@ import com.catstore.crawlers.BookCrawler;
 import com.catstore.entity.Book;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,4 +26,8 @@ public interface BookDao {
     Boolean putOnSale(Integer bookId);
 
     void placeOrder(Integer bookId, Integer purchaseNumber);
+
+    ArrayList<Book> getRankedBooks();
+
+    void saveBook(Book book);
 }

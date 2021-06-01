@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -20,6 +21,8 @@ import java.util.Set;
 //        property = "bookId")
 public class Book {
     @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private Integer bookId;
     private String bookTitle;
     private String bookTag;
@@ -32,5 +35,6 @@ public class Book {
     private String bookDetails;
     private Boolean forSale;
     private Integer sales;
+
 }
 

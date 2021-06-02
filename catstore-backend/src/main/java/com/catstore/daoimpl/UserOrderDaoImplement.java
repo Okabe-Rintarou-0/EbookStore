@@ -82,11 +82,9 @@ public class UserOrderDaoImplement implements UserOrderDao {
     @Override
     public void addOrderItem(Integer orderId, Integer bookId, Integer purchaseNumber) {
         OrderItem orderItem = new OrderItem();
-        OrderItem.OrderItemId orderItemId = new OrderItem.OrderItemId();
-        orderItemId.setOrderId(orderId);
-        orderItemId.setBookId(bookId);
-        orderItem.setOrderItemId(orderItemId);
+        orderItem.setOrderId(orderId);
         orderItem.setPurchaseNumber(purchaseNumber);
+        orderItem.setBookId(bookId);
         Book book = bookRepository.getBookById(bookId);
         orderItem.setBook(book);
         orderItemRepository.save(orderItem);

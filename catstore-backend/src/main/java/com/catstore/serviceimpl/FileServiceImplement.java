@@ -26,9 +26,13 @@ public class FileServiceImplement implements FileService {
                 .addFilter("csv")
                 .addUploadFile(uploadFile)
                 .isValid()) {
-            String content = csvFileProcessor.readContent(uploadFile);
-            JSONArray parseResult = csvFileProcessor.parseContent(content);
-            csvFileProcessor.parseAndSave(parseResult);
+            try {
+                String content = csvFileProcessor.readContent(uploadFile);
+                JSONArray parseResult = csvFileProcessor.parseContent(content);
+                csvFileProcessor.parseAndSave(parseResult);
+            } catch (Exception e) {
+                return false;
+            }
             return true;
         }
         return false;

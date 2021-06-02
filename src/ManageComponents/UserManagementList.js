@@ -21,6 +21,7 @@ class BookManagementList extends React.Component {
 
     handleUsers = data => {
         let users = data.arrayData;
+        console.log(users);
         users.map((user, index) => {
             user.key = index;
         });

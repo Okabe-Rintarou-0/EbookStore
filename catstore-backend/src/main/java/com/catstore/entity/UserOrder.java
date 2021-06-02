@@ -26,7 +26,7 @@ public class UserOrder {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     Integer orderId;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "orderId")
     Set<OrderItem> orders;
     Integer userId;

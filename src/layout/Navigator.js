@@ -6,7 +6,7 @@ import {logout, getUser, setUserSignature} from "../service/userService";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
     faBook, faFire,
-    faHome, faList,
+    faHome, faList, faMoneyBill, faMoneyBillWave, faMoneyCheck,
     faPhone,
     faShare,
     faShoppingCart,
@@ -113,6 +113,11 @@ class Navigator extends React.Component {
                 <Menu.Item key="orders">
                     <FontAwesomeIcon icon={faList} className={"nav-icon"}/>
                     <Link exact to={"/manager/orders"}>订单管理</Link>
+                </Menu.Item>);
+            renderContent.push(
+                <Menu.Item key="consumption">
+                    <FontAwesomeIcon icon={faMoneyBill} className={"nav-icon"}/>
+                    <Link exact to={"/manager/consumption"}>消费排名</Link>
                 </Menu.Item>);
         }
         return renderContent;

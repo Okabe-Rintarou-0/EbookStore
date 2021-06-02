@@ -1,5 +1,5 @@
 import React from 'react'
-import {Row, Upload} from "antd";
+import {message, Row, Upload} from "antd";
 import Button from "antd/es/button";
 import {UploadOutlined} from "@ant-design/icons";
 
@@ -10,7 +10,13 @@ class CsvUpload extends React.Component {
         fileList = fileList.map(file => {
             console.log("file", file);
             if (file.response) {
-                file.url = file.response.url;
+                let response = file.response;
+                if (response.status > 0)
+                    message.success(response.message);
+                else {
+                    file.status = 'error';
+                    message.warn(response.message);
+                }
             }
             return file;
         });
@@ -26,7 +32,7 @@ class CsvUpload extends React.Component {
                 action='http://localhost:8080/upload'
                 multiple={false}
             >
-                <Button icon={<UploadOutlined/>} type="primary">上传csv文件</Button>
+                <Button icon={<UploadOutlined/>} type="primary">上传csv文件以导入书籍</Button>
             </Upload>
         )
     }

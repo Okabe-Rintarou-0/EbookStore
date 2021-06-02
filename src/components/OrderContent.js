@@ -29,7 +29,6 @@ class OrderContent extends React.Component {
                     bookCover: '',
                     key: itemList.length
                 };
-                console.log("book", book);
                 item.bookPrice = book.bookPrice;
                 item.bookTitle = book.bookTitle;
                 item.bookCover = book.bookCover;
@@ -37,7 +36,6 @@ class OrderContent extends React.Component {
                 itemList.push(item);
             });
         });
-        console.log("itemList", itemList);
         this.setState({
             orders: itemList,
         });

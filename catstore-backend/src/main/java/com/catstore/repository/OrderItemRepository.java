@@ -1,16 +1,14 @@
 package com.catstore.repository;
 
 import com.catstore.entity.OrderItem;
-import net.sf.json.JSONArray;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Map;
 
 @Transactional
-public interface OrderItemRepository extends JpaRepository<OrderItem, OrderItem.OrderItemId> {
-    @Query(value = "from OrderItem where orderItemId.orderId = ?1")
+public interface OrderItemRepository extends JpaRepository<OrderItem, Integer> {
+    @Query(value = "from OrderItem where orderId = ?1")
     List<OrderItem> getUserOrdersByOrderId(Integer orderId);
 }

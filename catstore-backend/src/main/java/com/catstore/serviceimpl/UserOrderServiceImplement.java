@@ -1,9 +1,6 @@
 package com.catstore.serviceimpl;
 
-import com.catstore.dao.BookDao;
-import com.catstore.dao.CartDao;
-import com.catstore.dao.UserDao;
-import com.catstore.dao.UserOrderDao;
+import com.catstore.dao.*;
 import com.catstore.entity.OrderItem;
 import com.catstore.entity.UserOrder;
 import com.catstore.service.UserOrderService;
@@ -24,6 +21,12 @@ public class UserOrderServiceImplement implements UserOrderService {
     CartDao cartDao;
     UserDao userDao;
     BookDao bookDao;
+    ConsumptionDao consumptionDao;
+
+    @Autowired
+    void setConsumptionDao(ConsumptionDao consumptionDao) {
+        this.consumptionDao = consumptionDao;
+    }
 
     @Autowired
     void setCartDao(CartDao cartDao) {
@@ -76,7 +79,9 @@ public class UserOrderServiceImplement implements UserOrderService {
                     userOrderDao.addOrderItem(orderId, bookId, purchaseNumber);
                     bookDao.placeOrder(bookId, purchaseNumber);
                 }
+                consumptionDao.addUserConsumption(totalPrice);
                 userDao.updateUserProperty(BigDecimal.valueOf(0).subtract(totalPrice)); //-totalPrice
+
                 return true;
             }
         }

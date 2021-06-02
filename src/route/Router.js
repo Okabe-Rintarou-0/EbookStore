@@ -16,6 +16,7 @@ import BookManagementView from "../view/BookManagementView";
 import UserManagementView from "../view/UserManagementView";
 import OrderManagementView from "../view/OrderManagementView";
 import RankView from "../view/RankView";
+import ConsumptionManagementView from "../view/ConsumptionManagementView";
 
 class BasicRoute extends React.Component {
 
@@ -40,6 +41,7 @@ class BasicRoute extends React.Component {
                     <PrivateRoute exact path="/status/fail" component={PaymentFail}/>
                     <ManagerRoute exact path="/manager/books" component={BookManagementView}/>
                     <ManagerRoute exact path="/manager/users" component={UserManagementView}/>
+                    <ManagerRoute exact path="/manager/consumption" component={ConsumptionManagementView}/>
                     <ManagerRoute exact path="/manager/orders" component={OrderManagementView}/>
                     <Redirect from={'/*'} to={{pathname: "/"}}/>
                 </Switch>

@@ -6,13 +6,12 @@ import Button from "antd/es/button";
 import {history} from "../utils/history";
 import Search from "antd/es/input/Search";
 import CsvUpload from "../components/CsvUpload";
-import Switch from "antd/es/switch";
 import EditableTableItem from "../components/EditableTableItem";
 import {formBookCsvContent} from "../utils/fileUtils";
 
 const {Option} = Select;
 
-class BookManagementList extends React.Component {
+class BookManagementList extends React.Component { ///todo : add modification functions
 
     static viewMode = 0;
     static formMode = 1;

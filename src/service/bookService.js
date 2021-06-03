@@ -49,3 +49,8 @@ export function getRankedBooks(callback) {
     const url = 'http://localhost:8080/getRankedBooks';
     postRequest(url, {}, callback);
 }
+
+export function postModifiedBook(book, callback) {
+    const url = 'http://localhost:8080/manager/postModifiedBook';
+    postRequest(url, book, callback);
+}

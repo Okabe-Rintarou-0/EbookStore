@@ -25,4 +25,6 @@ public interface BookService {
     Boolean putOnSale(ArrayList<Integer> bookIdList);
 
     ArrayList<Book> getRankedBooks();
+
+    void postModifiedBook(Map<String, String> book);
 }

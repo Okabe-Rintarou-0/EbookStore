@@ -1,13 +1,18 @@
 import React from 'react'
-import {Table} from "antd";
+import {Image, Switch, Row, Table, Col} from "antd";
 import ExpandedBookDetails from "../components/ExpandedBookDetails";
 import {getRankedBooks} from "../service/bookService";
 
 class RankList extends React.Component {
+
+    static tableMode = 0;
+    static graphMode = 1;
+
     constructor(props) {
         super(props);
         this.state = {
             books: [],
+            mode: RankList.tableMode,
         }
     }
 
@@ -28,6 +33,15 @@ class RankList extends React.Component {
     componentDidMount() {
         getRankedBooks(this.handleBooks);
     }
+
+    renderRankGraph = () => (
+        <Row align={"middle"} justify={"center"}>
+            <Image
+                width={750}
+                src="http://localhost:8080//image/getRank"
+            />
+        </Row>
+    );
 
     renderTable = () => {
         const columns = [
@@ -84,11 +98,30 @@ class RankList extends React.Component {
         );
     };
 
+    toggleMode = () => {
+        this.setState({
+            mode: this.state.mode === RankList.tableMode ? RankList.graphMode : RankList.tableMode,
+        })
+    };
+
     render() {
         return (
-            <>
-                {this.renderTable()}
-            </>
+            <div>
+                {
+                    this.state.mode === RankList.tableMode ?
+                        this.renderTable() :
+                        this.renderRankGraph()
+                }
+                <Row justify={"end"} gutter={10}>
+                    <Col>
+                        <b>切换视图
+                        </b>
+                    </Col>
+                    <Col>
+                        <Switch onChange={this.toggleMode}/>
+                    </Col>
+                </Row>
+            </div>
         )
     }
 }

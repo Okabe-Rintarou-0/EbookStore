@@ -94,4 +94,10 @@ public class BookController {
     ArrayList<Book> getRankedBooks() {
         return bookService.getRankedBooks();
     }
+
+    @RequestMapping("/manager/postModifiedBook")
+    void postModifiedBook(@RequestBody Map<String, String> book) {
+        System.out.println(book.toString());
+        bookService.postModifiedBook(book);
+    }
 }

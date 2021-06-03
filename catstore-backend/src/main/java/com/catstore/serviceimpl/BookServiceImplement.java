@@ -77,4 +77,9 @@ public class BookServiceImplement implements BookService {
     public ArrayList<Book> getRankedBooks() {
         return bookDao.getRankedBooks();
     }
+
+    @Override
+    public void postModifiedBook(Map<String, String> book) {
+        bookDao.postModifiedBook(book);
+    }
 }

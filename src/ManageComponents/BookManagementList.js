@@ -8,6 +8,7 @@ import Search from "antd/es/input/Search";
 import CsvUpload from "../components/CsvUpload";
 import EditableTableItem from "../components/EditableTableItem";
 import {formBookCsvContent} from "../utils/fileUtils";
+import BookModifyModal from "../components/BookModifyModal";
 
 const {Option} = Select;
 
@@ -22,6 +23,8 @@ class BookManagementList extends React.Component { ///todo : add modification fu
             books: [],
             addedBooks: [],
             mode: BookManagementList.viewMode,
+            showModal: false,
+            bookToModify: null,
         }
     }
 
@@ -228,6 +231,7 @@ class BookManagementList extends React.Component { ///todo : add modification fu
                 break;
             case "bookType":
                 target.bookType = value;
+                break;
             default:
                 break;
         }
@@ -245,7 +249,7 @@ class BookManagementList extends React.Component { ///todo : add modification fu
                 render: (text, book) => {
                     return <EditableTableItem
                         setter={this.setter.bind(this, book, "bookTitle")}
-                        placeHolder={"双击此处修改"}/>
+                    />
                 }
             },
             {
@@ -253,8 +257,7 @@ class BookManagementList extends React.Component { ///todo : add modification fu
                 dataIndex: 'bookCover',
                 render: (text, book) => {
                     return <EditableTableItem
-                        setter={this.setter.bind(this, book, "bookCover")}
-                        placeHolder={"双击此处修改"}/>
+                        setter={this.setter.bind(this, book, "bookCover")}/>
                 }
             },
             {
@@ -263,7 +266,7 @@ class BookManagementList extends React.Component { ///todo : add modification fu
                 render: (text, book) => {
                     return <EditableTableItem
                         setter={this.setter.bind(this, book, "bookAuthor")}
-                        placeHolder={"双击此处修改"}/>
+                    />
                 }
             },
             {
@@ -272,7 +275,7 @@ class BookManagementList extends React.Component { ///todo : add modification fu
                 render: (text, book) => {
                     return <EditableTableItem
                         setter={this.setter.bind(this, book, "bookPrice")}
-                        placeHolder={"双击此处修改"}/>
+                    />
                 }
             },
             {
@@ -281,7 +284,7 @@ class BookManagementList extends React.Component { ///todo : add modification fu
                 render: (text, book) => {
                     return <EditableTableItem
                         setter={this.setter.bind(this, book, "bookStock")}
-                        placeHolder={"双击此处修改"}/>
+                    />
                 }
             },
             {
@@ -290,7 +293,7 @@ class BookManagementList extends React.Component { ///todo : add modification fu
                 render: (text, book) => {
                     return <EditableTableItem
                         setter={this.setter.bind(this, book, "bookDescription")}
-                        placeHolder={"双击此处修改"}/>
+                    />
                 }
             },
             {
@@ -299,7 +302,7 @@ class BookManagementList extends React.Component { ///todo : add modification fu
                 render: (text, book) => {
                     return <EditableTableItem
                         setter={this.setter.bind(this, book, "bookDetails")}
-                        placeHolder={"双击此处修改"}/>
+                    />
                 }
             },
             {
@@ -308,7 +311,7 @@ class BookManagementList extends React.Component { ///todo : add modification fu
                 render: (text, book) => {
                     return <EditableTableItem
                         setter={this.setter.bind(this, book, "bookTag")}
-                        placeHolder={"双击此处修改"}/>
+                    />
                 }
             },
             {
@@ -317,7 +320,7 @@ class BookManagementList extends React.Component { ///todo : add modification fu
                 render: (text, book) => {
                     return <EditableTableItem
                         setter={this.setter.bind(this, book, "bookType")}
-                        placeHolder={"双击此处修改"}/>
+                    />
                 }
             },
             {
@@ -371,6 +374,25 @@ class BookManagementList extends React.Component { ///todo : add modification fu
         );
     };
 
+    showModifyModal = (bookToModify, e) => {
+        e.preventDefault();
+        this.setState({
+            showModal: true,
+            bookToModify: bookToModify,
+        })
+    };
+
+    closeModal = () => {
+        this.setState({
+            showModal: false,
+        })
+    };
+
+    renderModal = (bookToModify) => {
+        if (this.state.showModal === false) return null;
+        else return <BookModifyModal closeFunc={this.closeModal} bookToModify={bookToModify}/>
+    };
+
     renderTableInViewMode = () => {
         const columns = [
             {
@@ -396,6 +418,13 @@ class BookManagementList extends React.Component { ///todo : add modification fu
             {
                 title: '状态',
                 dataIndex: 'state'
+            },
+            {
+                title: '修改信息',
+                dataIndex: 'modify',
+                render: (_, book) => (
+                    <a onClick={this.showModifyModal.bind(this, book)}>修改信息</a>
+                ),
             }
         ];
         const {selectedRowKeys} = this.state;
@@ -448,6 +477,7 @@ class BookManagementList extends React.Component { ///todo : add modification fu
                                    </Col>
                                </Row>}
                 />
+                {this.renderModal(this.state.bookToModify)}
             </div>
         );
     };

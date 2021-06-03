@@ -5,8 +5,12 @@ import com.catstore.utils.Constant;
 import com.catstore.utils.sessionUtils.SessionUtil;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 @RestController
 public class ConsumptionController {
@@ -22,7 +26,18 @@ public class ConsumptionController {
     JSONArray getAllUsersAndTheirConsumption() {
         Integer userIdentity = SessionUtil.getUserIdentity();
         if (userIdentity != null && userIdentity.equals(Constant.MANAGER)) {
-            return consumptionService.getAllUsersAndTheirConsumption();
+            return consumptionService.getAllUsersAndTheirConsumption(null, null);
+        }
+        return null;
+    }
+
+    @RequestMapping("/manager/getConsumptionInRange")
+    JSONArray getConsumptionInRange(@RequestBody ArrayList<Date> startNEndDates) {
+        Integer userIdentity = SessionUtil.getUserIdentity();
+        if (userIdentity != null && userIdentity.equals(Constant.MANAGER)) {
+            if (startNEndDates != null && startNEndDates.size() == 2)
+                return consumptionService.getAllUsersAndTheirConsumption(startNEndDates.get(0), startNEndDates.get(1));
+            else return null;
         }
         return null;
     }

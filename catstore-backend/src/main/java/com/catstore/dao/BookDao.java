@@ -30,4 +30,6 @@ public interface BookDao {
     ArrayList<Book> getRankedBooks();
 
     void saveBook(Book book);
+
+    void postModifiedBook(Map<String, String> book);
 }

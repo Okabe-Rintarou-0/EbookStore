@@ -2,6 +2,8 @@ package com.catstore.dto;
 
 import net.sf.json.JSONArray;
 
+import java.util.Date;
+
 public interface ConsumptionDto {
-    JSONArray getAllUsersAndTheirConsumption();
+    JSONArray getAllUsersAndTheirConsumption(Date begin, Date end);
 }

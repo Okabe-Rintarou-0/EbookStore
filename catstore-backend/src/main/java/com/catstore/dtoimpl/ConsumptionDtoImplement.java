@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -30,15 +31,18 @@ public class ConsumptionDtoImplement implements ConsumptionDto {
     }
 
     @Override
-    public JSONArray getAllUsersAndTheirConsumption() {
+    public JSONArray getAllUsersAndTheirConsumption(Date begin, Date end) {
         JSONArray jsonArray = new JSONArray();
         List<User> users = userDao.getAllUsers();
         for (User user : users) {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("userId", user.getUserId());
+            Integer userId = user.getUserId();
+            jsonObject.put("userId", userId);
             jsonObject.put("username", user.getUsername());
             jsonObject.put("userIcon", user.getUserIcon());
-            ArrayList<Consumption> consumptionArray = consumptionDao.getConsumptionsByUserId(user.getUserId());
+            ArrayList<Consumption> consumptionArray = begin == null || end == null ?
+                    consumptionDao.getConsumptionsByUserId(userId) :
+                    consumptionDao.getConsumptionsByUserIdInRange(userId, begin, end);
             JSONArray consumptionJsonArray = new JSONArray();
             BigDecimal totalConsumption = BigDecimal.ZERO;
             for (Consumption consumption : consumptionArray) {

@@ -5,16 +5,14 @@ import {Input, message} from "antd";
 class EditableTableItem extends React.Component {
 
     static propTypes = {
-        placeHolder: Proptypes.string.isRequired,
         setter: Proptypes.func.isRequired,
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            value: props.placeHolder,
-            edit: false,
-            firstEnter: true,
+            value: '',
+            edit: true,
         }
     }
 
@@ -22,12 +20,6 @@ class EditableTableItem extends React.Component {
         this.setState({
             edit: true,
         });
-        if (this.state.firstEnter) {
-            this.setState({
-                firstEnter: false,
-                value: '',
-            })
-        }
     };
 
     saveEdit = e => {

@@ -1,10 +1,8 @@
 import React from 'react'
 import {Col, Button, Row, Table, DatePicker} from "antd";
-import ExpandedOrderItems from "../components/ExpandedOrderItems";
 import ExpandedConsumptionItem from "../components/ExpandedConsumptionItem";
-import {getConsumption} from "../service/consumptionService";
+import {getConsumption, searchConsumptions} from "../service/consumptionService";
 import Avatar from "antd/es/avatar";
-import Timeline from "antd/es/timeline";
 
 const {RangePicker} = DatePicker;
 
@@ -13,10 +11,32 @@ class ConsumptionManagementList extends React.Component {
         super(props);
         this.state = {
             consumptions: [],
+            startNEndDates: []
         }
     }
 
+    preHandleConsumptions = consumptions => {
+        consumptions.map((consumption, index) => {
+            consumption.key = index;
+        })
+    };
+
+    handleSearchConsumptions = consumptions => {
+        this.preHandleConsumptions(consumptions);
+        console.log(consumptions);
+        this.setState({
+            consumptions: consumptions,
+        })
+    };
+
     onSearch = () => {
+        searchConsumptions(this.state.startNEndDates, this.handleSearchConsumptions);
+    };
+
+    onRangeChange = (date, startNEndDates) => {
+        this.setState({
+            startNEndDates: startNEndDates,
+        });
     };
 
     handleConsumption = consumptions => {

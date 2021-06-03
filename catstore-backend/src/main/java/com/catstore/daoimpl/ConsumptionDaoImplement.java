@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 @Repository
 public class ConsumptionDaoImplement implements ConsumptionDao {
@@ -46,5 +47,10 @@ public class ConsumptionDaoImplement implements ConsumptionDao {
     @Override
     public ArrayList<Consumption> getConsumptionsByUserId(Integer userId) {
         return consumptionRepository.getConsumptionsByUserId(userId);
+    }
+
+    @Override
+    public ArrayList<Consumption> getConsumptionsByUserIdInRange(Integer userId, Date begin, Date end) {
+        return consumptionRepository.getConsumptionsByUserIdInRange(userId, begin, end);
     }
 }

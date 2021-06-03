@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -40,4 +41,10 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     @Query(value = "from Book order by sales desc")
     ArrayList<Book> getRankedBooks();
+
+    @Modifying
+    @Query(value = "update Book set bookCover = ?2,bookTitle = ?3,bookAuthor = ?4,bookDescription = ?5," +
+            "bookDetails = ?6,bookStock=?7,bookPrice = ?8,bookTag = ?9,bookType = ?10 where bookId = ?1")
+    void modifyBookWithBookId(Integer bookId, String bookCover, String bookTitle, String bookAuthor, String bookDescription,
+                              String bookDetails, Integer bookStock, BigDecimal bookPrice, String bookTag, String bookType);
 }

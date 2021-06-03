@@ -6,6 +6,8 @@ import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class ConsumptionServiceImplement implements ConsumptionService {
     ConsumptionDto consumptionDto;
@@ -16,7 +18,7 @@ public class ConsumptionServiceImplement implements ConsumptionService {
     }
 
     @Override
-    public JSONArray getAllUsersAndTheirConsumption() {
-        return consumptionDto.getAllUsersAndTheirConsumption();
+    public JSONArray getAllUsersAndTheirConsumption(Date begin, Date end) {
+        return consumptionDto.getAllUsersAndTheirConsumption(begin, end);
     }
 }

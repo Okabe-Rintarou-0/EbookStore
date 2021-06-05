@@ -2,6 +2,7 @@ package com.catstore.controller;
 
 import com.catstore.utils.Constant;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,13 +14,17 @@ import java.io.OutputStream;
 
 @RestController
 public class ImageController {
-    @RequestMapping("/image/getRank")
-    public void getImage(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping("/getImage")
+    public void getImage(@RequestParam("target") String target, HttpServletRequest request, HttpServletResponse response) {
         FileInputStream fileInputStream = null;
         response.setContentType("image/gif");
         try {
             OutputStream out = response.getOutputStream();
-            File file = new File(Constant.rankImgSavePath);
+            File file = null;
+            if (target.equals("book")) file = new File(Constant.bookRankSavePath);
+            else if (target.equals("consumption"))
+                file = new File(Constant.consumptionRankSavePath);
+            else return;
             fileInputStream = new FileInputStream(file);
             byte[] b = new byte[fileInputStream.available()];
             fileInputStream.read(b);

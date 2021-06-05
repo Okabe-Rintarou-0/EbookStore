@@ -17,9 +17,9 @@ class SpringbootApplicationTests {
 
     @Test
     void contextLoads() throws IOException {
-        ArrayList<Integer> data = new ArrayList<>();
-        data.add(3);
-        data.add(4);
+        ArrayList<Float> data = new ArrayList<>();
+        data.add(3f);
+        data.add(4f);
         ArrayList<String> alternative = new ArrayList<>();
         alternative.add("1");
         alternative.add("2");

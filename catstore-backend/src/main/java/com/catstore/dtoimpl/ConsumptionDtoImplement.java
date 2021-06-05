@@ -2,23 +2,27 @@ package com.catstore.dtoimpl;
 
 import com.catstore.dao.ConsumptionDao;
 import com.catstore.dao.UserDao;
+import com.catstore.dao.UserOrderDao;
 import com.catstore.dto.ConsumptionDto;
-import com.catstore.entity.Consumption;
-import com.catstore.entity.User;
+import com.catstore.entity.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class ConsumptionDtoImplement implements ConsumptionDto {
     ConsumptionDao consumptionDao;
+    UserOrderDao userOrderDao;
     UserDao userDao;
+
+    @Autowired
+    void setUserOrderDao(UserOrderDao userOrderDao) {
+        this.userOrderDao = userOrderDao;
+    }
 
     @Autowired
     void setConsumptionDao(ConsumptionDao consumptionDao) {
@@ -55,6 +59,40 @@ public class ConsumptionDtoImplement implements ConsumptionDto {
             jsonObject.put("sum", totalConsumption);
             jsonObject.put("consumptions", consumptionJsonArray);
             jsonArray.add(jsonObject);
+        }
+        return jsonArray;
+    }
+
+    @Override
+    public JSONArray getConsumptionsGroupByBooks(Date begin, Date end) {
+        JSONArray jsonArray = new JSONArray();
+        ArrayList<UserOrder> userOrders = begin == null || end == null ?
+                userOrderDao.getAllOrders() :
+                userOrderDao.getOrdersInRange(begin, end);
+        ArrayList<Book> bookArrayList = new ArrayList<>();
+        Map<Integer, JSONArray> bookOrderMap = new HashMap<>();
+        for (UserOrder userOrder : userOrders) {
+            Set<OrderItem> orderItems = userOrder.getOrders();
+            for (OrderItem orderItem : orderItems) {
+                Book book = orderItem.getBook();
+                Integer bookId = book.getBookId();
+                if (bookOrderMap.get(bookId) == null) {
+                    bookOrderMap.put(bookId, new JSONArray());
+                    bookArrayList.add(book);
+                }
+                JSONObject orderInfo = new JSONObject();
+                orderInfo.put("orderTime", userOrder.getOrderTime().toString());
+                orderInfo.put("purchaseNumber", orderItem.getPurchaseNumber());
+                bookOrderMap.get(bookId).add(orderInfo);
+            }
+        }
+        for (Book book : bookArrayList) {
+            JSONObject consumption = new JSONObject();
+            consumption.put("bookPrice", book.getBookPrice());
+            consumption.put("bookTitle", book.getBookTitle());
+            consumption.put("bookCover", book.getBookCover());
+            consumption.put("consumptions", bookOrderMap.get(book.getBookId()));
+            jsonArray.add(consumption);
         }
         return jsonArray;
     }

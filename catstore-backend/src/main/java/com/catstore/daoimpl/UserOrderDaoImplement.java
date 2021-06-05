@@ -91,7 +91,18 @@ public class UserOrderDaoImplement implements UserOrderDao {
     }
 
     @Override
-    public ArrayList<UserOrder> getOrdersInRange(Date start, Date end) {
-        return userOrderRepository.getOrdersInRange(start, end);
+    public ArrayList<UserOrder> getOrdersInRangeForManager(Date start, Date end) {
+        return userOrderRepository.getAllOrdersInRange(start, end);
     }
+
+    @Override
+    public ArrayList<UserOrder> getOrdersInRange(Date start, Date end) {
+        Integer userId = SessionUtil.getUserId();
+        if (userId != null) {
+            return userOrderRepository.getOrdersInRange(userId, start, end);
+        }
+        return null;
+    }
+
+
 }

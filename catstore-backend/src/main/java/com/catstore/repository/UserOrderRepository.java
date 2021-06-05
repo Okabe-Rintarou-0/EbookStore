@@ -18,5 +18,8 @@ public interface UserOrderRepository extends JpaRepository<UserOrder, Integer> {
     ArrayList<UserOrder> getAllOrdersForManager();
 
     @Query(value = "from UserOrder where orderTime between ?1 and ?2")
-    ArrayList<UserOrder> getOrdersInRange(Date start, Date end);
+    ArrayList<UserOrder> getAllOrdersInRange(Date start, Date end);
+
+    @Query(value = "from UserOrder where orderTime between ?2 and ?3 and userId = ?1")
+    ArrayList<UserOrder> getOrdersInRange(Integer userId, Date start, Date end);
 }

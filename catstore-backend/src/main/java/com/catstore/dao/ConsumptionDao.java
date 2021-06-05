@@ -12,4 +12,5 @@ public interface ConsumptionDao {
     ArrayList<Consumption> getConsumptionsByUserId(Integer userId);
 
     ArrayList<Consumption> getConsumptionsByUserIdInRange(Integer userId, Date begin, Date end);
+
 }

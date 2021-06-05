@@ -1,5 +1,5 @@
 import React from 'react'
-import {Col, Button, Row, Table, DatePicker} from "antd";
+import {Col, Button, Row, Table, DatePicker, Switch, Image} from "antd";
 import ExpandedConsumptionItem from "../components/ExpandedConsumptionItem";
 import {getConsumption, searchConsumptions} from "../service/consumptionService";
 import Avatar from "antd/es/avatar";
@@ -7,13 +7,24 @@ import Avatar from "antd/es/avatar";
 const {RangePicker} = DatePicker;
 
 class ConsumptionManagementList extends React.Component {
+    static tableMode = 0;
+    static graphMode = 1;
+
     constructor(props) {
         super(props);
         this.state = {
             consumptions: [],
-            startNEndDates: []
+            startNEndDates: [],
+            mode: ConsumptionManagementList.tableMode,
         }
     }
+
+    toggleMode = () => {
+        this.setState({
+            mode: this.state.mode === ConsumptionManagementList.tableMode ? ConsumptionManagementList.graphMode : ConsumptionManagementList.tableMode,
+        })
+    };
+
 
     preHandleConsumptions = consumptions => {
         consumptions.map((consumption, index) => {
@@ -23,7 +34,7 @@ class ConsumptionManagementList extends React.Component {
 
     handleSearchConsumptions = consumptions => {
         this.preHandleConsumptions(consumptions);
-        console.log(consumptions);
+        console.log("consumptions", consumptions);
         this.setState({
             consumptions: consumptions,
         })
@@ -103,13 +114,34 @@ class ConsumptionManagementList extends React.Component {
                 />
             </div>
         );
-    }
-    ;
+    };
+
+    renderRankGraph = () => (
+        <Row align={"middle"} justify={"center"}>
+            <Image
+                width={750}
+                src="http://localhost:8080/getImage?target=consumption"
+            />
+        </Row>
+    );
 
     render() {
         return (
             <>
-                {this.renderTable()}
+                {
+                    this.state.mode === ConsumptionManagementList.tableMode ?
+                        this.renderTable() :
+                        this.renderRankGraph()
+                }
+                <Row justify={"end"} gutter={10}>
+                    <Col>
+                        <b>切换视图
+                        </b>
+                    </Col>
+                    <Col>
+                        <Switch onChange={this.toggleMode}/>
+                    </Col>
+                </Row>
             </>
         )
     }

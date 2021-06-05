@@ -36,8 +36,14 @@ export function getAllOrdersForManager(callback) {
     postRequest(url, {}, callback);
 }
 
-export function searchOrders(startNEndDates, callback) {
+export function searchOrdersForManager(startNEndDates, callback) {
     console.log(startNEndDates);
     const url = 'http://localhost:8080/manager/searchOrders';
+    postRequest(url, startNEndDates, callback);
+}
+
+export function searchOrders(startNEndDates, callback) {
+    console.log(startNEndDates);
+    const url = 'http://localhost:8080/searchOrders';
     postRequest(url, startNEndDates, callback);
 }

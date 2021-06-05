@@ -108,4 +108,9 @@ public class UserOrderServiceImplement implements UserOrderService {
     public ArrayList<UserOrder> getOrdersInRange(Date start, Date end) {
         return userOrderDao.getOrdersInRange(start, end);
     }
+
+    @Override
+    public ArrayList<UserOrder> getOrdersInRangeForManager(Date start, Date end) {
+        return userOrderDao.getOrdersInRangeForManager(start, end);
+    }
 }

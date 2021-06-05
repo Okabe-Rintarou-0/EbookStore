@@ -21,4 +21,9 @@ public class ConsumptionServiceImplement implements ConsumptionService {
     public JSONArray getAllUsersAndTheirConsumption(Date begin, Date end) {
         return consumptionDto.getAllUsersAndTheirConsumption(begin, end);
     }
+
+    @Override
+    public JSONArray getConsumptionsGroupByBooks(Date begin, Date end) {
+        return consumptionDto.getConsumptionsGroupByBooks(begin, end);
+    }
 }

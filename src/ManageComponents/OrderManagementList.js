@@ -1,6 +1,6 @@
 import React from 'react'
 import {Col, Button, Row, Table, DatePicker} from "antd";
-import {getAllOrdersForManager, searchOrders} from "../service/orderService";
+import {getAllOrdersForManager, searchOrdersForManager} from "../service/orderService";
 import ExpandedOrderItems from "../components/ExpandedOrderItems";
 
 const {RangePicker} = DatePicker;
@@ -42,7 +42,7 @@ class OrderManagementList extends React.Component {
     };
 
     onSearch = () => {
-        searchOrders(this.state.startNEndDates, this.handleSearchOrders);
+        searchOrdersForManager(this.state.startNEndDates, this.handleSearchOrders);
     };
 
     onSelectChange = (selectedRowKeys, selectedRows) => {

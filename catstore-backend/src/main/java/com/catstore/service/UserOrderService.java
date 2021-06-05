@@ -20,4 +20,6 @@ public interface UserOrderService {
     ArrayList<UserOrder> getAllOrdersForManager();
 
     ArrayList<UserOrder> getOrdersInRange(Date start, Date end);
+
+    ArrayList<UserOrder> getOrdersInRangeForManager(Date start, Date end);
 }

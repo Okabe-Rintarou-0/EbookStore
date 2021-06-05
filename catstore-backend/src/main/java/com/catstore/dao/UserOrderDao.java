@@ -20,5 +20,7 @@ public interface UserOrderDao {
 
     void addOrderItem(Integer orderId, Integer bookId, Integer purchaseNumber);
 
+    ArrayList<UserOrder> getOrdersInRangeForManager(Date start, Date end);
+
     ArrayList<UserOrder> getOrdersInRange(Date start, Date end);
 }

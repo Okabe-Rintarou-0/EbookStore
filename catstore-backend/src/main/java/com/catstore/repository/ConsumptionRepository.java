@@ -14,6 +14,6 @@ public interface ConsumptionRepository extends JpaRepository<Consumption, Intege
     @Query(value = "from Consumption where userId = ?1 order by consumptionTime")
     ArrayList<Consumption> getConsumptionsByUserId(Integer userId);
 
-    @Query(value = "from Consumption where consumptionTime >= ?2 and consumptionTime <= ?3 and userId = ?1 order by consumptionTime")
+    @Query(value = "from Consumption where consumptionTime between ?2 and ?3 and userId = ?1 order by consumptionTime")
     ArrayList<Consumption> getConsumptionsByUserIdInRange(Integer userId, Date begin, Date end);
 }

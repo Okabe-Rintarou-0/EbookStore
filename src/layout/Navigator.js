@@ -93,9 +93,15 @@ class Navigator extends React.Component {
                     <Link exact to={"/favourite"}>收藏夹</Link>
                 </Menu.Item>);
             renderContent.push(
-                <Menu.Item key="service">
+                <Menu.Item key="order">
                     <FontAwesomeIcon icon={faList} className={"nav-icon"}/>
                     <Link to={"/order"}>订单</Link>
+                </Menu.Item>
+            );
+            renderContent.push(
+                <Menu.Item key="statistic">
+                    <FontAwesomeIcon icon={faBook} className={"nav-icon"}/>
+                    <Link to={"/statistic"}>购买统计</Link>
                 </Menu.Item>
             )
         } else if (identity === 1) {

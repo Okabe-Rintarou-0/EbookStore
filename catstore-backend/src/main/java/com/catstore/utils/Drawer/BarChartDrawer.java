@@ -28,7 +28,7 @@ public class BarChartDrawer {
 
     private Font uniformFont = new Font("宋体", Font.BOLD, 12);
 
-    private DefaultCategoryDataset formDataset(ArrayList<Integer> data, ArrayList<String> alternative, ArrayList<String> bottomLabels) {
+    private DefaultCategoryDataset formDataset(ArrayList<Float> data, ArrayList<String> alternative, ArrayList<String> bottomLabels) {
         int totalSize = data.size();
         if (totalSize > 5) totalSize = 5;
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -51,7 +51,7 @@ public class BarChartDrawer {
         return chart;
     }
 
-    public void drawBarChart(ArrayList<Integer> data, ArrayList<String> alternative, ArrayList<String> bottomLabels, String title,
+    public void drawBarChart(ArrayList<Float> data, ArrayList<String> alternative, ArrayList<String> bottomLabels, String title,
                              String xLabel, String yLabel, String savePath) throws IOException {
         DefaultCategoryDataset dataset = formDataset(data, alternative, bottomLabels);
         JFreeChart chart = buildChart(dataset, title, xLabel, yLabel);

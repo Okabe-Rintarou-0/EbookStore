@@ -1,8 +1,9 @@
 import React from 'react'
-import {Col, Image, Row, Table, Timeline} from 'antd';
+import {Button, Col, Image, Row, Table, Timeline, DatePicker} from 'antd';
 import {ClockCircleOutlined} from "@ant-design/icons";
-import {getAllOrders} from "../service/orderService";
+import {getAllOrders, searchOrders} from "../service/orderService";
 
+const {RangePicker} = DatePicker;
 
 class OrderContent extends React.Component {
 
@@ -13,9 +14,14 @@ class OrderContent extends React.Component {
         }
     }
 
-    handleAllOrders = data => {
+    onRangeChange = (date, startNEndDates) => {
+        this.setState({
+            startNEndDates: startNEndDates,
+        });
+    };
+    preHandleOrders = orders => {
         let itemList = [];
-        data.map((dataItem, index) => {
+        orders.map((dataItem, index) => {
             dataItem.orders.map(order => {
                 let book = order.book;
                 let item = {
@@ -39,6 +45,17 @@ class OrderContent extends React.Component {
         this.setState({
             orders: itemList,
         });
+    };
+    onSearch = () => {
+        searchOrders(this.state.startNEndDates, this.handleSearchOrders);
+    };
+
+    handleSearchOrders = orders => {
+        this.preHandleOrders(orders);
+    };
+
+    handleAllOrders = data => {
+        this.preHandleOrders(data);
     };
 
     componentDidMount() {
@@ -82,33 +99,44 @@ class OrderContent extends React.Component {
             }
         ];
         return (
-            <Table columns={columns}
-                   dataSource={this.state.orders}
-                   scroll={{y: 535}}
-                   expandable={{
-                       expandedRowRender: (book) => {
-                           return (
-                               <Row align={"center"}>
-                                   <Col span={4}>
-                                       <Image style={{height: '150px', width: '120px'}} src={book.bookCover}>
-                                       </Image>
-                                   </Col>
-                                   <Col span={8}>
-                                       <Timeline>
-                                           <Timeline.Item color="green">用户下单 {book.orderTime}</Timeline.Item>
-                                           <Timeline.Item color="green">商家发货 {book.orderTime}</Timeline.Item>
-                                           <Timeline.Item dot={<ClockCircleOutlined className="timeline-clock-icon"/>}>
-                                               快递员派送中 {book.orderTime}
-                                           </Timeline.Item>
-                                           <Timeline.Item color="red">确认收货</Timeline.Item>
-                                       </Timeline>
-                                   </Col>
-                               </Row>
-                           );
-                       },
-                       rowExpandable: record => record.name !== 'Not Expandable',
-                   }}
-            />
+            <div>
+                <Row style={{margin: '30px'}}>
+                    <Col>
+                        <RangePicker onChange={this.onRangeChange} showTime showToday/>
+                    </Col>
+                    <Col>
+                        <Button onClick={this.onSearch} type={"primary"}>查询</Button>
+                    </Col>
+                </Row>
+                <Table columns={columns}
+                       dataSource={this.state.orders}
+                       scroll={{y: 535}}
+                       expandable={{
+                           expandedRowRender: (book) => {
+                               return (
+                                   <Row align={"center"}>
+                                       <Col span={4}>
+                                           <Image style={{height: '150px', width: '120px'}} src={book.bookCover}>
+                                           </Image>
+                                       </Col>
+                                       <Col span={8}>
+                                           <Timeline>
+                                               <Timeline.Item color="green">用户下单 {book.orderTime}</Timeline.Item>
+                                               <Timeline.Item color="green">商家发货 {book.orderTime}</Timeline.Item>
+                                               <Timeline.Item
+                                                   dot={<ClockCircleOutlined className="timeline-clock-icon"/>}>
+                                                   快递员派送中 {book.orderTime}
+                                               </Timeline.Item>
+                                               <Timeline.Item color="red">确认收货</Timeline.Item>
+                                           </Timeline>
+                                       </Col>
+                                   </Row>
+                               );
+                           },
+                           rowExpandable: record => record.name !== 'Not Expandable',
+                       }}
+                />
+            </div>
         );
     };
 

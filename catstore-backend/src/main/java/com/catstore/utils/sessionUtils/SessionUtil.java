@@ -79,9 +79,9 @@ public class SessionUtil {
             HttpSession session = request.getSession(false);
             if (session != null) {
                 JSONObject authorityObject = new JSONObject();
-                authorityObject.put("userId", (Integer) session.getAttribute("userId"));
-                authorityObject.put("userAccount", (String) session.getAttribute("userAccount"));
-                authorityObject.put("userIdentity", (Integer) session.getAttribute("userIdentity"));
+                authorityObject.put("userId", session.getAttribute("userId"));
+                authorityObject.put("userAccount", session.getAttribute("userAccount"));
+                authorityObject.put("userIdentity", session.getAttribute("userIdentity"));
                 return authorityObject;
             }
         }

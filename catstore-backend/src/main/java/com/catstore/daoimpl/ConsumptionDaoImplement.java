@@ -4,6 +4,7 @@ import com.catstore.dao.ConsumptionDao;
 import com.catstore.entity.Consumption;
 import com.catstore.entity.User;
 import com.catstore.repository.ConsumptionRepository;
+import com.catstore.repository.OrderItemRepository;
 import com.catstore.repository.UserRepository;
 import com.catstore.utils.sessionUtils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -17,6 +17,7 @@ import UserManagementView from "../view/UserManagementView";
 import OrderManagementView from "../view/OrderManagementView";
 import RankView from "../view/RankView";
 import ConsumptionManagementView from "../view/ConsumptionManagementView";
+import PurchaseStatisticView from "../view/PurchaseStatisticView";
 
 class BasicRoute extends React.Component {
 
@@ -39,6 +40,7 @@ class BasicRoute extends React.Component {
                     <PrivateRoute exact path="/rank" component={RankView}/>
                     <PrivateRoute exact path="/status/success" component={PaymentSuccess}/>
                     <PrivateRoute exact path="/status/fail" component={PaymentFail}/>
+                    <PrivateRoute exact path="/statistic" component={PurchaseStatisticView}/>
                     <ManagerRoute exact path="/manager/books" component={BookManagementView}/>
                     <ManagerRoute exact path="/manager/users" component={UserManagementView}/>
                     <ManagerRoute exact path="/manager/consumption" component={ConsumptionManagementView}/>

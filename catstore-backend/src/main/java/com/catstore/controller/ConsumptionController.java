@@ -41,4 +41,11 @@ public class ConsumptionController {
         }
         return null;
     }
+
+    @RequestMapping("/getConsumptionsGroupByBooks")
+    JSONArray getConsumptionsGroupByBooks(@RequestBody ArrayList<Date> startNEndDates) {
+        if (startNEndDates != null && startNEndDates.size() == 2)
+            return consumptionService.getConsumptionsGroupByBooks(startNEndDates.get(0), startNEndDates.get(1));
+        return consumptionService.getConsumptionsGroupByBooks(null, null);
+    }
 }

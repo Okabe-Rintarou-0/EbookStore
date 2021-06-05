@@ -38,8 +38,8 @@ class EditableTableItem extends React.Component {
     render() {
         return (
             this.state.edit ?
-                <Input defaultValue={this.state.value} onPressEnter={this.saveEdit}/> :
-                <p onDoubleClick={this.startEdit}>{this.state.value}</p>
+                <Input defaultValue={this.state.value} onBlur={this.saveEdit} onPressEnter={this.saveEdit}/> :
+                <p onClick={this.startEdit}>{this.state.value}</p>
         )
     }
 }

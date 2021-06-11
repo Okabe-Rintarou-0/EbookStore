@@ -1,5 +1,6 @@
 package com.catstore.controller;
 
+import com.catstore.entity.Cart;
 import com.catstore.service.CartService;
 import com.catstore.utils.messageUtils.Message;
 import com.catstore.utils.messageUtils.MessageUtil;
@@ -27,7 +28,7 @@ public class CartController {
     }
 
     @RequestMapping("/getAllCart")
-    List<Map<String, String>> getAllCartItems() {
+    List<Cart> getAllCartItems() {
         return cartService.getAllCartItems();
     }
 
@@ -36,5 +37,10 @@ public class CartController {
         if (cartService.addToCart(bookId))
             return MessageUtil.createMessage(MessageUtil.ADD_TO_CART_SUCCESS_CODE, MessageUtil.ADD_TO_CART_SUCCESS_MSG);
         return MessageUtil.createMessage(MessageUtil.CART_ALREADY_EXIST_CODE, MessageUtil.CART_ALREADY_EXIST_MSG);
+    }
+
+    @RequestMapping("/searchCartItems")
+    List<Cart> searchCartItems(@RequestParam("keyword") String keyword) {
+        return cartService.searchCartItems(keyword);
     }
 }

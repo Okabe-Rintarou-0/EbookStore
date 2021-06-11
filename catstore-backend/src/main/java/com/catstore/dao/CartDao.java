@@ -1,7 +1,6 @@
 package com.catstore.dao;
 
 import com.catstore.entity.Cart;
-import com.catstore.entity.CartRecord;
 
 import java.util.List;
 import java.util.Map;
@@ -12,11 +11,9 @@ public interface CartDao {
 
     void addCartItem(Integer bookId);
 
-    List<Map<String, String>> getAllCartItems();
+    List<Cart> getAllCartItems();
 
     Boolean existsBook(Integer bookId);
 
-    Cart getUserCartByCartId(Integer cartId);
-
-    CartRecord getCartRecordByCartId(Integer orderId);
+    List<Cart> searchCartItems(String keyword);
 }

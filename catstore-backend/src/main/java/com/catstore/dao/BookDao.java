@@ -5,6 +5,7 @@ import com.catstore.entity.Book;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +28,7 @@ public interface BookDao {
 
     void placeOrder(Integer bookId, Integer purchaseNumber);
 
-    ArrayList<Book> getRankedBooks();
+    ArrayList<Book> getAllRankedBooks();
 
     void saveBook(Book book);
 

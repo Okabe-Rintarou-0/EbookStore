@@ -1,5 +1,6 @@
 package com.catstore.repository;
 
+import com.catstore.entity.User;
 import com.catstore.entity.UserAuthority;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -20,4 +21,7 @@ public interface UserAuthorityRepository extends JpaRepository<UserAuthority, In
     @Modifying
     @Query(value = "update UserAuthority set userIdentity = 0 where userId = ?1 and userIdentity = 2")
     Integer unbanUserByUserId(Integer userId);
+
+    @Query(value = "from UserAuthority where userAccount = ?1")
+    UserAuthority getUserAuthorityByUserAccount(String userAccount);
 }

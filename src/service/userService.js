@@ -68,3 +68,13 @@ export function unbanUsers(userIdList, callback) {
     const url = 'http://localhost:8080/manager/unbanUsers';
     postRequest(url, userIdList, callback);
 }
+
+export function checkDuplication(username, callback) {
+    const url = `http://localhost:8080/checkDuplication?username=${username}`;
+    postRequest(url, {}, callback);
+}
+
+export function register(registerInfo, callback) {
+    const url = `http://localhost:8080/register`;
+    postRequest(url, registerInfo, callback);
+}

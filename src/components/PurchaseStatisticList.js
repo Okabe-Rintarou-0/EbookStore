@@ -17,7 +17,6 @@ class PurchaseStatisticList extends React.Component {
 
 
     handleSearchConsumptions = consumptions => {
-        console.log(consumptions);
         this.handleConsumption(consumptions);
     };
 
@@ -32,10 +31,15 @@ class PurchaseStatisticList extends React.Component {
     };
 
     handleConsumption = consumptions => {
-        console.log(consumptions)
-        consumptions.map((consumption, index) => {
-            consumption.key = index;
-            return consumption;
+        console.log(consumptions);
+        consumptions.map((row, index) => {
+            row.key = index;
+            row.sum = row.totalConsumption = 0;
+            row.consumptions.map(orderInfo => {
+                row.sum += orderInfo.purchaseNumber;
+            });
+            row.totalConsumption = Number(row.sum) * Number(row.bookPrice);
+            return row;
         });
         this.setState({
             consumptions: consumptions,
@@ -66,17 +70,18 @@ class PurchaseStatisticList extends React.Component {
             {
                 title: '购买总数',
                 dataIndex: 'sum',
-                // sorter: (a, b) => a.sum - b.sum,
-                // showSorterTooltip: false,
-                // defaultSortOrder: 'descend',
-                // sortDirections: ['ascend', 'descend', 'ascend'],
-                render: (_, row) => {
-                    let sum = 0;
-                    row.consumptions.map(orderInfo => {
-                        sum += orderInfo.purchaseNumber;
-                    });
-                    return <p>{sum}</p>;
-                }
+                sorter: (a, b) => a.sum - b.sum,
+                showSorterTooltip: false,
+                defaultSortOrder: 'descend',
+                sortDirections: ['ascend', 'descend', 'ascend'],
+            },
+            {
+                title: '消费总额',
+                dataIndex: 'totalConsumption',
+                sorter: (a, b) => a.totalConsumption - b.totalConsumption,
+                showSorterTooltip: false,
+                defaultSortOrder: 'descend',
+                sortDirections: ['ascend', 'descend', 'ascend'],
             },
         ];
         return (

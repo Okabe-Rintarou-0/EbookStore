@@ -5,6 +5,7 @@ import com.catstore.entity.User;
 import com.catstore.entity.UserAuthority;
 import com.catstore.repository.UserAuthorityRepository;
 import com.catstore.repository.UserRepository;
+import com.catstore.utils.Constant;
 import com.catstore.utils.sessionUtils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -87,5 +88,34 @@ public class UserDaoImplement implements UserDao {
     @Override
     public Boolean unbanUserByUserId(Integer userId) {
         return userRepository.unbanUserByUserId(userId) > 0 && userAuthorityRepository.unbanUserByUserId(userId) > 0;
+    }
+
+    @Override
+    public UserAuthority getUserAuthorityByUserAccount(String userAccount) {
+        return userAuthorityRepository.getUserAuthorityByUserAccount(userAccount);
+    }
+
+    @Override
+    public void addUserAuthority(Integer userId, String userAccount, String password) {
+        UserAuthority userAuthority = new UserAuthority();
+        userAuthority.setUserAccount(userAccount);
+        userAuthority.setUserIdentity(Constant.COMMON_USER);
+        userAuthority.setUserPassword(password);
+        userAuthority.setUserId(userId);
+        userAuthorityRepository.save(userAuthority);
+    }
+
+    @Override
+    public Integer addUser(String username, String email) {
+        User user = new User();
+        user.setUserAddress("");
+        user.setUserIdentity(Constant.COMMON_USER);
+        user.setUserIcon(Constant.DEFAULT_USER_ICON);
+        user.setUserSignature("");
+        user.setUserTel("");
+        user.setUsername(username);
+        user.setUserProperty(BigDecimal.ZERO);
+        user.setEmail(email);
+        return userRepository.save(user).getUserId();
     }
 }

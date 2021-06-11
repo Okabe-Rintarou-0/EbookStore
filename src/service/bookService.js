@@ -45,12 +45,13 @@ export function putOnSale(bookIdList, callback) {
     postRequest(url, bookIdList, callback)
 }
 
-export function getRankedBooks(callback) {
-    const url = 'http://localhost:8080/getRankedBooks';
-    postRequest(url, {}, callback);
-}
-
 export function postModifiedBook(book, callback) {
     const url = 'http://localhost:8080/manager/postModifiedBook';
     postRequest(url, book, callback);
+}
+
+export function getRankedBooks(startNEndDates, callback) {
+    console.log("startNends", startNEndDates);
+    const url = 'http://localhost:8080/getRankedBooks';
+    postRequest(url, startNEndDates, callback)
 }

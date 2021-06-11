@@ -1,6 +1,7 @@
 package com.catstore.serviceimpl;
 
 import com.catstore.dao.CartDao;
+import com.catstore.entity.Cart;
 import com.catstore.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,12 @@ public class CartServiceImplement implements CartService {
     }
 
     @Override
-    public List<Map<String, String>> getAllCartItems() {
+    public List<Cart> getAllCartItems() {
         return cartDao.getAllCartItems();
+    }
+
+    @Override
+    public List<Cart> searchCartItems(String keyword) {
+        return cartDao.searchCartItems(keyword);
     }
 }

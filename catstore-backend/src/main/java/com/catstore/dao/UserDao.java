@@ -23,5 +23,11 @@ public interface UserDao {
     Boolean banUserByUserId(Integer userId);
 
     Boolean unbanUserByUserId(Integer userId);
+
+    UserAuthority getUserAuthorityByUserAccount(String userAccount);
+
+    void addUserAuthority(Integer userId, String userAccount, String password);
+
+    Integer addUser(String username, String email);
 }
 

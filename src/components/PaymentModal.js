@@ -125,17 +125,17 @@ class PaymentModal extends React.Component {
             orderAddress: this.state.address,
             itemList: []
         };
+        console.log(this.props.selectedItems);
         this.props.selectedItems.map(selectedItem => {
             postData.itemList.push({
-                cartId: selectedItem.cart_id,
-                bookId: selectedItem.book_id,
-                purchaseNumber: selectedItem.purchase_number,
-                bookPrice: selectedItem.book_price,
+                cartId: selectedItem.cartId,
+                bookId: selectedItem.bookId,
+                purchaseNumber: selectedItem.purchaseNumber,
+                bookPrice: selectedItem.bookPrice,
             });
         });
         console.log(postData);
         placeOrder(postData, data => {
-            console.log(data);
             let status = data.status;
             if (status > 0)
                 this.setState({redirect_to_success: true});

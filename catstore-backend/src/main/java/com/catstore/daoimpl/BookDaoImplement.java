@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -75,8 +76,8 @@ public class BookDaoImplement implements BookDao {
     }
 
     @Override
-    public ArrayList<Book> getRankedBooks() {
-        return bookRepository.getRankedBooks();
+    public ArrayList<Book> getAllRankedBooks() {
+        return bookRepository.getAllRankedBooks();
     }
 
     @Override

@@ -50,7 +50,7 @@ public class DrawChartJobs {
     @Scheduled(fixedRate = 30000)
     void drawBookRankEveryHalfMinute() throws IOException {
         System.out.println("now start to draw");
-        ArrayList<Book> rankedBooks = bookDao.getRankedBooks();
+        ArrayList<Book> rankedBooks = bookDao.getAllRankedBooks();
         int totalSize = rankedBooks.size();
         if (totalSize > 10) totalSize = 10;
         ArrayList<Float> data = new ArrayList<>();

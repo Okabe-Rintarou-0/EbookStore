@@ -29,6 +29,9 @@ public class MessageUtil {
     public static final String WRONG_FILE_FORMAT_MSG = "上传失败！请上传正确的csv文件！";
     public static final String UPLOAD_SUCCESS_MSG = "上传成功！";
 
+    public static final String REGISTER_SUCCESS_MSG = "注册成功!";
+    public static final int REGISTER_SUCCESS_CODE = 500;
+
     public static final int UPLOAD_SUCCESS_CODE = 13;
     public static final int WRONG_FILE_FORMAT_CODE = -13;
     public static final int PUT_ON_SALE_FAIL_CODE = -12;

@@ -20,3 +20,8 @@ export function getAllCartItems(callback) {
     const url = 'http://localhost:8080/getAllCart';
     postRequest(url, {}, callback);
 }
+
+export function searchCartItems(keyword, callback) {
+    const url = `http://localhost:8080/searchCartItems?keyword=${keyword}`;
+    postRequest(url, {}, callback);
+}

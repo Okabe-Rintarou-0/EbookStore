@@ -18,6 +18,8 @@ import OrderManagementView from "../view/OrderManagementView";
 import RankView from "../view/RankView";
 import ConsumptionManagementView from "../view/ConsumptionManagementView";
 import PurchaseStatisticView from "../view/PurchaseStatisticView";
+import RegisterView from "../view/RegisterView";
+import RegisterRoute from "./RegisterRoute";
 
 class BasicRoute extends React.Component {
 
@@ -33,6 +35,7 @@ class BasicRoute extends React.Component {
                 <Switch>
                     <PrivateRoute exact path="/" component={HomeView}/>
                     <LoginRoute exact path="/login" component={LoginView}/>
+                    <RegisterRoute exact path="/register" component={RegisterView}/>
                     <PrivateRoute path="/book/:bookId" component={BookView}/>
                     <PrivateRoute exact path="/cart" component={ShoppingCartView}/>
                     <PrivateRoute exact path="/favourite" component={FavouriteView}/>

@@ -40,7 +40,7 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     void placeOrder(Integer bookId, Integer increment);
 
     @Query(value = "from Book order by sales desc")
-    ArrayList<Book> getRankedBooks();
+    ArrayList<Book> getAllRankedBooks();
 
     @Modifying
     @Query(value = "update Book set bookCover = ?2,bookTitle = ?3,bookAuthor = ?4,bookDescription = ?5," +

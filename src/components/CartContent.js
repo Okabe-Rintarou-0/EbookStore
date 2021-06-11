@@ -13,7 +13,7 @@ import {
 import '../css/searchBar.css'
 import {history} from "../utils/history";
 import {getUser} from "../service/userService";
-import {deleteCart, getAllCartItems} from "../service/cartSerivce";
+import {deleteCart, getAllCartItems, searchCartItems} from "../service/cartSerivce";
 import PaymentModal from "./PaymentModal";
 import ExpandedBookDetails from "./ExpandedBookDetails";
 
@@ -22,17 +22,23 @@ const {Search} = Input;
 
 class CartContent extends React.Component {
 
-    static originalCartItems;
-
     handleCartItemsInfo = data => {
         data.map((cartItem, index) => {
-            cartItem.key = String(index);
-            cartItem.state = cartItem.for_sale ? '销售中' : '已下架';
+            let book = cartItem.book;
+            cartItem.bookId = book.bookId;
+            cartItem.forSale = book.forSale;
+            cartItem.key = index;
+            cartItem.state = cartItem.book.forSale ? '销售中' : '已下架';
+            cartItem.bookTitle = book.bookTitle;
+            cartItem.bookCover = book.bookCover;
+            cartItem.bookDetails = book.bookDetails;
+            cartItem.bookDescription = book.bookDescription;
+            cartItem.bookAuthor = book.bookAuthor;
+            cartItem.bookPrice = book.bookPrice;
+            cartItem.book = null;
         });
         this.setState({
-            cartItems: data,
-        }, () => {
-            CartContent.originalCartItems = [...data];
+            cartItems: data
         });
     };
 
@@ -47,7 +53,6 @@ class CartContent extends React.Component {
             selectedRowKeys: [], // Check here to configure the default column
             loading: false,
             totalPrice: 0,
-            searchValue: "",
             showDeleteModal: false,
             showPaymentModal: false,
             editRowKey: -1,
@@ -71,23 +76,8 @@ class CartContent extends React.Component {
         );
     }
 
-    filter = (value) => {
-        value = value.toLowerCase();
-        let cartItems = [...CartContent.originalCartItems];
-        this.setState({
-            cartItems: cartItems.filter((element, index) => {
-                return (element.book_title.toLowerCase().indexOf(value) !== -1 || element.cart_address.toLowerCase().indexOf(value) !== -1 ||
-                    element.cart_receiver.toLowerCase().indexOf(value) !== -1 ||
-                    element.cart_state.indexOf(value) !== -1) || this.state.selectedRowKeys.indexOf((index + 1).toString()) !== -1;
-            }),
-        });
-    };
-
-    onSearch = (value) => {
-        this.filter(value);
-        this.setState({
-            searchValue: value,
-        })
+    onSearch = (keyword) => {
+        searchCartItems(keyword, this.handleCartItemsInfo);
     };
 
     onSelectChange = (selectedRowKeys, selectedRows) => {
@@ -100,10 +90,11 @@ class CartContent extends React.Component {
 
     calcTotalPrice = () => {
         let totalPrice = 0;
-        for (let i = 0; i < this.state.cartItems.length; ++i) {
-            if (this.state.selectedRowKeys.indexOf(i.toString()) !== -1)
-                totalPrice += Number(this.state.cartItems[i].book_price) * Number(this.state.cartItems[i].purchase_number);
-        }
+        this.state.cartItems.map((cartItem, index) => {
+            if (this.state.selectedRowKeys.indexOf(index) !== -1) {
+                totalPrice += Number(cartItem.bookPrice) * Number(cartItem.purchaseNumber);
+            }
+        });
         return totalPrice;
     };
 
@@ -128,7 +119,7 @@ class CartContent extends React.Component {
     checkValidity = () => {
         let isValid = true;
         this.state.selectedRowKeys.map(key => {
-            if (this.state.cartItems[key].for_sale !== true) {
+            if (this.state.cartItems[key].forSale !== true) {
                 isValid = false;
             }
         });
@@ -140,7 +131,6 @@ class CartContent extends React.Component {
             if (this.checkValidity())
                 getUser(this.handleUserInfo);
             else {
-                console.log("yes");
                 this.setState({
                     showPaymentModal: false,
                 });
@@ -261,7 +251,7 @@ class CartContent extends React.Component {
         const columns = [
             {
                 title: '商品名称',
-                dataIndex: 'book_title',
+                dataIndex: 'bookTitle',
             },
             {
                 title: '价格',
@@ -269,15 +259,15 @@ class CartContent extends React.Component {
                     compare: (a, b) => a.bookPrice - b.bookPrice,
                     multiple: 2,
                 },
-                dataIndex: 'book_price',
+                dataIndex: 'bookPrice',
 
             },
             {
                 title: '数量',
-                dataIndex: 'purchase_number',
+                dataIndex: 'purchaseNumber',
                 render: (text, book) => {
                     let onChange = newNum => {
-                        book.purchase_number = newNum;
+                        book.purchaseNumber = newNum;
                         if (this.state.selectedRowKeys.indexOf(book.key) !== -1) {
                             this.setState({
                                 totalPrice: this.calcTotalPrice()
@@ -304,13 +294,12 @@ class CartContent extends React.Component {
                    scroll={{y: 350}}
                    rowSelection={rowSelection}
                    expandable={{
-                       expandedRowRender: (book) => {
-                           console.log("b", book);
+                       expandedRowRender: (item) => {
                            return (
                                <ExpandedBookDetails
-                                   bookCover={book.book_cover}
-                                   bookDescription={book.book_description}
-                                   bookDetails={book.book_details}
+                                   bookCover={item.bookCover}
+                                   bookDescription={item.bookDescription}
+                                   bookDetails={item.bookDetails}
                                />
                            );
                        },

@@ -4,6 +4,7 @@ import com.catstore.crawlers.BookCrawler;
 import com.catstore.entity.Book;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public interface BookService {
 
     Boolean putOnSale(ArrayList<Integer> bookIdList);
 
-    ArrayList<Book> getRankedBooks();
+    ArrayList<Book> getRankedBooks(ArrayList<Date> startNEndDates);
 
     void postModifiedBook(Map<String, String> book);
 }

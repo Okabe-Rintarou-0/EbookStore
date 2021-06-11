@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -20,4 +17,10 @@ public class Cart {
     Integer cartId;
     Integer purchaseNumber;
     Integer bookId;
+
+    @MapsId("bookId")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "bookId", referencedColumnName = "bookId")
+    Book book;
+    Integer userId;
 }

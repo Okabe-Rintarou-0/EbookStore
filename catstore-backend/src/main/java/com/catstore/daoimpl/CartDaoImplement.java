@@ -2,14 +2,13 @@ package com.catstore.daoimpl;
 
 import com.catstore.dao.CartDao;
 import com.catstore.entity.Cart;
-import com.catstore.entity.CartRecord;
-import com.catstore.repository.CartRecordRepository;
 import com.catstore.repository.CartRepository;
 import com.catstore.repository.UserRepository;
 import com.catstore.utils.sessionUtils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
 
@@ -17,17 +16,11 @@ import java.util.Map;
 public class CartDaoImplement implements CartDao {
 
     CartRepository cartRepository;
-    CartRecordRepository cartRecordRepository;
     UserRepository userRepository;
 
     @Autowired
     void setCartRepository(CartRepository cartRepository) {
         this.cartRepository = cartRepository;
-    }
-
-    @Autowired
-    void setCartRecordRepository(CartRecordRepository cartRecordRepository) {
-        this.cartRecordRepository = cartRecordRepository;
     }
 
     @Autowired
@@ -37,7 +30,6 @@ public class CartDaoImplement implements CartDao {
 
     @Override
     public void deleteCartItem(Integer cartId) {
-        cartRecordRepository.deleteCartItemByCartId(cartId);
         cartRepository.deleteUserCartByCartId(cartId);
     }
 
@@ -48,16 +40,13 @@ public class CartDaoImplement implements CartDao {
             Cart cart = new Cart();
             cart.setBookId(bookId);
             cart.setPurchaseNumber(1);
-            cart = cartRepository.save(cart);
-            CartRecord cartRecord = new CartRecord();
-            cartRecord.setCartId(cart.getCartId());
-            cartRecord.setUserId(userId);
-            cartRecordRepository.save(cartRecord);
+            cart.setUserId(userId);
+            cartRepository.save(cart);
         }
     }
 
     @Override
-    public List<Map<String, String>> getAllCartItems() {
+    public List<Cart> getAllCartItems() {
         Integer userId = SessionUtil.getUserId();
         if (userId != null)
             return cartRepository.getAllCartItems(userId);
@@ -67,16 +56,11 @@ public class CartDaoImplement implements CartDao {
 
     @Override
     public Boolean existsBook(Integer bookId) {
-        return cartRepository.getCartByBookId(bookId) != null;
+        return cartRepository.getCartByBookIdAndUserId(bookId, SessionUtil.getUserId()) != null;
     }
 
     @Override
-    public Cart getUserCartByCartId(Integer cartId) {
-        return cartRepository.getUserCartByCartId(cartId);
-    }
-
-    @Override
-    public CartRecord getCartRecordByCartId(Integer orderId) {
-        return cartRecordRepository.getCartRecordByCartId(orderId);
+    public List<Cart> searchCartItems(String keyword) {
+        return cartRepository.searchCartItems(SessionUtil.getUserId(), keyword);
     }
 }

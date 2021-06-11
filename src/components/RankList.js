@@ -1,7 +1,9 @@
 import React from 'react'
-import {Image, Switch, Row, Table, Col} from "antd";
+import {Image, Switch, Row, Table, Col, Button, DatePicker} from "antd";
 import ExpandedBookDetails from "../components/ExpandedBookDetails";
 import {getRankedBooks} from "../service/bookService";
+
+const {RangePicker} = DatePicker;
 
 class RankList extends React.Component {
 
@@ -13,8 +15,19 @@ class RankList extends React.Component {
         this.state = {
             books: [],
             mode: RankList.tableMode,
+            startNEndDates: []
         }
     }
+
+    onSearch = () => {
+        getRankedBooks(this.state.startNEndDates, this.handleBooks);
+    };
+
+    onRangeChange = (date, startNEndDates) => {
+        this.setState({
+            startNEndDates: startNEndDates,
+        });
+    };
 
     preHandleBooks = books => {
         books.map((book, index) => {
@@ -24,6 +37,7 @@ class RankList extends React.Component {
     };
 
     handleBooks = books => {
+        console.log("books", books);
         this.preHandleBooks(books);
         this.setState({
             books: books,
@@ -31,7 +45,7 @@ class RankList extends React.Component {
     };
 
     componentDidMount() {
-        getRankedBooks(this.handleBooks);
+        getRankedBooks(this.state.startNEndDates, this.handleBooks);
     }
 
     renderRankGraph = () => (
@@ -78,6 +92,14 @@ class RankList extends React.Component {
         ];
         return (
             <div>
+                <Row style={{margin: '30px'}}>
+                    <Col>
+                        <RangePicker onChange={this.onRangeChange} showTime showToday/>
+                    </Col>
+                    <Col>
+                        <Button onClick={this.onSearch} type={"primary"}>查询</Button>
+                    </Col>
+                </Row>
                 <Table columns={columns}
                        dataSource={this.state.books}
                        scroll={{y: 473}}

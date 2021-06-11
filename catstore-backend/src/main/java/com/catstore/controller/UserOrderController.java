@@ -51,10 +51,13 @@ public class UserOrderController {
 
     @RequestMapping("/searchOrders")
     ArrayList<UserOrder> searchOrders(@RequestBody ArrayList<Date> startNEndDates) {
-        System.out.println(startNEndDates.toString());
-        if (startNEndDates.size() == 2)
-            return userOrderService.getOrdersInRange(startNEndDates.get(0), startNEndDates.get(1));
-        return null;
+        if (startNEndDates != null && startNEndDates.size() == 2) {
+            Date start = startNEndDates.get(0);
+            Date end = startNEndDates.get(1);
+            if (start != null && end != null)
+                return userOrderService.getOrdersInRange(start, end);
+        }
+        return userOrderService.getAllOrders();
     }
 
 }

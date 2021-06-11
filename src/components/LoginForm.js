@@ -1,9 +1,10 @@
 import '../css/login.css'
 import '../css/general.css'
+import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
 import {faEye, faEyeSlash, faLock, faUser} from "@fortawesome/free-solid-svg-icons";
-import {login, checkSession} from "../service/userService";
+import {login} from "../service/userService";
 import {history} from "../utils/history";
 import {message} from "antd";
 
@@ -31,15 +32,17 @@ class LoginForm extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
         let loginForm = e.target;
-        console.log(loginForm['username'].value);
-        console.log(loginForm['password'].value);
+        let username = loginForm['username'].value;
+        let pwd = loginForm['password'].value;
+        if (username === '' || pwd === '') {
+            message.warn("用户名和密码不能为空！");
+            return;
+        }
         let loginInfo = {
-            'userAccount': loginForm['username'].value,
-            'userPassword': loginForm['password'].value
+            'userAccount': username,
+            'userPassword': pwd
         };
-
         login(loginInfo);
-        // checkSession();
     };
 
     toggleEye = () => {
@@ -87,7 +90,7 @@ class LoginForm extends React.Component {
                     </input>
                 </div>
                 <a className="login-concerned-href forget-pwd" href="">Forget Password</a>
-                <a className="login-concerned-href register" href="">Register</a>
+                <Link to={"/register"} className="login-concerned-href register">Register</Link>
             </form>
         );
     }

@@ -86,4 +86,20 @@ public class UserController {
     BigDecimal getUserProperty() {
         return userService.getUserProperty();
     }
+
+    @RequestMapping("/checkDuplication")
+    Boolean checkDuplication(@RequestParam("username") String username) {
+        return userService.checkDuplication(username);
+    }
+
+    @RequestMapping("/register")
+    Message register(@RequestBody Map<String, String> registerInfo) {
+        System.out.println(registerInfo);
+        String userAccount = registerInfo.get("userAccount");
+        String username = registerInfo.get("username");
+        String email = registerInfo.get("email");
+        String password = registerInfo.get("password");
+        userService.register(userAccount, username, password, email);
+        return MessageUtil.createMessage(MessageUtil.REGISTER_SUCCESS_CODE, MessageUtil.REGISTER_SUCCESS_MSG);
+    }
 }

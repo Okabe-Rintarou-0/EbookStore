@@ -21,4 +21,8 @@ public interface UserService {
     Boolean banUsers(ArrayList<Integer> userIdList);
 
     Boolean unbanUsers(ArrayList<Integer> userIdList);
+
+    Boolean checkDuplication(String username);
+
+    Boolean register(String userAccount, String username, String password, String email);
 }

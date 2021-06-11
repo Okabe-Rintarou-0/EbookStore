@@ -1,13 +1,14 @@
 package com.catstore.serviceimpl;
 
-import com.catstore.crawlers.BookCrawler;
 import com.catstore.dao.BookDao;
+import com.catstore.dto.BookDto;
 import com.catstore.entity.Book;
 import com.catstore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -15,10 +16,16 @@ import java.util.Map;
 public class BookServiceImplement implements BookService {
 
     BookDao bookDao;
+    BookDto bookDto;
 
     @Autowired
     void setBookDao(BookDao bookDao) {
         this.bookDao = bookDao;
+    }
+
+    @Autowired
+    void setBookDto(BookDto bookDto) {
+        this.bookDto = bookDto;
     }
 
     @Override
@@ -74,8 +81,14 @@ public class BookServiceImplement implements BookService {
     }
 
     @Override
-    public ArrayList<Book> getRankedBooks() {
-        return bookDao.getRankedBooks();
+    public ArrayList<Book> getRankedBooks(ArrayList<Date> startNEndDates) {
+        if (startNEndDates != null && startNEndDates.size() == 2) {
+            Date start = startNEndDates.get(0);
+            Date end = startNEndDates.get(1);
+            if (start != null && end != null)
+                return bookDto.getRankedBooks(start, end);
+        }
+        return bookDto.getAllRankedBooks();
     }
 
     @Override

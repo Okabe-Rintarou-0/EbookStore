@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -91,8 +92,8 @@ public class BookController {
     }
 
     @RequestMapping("/getRankedBooks")
-    ArrayList<Book> getRankedBooks() {
-        return bookService.getRankedBooks();
+    ArrayList<Book> getRankedBooks(@RequestBody ArrayList<Date> startNEndDates) {
+        return bookService.getRankedBooks(startNEndDates);
     }
 
     @RequestMapping("/manager/postModifiedBook")

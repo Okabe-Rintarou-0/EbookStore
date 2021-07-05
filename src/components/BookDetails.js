@@ -208,7 +208,7 @@ class BookDetails extends React.Component {
                     </div>
                     <div className="browse-book-description">
                         <div className="author">{`作者：${this.state.bookAuthor}`}</div>
-                        {this.state.bookDetails !== null ? (this.state.bookDetails.length > 334 ? this.state.bookDetails.slice(0, 334) + "..." : this.state.bookDetails) : null}
+                        {this.state.bookDetails !== null ? (this.state.bookDetails.length > 250 ? this.state.bookDetails.slice(0, 250) + "..." : this.state.bookDetails) : null}
                     </div>
                     <div className="browse-book-option">
                     <span className="browse-book-button">

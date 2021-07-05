@@ -4,7 +4,13 @@ import com.catstore.dao.BookDao;
 import com.catstore.dto.BookDto;
 import com.catstore.entity.Book;
 import com.catstore.service.BookService;
+import com.catstore.utils.Constant;
+import com.catstore.utils.messageUtils.Message;
+import com.catstore.utils.messageUtils.MessageUtil;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -31,6 +37,19 @@ public class BookServiceImplement implements BookService {
     @Override
     public List<Book> getBooks() {
         return bookDao.getBooks();
+    }
+
+    @Override
+    public Message getBooks(int page) {
+        PageRequest pageRequest = PageRequest.of(page, Constant.BOOK_PAGE_SIZE);
+        Page<Book> bookPage = bookDao.getBooks(pageRequest);
+        List<Book> books = bookPage.getContent();
+        if(books.size() == 0)
+            return MessageUtil.createMessage(MessageUtil.GENERAL_FAIL_CODE,MessageUtil.GENERAL_FAIL_MSG);
+        JSONObject messageContent = new JSONObject();
+        messageContent.put("total", bookPage.getTotalElements());
+        messageContent.put("books", bookPage.getContent());
+        return MessageUtil.createMessage(MessageUtil.GENERAL_SUCCESS_CODE, MessageUtil.GENERAL_SUCCESS_MSG, messageContent);
     }
 
     @Override

@@ -2,7 +2,7 @@ import React from "react";
 import BookPreview from "./BookPreview";
 import {Col, Input, Pagination, Row} from "antd";
 import 'antd/dist/antd.css'
-import {getBooks, getBooksByKeyword} from "../service/bookService";
+import {getBooks, getBooksByKeyword, getBooksByPage} from "../service/bookService";
 import {scrollBackToTop} from "../utils/auxfunc";
 
 const {Search} = Input;
@@ -12,6 +12,7 @@ class BookList extends React.Component {
     state = {
         books: [],
         pageIndex: 1,
+        totalPage: 1,
     };
 
     onSearch = (value) => {
@@ -19,14 +20,15 @@ class BookList extends React.Component {
         getBooksByKeyword(keyword, this.handleBooksInfo);
     };
 
-    handleBooksInfo = data => {
+    handleBooksInfo = res => {
         this.setState({
-            books: data,
+            books: res.data.books,
+            totalPage: res.data.total,
         });
     };
 
     componentDidMount() {
-        getBooks(this.handleBooksInfo);
+        getBooksByPage(0, this.handleBooksInfo);
     }
 
 
@@ -52,17 +54,19 @@ class BookList extends React.Component {
 
     renderBooks = () => {
         let renderContent = [];
-        for (let i = 15 * (this.state.pageIndex - 1); (i < this.state.books.length && i < this.state.pageIndex * 15); ++i)
+        for (let i = 0; i < this.state.books.length; ++i) {
             renderContent.push(
                 <Col span={8}>
                     <BookPreview data={this.state.books[i]}/>
                 </Col>
             );
+        }
 
         return renderContent;
     };
 
     handlePageChange = pageIndex => {
+        getBooksByPage(pageIndex - 1, this.handleBooksInfo);
         this.setState({
             pageIndex: pageIndex,
         })
@@ -72,14 +76,13 @@ class BookList extends React.Component {
         return (
             <>
                 {this.renderSearchBar()}
-                {/*{this.renderCarousel()}*/}
                 <Row>
                     {this.renderBooks()}
                 </Row>
                 <Row justify={"end"}>
                     <Col span={4}>
                         <Pagination simple current={this.state.pageIndex} defaultCurrent={1}
-                                    total={this.state.books.length} pageSize={15}
+                                    total={this.state.totalPage} pageSize={15}
                                     style={{marginBottom: '20px'}} onChange={this.handlePageChange}/>
                     </Col>
                 </Row>

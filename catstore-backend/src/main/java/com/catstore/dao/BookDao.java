@@ -3,6 +3,8 @@ package com.catstore.dao;
 import com.catstore.crawlers.BookCrawler;
 import com.catstore.entity.Book;
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +13,8 @@ import java.util.Map;
 
 public interface BookDao {
     List<Book> getBooks();
+
+    Page<Book> getBooks(PageRequest pageRequest);
 
     Book getBookById(Integer bookId);
 

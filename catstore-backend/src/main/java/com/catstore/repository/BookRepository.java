@@ -14,8 +14,6 @@ import java.util.Map;
 
 @Transactional
 public interface BookRepository extends JpaRepository<Book, Integer> {
-    @Query(value = "from Book")
-    List<Book> getBooks();
 
     @Query(value = "from Book where bookId =:bookId")
     Book getBookById(@Param("bookId") Integer bookId);

@@ -5,6 +5,8 @@ import com.catstore.dao.BookDao;
 import com.catstore.entity.Book;
 import com.catstore.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
@@ -32,7 +34,12 @@ public class BookDaoImplement implements BookDao {
 
     @Override
     public List<Book> getBooks() {
-        return bookRepository.getBooks();
+        return bookRepository.findAll();
+    }
+
+    @Override
+    public Page<Book> getBooks(PageRequest pageRequest) {
+        return bookRepository.findAll(pageRequest);
     }
 
     @Override

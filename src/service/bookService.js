@@ -1,7 +1,12 @@
 import {postRequest, postRequestForText} from "../utils/ajax";
 
+export function getBooksByPage(page,callback) {
+    const url = `http://localhost:8080/getBooksByPage?page=${page}`;
+    postRequest(url, {}, callback);
+}
+
 export function getBooks(callback) {
-    const url = 'http://localhost:8080/getBooks';
+    const url = `http://localhost:8080/getBooks`;
     postRequest(url, {}, callback);
 }
 

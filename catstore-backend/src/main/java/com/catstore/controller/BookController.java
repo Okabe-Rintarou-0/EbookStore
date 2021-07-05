@@ -33,6 +33,11 @@ public class BookController {
         return bookService.getBooks();
     }
 
+    @RequestMapping("/getBooksByPage")
+    Message getBooks(@RequestParam int page) {
+        return bookService.getBooks(page);
+    }
+
     @RequestMapping("/getBookTitle")
     String getBookTitleByBookId(@RequestParam("bookId") Integer bookId) {
         return bookService.getBookTitleByBookId(bookId);

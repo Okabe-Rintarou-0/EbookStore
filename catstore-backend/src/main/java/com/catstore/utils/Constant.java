@@ -10,4 +10,6 @@ public class Constant {
     public static final String bookRankSavePath = "src/main/resources/static/file/rank.png";
     public static final String consumptionRankSavePath = "src/main/resources/static/file/consumption.png";
 
+
+    public static final int BOOK_PAGE_SIZE = 15;
 }

@@ -2,6 +2,8 @@ package com.catstore.service;
 
 import com.catstore.crawlers.BookCrawler;
 import com.catstore.entity.Book;
+import com.catstore.utils.messageUtils.Message;
+import org.springframework.data.domain.Page;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,7 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 public interface BookService {
+
     List<Book> getBooks();
+
+    Message getBooks(int page);
 
     Book getBookById(Integer bookId);
 

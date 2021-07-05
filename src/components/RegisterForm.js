@@ -59,12 +59,15 @@ class RegisterForm extends React.Component {
             message.warn("注册信息的任意一项都不能为空！");
             return;
         }
-        if (userAccount.length < 5 || this.state.duplicate || !this.isEmail(email)) {
-            message.warn("请按照提示修改您的注册信息！");
-            return;
-        }
         if (passwordConfirm !== password) {
             message.warn("两次输入的密码不一致！请重新输入！");
+            return;
+        }
+        console.log(this.state.duplicate);
+        console.log(email);
+        console.log(this.isEmail(email));
+        if (userAccount.length < 5 || this.state.duplicate || !this.isEmail(email)) {
+            message.warn("请按照提示修改您的注册信息！");
             return;
         }
         let registerInfo = {
@@ -107,6 +110,7 @@ class RegisterForm extends React.Component {
             });
         else
             this.setState({
+                duplicate: false,
                 showUserAccountTip: false,
             })
     };
@@ -128,6 +132,7 @@ class RegisterForm extends React.Component {
     onEmailChange = e => {
         let email = e.target.value;
         let isValid = this.isEmail(email);
+        console.log(isValid);
         this.setState({
             showEmailTip: !isValid,
             emailTips: isValid ? '' : '非法的邮箱地址！请输入正确的邮箱地址！',

@@ -20,7 +20,7 @@ export function login(data) {
 
 export function checkSession(callback) {
     const url = 'http://localhost:8080/checkSession';
-    postRequest(url, {}, callback);
+    getRequest(url, callback);
 }
 
 export function logout() {

@@ -1,8 +1,8 @@
-import {postRequest, postRequestForText} from "../utils/ajax";
+import {getRequest, postRequest, postRequestForText} from "../utils/ajax";
 
 export function getBooksByPage(page,callback) {
     const url = `http://localhost:8080/getBooksByPage?page=${page}`;
-    postRequest(url, {}, callback);
+    getRequest(url, callback);
 }
 
 export function getBooks(callback) {
@@ -12,7 +12,7 @@ export function getBooks(callback) {
 
 export function getBooksByKeyword(keyword, callback) {
     const url = `http://localhost:8080/getBooksByKeyword?keyword=${keyword}`;
-    postRequest(url, {}, callback);
+    getRequest(url, callback);
 }
 
 export function getBookById(bookId, callback) {

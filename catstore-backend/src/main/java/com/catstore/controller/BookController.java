@@ -3,15 +3,12 @@ package com.catstore.controller;
 import com.catstore.entity.Book;
 import com.catstore.service.BookService;
 import com.catstore.utils.Constant;
-import com.catstore.utils.messageUtils.Message;
+import com.catstore.model.Message;
 import com.catstore.utils.messageUtils.MessageUtil;
 import com.catstore.utils.sessionUtils.SessionUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,37 +25,37 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @RequestMapping("/getBooks")
+    @GetMapping("/getBooks")
     List<Book> getBooks() {
         return bookService.getBooks();
     }
 
-    @RequestMapping("/getBooksByPage")
+    @GetMapping("/getBooksByPage")
     Message getBooks(@RequestParam int page) {
         return bookService.getBooks(page);
     }
 
-    @RequestMapping("/getBookTitle")
+    @GetMapping("/getBookTitle")
     String getBookTitleByBookId(@RequestParam("bookId") Integer bookId) {
         return bookService.getBookTitleByBookId(bookId);
     }
 
-    @RequestMapping("/getBooksByKeyword")
+    @GetMapping("/getBooksByKeyword")
     List<Book> getBooksByKeyword(@RequestParam("keyword") String keyword) {
         return bookService.getBooksByKeyword(keyword);
     }
 
-    @RequestMapping("/getBookById")
+    @GetMapping("/getBookById")
     Book getBookById(@RequestParam("bookId") Integer bookId) {
         return bookService.getBookById(bookId);
     }
 
-    @RequestMapping("/getConcernedBookInfo")
+    @GetMapping("/getConcernedBookInfo")
     List<Map<String, String>> getConcernedBookInfo(@RequestParam("bookTitle") String bookTitle, @RequestParam("website") String websiteSrc) {
         return bookService.getConcernedBookInfo(bookTitle, websiteSrc);
     }
 
-    @RequestMapping("/manager/deleteBooks")
+    @PostMapping("/manager/deleteBooks")
     Message deleteBooks(@RequestBody ArrayList<Integer> bookIdList) {
         Integer userIdentity = SessionUtil.getUserIdentity();
         if (userIdentity != null && userIdentity.equals(Constant.MANAGER)) {
@@ -70,7 +67,7 @@ public class BookController {
         return MessageUtil.createMessage(MessageUtil.HAVE_NO_AUTHORITY_CODE, MessageUtil.HAVE_NO_AUTHORITY_MSG);
     }
 
-    @RequestMapping("/manager/undercarriage")
+    @PostMapping("/manager/undercarriage")
     Message undercarriage(@RequestBody ArrayList<Integer> bookIdList) {
         Integer userIdentity = SessionUtil.getUserIdentity();
         if (userIdentity != null && userIdentity.equals(Constant.MANAGER)) {
@@ -83,7 +80,7 @@ public class BookController {
         return MessageUtil.createMessage(MessageUtil.HAVE_NO_AUTHORITY_CODE, MessageUtil.HAVE_NO_AUTHORITY_MSG);
     }
 
-    @RequestMapping("/manager/putOnSale")
+    @PostMapping("/manager/putOnSale")
     Message putOnSale(@RequestBody ArrayList<Integer> bookIdList) {
         Integer userIdentity = SessionUtil.getUserIdentity();
         if (userIdentity != null && userIdentity.equals(Constant.MANAGER)) {
@@ -96,12 +93,12 @@ public class BookController {
         return MessageUtil.createMessage(MessageUtil.HAVE_NO_AUTHORITY_CODE, MessageUtil.HAVE_NO_AUTHORITY_MSG);
     }
 
-    @RequestMapping("/getRankedBooks")
+    @PostMapping("/getRankedBooks")
     ArrayList<Book> getRankedBooks(@RequestBody ArrayList<Date> startNEndDates) {
         return bookService.getRankedBooks(startNEndDates);
     }
 
-    @RequestMapping("/manager/postModifiedBook")
+    @PostMapping("/manager/postModifiedBook")
     void postModifiedBook(@RequestBody Map<String, String> book) {
         System.out.println(book.toString());
         bookService.postModifiedBook(book);

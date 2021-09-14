@@ -2,32 +2,24 @@ import React from "react";
 import "../css/general.css"
 import '../css/navigator.css'
 import logoUrl from "../assets/logo.png"
-import {logout, getUser, setUserSignature} from "../service/userService";
+import {getUser, logout, setUserSignature} from "../service/userService";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
-    faBook, faFire,
-    faHome, faList, faMoneyBill, faMoneyBillWave, faMoneyCheck,
-    faPhone,
-    faShare,
+    faBook,
+    faFire,
+    faHome,
+    faList,
+    faMoneyBill,
     faShoppingCart,
-    faStar, faUser
+    faStar,
+    faUser
 } from "@fortawesome/free-solid-svg-icons";
-import {Row, Col, Menu, Avatar, Dropdown, Modal} from "antd";
+import {Avatar, Col, Dropdown, Menu, Modal, Row} from "antd";
 import {Header} from "antd/es/layout/layout";
-import {
-    DownOutlined,
-    GithubFilled, InfoCircleFilled,
-    LogoutOutlined,
-    QqCircleFilled,
-    SettingOutlined,
-    UserOutlined,
-    WechatFilled
-} from "@ant-design/icons";
+import {DownOutlined, LogoutOutlined, SettingOutlined, UserOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import IconUpload from "../components/IconUpload";
 import Input from "antd/es/input";
-
-const {SubMenu} = Menu;
 
 class Navigator extends React.Component {
 

@@ -1,6 +1,7 @@
 package com.catstore.controller;
 
 import com.catstore.utils.Constant;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,8 +14,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 @RestController
+@RequestMapping("/image")
 public class ImageController {
-    @RequestMapping("/getImage")
+    @GetMapping
     public void getImage(@RequestParam("target") String target, HttpServletRequest request, HttpServletResponse response) {
         FileInputStream fileInputStream = null;
         response.setContentType("image/gif");

@@ -1,5 +1,5 @@
 // import config from 'config'
-import {postRequest} from "../utils/ajax";
+import {getRequest, postRequest} from "../utils/ajax";
 import {message} from "antd";
 import {history} from "../utils/history";
 
@@ -38,40 +38,33 @@ export function logout() {
 }
 
 export function getUser(callback) {
-    const url = 'http://localhost:8080/getUser';
-    postRequest(url, {}, callback);
-}
-
-export function getUserProperty(callback) {
-    const url = 'http://localhost:8080/getUserProperty';
-    postRequest(url, {}, callback);
+    const url = 'http://localhost:8080/user';
+    getRequest(url, callback);
 }
 
 export function setUserSignature(userSignature, callback) {
-    const url = 'http://localhost:8080/setUserSignature';
-    let requestBody = {userSignature: userSignature};
-    // console.log(JSON.stringify(userSignature));
-    postRequest(url, requestBody, callback);
+    const url = `http://localhost:8080/user/signature?newSig=${userSignature}`;
+    getRequest(url, callback);
 }
 
 export function getAllUsers(callback) {
-    const url = 'http://localhost:8080/manager/getAllUsers';
-    postRequest(url, {}, callback);
+    const url = 'http://localhost:8080/user/all';
+    getRequest(url, callback);
 }
 
 export function banUsers(userIdList, callback) {
-    const url = 'http://localhost:8080/manager/banUsers';
+    const url = 'http://localhost:8080/user/ban';
     postRequest(url, userIdList, callback);
 }
 
 export function unbanUsers(userIdList, callback) {
-    const url = 'http://localhost:8080/manager/unbanUsers';
+    const url = 'http://localhost:8080/user/unban';
     postRequest(url, userIdList, callback);
 }
 
-export function checkDuplication(username, callback) {
-    const url = `http://localhost:8080/checkDuplication?username=${username}`;
-    postRequest(url, {}, callback);
+export function checkDuplication(account, callback) {
+    const url = `http://localhost:8080/register/checkDup?account=${account}`;
+    getRequest(url, callback);
 }
 
 export function register(registerInfo, callback) {

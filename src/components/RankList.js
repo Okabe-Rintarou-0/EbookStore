@@ -52,7 +52,7 @@ class RankList extends React.Component {
         <Row align={"middle"} justify={"center"}>
             <Image
                 width={750}
-                src="http://localhost:8080/getImage?target=book"
+                src="http://localhost:8080/image?target=book"
             />
         </Row>
     );

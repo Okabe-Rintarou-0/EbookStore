@@ -65,18 +65,4 @@ public class UserServiceImplement implements UserService {
         }
         return true;
     }
-
-    @Override
-    public Boolean checkDuplication(String userAccount) {
-        System.out.println(userDao.getUserAuthorityByUserAccount(userAccount));
-        return userDao.getUserAuthorityByUserAccount(userAccount) != null;
-    }
-
-    @Override
-    @Transactional
-    public Boolean register(String userAccount, String username, String password, String email) {
-        Integer newUserId = userDao.addUser(username, email);
-        userDao.addUserAuthority(newUserId, userAccount, password);
-        return true;
-    }
 }

@@ -6,25 +6,38 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.catstore.utils.messageUtils.Message;
+import com.catstore.annotation.SkipSessionCheck;
+import com.catstore.model.Message;
 import com.catstore.utils.messageUtils.MessageUtil;
 import com.catstore.utils.sessionUtils.SessionUtil;
 import net.sf.json.JSONObject;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class SessionValidateInterceptor extends HandlerInterceptorAdapter {
     public SessionValidateInterceptor() {
     }
 
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        if (!(handler instanceof HandlerMethod)) {
+            return true;
+        }
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        SkipSessionCheck skipSessionCheck = handlerMethod.getBean().getClass().getDeclaredAnnotation(SkipSessionCheck.class);
+        //判断如果请求的类是swagger的控制器，直接通行。
+        if (handlerMethod.getBean().getClass().getName().equals("springfox.documentation.swagger.web.ApiResourceController")) {
+            return true;
+        }
+        if (skipSessionCheck != null && skipSessionCheck.value())
+            return true;
         boolean status = SessionUtil.checkAuthority();
         if (!status) {
-            System.out.println("Failed");
+            System.out.println("Session Validate Check Failed");
             Message message = MessageUtil.createMessage(MessageUtil.NOT_LOGIN_CODE, MessageUtil.NOT_LOGIN_MSG);
             this.sendJsonBack(response, message);
             return false;
         } else {
-            System.out.println("Success");
+            System.out.println("Session Validate Check Succeed");
             return true;
         }
     }

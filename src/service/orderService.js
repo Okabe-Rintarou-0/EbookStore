@@ -1,5 +1,4 @@
 import {postRequest} from "../utils/ajax";
-import {message} from "antd";
 
 export function modifyOrder(orderId, orderReceiver, orderAddress, orderTel, purchaseNumber, callback) {
     const url = `http://localhost:8080/modifyOrder?orderId=${orderId}`;

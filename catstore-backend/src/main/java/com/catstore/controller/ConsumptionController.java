@@ -5,9 +5,7 @@ import com.catstore.utils.Constant;
 import com.catstore.utils.sessionUtils.SessionUtil;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +20,7 @@ public class ConsumptionController {
         this.consumptionService = consumptionService;
     }
 
-    @RequestMapping("/manager/getConsumption")
+    @GetMapping ("/manager/getConsumption")
     JSONArray getAllUsersAndTheirConsumption() {
         Integer userIdentity = SessionUtil.getUserIdentity();
         if (userIdentity != null && userIdentity.equals(Constant.MANAGER)) {
@@ -31,7 +29,7 @@ public class ConsumptionController {
         return null;
     }
 
-    @RequestMapping("/manager/getConsumptionInRange")
+    @PostMapping("/manager/getConsumptionInRange")
     JSONArray getConsumptionInRange(@RequestBody ArrayList<Date> startNEndDates) {
         Integer userIdentity = SessionUtil.getUserIdentity();
         if (userIdentity != null && userIdentity.equals(Constant.MANAGER)) {
@@ -42,7 +40,7 @@ public class ConsumptionController {
         return null;
     }
 
-    @RequestMapping("/getConsumptionsGroupByBooks")
+    @PostMapping("/getConsumptionsGroupByBooks")
     JSONArray getConsumptionsGroupByBooks(@RequestBody ArrayList<Date> startNEndDates) {
         if (startNEndDates != null && startNEndDates.size() == 2)
             return consumptionService.getConsumptionsGroupByBooks(startNEndDates.get(0), startNEndDates.get(1));

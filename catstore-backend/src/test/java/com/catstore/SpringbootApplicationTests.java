@@ -1,10 +1,9 @@
 package com.catstore;
 
-import com.catstore.utils.Drawer.BarChartDrawer;
+import com.catstore.utils.drawer.BarChartDrawer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -2,13 +2,11 @@ package com.catstore.controller;
 
 import com.catstore.entity.UserOrder;
 import com.catstore.service.UserOrderService;
-import com.catstore.utils.messageUtils.Message;
+import com.catstore.model.Message;
 import com.catstore.utils.messageUtils.MessageUtil;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,7 +21,7 @@ public class UserOrderController {
         this.userOrderService = userOrderService;
     }
 
-    @RequestMapping("/placeOrder")
+    @PostMapping("/placeOrder")
     Message placeOrder(@RequestBody JSONObject orderItems) {
         System.out.println(orderItems.toString());
         if (userOrderService.placeOrder(orderItems))
@@ -31,17 +29,17 @@ public class UserOrderController {
         return MessageUtil.createMessage(MessageUtil.PURCHASE_FAIL_CODE, MessageUtil.PURCHASE_FAIL_MSG);
     }
 
-    @RequestMapping("/getAllOrders")
+    @GetMapping("/getAllOrders")
     ArrayList<UserOrder> getAllOrders() {
         return userOrderService.getAllOrders();
     }
 
-    @RequestMapping("/manager/getAllOrders")
+    @GetMapping("/manager/getAllOrders")
     ArrayList<UserOrder> getAllOrdersForManager() {
         return userOrderService.getAllOrdersForManager();
     }
 
-    @RequestMapping("/manager/searchOrders")
+    @PostMapping("/manager/searchOrders")
     ArrayList<UserOrder> searchOrdersForManager(@RequestBody ArrayList<Date> startNEndDates) {
         System.out.println(startNEndDates.toString());
         if (startNEndDates.size() == 2)
@@ -49,7 +47,7 @@ public class UserOrderController {
         return null;
     }
 
-    @RequestMapping("/searchOrders")
+    @PostMapping("/searchOrders")
     ArrayList<UserOrder> searchOrders(@RequestBody ArrayList<Date> startNEndDates) {
         if (startNEndDates != null && startNEndDates.size() == 2) {
             Date start = startNEndDates.get(0);

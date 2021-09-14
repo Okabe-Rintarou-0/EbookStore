@@ -1,8 +1,7 @@
 import React from 'react'
 import {Layout} from "antd";
 import Navigator from "../layout/Navigator";
-import OrderManagementList from "../ManageComponents/OrderManagementList";
-import ConsumptionManagementList from "../ManageComponents/ConsumptionManagementList";
+import ConsumptionManagementList from "../managerComponents/ConsumptionManagementList";
 
 const {Content} = Layout;
 

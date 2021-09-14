@@ -5,7 +5,6 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
 import {faEye, faEyeSlash, faLock, faUser} from "@fortawesome/free-solid-svg-icons";
 import {login} from "../service/userService";
-import {history} from "../utils/history";
 import {message} from "antd";
 
 class LoginForm extends React.Component {
@@ -19,28 +18,19 @@ class LoginForm extends React.Component {
         };
     }
 
-    handleLogin = data => {
-        if (data.status > 0) {
-            localStorage.setItem('user', JSON.stringify(data.data));
-            history.push("/");
-            message.success(data.message);
-        } else {
-            message.error(data.message);
-        }
-    };
-
     handleSubmit = e => {
         e.preventDefault();
         let loginForm = e.target;
-        let username = loginForm['username'].value;
+        console.log(loginForm);
+        let account = loginForm['account'].value;
         let pwd = loginForm['password'].value;
-        if (username === '' || pwd === '') {
-            message.warn("用户名和密码不能为空！");
+        if (account === '' || pwd === '') {
+            message.warn("账号和密码均不能为空！");
             return;
         }
         let loginInfo = {
-            'userAccount': username,
-            'userPassword': pwd
+            'account': account,
+            'password': pwd
         };
         login(loginInfo);
     };
@@ -72,8 +62,8 @@ class LoginForm extends React.Component {
             <form id="user-login-info" onSubmit={this.handleSubmit}>
                 <div className="login-bar">
                     <FontAwesomeIcon icon={faUser} className={"login-icon"}/>
-                    <input className="login-info-input username" type="text" name="user-name" id={"username"}
-                           placeholder="Please input your username." autoFocus="autofocus" autoComplete="on"/>
+                    <input className="login-info-input account" type="text" name="account" id={"account"}
+                           placeholder="Please input your account." autoFocus="autofocus" autoComplete="on"/>
                 </div>
                 <div className="login-bar">
                     <FontAwesomeIcon icon={faLock} className={"login-icon"}/>

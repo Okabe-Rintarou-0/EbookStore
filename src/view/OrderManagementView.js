@@ -1,7 +1,7 @@
 import React from 'react'
 import {Layout} from "antd";
 import Navigator from "../layout/Navigator";
-import OrderManagementList from "../ManageComponents/OrderManagementList";
+import OrderManagementList from "../managerComponents/OrderManagementList";
 
 const {Content} = Layout;
 

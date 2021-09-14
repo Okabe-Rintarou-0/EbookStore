@@ -3,14 +3,7 @@ import '../css/general.css'
 import {Link, Redirect} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
-import {
-    faEye,
-    faEyeSlash,
-    faLock,
-    faMailBulk,
-    faUser, faUserCircle
-} from "@fortawesome/free-solid-svg-icons";
-import {history} from "../utils/history";
+import {faEye, faEyeSlash, faLock, faMailBulk, faUser, faUserCircle} from "@fortawesome/free-solid-svg-icons";
 import {message, Tooltip} from "antd";
 import {checkDuplication, register} from "../service/userService";
 
@@ -63,9 +56,9 @@ class RegisterForm extends React.Component {
             message.warn("两次输入的密码不一致！请重新输入！");
             return;
         }
-        console.log(this.state.duplicate);
-        console.log(email);
-        console.log(this.isEmail(email));
+        // console.log(this.state.duplicate);
+        // console.log(email);
+        // console.log(this.isEmail(email));
         if (userAccount.length < 5 || this.state.duplicate || !this.isEmail(email)) {
             message.warn("请按照提示修改您的注册信息！");
             return;
@@ -106,7 +99,7 @@ class RegisterForm extends React.Component {
             this.setState({
                 showUserAccountTip: true,
                 duplicate: true,
-                userAccountTips: '当前用户名已被注册！请换个名字！',
+                userAccountTips: '当前账户已被注册！请换个名字！',
             });
         else
             this.setState({
@@ -115,18 +108,19 @@ class RegisterForm extends React.Component {
             })
     };
 
-    onUsernameChange = e => {
-        let username = e.target.value;
-        if (username.length < 5) {
+    onAccountChange = e => {
+        let account = e.target.value;
+        if (account.length < 5) {
             this.setState({
                 showUserAccountTip: true,
                 duplicate: false,
-                userAccountTips: '用户名长度不得少于5个字',
+                userAccountTips: '账户长度不得少于5个字',
             });
             return;
         }
-        checkDuplication(username, this.handleCheckResponse);
+        checkDuplication(account, this.handleCheckResponse);
     };
+
     isEmail = (str) => /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+(\.([a-zA-Z]{2,4}))+$/.test(str);
 
     onEmailChange = e => {
@@ -150,7 +144,7 @@ class RegisterForm extends React.Component {
                         <input className="register-info-input user_account" type="text" name="user_account"
                                id={"user_account"}
                                placeholder="Please input your user account." autoFocus="autofocus" autoComplete="on"
-                               onChange={this.onUsernameChange}/>
+                               onChange={this.onAccountChange}/>
                     </Tooltip>
                 </div>
                 <div className="register-bar">

@@ -3,14 +3,12 @@ package com.catstore.controller;
 import com.catstore.entity.UserAuthority;
 import com.catstore.service.UserService;
 import com.catstore.utils.Constant;
-import com.catstore.utils.messageUtils.Message;
+import com.catstore.model.Message;
 import com.catstore.utils.messageUtils.MessageUtil;
 import com.catstore.utils.sessionUtils.SessionUtil;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -24,7 +22,7 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @RequestMapping("/checkSession")
+    @GetMapping("/checkSession")
     public Message checkSession() {
         JSONObject authority = SessionUtil.getAuthority();
         if (authority != null) {
@@ -33,14 +31,14 @@ public class LoginController {
             return MessageUtil.createMessage(MessageUtil.NOT_LOGIN_CODE, MessageUtil.NOT_LOGIN_MSG);
     }
 
-    @RequestMapping("/login")
+    @PostMapping("/login")
     public Message login(@RequestBody Map<String, String> params) {
-        String userAccount = params.get("userAccount");
-        String userPassword = params.get("userPassword");
+        String userAccount = params.get("account");
+        String userPassword = params.get("password");
         UserAuthority userAuthority = userService.checkAuthority(userAccount, userPassword);
         System.out.println(userAuthority);
         if (userAuthority != null) {
-            if (userAuthority.getUserIdentity() == Constant.BANNED_USER)
+            if (userAuthority.getUserIdentity().equals(Constant.BANNED_USER))
                 return MessageUtil.createMessage(MessageUtil.BANNED_CODE, MessageUtil.BANNED_MSG);
             JSONObject newSession = new JSONObject();
             newSession.put("userId", userAuthority.getUserId());
@@ -57,7 +55,7 @@ public class LoginController {
         }
     }
 
-    @RequestMapping("/logout")
+    @GetMapping("/logout")
     public Message logout() {
         boolean status = SessionUtil.removeSession();
         if (!status) {

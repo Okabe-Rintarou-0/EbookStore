@@ -4,10 +4,6 @@ import iconUrl from '../assets/icon.gif'
 import logoUrl from '../assets/logo.png'
 
 class LoginView extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div id="login-page">

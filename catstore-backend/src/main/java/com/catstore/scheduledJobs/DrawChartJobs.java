@@ -7,7 +7,7 @@ import com.catstore.entity.Book;
 import com.catstore.entity.Consumption;
 import com.catstore.entity.User;
 import com.catstore.utils.Constant;
-import com.catstore.utils.Drawer.BarChartDrawer;
+import com.catstore.utils.drawer.BarChartDrawer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 

@@ -5,7 +5,7 @@ import com.catstore.dto.BookDto;
 import com.catstore.entity.Book;
 import com.catstore.service.BookService;
 import com.catstore.utils.Constant;
-import com.catstore.utils.messageUtils.Message;
+import com.catstore.model.Message;
 import com.catstore.utils.messageUtils.MessageUtil;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,6 @@
 package com.catstore.utils.messageUtils;
 
+import com.catstore.model.Message;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -28,9 +29,9 @@ public class MessageUtil {
     public static final String GENERAL_FAIL_MSG = "操作失败！";
     public static final String WRONG_FILE_FORMAT_MSG = "上传失败！请上传正确的csv文件！";
     public static final String UPLOAD_SUCCESS_MSG = "上传成功！";
+    public static final String REGISTER_FAIL_MSG = "注册失败！";
 
     public static final String REGISTER_SUCCESS_MSG = "注册成功!";
-    public static final int REGISTER_SUCCESS_CODE = 500;
 
     public static final int UPLOAD_SUCCESS_CODE = 13;
     public static final int WRONG_FILE_FORMAT_CODE = -13;
@@ -56,6 +57,8 @@ public class MessageUtil {
     public static final int DELETE_FAIL_CODE = -6;
     public static final int UNDERCARRIAGE_FAIL_CODE = -8;
     public static final int UNDERCARRIAGE_SUCCESS_CODE = 9;
+    public static final int STAT_INVALID = -1;
+    public static final int STAT_OK = 200;
 
     public static Message createMessage(int statusCode, String message) {
         return new Message(statusCode, message);

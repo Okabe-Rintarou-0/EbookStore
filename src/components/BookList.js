@@ -2,7 +2,7 @@ import React from "react";
 import BookPreview from "./BookPreview";
 import {Col, Input, Pagination, Row} from "antd";
 import 'antd/dist/antd.css'
-import {getBooks, getBooksByKeyword, getBooksByPage} from "../service/bookService";
+import {getBooksByKeyword, getBooksByPage} from "../service/bookService";
 import {scrollBackToTop} from "../utils/auxfunc";
 
 const {Search} = Input;
@@ -17,7 +17,13 @@ class BookList extends React.Component {
 
     onSearch = (value) => {
         let keyword = value.toLowerCase();
-        getBooksByKeyword(keyword, this.handleBooksInfo);
+        getBooksByKeyword(keyword, this.handleSearch);
+    };
+
+    handleSearch = books => {
+        this.setState({
+            books: books,
+        });
     };
 
     handleBooksInfo = res => {

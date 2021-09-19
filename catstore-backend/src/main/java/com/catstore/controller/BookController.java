@@ -15,47 +15,39 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+///TODO: optimize those interfaces
 @RestController
+@RequestMapping("/book")
 public class BookController {
-
-    BookService bookService;
-
     @Autowired
-    void setBookService(BookService bookService) {
-        this.bookService = bookService;
-    }
+    private BookService bookService;
 
-    @GetMapping("/getBooks")
-    List<Book> getBooks() {
+    @GetMapping("/getAll")
+    List<Book> getAllBooks() {
         return bookService.getBooks();
     }
 
-    @GetMapping("/getBooksByPage")
+    @GetMapping
     Message getBooks(@RequestParam int page) {
         return bookService.getBooks(page);
     }
 
-    @GetMapping("/getBookTitle")
-    String getBookTitleByBookId(@RequestParam("bookId") Integer bookId) {
-        return bookService.getBookTitleByBookId(bookId);
-    }
-
-    @GetMapping("/getBooksByKeyword")
+    @GetMapping("/search")
     List<Book> getBooksByKeyword(@RequestParam("keyword") String keyword) {
         return bookService.getBooksByKeyword(keyword);
     }
 
-    @GetMapping("/getBookById")
+    @GetMapping("/get")
     Book getBookById(@RequestParam("bookId") Integer bookId) {
         return bookService.getBookById(bookId);
     }
 
-    @GetMapping("/getConcernedBookInfo")
+    @GetMapping("/concerned")
     List<Map<String, String>> getConcernedBookInfo(@RequestParam("bookTitle") String bookTitle, @RequestParam("website") String websiteSrc) {
         return bookService.getConcernedBookInfo(bookTitle, websiteSrc);
     }
 
-    @PostMapping("/manager/deleteBooks")
+    @PostMapping("/delete")
     Message deleteBooks(@RequestBody ArrayList<Integer> bookIdList) {
         Integer userIdentity = SessionUtil.getUserIdentity();
         if (userIdentity != null && userIdentity.equals(Constant.MANAGER)) {
@@ -67,7 +59,7 @@ public class BookController {
         return MessageUtil.createMessage(MessageUtil.HAVE_NO_AUTHORITY_CODE, MessageUtil.HAVE_NO_AUTHORITY_MSG);
     }
 
-    @PostMapping("/manager/undercarriage")
+    @PostMapping("/undercarriage")
     Message undercarriage(@RequestBody ArrayList<Integer> bookIdList) {
         Integer userIdentity = SessionUtil.getUserIdentity();
         if (userIdentity != null && userIdentity.equals(Constant.MANAGER)) {
@@ -80,7 +72,7 @@ public class BookController {
         return MessageUtil.createMessage(MessageUtil.HAVE_NO_AUTHORITY_CODE, MessageUtil.HAVE_NO_AUTHORITY_MSG);
     }
 
-    @PostMapping("/manager/putOnSale")
+    @PostMapping("/putOnSale")
     Message putOnSale(@RequestBody ArrayList<Integer> bookIdList) {
         Integer userIdentity = SessionUtil.getUserIdentity();
         if (userIdentity != null && userIdentity.equals(Constant.MANAGER)) {
@@ -93,12 +85,12 @@ public class BookController {
         return MessageUtil.createMessage(MessageUtil.HAVE_NO_AUTHORITY_CODE, MessageUtil.HAVE_NO_AUTHORITY_MSG);
     }
 
-    @PostMapping("/getRankedBooks")
-    ArrayList<Book> getRankedBooks(@RequestBody ArrayList<Date> startNEndDates) {
-        return bookService.getRankedBooks(startNEndDates);
+    @GetMapping("/rank")
+    ArrayList<Book> getRankedBooks(@RequestParam Date from, @RequestParam Date to) {
+        return bookService.getRankedBooks(from, to);
     }
 
-    @PostMapping("/manager/postModifiedBook")
+    @PostMapping("/modify")
     void postModifiedBook(@RequestBody Map<String, String> book) {
         System.out.println(book.toString());
         bookService.postModifiedBook(book);

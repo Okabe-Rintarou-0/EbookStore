@@ -1,20 +1,10 @@
 import React from "react";
-import {
-    FireOutlined,
-    BookOutlined,
-    GiftFilled
-} from '@ant-design/icons';
-import {Menu, Layout} from "antd";
+import {BookOutlined, FireOutlined, GiftFilled} from '@ant-design/icons';
+import {Menu} from "antd";
 
 const {SubMenu} = Menu;
 
 class SiderBar extends React.Component {
-
-    constructor(props) {
-        super(props);
-        
-    };
-
     render() {
         return (
             <Menu

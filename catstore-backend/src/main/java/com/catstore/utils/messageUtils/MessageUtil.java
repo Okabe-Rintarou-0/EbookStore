@@ -15,8 +15,7 @@ public class MessageUtil {
     public static final String ADD_FAVOURITE_SUCCESS_MSG = "加入收藏成功!";
     public static final String FAVOURITE_ALREADY_EXIST_MSG = "已加入收藏，请勿重复操作！";
     public static final String CART_ALREADY_EXIST_MSG = "购物车中已存在该商品，请勿重复添加！";
-    public static final String PURCHASE_SUCCESS_MSG = "购买成功！";
-    public static final String PURCHASE_FAIL_MSG = "购买失败！";
+    public static final String PLACE_ORDER_SUCCESS_MSG = "下单成功，请耐心等待后台结算。";
     public static final String DELETE_SUCCESS_MSG = "删除成功!";
     public static final String DELETE_FAIL_MSG = "删除失败！";
     public static final String HAVE_NO_AUTHORITY_MSG = "您没有相关权限!";
@@ -38,8 +37,6 @@ public class MessageUtil {
     public static final int PUT_ON_SALE_FAIL_CODE = -12;
     public static final int PUT_ON_SALE_SUCCESS_CODE = 10;
     public static final int BANNED_CODE = -10;
-    public static final int GENERAL_FAIL_CODE = -255;
-    public static final int GENERAL_SUCCESS_CODE = 255;
     public static final int LOGIN_ERROR_CODE = -1;
     public static final int LOGIN_SUCCESS_CODE = 1;
     public static final int NOT_LOGIN_CODE = -2;
@@ -49,9 +46,7 @@ public class MessageUtil {
     public static final int ADD_FAVOURITE_SUCCESS_CODE = 5;
     public static final int LOGOUT_ERROR_CODE = -3;
     public static final int ADD_TO_CART_SUCCESS_CODE = 6;
-    public static final int PURCHASE_SUCCESS_CODE = 7;
     public static final int CART_ALREADY_EXIST_CODE = -6;
-    public static final int PURCHASE_FAIL_CODE = -5;
     public static final int DELETE_SUCCESS_CODE = 2;
     public static final int HAVE_NO_AUTHORITY_CODE = -50;
     public static final int DELETE_FAIL_CODE = -6;

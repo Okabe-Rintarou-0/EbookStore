@@ -16,9 +16,9 @@ public interface UserDao {
 
     void setUserSignature(String userSignature);
 
-    BigDecimal getUserProperty();
+    BigDecimal getUserProperty(Integer userId);
 
-    void updateUserProperty(BigDecimal delta);
+    void updateUserProperty(Integer userId, BigDecimal delta);
 
     Boolean banUserByUserId(Integer userId);
 

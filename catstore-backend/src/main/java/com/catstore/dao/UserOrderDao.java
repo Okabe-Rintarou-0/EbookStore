@@ -16,7 +16,7 @@ public interface UserOrderDao {
 
     List<OrderItem> getUserOrdersByOrderId(Integer orderId);
 
-    Integer addOrder(String receiver, String address, String tel);
+    Integer addOrder(Integer userId, String receiver, String address, String tel);
 
     void addOrderItem(Integer orderId, Integer bookId, Integer purchaseNumber);
 

@@ -1,9 +1,6 @@
 import React from 'react'
-import {Result, Button, Typography, Row, Col} from 'antd';
-import {CloseCircleOutlined} from '@ant-design/icons';
+import {Button, Result} from 'antd';
 import {Link, Redirect} from "react-router-dom";
-
-const {Paragraph, Text} = Typography;
 
 class PaymentSuccess extends React.Component {
 
@@ -34,7 +31,7 @@ class PaymentSuccess extends React.Component {
         return (
             <Result
                 status="success"
-                title="购买商品成功！"
+                title="下单成功，请耐心等待后台处理。"
                 subTitle="页面将在5s后自动跳转。"
                 extra={[
                     <Button type="primary" key="console">

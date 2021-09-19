@@ -4,6 +4,7 @@ import com.catstore.dao.UserDao;
 import com.catstore.entity.User;
 import com.catstore.entity.UserAuthority;
 import com.catstore.service.UserService;
+import com.catstore.utils.sessionUtils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,8 +40,8 @@ public class UserServiceImplement implements UserService {
     }
 
     @Override
-    public BigDecimal getUserProperty() {
-        return userDao.getUserProperty();
+    public BigDecimal getUserProperty(Integer userId) {
+        return userId != null ? userDao.getUserProperty(userId) : null;
     }
 
     @Override

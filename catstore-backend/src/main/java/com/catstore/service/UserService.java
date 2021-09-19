@@ -14,7 +14,7 @@ public interface UserService {
 
     void setUserSignature(String userSignature);
 
-    BigDecimal getUserProperty();
+    BigDecimal getUserProperty(Integer userId);
 
     List<User> getAllUsers();
 

@@ -3,6 +3,8 @@ package com.catstore.serviceimpl;
 import com.catstore.dao.*;
 import com.catstore.entity.OrderItem;
 import com.catstore.entity.UserOrder;
+import com.catstore.model.OrderInfo;
+import com.catstore.model.OrderItemInfo;
 import com.catstore.service.UserOrderService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -50,42 +52,38 @@ public class UserOrderServiceImplement implements UserOrderService {
 
     @Override
     @Transactional
-    public boolean placeOrder(JSONObject orderItems) {
-        if (orderItems != null) {
-            JSONArray itemList = JSONArray.fromObject(orderItems.get("itemList"));
-            BigDecimal totalPrice = BigDecimal.valueOf(0);
-            BigDecimal userProperty = userDao.getUserProperty();
-            for (Object listItem : itemList) {
-                JSONObject orderItem = JSONObject.fromObject(listItem);
-                Integer bookId = (Integer) orderItem.get("bookId");
-                BigDecimal bookPrice = bookDao.getBookById(bookId).getBookPrice();
-                System.out.println("bookPrice" + bookPrice);
-                Integer purchaseNumber = (Integer) (orderItem.get("purchaseNumber"));
-                System.out.println("purchaseNumber" + purchaseNumber);
-                totalPrice = totalPrice.add(bookPrice.multiply(BigDecimal.valueOf(purchaseNumber)));
-            }
-            System.out.println(totalPrice);
-            if (userProperty.compareTo(totalPrice) > 0) {
-                String orderAddress = orderItems.getString("orderAddress");
-                String orderTel = orderItems.getString("orderTel");
-                String orderReceiver = orderItems.getString("orderReceiver");
-                Integer orderId = userOrderDao.addOrder(orderReceiver, orderAddress, orderTel);
-                for (Object listItem : itemList) {
-                    JSONObject orderItem = JSONObject.fromObject(listItem);
-                    Integer bookId = (Integer) (orderItem.get("bookId"));
-                    Integer purchaseNumber = (Integer) (orderItem.get("purchaseNumber"));
-                    Integer cartId = (Integer) (orderItem.get("cartId"));
-                    cartDao.deleteCartItem(cartId);
-                    userOrderDao.addOrderItem(orderId, bookId, purchaseNumber);
-                    bookDao.placeOrder(bookId, purchaseNumber);
-                }
-                consumptionDao.addUserConsumption(totalPrice);
-                userDao.updateUserProperty(BigDecimal.valueOf(0).subtract(totalPrice)); //-totalPrice
-
-                return true;
-            }
+    public void placeOrder(OrderInfo orderInfo) {
+        List<OrderItemInfo> items = orderInfo.items;
+        BigDecimal totalPrice = BigDecimal.valueOf(0);
+        Integer userId = orderInfo.userId;
+        BigDecimal userProperty = orderInfo.userProperty;
+        System.out.println("userProperty: " + userProperty);
+        for (OrderItemInfo item : items) {
+            Integer bookId = item.bookId;
+            BigDecimal bookPrice = bookDao.getBookById(bookId).getBookPrice();
+            System.out.println("bookPrice: " + bookPrice);
+            Integer purchaseNumber = item.purchaseNumber;
+            System.out.println("purchaseNumber: " + purchaseNumber);
+            totalPrice = totalPrice.add(bookPrice.multiply(BigDecimal.valueOf(purchaseNumber)));
         }
-        return false;
+        System.out.println("total:" + totalPrice);
+        if (userProperty.compareTo(totalPrice) > 0) {
+            String orderAddress = orderInfo.address;
+            String orderTel = orderInfo.tel;
+            String orderReceiver = orderInfo.receiver;
+            Integer orderId = userOrderDao.addOrder(userId, orderReceiver, orderAddress, orderTel);
+            System.out.println("orderId: " + orderId);
+            for (OrderItemInfo item : items) {
+                Integer bookId = item.bookId;
+                Integer purchaseNumber = item.purchaseNumber;
+                Integer cartId = item.cartId;
+                cartDao.deleteCartItem(cartId);
+                userOrderDao.addOrderItem(orderId, bookId, purchaseNumber);
+                bookDao.placeOrder(bookId, purchaseNumber);
+            }
+            consumptionDao.addUserConsumption(totalPrice);
+            userDao.updateUserProperty(userId, totalPrice.negate()); //-totalPrice
+        }
     }
 
     @Override

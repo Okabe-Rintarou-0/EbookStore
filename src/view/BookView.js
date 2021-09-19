@@ -5,7 +5,7 @@ import BookDetails from "../components/BookDetails";
 import BookComments from "../components/BookComments";
 import {Layout} from "antd";
 
-const {Footer, Content, Sider} = Layout;
+const {Content, Sider} = Layout;
 
 class BookView extends React.Component {
 

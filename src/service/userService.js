@@ -1,4 +1,3 @@
-// import config from 'config'
 import {getRequest, postRequest} from "../utils/ajax";
 import {message} from "antd";
 import {history} from "../utils/history";
@@ -9,9 +8,9 @@ export function login(data) {
             localStorage.setItem('user', JSON.stringify(data.data));
             history.push("/");
             history.go(0);
-            message.success(data.message);
+            message.success(data.message).then(null);
         } else {
-            message.error(data.message);
+            message.error(data.message).then(null);
         }
     };
     const url = 'http://localhost:8080/login';

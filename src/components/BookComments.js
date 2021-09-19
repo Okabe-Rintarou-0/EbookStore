@@ -2,7 +2,6 @@ import React from "react";
 import {List, Pagination} from 'antd';
 import BookComment from "./Comment";
 import '../css/bookComments.css'
-import {getCommentsById} from "../service/bookService";
 
 class BookComments extends React.Component {
 
@@ -20,7 +19,6 @@ class BookComments extends React.Component {
     };
 
     componentDidMount() {
-        getCommentsById(this.props.bookId, this.handleCommentsInfo);
     }
 
     render() {

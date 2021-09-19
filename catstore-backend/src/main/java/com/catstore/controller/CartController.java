@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping("/cart")
 public class CartController {
 
     CartService cartService;
@@ -22,24 +23,24 @@ public class CartController {
         this.cartService = cartService;
     }
 
-    @GetMapping("/deleteCart")
+    @GetMapping("/delete")
     void deleteCartItem(@RequestParam("cartId") Integer cartId) {
         cartService.deleteCartItem(cartId);
     }
 
-    @GetMapping("/getAllCart")
+    @GetMapping("/all")
     List<Cart> getAllCartItems() {
         return cartService.getAllCartItems();
     }
 
-    @GetMapping("/addToCart")
+    @GetMapping("/add")
     Message addToCart(@RequestParam("bookId") Integer bookId) {
         if (cartService.addToCart(bookId))
             return MessageUtil.createMessage(MessageUtil.ADD_TO_CART_SUCCESS_CODE, MessageUtil.ADD_TO_CART_SUCCESS_MSG);
         return MessageUtil.createMessage(MessageUtil.CART_ALREADY_EXIST_CODE, MessageUtil.CART_ALREADY_EXIST_MSG);
     }
 
-    @GetMapping("/searchCartItems")
+    @GetMapping("/search")
     List<Cart> searchCartItems(@RequestParam("keyword") String keyword) {
         return cartService.searchCartItems(keyword);
     }

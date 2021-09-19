@@ -1,7 +1,6 @@
 import React from 'react'
 import {Layout} from "antd";
 import Navigator from "../layout/Navigator";
-import CartContent from "../components/CartContent";
 import FavouriteContent from "../components/FavouriteContent";
 
 const {Content} = Layout;

@@ -1,7 +1,5 @@
 import React from 'react'
-import {Col, Image, message, Row, Table,} from "antd";
-import {deleteBooks, getBooks, undercarriageBooks} from "../service/bookService";
-import ExpandedBookDetails from "../components/ExpandedBookDetails";
+import {Col, Row, Table,} from "antd";
 import Button from "antd/es/button";
 import {history} from "../utils/history";
 import ExpandedUserInfo from "../components/ExpandedUserInfo";

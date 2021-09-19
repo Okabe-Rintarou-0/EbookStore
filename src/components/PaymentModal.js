@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal, Row, Select, Button} from "antd";
+import {Modal, Row, Select} from "antd";
 import Input from "antd/es/input";
 import PropTypes from 'prop-types'
 import HighlightOutlined from "@ant-design/icons/lib/icons/HighlightOutlined";
@@ -120,19 +120,20 @@ class PaymentModal extends React.Component {
 
     onPaymentOk = () => { ///todo modify the post method
         let postData = {
-            orderReceiver: this.state.receiver,
-            orderTel: this.state.tel,
-            orderAddress: this.state.address,
-            itemList: []
+            receiver: this.state.receiver,
+            tel: this.state.tel,
+            address: this.state.address,
+            items: []
         };
         console.log(this.props.selectedItems);
         this.props.selectedItems.map(selectedItem => {
-            postData.itemList.push({
+            postData.items.push({
                 cartId: selectedItem.cartId,
                 bookId: selectedItem.bookId,
                 purchaseNumber: selectedItem.purchaseNumber,
                 bookPrice: selectedItem.bookPrice,
             });
+            return selectedItem;
         });
         console.log(postData);
         placeOrder(postData, data => {

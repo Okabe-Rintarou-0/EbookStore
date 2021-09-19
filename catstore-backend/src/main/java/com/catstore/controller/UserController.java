@@ -65,9 +65,4 @@ public class UserController {
         }
         return MessageUtil.createMessage(MessageUtil.STAT_INVALID, MessageUtil.HAVE_NO_AUTHORITY_MSG);
     }
-
-    @GetMapping("/user/property")
-    BigDecimal getUserProperty() {
-        return userService.getUserProperty();
-    }
 }

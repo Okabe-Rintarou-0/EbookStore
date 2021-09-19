@@ -1,5 +1,5 @@
 import React from 'react'
-import {Layout, Image, Row} from "antd";
+import {Layout} from "antd";
 import Navigator from "../layout/Navigator";
 import RankList from "../components/RankList";
 

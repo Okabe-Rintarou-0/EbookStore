@@ -9,5 +9,5 @@ public interface BookDto {
 
     ArrayList<Book> getAllRankedBooks();
 
-    ArrayList<Book> getRankedBooks(Date start, Date end);
+    ArrayList<Book> getRankedBooks(Date from, Date to);
 }

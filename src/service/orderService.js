@@ -1,48 +1,28 @@
-import {postRequest} from "../utils/ajax";
-
-export function modifyOrder(orderId, orderReceiver, orderAddress, orderTel, purchaseNumber, callback) {
-    const url = `http://localhost:8080/modifyOrder?orderId=${orderId}`;
-    let postData;
-    if (orderReceiver !== undefined && orderAddress !== undefined && orderTel !== undefined) {
-        postData = {
-            'orderReceiver': orderReceiver,
-            'orderAddress': orderAddress,
-            'orderTel': orderTel,
-        };
-    }
-    if (purchaseNumber !== undefined)
-        postData = {...postData, 'purchaseNumber': purchaseNumber};
-    postRequest(url, postData, callback);
-}
-
-export function deleteOrder(orderId, callback) {
-    const url = `http://localhost:8080/deleteOrder?orderId=${orderId}`;
-    postRequest(url, {}, callback);
-}
+import {getRequest, postRequest} from "../utils/ajax";
 
 export function placeOrder(postData, callback) {
-    const url = `http://localhost:8080/placeOrder`;
+    const url = `http://localhost:8080/order/user/place`;
     postRequest(url, postData, callback);
 }
 
 export function getAllOrders(callback) {
-    const url = 'http://localhost:8080/getAllOrders';
-    postRequest(url, {}, callback);
+    const url = 'http://localhost:8080/order/user/all';
+    getRequest(url, callback);
 }
 
 export function getAllOrdersForManager(callback) {
-    const url = 'http://localhost:8080/manager/getAllOrders';
-    postRequest(url, {}, callback);
+    const url = 'http://localhost:8080/order/manager/all';
+    getRequest(url, callback);
 }
 
 export function searchOrdersForManager(startNEndDates, callback) {
     console.log(startNEndDates);
-    const url = 'http://localhost:8080/manager/searchOrders';
+    const url = 'http://localhost:8080/order/manager/search';
     postRequest(url, startNEndDates, callback);
 }
 
 export function searchOrders(startNEndDates, callback) {
     console.log(startNEndDates);
-    const url = 'http://localhost:8080/searchOrders';
+    const url = 'http://localhost:8080/order/user/search';
     postRequest(url, startNEndDates, callback);
 }

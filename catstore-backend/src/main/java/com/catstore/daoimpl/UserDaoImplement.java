@@ -64,17 +64,12 @@ public class UserDaoImplement implements UserDao {
     }
 
     @Override
-    public BigDecimal getUserProperty() {
-        Integer userId = SessionUtil.getUserId();
-        if (userId != null) {
-            return userRepository.getUserPropertyByUserId(userId);
-        }
-        return null;
+    public BigDecimal getUserProperty(Integer userId) {
+        return userRepository.getUserPropertyByUserId(userId);
     }
 
     @Override
-    public void updateUserProperty(BigDecimal delta) {
-        Integer userId = SessionUtil.getUserId();
+    public void updateUserProperty(Integer userId, BigDecimal delta) {
         if (userId != null) {
             userRepository.updateUserProperty(userId, delta);
         }

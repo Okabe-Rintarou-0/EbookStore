@@ -1,5 +1,5 @@
 import React from 'react'
-import {Col, Button, Row, Table, DatePicker, Switch, Image} from "antd";
+import {Button, Col, DatePicker, Image, Row, Table} from "antd";
 import {getConsumptionsGroupByBooks} from "../service/consumptionService";
 import ExpandedBookConsumptionInfo from "./ExpandedBookConsumptionInfo";
 

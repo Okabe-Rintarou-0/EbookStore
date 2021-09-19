@@ -20,19 +20,11 @@ import java.util.Map;
 
 @Service
 public class BookServiceImplement implements BookService {
-
+    @Autowired
     BookDao bookDao;
+
+    @Autowired
     BookDto bookDto;
-
-    @Autowired
-    void setBookDao(BookDao bookDao) {
-        this.bookDao = bookDao;
-    }
-
-    @Autowired
-    void setBookDto(BookDto bookDto) {
-        this.bookDto = bookDto;
-    }
 
     @Override
     public List<Book> getBooks() {
@@ -44,12 +36,12 @@ public class BookServiceImplement implements BookService {
         PageRequest pageRequest = PageRequest.of(page, Constant.BOOK_PAGE_SIZE);
         Page<Book> bookPage = bookDao.getBooks(pageRequest);
         List<Book> books = bookPage.getContent();
-        if(books.size() == 0)
-            return MessageUtil.createMessage(MessageUtil.GENERAL_FAIL_CODE,MessageUtil.GENERAL_FAIL_MSG);
+        if (books.size() == 0)
+            return MessageUtil.createMessage(MessageUtil.STAT_INVALID, MessageUtil.GENERAL_FAIL_MSG);
         JSONObject messageContent = new JSONObject();
         messageContent.put("total", bookPage.getTotalElements());
         messageContent.put("books", bookPage.getContent());
-        return MessageUtil.createMessage(MessageUtil.GENERAL_SUCCESS_CODE, MessageUtil.GENERAL_SUCCESS_MSG, messageContent);
+        return MessageUtil.createMessage(MessageUtil.STAT_OK, MessageUtil.GENERAL_SUCCESS_MSG, messageContent);
     }
 
     @Override
@@ -57,6 +49,7 @@ public class BookServiceImplement implements BookService {
         return bookDao.getBookById(bookId);
     }
 
+    ///TODO: pagination
     @Override
     public List<Book> getBooksByKeyword(String keyword) {
         return bookDao.getBooksByKeyword(keyword);
@@ -100,12 +93,9 @@ public class BookServiceImplement implements BookService {
     }
 
     @Override
-    public ArrayList<Book> getRankedBooks(ArrayList<Date> startNEndDates) {
-        if (startNEndDates != null && startNEndDates.size() == 2) {
-            Date start = startNEndDates.get(0);
-            Date end = startNEndDates.get(1);
-            if (start != null && end != null)
-                return bookDto.getRankedBooks(start, end);
+    public ArrayList<Book> getRankedBooks(Date from, Date to) {
+        if (from != null && to != null) {
+            return bookDto.getRankedBooks(from, to);
         }
         return bookDto.getAllRankedBooks();
     }

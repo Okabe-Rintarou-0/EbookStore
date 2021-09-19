@@ -1,6 +1,6 @@
 import React from "react";
 import '../css/bookDetails.css'
-import {Image, Dropdown, Menu, Button, message, Modal, Row, Col, Card, Select} from "antd";
+import {Button, Card, Col, Image, Menu, message, Modal, Row, Select} from "antd";
 import {getBookById, getConcernedBookInfo} from "../service/bookService";
 import {addToCart} from "../service/cartSerivce";
 import {addFavouriteBook} from "../service/favouriteService";

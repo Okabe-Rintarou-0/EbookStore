@@ -65,8 +65,7 @@ public class UserOrderDaoImplement implements UserOrderDao {
     }
 
     @Override
-    public Integer addOrder(String receiver, String address, String tel) {
-        Integer userId = SessionUtil.getUserId();
+    public Integer addOrder(Integer userId, String receiver, String address, String tel) {
         if (userId != null) {
             UserOrder userOrder = new UserOrder();
             userOrder.setUserId(userId);

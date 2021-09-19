@@ -53,6 +53,7 @@ class BookManagementList extends React.Component { ///todo : add modification fu
         books.map((book, index) => {
             book.key = index;
             book.state = book.forSale ? '销售中' : '已下架';
+            return book;
         });
     };
 
@@ -85,6 +86,7 @@ class BookManagementList extends React.Component { ///todo : add modification fu
         let selectedRowKeys = this.state.selectedRowKeys;
         selectedRowKeys.map((key) => {
             bookIdList.push(this.state.books[key].bookId);
+            return key;
         });
         deleteBooks(bookIdList, msg => {
             if (msg.status > 0)
@@ -102,6 +104,7 @@ class BookManagementList extends React.Component { ///todo : add modification fu
         let selectedRowKeys = this.state.selectedRowKeys;
         selectedRowKeys.map((key) => {
             bookIdList.push(this.state.books[key].bookId);
+            return key;
         });
         putOnSale(bookIdList, msg => {
             if (msg.status > 0)

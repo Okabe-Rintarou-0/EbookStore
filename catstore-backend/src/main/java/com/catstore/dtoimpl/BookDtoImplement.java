@@ -33,9 +33,9 @@ public class BookDtoImplement implements BookDto {
     }
 
     @Override
-    public ArrayList<Book> getRankedBooks(Date start, Date end) {
+    public ArrayList<Book> getRankedBooks(Date from, Date to) {
         ArrayList<Book> rankedBooks = new ArrayList<>();
-        ArrayList<UserOrder> userOrders = userOrderDao.getOrdersInRangeForManager(start, end);
+        ArrayList<UserOrder> userOrders = userOrderDao.getOrdersInRangeForManager(from, to);
         Map<Integer, Integer> bookSales = new HashMap<>();
         for (UserOrder userOrder : userOrders) {
             Set<OrderItem> orderItems = userOrder.getOrders();

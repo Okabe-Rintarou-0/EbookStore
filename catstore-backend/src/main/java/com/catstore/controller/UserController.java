@@ -21,9 +21,16 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    private Integer userId = null;
+
     @GetMapping
     User getUser() {
-        return userService.getUser();
+        //store userId
+        if (userId == null) {
+            userId = SessionUtil.getUserId();
+            System.out.println("My userId is: " + userId + ",and I'm " + this);
+        }
+        return userService.getUser(userId);
     }
 
     @GetMapping("/signature")

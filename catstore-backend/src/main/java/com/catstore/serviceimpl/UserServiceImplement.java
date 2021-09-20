@@ -31,8 +31,8 @@ public class UserServiceImplement implements UserService {
     }
 
     @Override
-    public User getUser() {
-        return userDao.getUser(SessionUtil.getUserId());
+    public User getUser(Integer userId) {
+        return userDao.getUser(userId);
     }
 
     @Override

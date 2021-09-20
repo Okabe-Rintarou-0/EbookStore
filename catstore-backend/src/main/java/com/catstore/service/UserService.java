@@ -11,7 +11,7 @@ import java.util.List;
 public interface UserService {
     UserAuthority checkAuthority(String userAccount, String userPassword);
 
-    User getUser();
+    User getUser(Integer userId);
 
     void setUserSignature(String userSignature);
 

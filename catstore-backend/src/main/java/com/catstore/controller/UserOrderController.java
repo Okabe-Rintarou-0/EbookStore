@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 @RestController
+//Users will frequently visit this controller. So assign a controller for each session.
 @Scope(scopeName = "session")
 @RequestMapping("/order")
 public class UserOrderController {
@@ -35,6 +36,7 @@ public class UserOrderController {
         Integer userId = SessionUtil.getUserId();
         orderInfo.userId = userId;
         orderInfo.userProperty = userService.getUserProperty(userId);
+        //Use jms.
         jmsMessagingTemplate.convertAndSend("order", orderInfo);
         return MessageUtil.createMessage(MessageUtil.STAT_OK, MessageUtil.PLACE_ORDER_SUCCESS_MSG);
     }

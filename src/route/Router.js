@@ -20,6 +20,7 @@ import ConsumptionManagementView from "../view/ConsumptionManagementView";
 import PurchaseStatisticView from "../view/PurchaseStatisticView";
 import RegisterView from "../view/RegisterView";
 import RegisterRoute from "./RegisterRoute";
+import ChatRoomView from "../view/ChatRoomView";
 
 class BasicRoute extends React.Component {
 
@@ -44,6 +45,8 @@ class BasicRoute extends React.Component {
                     <PrivateRoute exact path="/status/success" component={PaymentSuccess}/>
                     <PrivateRoute exact path="/status/fail" component={PaymentFail}/>
                     <PrivateRoute exact path="/statistic" component={PurchaseStatisticView}/>
+                    <PrivateRoute exact path="/chat" component={ChatRoomView}/>
+                    <ManagerRoute exact path="/manager/orders" component={OrderManagementView}/>
                     <ManagerRoute exact path="/manager/books" component={BookManagementView}/>
                     <ManagerRoute exact path="/manager/users" component={UserManagementView}/>
                     <ManagerRoute exact path="/manager/consumption" component={ConsumptionManagementView}/>

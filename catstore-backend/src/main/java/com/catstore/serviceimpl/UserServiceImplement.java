@@ -3,6 +3,7 @@ package com.catstore.serviceimpl;
 import com.catstore.dao.UserDao;
 import com.catstore.entity.User;
 import com.catstore.entity.UserAuthority;
+import com.catstore.model.ChatRoomMemberInfo;
 import com.catstore.service.UserService;
 import com.catstore.utils.sessionUtils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class UserServiceImplement implements UserService {
 
     @Override
     public User getUser() {
-        return userDao.getUser();
+        return userDao.getUser(SessionUtil.getUserId());
     }
 
     @Override
@@ -65,5 +66,10 @@ public class UserServiceImplement implements UserService {
                 return false;
         }
         return true;
+    }
+
+    @Override
+    public ChatRoomMemberInfo getChatRoomMemberInfo(Integer userId) {
+        return userDao.getChatRoomMemberInfo(userId);
     }
 }

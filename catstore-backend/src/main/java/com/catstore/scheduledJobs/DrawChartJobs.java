@@ -46,7 +46,7 @@ public class DrawChartJobs {
         this.bookDao = bookDao;
     }
 
-    @Scheduled(fixedRate = 30000)
+//    @Scheduled(fixedRate = 30000)
     void drawBookRankEveryHalfMinute() throws IOException {
         System.out.println("now start to draw");
         ArrayList<Book> rankedBooks = bookDao.getAllRankedBooks();
@@ -63,7 +63,7 @@ public class DrawChartJobs {
         barChartDrawer.drawBarChart(data, alternative, bottomLabels, "书籍销量排名", "书籍名称", "销量(元)", Constant.bookRankSavePath);
     }
 
-    @Scheduled(fixedRate = 30000)
+//    @Scheduled(fixedRate = 30000)
     void drawConsumptionRankEveryHalfMinute() throws IOException {
         System.out.println("now start to draw");
         List<User> users = userDao.getAllUsers();

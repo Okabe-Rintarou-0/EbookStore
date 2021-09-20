@@ -3,6 +3,7 @@ package com.catstore.daoimpl;
 import com.catstore.dao.UserDao;
 import com.catstore.entity.User;
 import com.catstore.entity.UserAuthority;
+import com.catstore.model.ChatRoomMemberInfo;
 import com.catstore.repository.UserAuthorityRepository;
 import com.catstore.repository.UserRepository;
 import com.catstore.utils.Constant;
@@ -43,8 +44,7 @@ public class UserDaoImplement implements UserDao {
     }
 
     @Override
-    public User getUser() {
-        Integer userId = SessionUtil.getUserId();
+    public User getUser(Integer userId) {
         if (userId != null)
             return userRepository.getUserById(userId);
         return null;
@@ -112,5 +112,19 @@ public class UserDaoImplement implements UserDao {
         user.setUserProperty(BigDecimal.ZERO);
         user.setEmail(email);
         return userRepository.save(user).getUserId();
+    }
+
+    @Override
+    public ChatRoomMemberInfo getChatRoomMemberInfo(Integer userId) {
+        if (userId != null) {
+            User user = getUser(userId);
+            if (user != null) {
+                ChatRoomMemberInfo roomMemberInfo = new ChatRoomMemberInfo();
+                roomMemberInfo.setUserIcon(user.getUserIcon());
+                roomMemberInfo.setUsername(user.getUsername());
+                return roomMemberInfo;
+            }
+        }
+        return null;
     }
 }

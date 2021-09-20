@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/favour")
 public class FavouriteController {
 
     FavouriteService favouriteService;
@@ -22,7 +23,7 @@ public class FavouriteController {
         this.favouriteService = favouriteService;
     }
 
-    @GetMapping("/addFavouriteBook")
+    @GetMapping("/add")
     Message addFavouriteBook(@RequestParam("bookId") Integer bookId) {
         if (favouriteService.addFavouriteBook(bookId))
             return MessageUtil.createMessage(MessageUtil.ADD_FAVOURITE_SUCCESS_CODE, MessageUtil.ADD_FAVOURITE_SUCCESS_MSG);
@@ -30,17 +31,17 @@ public class FavouriteController {
             return MessageUtil.createMessage(MessageUtil.FAVOURITE_ALREADY_EXIST_CODE, MessageUtil.FAVOURITE_ALREADY_EXIST_MSG);
     }
 
-    @GetMapping("/deleteFavouriteBook")
+    @GetMapping("/delete")
     void deleteFavouriteBook(@RequestParam("bookId") Integer bookId) {
         favouriteService.deleteFavouriteBook(bookId);
     }
 
-    @GetMapping("/moveToCart")
+    @GetMapping("/move")
     void moveToCart(@RequestParam("bookId") Integer bookId) {
         favouriteService.moveToCart(bookId);
     }
 
-    @GetMapping("/getFavouriteBooks")
+    @GetMapping("/all")
     List<Map<String, String>> getFavouriteBooks() {
         return favouriteService.getFavouriteBooks();
     }

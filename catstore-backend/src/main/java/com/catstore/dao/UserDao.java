@@ -3,6 +3,7 @@ package com.catstore.dao;
 import com.catstore.entity.Book;
 import com.catstore.entity.User;
 import com.catstore.entity.UserAuthority;
+import com.catstore.model.ChatRoomMemberInfo;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -12,7 +13,7 @@ public interface UserDao {
 
     List<User> getAllUsers();
 
-    User getUser();
+    User getUser(Integer userId);
 
     void setUserSignature(String userSignature);
 
@@ -29,5 +30,7 @@ public interface UserDao {
     void addUserAuthority(Integer userId, String userAccount, String password);
 
     Integer addUser(String username, String email);
+
+    ChatRoomMemberInfo getChatRoomMemberInfo(Integer userId);
 }
 

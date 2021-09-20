@@ -8,6 +8,7 @@ import com.catstore.service.UserService;
 import com.catstore.utils.messageUtils.MessageUtil;
 import com.catstore.utils.sessionUtils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 @RestController
+@Scope(scopeName = "session")
 @RequestMapping("/order")
 public class UserOrderController {
     @Autowired

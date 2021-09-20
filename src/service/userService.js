@@ -28,12 +28,12 @@ export function logout() {
         if (data.status > 0) {
             localStorage.removeItem('user');
             history.push("/login");
-            message.success(data.message);
+            message.success(data.message).then(null);
         } else {
-            message.error(data.message);
+            message.error(data.message).then(null);
         }
     };
-    postRequest(url, {}, callback);
+    getRequest(url, callback);
 }
 
 export function getUser(callback) {

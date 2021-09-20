@@ -2,6 +2,7 @@ package com.catstore.service;
 
 import com.catstore.entity.User;
 import com.catstore.entity.UserAuthority;
+import com.catstore.model.ChatRoomMemberInfo;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -21,4 +22,6 @@ public interface UserService {
     Boolean banUsers(ArrayList<Integer> userIdList);
 
     Boolean unbanUsers(ArrayList<Integer> userIdList);
+
+    ChatRoomMemberInfo getChatRoomMemberInfo(Integer userId);
 }

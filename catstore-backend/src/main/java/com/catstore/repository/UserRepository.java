@@ -19,9 +19,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("update User set userSignature = :userSignature where userId = :userId ")
     void setUserSignature(@Param("userId") Integer userId, @Param("userSignature") String userSignature);
 
-    @Query(value = "select userProperty from User where userId =?1")
-    BigDecimal getUserPropertyByUserId(Integer userId);
-
     @Query(value = "from User where not userIdentity = 1")
         //except for the managers
     List<User> getAllUsers();

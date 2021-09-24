@@ -6,15 +6,15 @@ import com.catstore.entity.UserOrder;
 import com.catstore.model.OrderInfo;
 import com.catstore.model.OrderItemInfo;
 import com.catstore.service.UserOrderService;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -51,7 +51,7 @@ public class UserOrderServiceImplement implements UserOrderService {
     }
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
     public void placeOrder(OrderInfo orderInfo) {
         List<OrderItemInfo> items = orderInfo.items;
         BigDecimal totalPrice = BigDecimal.valueOf(0);
@@ -71,17 +71,23 @@ public class UserOrderServiceImplement implements UserOrderService {
             String orderAddress = orderInfo.address;
             String orderTel = orderInfo.tel;
             String orderReceiver = orderInfo.receiver;
+            //Transaction Required
             Integer orderId = userOrderDao.addOrder(userId, orderReceiver, orderAddress, orderTel);
             System.out.println("orderId: " + orderId);
             for (OrderItemInfo item : items) {
                 Integer bookId = item.bookId;
                 Integer purchaseNumber = item.purchaseNumber;
                 Integer cartId = item.cartId;
+                //Transaction Required
                 cartDao.deleteCartItem(cartId);
+                //Transaction Required
                 userOrderDao.addOrderItem(orderId, bookId, purchaseNumber);
-                bookDao.placeOrder(bookId, purchaseNumber);
+                //Transaction Required
+                bookDao.adjustStock(bookId, purchaseNumber);
             }
+            //Transaction Required
             consumptionDao.addUserConsumption(totalPrice);
+            //Transaction Required
             userDao.updateUserProperty(userId, totalPrice.negate()); //-totalPrice
         }
     }
@@ -90,7 +96,6 @@ public class UserOrderServiceImplement implements UserOrderService {
     public List<OrderItem> getUserOrdersByOrderId(Integer orderId) {
         return userOrderDao.getUserOrdersByOrderId(orderId);
     }
-
 
     @Override
     public ArrayList<UserOrder> getAllOrders() {

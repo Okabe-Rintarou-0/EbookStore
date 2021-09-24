@@ -1,9 +1,9 @@
 package com.catstore.controller;
 
 import com.catstore.entity.User;
+import com.catstore.model.Message;
 import com.catstore.service.UserService;
 import com.catstore.utils.Constant;
-import com.catstore.model.Message;
 import com.catstore.utils.messageUtils.MessageUtil;
 import com.catstore.utils.sessionUtils.SessionUtil;
 import net.sf.json.JSONArray;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 
 @RestController

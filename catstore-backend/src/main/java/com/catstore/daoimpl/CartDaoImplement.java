@@ -7,10 +7,11 @@ import com.catstore.repository.UserRepository;
 import com.catstore.utils.sessionUtils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class CartDaoImplement implements CartDao {
@@ -29,6 +30,7 @@ public class CartDaoImplement implements CartDao {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public void deleteCartItem(Integer cartId) {
         cartRepository.deleteUserCartByCartId(cartId);
     }

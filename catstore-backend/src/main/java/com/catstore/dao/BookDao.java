@@ -27,7 +27,7 @@ public interface BookDao {
 
     Boolean putOnSale(Integer bookId);
 
-    void placeOrder(Integer bookId, Integer purchaseNumber);
+    void adjustStock(Integer bookId, Integer delta);
 
     ArrayList<Book> getAllRankedBooks();
 

@@ -7,9 +7,11 @@ import com.catstore.model.ChatRoomMemberInfo;
 import com.catstore.repository.UserAuthorityRepository;
 import com.catstore.repository.UserRepository;
 import com.catstore.utils.Constant;
-import com.catstore.utils.sessionUtils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -20,18 +22,11 @@ import java.util.List;
 
 @Repository
 public class UserDaoImplement implements UserDao {
-    UserAuthorityRepository userAuthorityRepository;
-    UserRepository userRepository;
+    @Autowired
+    private UserAuthorityRepository userAuthorityRepository;
 
     @Autowired
-    public void setUserAuthorityRepository(UserAuthorityRepository userAuthorityRepository) {
-        this.userAuthorityRepository = userAuthorityRepository;
-    }
-
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private UserRepository userRepository;
 
     @Override
     public UserAuthority checkAuthority(String userAccount, String userPassword) {
@@ -64,11 +59,7 @@ public class UserDaoImplement implements UserDao {
     }
 
     @Override
-    public BigDecimal getUserProperty(Integer userId) {
-        return userRepository.getUserPropertyByUserId(userId);
-    }
-
-    @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public void updateUserProperty(Integer userId, BigDecimal delta) {
         if (userId != null) {
             userRepository.updateUserProperty(userId, delta);
@@ -91,6 +82,7 @@ public class UserDaoImplement implements UserDao {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
     public void addUserAuthority(Integer userId, String userAccount, String password) {
         UserAuthority userAuthority = new UserAuthority();
         userAuthority.setUserAccount(userAccount);
@@ -101,6 +93,7 @@ public class UserDaoImplement implements UserDao {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
     public Integer addUser(String username, String email) {
         User user = new User();
         user.setUserAddress("");

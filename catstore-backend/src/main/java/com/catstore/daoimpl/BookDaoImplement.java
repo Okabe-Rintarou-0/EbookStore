@@ -8,29 +8,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 @Repository
 public class BookDaoImplement implements BookDao {
-
-    BookRepository bookRepository;
-
-    BookCrawler bookCrawler;
+    @Autowired
+    private BookRepository bookRepository;
 
     @Autowired
-    void setBookRepository(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
-
-    @Autowired
-    void setBookCrawler(BookCrawler bookCrawler) {
-        this.bookCrawler = bookCrawler;
-    }
+    private BookCrawler bookCrawler;
 
     @Override
     public List<Book> getBooks() {
@@ -78,8 +71,9 @@ public class BookDaoImplement implements BookDao {
     }
 
     @Override
-    public void placeOrder(Integer bookId, Integer purchaseNumber) {
-        bookRepository.placeOrder(bookId, purchaseNumber);
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
+    public void adjustStock(Integer bookId, Integer delta) {
+        bookRepository.adjustStock(bookId, delta);
     }
 
     @Override

@@ -44,8 +44,8 @@ public class ChatEndpoint {
     @OnOpen
     public void onOpen(Session session, EndpointConfig config) {
         this.httpSession = (HttpSession) config.getUserProperties().get("session");
-        System.out.println("User joined " + " with http session id " + httpSession.getId());
-        String response = "User " + " | WebSocket session ID " + session.getId() + " | HTTP session ID " + httpSession.getId();
+        System.out.println("User joined with http session id " + httpSession.getId());
+        String response = "User | WebSocket session ID " + session.getId() + " | HTTP session ID " + httpSession.getId();
         System.out.println(response);
 
         sessions.add(session);
@@ -80,8 +80,8 @@ public class ChatEndpoint {
     @OnClose
     public void onClose(Session session) {
         sessions.remove(session);
-        System.out.println("User closed " + " with http session id " + httpSession.getId());
-        String response = "User " + " | WebSocket session ID " + session.getId() + " | HTTP session ID " + httpSession.getId();
+        System.out.println("User closed with http session id " + httpSession.getId());
+        String response = "User | WebSocket session ID " + session.getId() + " | HTTP session ID " + httpSession.getId();
         System.out.println(response);
 
         sessions.remove(session);

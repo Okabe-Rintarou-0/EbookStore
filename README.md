@@ -1,7 +1,7 @@
 # CatStore
 CatStore is a simple book store based on React and Spring boot. It's an assignment from lesson SE2321 and SE3353.
 ## To-do list
-- [x] Implement Transcation
+- [x] Implement transcation.
 - [x] Implement websocket.
 - [ ] Try kafka.
 ## Update

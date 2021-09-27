@@ -21,4 +21,4 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
 
   ![image](https://raw.githubusercontent.com/Okabe-Rintarou-0/web-images/master/books/image.1e14b1v41peo.png)
 
-  [Notes](https://github.com/Okabe-Rintarou-0/CatStore/blob/master/notes/Transaction.md)
+  [Notes](https://github.com/Okabe-Rintarou-0/CatStore/blob/master/notes/Transaction.mdgit )

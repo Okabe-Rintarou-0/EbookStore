@@ -46,6 +46,11 @@ public class UserDaoImplement implements UserDao {
     }
 
     @Override
+    public BigDecimal getUserProperty(int userId) {
+        return getUser(userId).getUserProperty();
+    }
+
+    @Override
     public void setUserSignature(String userSignature) {
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (servletRequestAttributes != null) {

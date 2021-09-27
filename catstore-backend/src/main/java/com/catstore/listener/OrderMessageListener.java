@@ -13,9 +13,13 @@ public class OrderMessageListener {
 
     //Listen to the message coming from topic "order"
     @JmsListener(destination = "order")
-    public void handleOrderMessage(OrderInfo orderInfo){
+    public void handleOrderMessage(OrderInfo orderInfo) {
         System.out.println("Listener received :" + orderInfo.toString());
         //place order.
-        userOrderService.placeOrder(orderInfo);
+        try {
+            userOrderService.placeOrder(orderInfo);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 }

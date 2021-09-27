@@ -15,6 +15,8 @@ public interface UserDao {
 
     User getUser(Integer userId);
 
+    BigDecimal getUserProperty(int userId);
+
     void setUserSignature(String userSignature);
 
     void updateUserProperty(Integer userId, BigDecimal delta);

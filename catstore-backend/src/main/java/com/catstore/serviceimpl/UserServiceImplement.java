@@ -5,11 +5,9 @@ import com.catstore.entity.User;
 import com.catstore.entity.UserAuthority;
 import com.catstore.model.ChatRoomMemberInfo;
 import com.catstore.service.UserService;
-import com.catstore.utils.sessionUtils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;

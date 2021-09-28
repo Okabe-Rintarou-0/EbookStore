@@ -28,4 +28,3 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
   Implement multithread to count daily visit of home page. Has passed jmeter tests.
 
   ![image](https://raw.githubusercontent.com/Okabe-Rintarou-0/web-images/master/books/image.19rf0v1bj068.png)
-=======

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {Avatar, Button, Col, Input, Layout, List, Row} from 'antd';
+import {getLocalTime} from "../utils/timeUtils";
 
 const {Footer} = Layout;
 let ws;
@@ -52,22 +53,23 @@ class ChatRoomPanel extends React.Component {
         console.log("received: " + JSON.stringify(message));
         let type = message.type;
         let info = message.info;
+        let timestamp = message.timestamp;
         let roomMemberInfo = message.roomMemberInfo;
         switch (type) {
             case 'Info':
                 switch (info) {
                     case 'Join':
-                        this.addMessage('Action', roomMemberInfo.userIcon, roomMemberInfo.username, '加入讨论室');
+                        this.addMessage('Action', roomMemberInfo.userIcon, roomMemberInfo.username, timestamp, '加入讨论室');
                         break;
                     case 'Leave':
-                        this.addMessage('Action', roomMemberInfo.userIcon, roomMemberInfo.username, '离开讨论室');
+                        this.addMessage('Action', roomMemberInfo.userIcon, roomMemberInfo.username, timestamp, '离开讨论室');
                         break;
                     default:
                         break;
                 }
                 break;
             case 'Chat':
-                this.addMessage('Action', roomMemberInfo.userIcon, roomMemberInfo.username, message.message);
+                this.addMessage('Action', roomMemberInfo.userIcon, roomMemberInfo.username, timestamp, message.message);
                 break;
             case 'PingPong':
                 this.sendPingPongMsg();
@@ -87,11 +89,12 @@ class ChatRoomPanel extends React.Component {
         ws.close();
     }
 
-    addMessage = (type, icon, name, message) => {
+    addMessage = (type, icon, name, timestamp, message) => {
         let newMsg = {};
         newMsg.type = type;
         newMsg.icon = icon;
         newMsg.name = name;
+        newMsg.timestamp = timestamp;
         newMsg.message = message;
         this.setState({
             messages: [...this.state.messages, newMsg]
@@ -109,7 +112,7 @@ class ChatRoomPanel extends React.Component {
                             <List.Item.Meta
                                 avatar={<Avatar src={item.icon}/>}
                                 title={<p>{item.name}</p>}
-                                description={item.message}
+                                description={`${getLocalTime(item.timestamp)} ${item.message}`}
                             />
                         </List.Item>
                     )}

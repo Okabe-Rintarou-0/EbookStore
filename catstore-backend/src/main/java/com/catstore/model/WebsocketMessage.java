@@ -3,15 +3,19 @@ package com.catstore.model;
 import com.alibaba.fastjson.JSON;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class WebsocketMessage implements Serializable {
     public String type;
+    public Date timestamp;
+
+    public WebsocketMessage() {
+        timestamp = new Date();
+    }
 
     @Override
     public String toString() {

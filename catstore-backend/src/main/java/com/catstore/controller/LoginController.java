@@ -1,14 +1,17 @@
 package com.catstore.controller;
 
 import com.catstore.entity.UserAuthority;
+import com.catstore.model.Message;
 import com.catstore.service.UserService;
 import com.catstore.utils.Constant;
-import com.catstore.model.Message;
 import com.catstore.utils.messageUtils.MessageUtil;
 import com.catstore.utils.sessionUtils.SessionUtil;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
@@ -48,7 +51,6 @@ public class LoginController {
 
             JSONObject responseData = JSONObject.fromObject(userAuthority);
             responseData.remove("userPassword");
-
             return MessageUtil.createMessage(MessageUtil.LOGIN_SUCCESS_CODE, MessageUtil.LOGIN_SUCCESS_MSG, responseData);
         } else {
             return MessageUtil.createMessage(MessageUtil.LOGIN_ERROR_CODE, MessageUtil.LOGIN_ERROR_MSG);

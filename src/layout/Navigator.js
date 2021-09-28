@@ -20,6 +20,7 @@ import {DownOutlined, LogoutOutlined, SettingOutlined, UserOutlined} from "@ant-
 import {Link} from "react-router-dom";
 import IconUpload from "../components/IconUpload";
 import Input from "antd/es/input";
+import {getVisit} from "../service/visitService";
 
 class Navigator extends React.Component {
 
@@ -32,6 +33,7 @@ class Navigator extends React.Component {
             username: "",
             userIcon: "",
             userId: 0,
+            visit: 0,
             userIdentity: -1
         };
     }
@@ -48,6 +50,9 @@ class Navigator extends React.Component {
 
     componentDidMount() {
         getUser(this.handleUserInfo);
+        getVisit(visit => {
+            this.setState({visit: visit})
+        });
     }
 
     renderLogo = () => {
@@ -64,6 +69,9 @@ class Navigator extends React.Component {
                             fontWeight: 'lighter',
                             color: '#666666'
                         }}>A store full of books and...cats!</b>
+                        <b style={{marginLeft: '8px'}}>
+                            访问量:{this.state.visit}
+                        </b>
                     </Col>
                 </Row>
             </Col>

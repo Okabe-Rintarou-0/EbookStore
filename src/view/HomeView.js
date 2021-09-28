@@ -3,7 +3,7 @@ import React from "react";
 import SiderBar from "../layout/Sider";
 import BookList from "../components/BookList";
 import '../css/home.css';
-import {Layout, Row} from "antd";
+import {Layout} from "antd";
 
 const {Content, Sider} = Layout;
 

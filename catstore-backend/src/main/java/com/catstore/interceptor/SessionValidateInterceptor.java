@@ -3,6 +3,7 @@ package com.catstore.interceptor;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Method;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,21 +24,22 @@ public class SessionValidateInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
         HandlerMethod handlerMethod = (HandlerMethod) handler;
-        SkipSessionCheck skipSessionCheck = handlerMethod.getBean().getClass().getDeclaredAnnotation(SkipSessionCheck.class);
         //判断如果请求的类是swagger的控制器，直接通行。
         if (handlerMethod.getBean().getClass().getName().equals("springfox.documentation.swagger.web.ApiResourceController")) {
             return true;
         }
-        if (skipSessionCheck != null && skipSessionCheck.value())
+        Method method = handlerMethod.getMethod();
+        if (method.isAnnotationPresent(SkipSessionCheck.class)) {
             return true;
+        }
         boolean status = SessionUtil.checkAuthority();
         if (!status) {
-            System.out.println("Session Validate Check Failed");
+            System.out.println("Session Validation Check Failed");
             Message message = MessageUtil.createMessage(MessageUtil.NOT_LOGIN_CODE, MessageUtil.NOT_LOGIN_MSG);
             this.sendJsonBack(response, message);
             return false;
         } else {
-            System.out.println("Session Validate Check Succeed");
+            System.out.println("Session Validation Check Succeed");
             return true;
         }
     }

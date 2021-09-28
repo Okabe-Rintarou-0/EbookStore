@@ -21,11 +21,11 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
 + 2021/9/24: Implement transaction.
 
   ![image](https://raw.githubusercontent.com/Okabe-Rintarou-0/web-images/master/books/image.1e14b1v41peo.png)
-
-  [Notes](https://github.com/Okabe-Rintarou-0/CatStore/blob/master/notes/Transaction.mdgit )
+    [Notes](https://github.com/Okabe-Rintarou-0/CatStore/blob/master/notes/Transaction.md)
 
 + 2021/9/28
 
   Implement multithread to count daily visit of home page. Has passed jmeter tests.
 
   ![image](https://raw.githubusercontent.com/Okabe-Rintarou-0/web-images/master/books/image.19rf0v1bj068.png)
+=======

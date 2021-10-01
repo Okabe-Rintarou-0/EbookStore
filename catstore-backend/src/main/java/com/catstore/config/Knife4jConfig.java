@@ -9,13 +9,6 @@ import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
-/**
- * @author
- * @Title:
- * @Package
- * @Description:
- * @date 2021/9/14 14:06
- */
 @Configuration
 @EnableKnife4j
 public class Knife4jConfig {

@@ -1,5 +1,6 @@
 package com.catstore.entity;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -28,4 +29,9 @@ public class User {
     private String userAddress;
     private BigDecimal userProperty;
     private String email;
+
+    @Override
+    public String toString() {
+        return JSON.toJSONString(this);
+    }
 }

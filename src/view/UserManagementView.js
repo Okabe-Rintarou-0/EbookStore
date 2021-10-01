@@ -1,7 +1,7 @@
 import React from 'react'
 import {Layout} from "antd";
 import Navigator from "../layout/Navigator";
-import BookManagementList from "../managerComponents/UserManagementList";
+import UserManagementList from "../managerComponents/UserManagementList";
 
 const {Content} = Layout;
 
@@ -15,7 +15,7 @@ class UserManagementView extends React.Component {
                     <Navigator/>
                     <Layout>
                         <Content>
-                            <BookManagementList/>
+                            <UserManagementList/>
                         </Content>
                     </Layout>
                 </Layout>

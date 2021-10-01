@@ -4,6 +4,7 @@ import com.catstore.crawlers.BookCrawler;
 import com.catstore.dao.BookDao;
 import com.catstore.entity.Book;
 import com.catstore.repository.BookRepository;
+import com.catstore.utils.redisUtils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +25,9 @@ public class BookDaoImplement implements BookDao {
 
     @Autowired
     private BookCrawler bookCrawler;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Override
     public List<Book> getBooks() {
@@ -60,14 +64,30 @@ public class BookDaoImplement implements BookDao {
         return bookRepository.deleteBookByBookId(bookId) > 0;
     }
 
+    //下架书籍，采用先更新数据库再删除redis缓存的方法。
     @Override
+    @Transactional
     public Boolean undercarriageBookByBookId(Integer bookId) {
-        return bookRepository.undercarriageBookByBookId(bookId) > 0;
+        if (bookRepository.undercarriageBookByBookId(bookId) > 0) {
+            redisUtil.del("book" + bookId);
+            return true;
+        }
+        return false;
     }
 
+    //下架书籍，采用先删除redis缓存再更新数据库的方法。
+    //使用“延时双删”
     @Override
+    @Transactional
     public Boolean putOnSale(Integer bookId) {
-        return bookRepository.putOnSale(bookId) > 0;
+        // delete cache first
+        redisUtil.del("book" + bookId);
+        // then modify database
+        if (bookRepository.putOnSale(bookId) > 0) {
+            redisUtil.del("book" + bookId, 1000L);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -83,11 +103,16 @@ public class BookDaoImplement implements BookDao {
 
     @Override
     public void saveBook(Book book) {
-        if (book != null)
+        if (book != null) {
             bookRepository.save(book);
+            redisUtil.del("book" + book.getBookId());
+        }
     }
 
+    //修改书籍信息
+    //先修改数据库，再删除cache
     @Override
+    @Transactional
     public void postModifiedBook(Map<String, String> book) {
         try {
             Integer bookId = Integer.parseInt(book.get("bookId"));
@@ -100,8 +125,11 @@ public class BookDaoImplement implements BookDao {
             String bookTag = book.get("bookTag");
             String bookType = book.get("bookType");
             BigDecimal bookPrice = new BigDecimal(book.get("bookPrice"));
+
             bookRepository.modifyBookWithBookId(bookId, bookCover, bookTitle, bookAuthor, bookDescription, bookDetails,
                     bookStock, bookPrice, bookTag, bookType);
+            redisUtil.del("book" + bookId);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

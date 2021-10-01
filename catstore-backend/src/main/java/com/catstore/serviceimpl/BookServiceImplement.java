@@ -7,11 +7,13 @@ import com.catstore.service.BookService;
 import com.catstore.utils.Constant;
 import com.catstore.model.Message;
 import com.catstore.utils.messageUtils.MessageUtil;
+import com.catstore.utils.redisUtils.RedisUtil;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,10 +23,13 @@ import java.util.Map;
 @Service
 public class BookServiceImplement implements BookService {
     @Autowired
-    BookDao bookDao;
+    private BookDao bookDao;
 
     @Autowired
-    BookDto bookDto;
+    private BookDto bookDto;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Override
     public List<Book> getBooks() {
@@ -46,7 +51,15 @@ public class BookServiceImplement implements BookService {
 
     @Override
     public Book getBookById(Integer bookId) {
-        return bookDao.getBookById(bookId);
+        Book book = redisUtil.get("book" + bookId, Book.class);
+        if (book == null) {
+            System.out.println("Fetch book " + bookId + " from database.");
+            book = bookDao.getBookById(bookId);
+            if (book != null)
+                redisUtil.set("book" + bookId, book);
+        } else
+            System.out.println("Directly fetch book " + bookId + " from redis.");
+        return book;
     }
 
     ///TODO: pagination
@@ -75,15 +88,18 @@ public class BookServiceImplement implements BookService {
     }
 
     @Override
+    @Transactional
     public Boolean undercarriage(ArrayList<Integer> bookIdList) {
         for (Integer bookId : bookIdList) {
-            if (!bookDao.undercarriageBookByBookId(bookId))
+            if (!bookDao.undercarriageBookByBookId(bookId)) {
                 return false;
+            }
         }
         return true;
     }
 
     @Override
+    @Transactional
     public Boolean putOnSale(ArrayList<Integer> bookIdList) {
         for (Integer bookId : bookIdList) {
             if (!bookDao.putOnSale(bookId))
@@ -101,6 +117,7 @@ public class BookServiceImplement implements BookService {
     }
 
     @Override
+    @Transactional
     public void postModifiedBook(Map<String, String> book) {
         bookDao.postModifiedBook(book);
     }

@@ -1,5 +1,6 @@
 package com.catstore.entity;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,5 +36,10 @@ public class Book {
     private String bookDetails;
     private Boolean forSale;
     private Integer sales;
+
+    @Override
+    public String toString() {
+        return JSON.toJSONString(this);
+    }
 }
 

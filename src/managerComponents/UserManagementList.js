@@ -5,7 +5,7 @@ import {history} from "../utils/history";
 import ExpandedUserInfo from "../components/ExpandedUserInfo";
 import {banUsers, getAllUsers, unbanUsers} from "../service/userService";
 
-class BookManagementList extends React.Component {
+class UserManagementList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -132,4 +132,4 @@ class BookManagementList extends React.Component {
     }
 }
 
-export default BookManagementList;
+export default UserManagementList;

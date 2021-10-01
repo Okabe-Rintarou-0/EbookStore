@@ -5,6 +5,7 @@ import com.catstore.entity.User;
 import com.catstore.entity.UserAuthority;
 import com.catstore.model.ChatRoomMemberInfo;
 import com.catstore.service.UserService;
+import com.catstore.utils.redisUtils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +17,11 @@ import java.util.List;
 @Service
 public class UserServiceImplement implements UserService {
 
-    final UserDao userDao;
+    @Autowired
+    private UserDao userDao;
 
     @Autowired
-    UserServiceImplement(UserDao userDao) {
-        this.userDao = userDao;
-    }
+    private RedisUtil redisUtil;
 
     @Override
     public UserAuthority checkAuthority(String userAccount, String userPassword) {
@@ -30,7 +30,15 @@ public class UserServiceImplement implements UserService {
 
     @Override
     public User getUser(Integer userId) {
-        return userDao.getUser(userId);
+        User user = redisUtil.get("user" + userId, User.class);
+        if (user == null) {
+            System.out.println("Fetch user from database.");
+            user = userDao.getUser(userId);
+            if (user != null)
+                redisUtil.set("user" + userId, user);
+        } else
+            System.out.println("Directly fetch user from redis.");
+        return user;
     }
 
     @Override

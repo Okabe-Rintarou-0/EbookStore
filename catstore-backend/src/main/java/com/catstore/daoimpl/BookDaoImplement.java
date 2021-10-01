@@ -90,10 +90,13 @@ public class BookDaoImplement implements BookDao {
         return false;
     }
 
+    //修改书籍存货
+    //先修改数据库，再删除cache
     @Override
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public void adjustStock(Integer bookId, Integer delta) {
         bookRepository.adjustStock(bookId, delta);
+        redisUtil.del("book" + bookId);
     }
 
     @Override

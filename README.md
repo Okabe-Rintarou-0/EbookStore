@@ -3,7 +3,7 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
 ## To-do list
 - [x] Implement transcation.
 - [x] Implement websocket.
-- [ ] Write multithread notes.
+- [x] Write multithread notes.
 - [ ] Try kafka.
 ## Update
 + 2021/9/19: Optimize controller with @Scope annotaion, and implement jms.
@@ -21,6 +21,8 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
 + 2021/9/28
 
   Implement multithread to count daily visit of home page. Has passed jmeter tests.
+  
+  [Notes](https://github.com/Okabe-Rintarou-0/CatStore/blob/master/notes/Multithread.md)
 
 + 2021/10/1
   

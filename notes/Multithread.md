@@ -53,7 +53,7 @@ public void func() {
 ```java
 Object lock1, lock2;
 synchronized(lock1) { 
-	doSomething();
+    doSomething();
 }
 synchronized(lock2) {
     doSomething();
@@ -107,6 +107,7 @@ Lock 对象相对于隐式锁的最大优势是它们能够退出获取锁的尝
 + Executor:
 
   ExecutorService 接口用类似但更通用的提交方法补充了 execute。
+  
     – 和 execute 一样，submit 接受 Runnable 对象，但也接受 Callable 对象，它允许任务返回一个值。 
 
     – submit 方法返回一个 Future 对象，用于检索 Callable 返回值并管理 Callable 和 Runnable 任务的状态 

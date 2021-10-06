@@ -27,3 +27,5 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
 + 2021/10/1
   
   Implement redis. (Using jedis pool, for jedis is thought to be faster than redisTemplate.)
+  
+  [Notes](https://github.com/Okabe-Rintarou-0/CatStore/blob/master/notes/Caching.md)

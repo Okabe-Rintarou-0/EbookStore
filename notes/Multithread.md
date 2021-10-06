@@ -60,8 +60,6 @@ synchronized(lock2) {
 }
 ```
 
-
-
 ### Volatile
 
 在一些32位的处理器上,如果要求对64位数据的写操作具有原子性,开销会比较大。
@@ -78,8 +76,13 @@ jvm不要求对64位long和double类型变量的写操作具有原子性。
 ### Wait & Notify
 
 + using notifyAll() & wait().
-
 + producer & consumer model.
+
+### Random
+
++ Random 线程安全，但是消耗资源大
+
++ LocalThreadRandom 线程间可能共享随机数：用current()解决该问题。
 
 ### Immutable Object
 

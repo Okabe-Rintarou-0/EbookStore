@@ -2,7 +2,7 @@ package com.catstore.controller;
 
 import com.catstore.entity.Book;
 import com.catstore.service.BookService;
-import com.catstore.utils.Constant;
+import com.catstore.constants.Constant;
 import com.catstore.model.Message;
 import com.catstore.utils.messageUtils.MessageUtil;
 import com.catstore.utils.sessionUtils.SessionUtil;

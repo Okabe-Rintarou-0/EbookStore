@@ -4,7 +4,7 @@ import com.catstore.dao.BookDao;
 import com.catstore.dto.BookDto;
 import com.catstore.entity.Book;
 import com.catstore.service.BookService;
-import com.catstore.utils.Constant;
+import com.catstore.constants.Constant;
 import com.catstore.model.Message;
 import com.catstore.utils.messageUtils.MessageUtil;
 import com.catstore.utils.redisUtils.RedisUtil;

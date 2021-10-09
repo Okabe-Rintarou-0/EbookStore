@@ -1,4 +1,4 @@
-package com.catstore.utils;
+package com.catstore.constants;
 
 public class Constant {
     public static final Integer MANAGER = 1;

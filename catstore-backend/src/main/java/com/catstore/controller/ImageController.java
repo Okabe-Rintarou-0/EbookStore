@@ -1,6 +1,6 @@
 package com.catstore.controller;
 
-import com.catstore.utils.Constant;
+import com.catstore.constants.Constant;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

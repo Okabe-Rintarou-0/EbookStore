@@ -7,6 +7,8 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -60,5 +62,69 @@ public class RedisUtil {
                 System.out.println("try del");
             }
         }, delay);
+    }
+
+    public void hset(String key, String field, String value) {
+        Jedis jedis = jedisPool.getResource();
+        jedis.hset(key, field, value);
+        jedis.close();
+    }
+
+    public void lpush(String key, List<String> values) {
+        Jedis jedis = jedisPool.getResource();
+        for (String value : values)
+            jedis.lpush(key, value);
+        jedis.close();
+    }
+
+    public void lpush(String key, String... values) {
+        Jedis jedis = jedisPool.getResource();
+        jedis.lpush(key, values);
+        jedis.close();
+    }
+
+    public void rpush(String key, List<String> values) {
+        Jedis jedis = jedisPool.getResource();
+        for (String value : values)
+            jedis.rpush(key, value);
+        jedis.close();
+    }
+
+    public void rpush(String key, String... values) {
+        Jedis jedis = jedisPool.getResource();
+        jedis.rpush(key, values);
+        jedis.close();
+    }
+
+    public String lpop(String key) {
+        Jedis jedis = jedisPool.getResource();
+        String value = jedis.lpop(key);
+        jedis.close();
+        return value;
+    }
+
+    public List<String> lrange(String key, int start, int stop) {
+        Jedis jedis = jedisPool.getResource();
+        List<String> values = jedis.lrange(key, start, stop);
+        jedis.close();
+        return values;
+    }
+
+    public List<String> getWholeList(String key) {
+        Jedis jedis = jedisPool.getResource();
+        List<String> values = jedis.lrange(key, 0, -1);
+        jedis.close();
+        return values;
+    }
+
+    public <T> List<T> getWholeList(String key, Type type) {
+        Jedis jedis = jedisPool.getResource();
+        List<String> values = jedis.lrange(key, 0, -1);
+        jedis.close();
+        List<T> list = new ArrayList<>();
+        for (String value : values) {
+            list.add(JSONObject.parseObject(value, type));
+        }
+        return list;
     }
 }

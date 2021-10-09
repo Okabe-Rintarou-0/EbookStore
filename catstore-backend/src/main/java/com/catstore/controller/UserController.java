@@ -3,7 +3,7 @@ package com.catstore.controller;
 import com.catstore.entity.User;
 import com.catstore.model.Message;
 import com.catstore.service.UserService;
-import com.catstore.utils.Constant;
+import com.catstore.constants.Constant;
 import com.catstore.utils.messageUtils.MessageUtil;
 import com.catstore.utils.sessionUtils.SessionUtil;
 import net.sf.json.JSONArray;

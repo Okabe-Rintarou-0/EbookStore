@@ -6,7 +6,7 @@ import com.catstore.entity.UserAuthority;
 import com.catstore.model.ChatRoomMemberInfo;
 import com.catstore.repository.UserAuthorityRepository;
 import com.catstore.repository.UserRepository;
-import com.catstore.utils.Constant;
+import com.catstore.constants.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Isolation;

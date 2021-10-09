@@ -6,6 +6,7 @@ import com.catstore.entity.UserOrder;
 import com.catstore.model.OrderInfo;
 import com.catstore.model.OrderItemInfo;
 import com.catstore.service.UserOrderService;
+import com.catstore.utils.sessionUtils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -99,7 +100,7 @@ public class UserOrderServiceImplement implements UserOrderService {
 
     @Override
     public ArrayList<UserOrder> getAllOrders() {
-        return userOrderDao.getAllOrders();
+        return userOrderDao.getAllOrders(SessionUtil.getUserId());
     }
 
     @Override

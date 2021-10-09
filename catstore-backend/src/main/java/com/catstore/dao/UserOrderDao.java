@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface UserOrderDao {
 
-    ArrayList<UserOrder> getAllOrders();
+    ArrayList<UserOrder> getAllOrders(Integer userId);
 
     ArrayList<UserOrder> getAllOrdersForManager();
 

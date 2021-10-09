@@ -1,7 +1,7 @@
 package com.catstore.controller;
 
 import com.catstore.service.ConsumptionService;
-import com.catstore.utils.Constant;
+import com.catstore.constants.Constant;
 import com.catstore.utils.sessionUtils.SessionUtil;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;

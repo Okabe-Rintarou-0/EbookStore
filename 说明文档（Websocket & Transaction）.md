@@ -16,7 +16,7 @@ ws配合http session使用，非匿名聊天，目前还没教spring security，
 + 从购物车中删除购物车物品：cartDao.deleteCartItem
 + 添加订单物品：userOrderDao.addOrderItem
 + 减少书的存货：bookDao.adjustStock
-  + 更新用户消费：consumptionDao.addUserConsumption
++ 更新用户消费：consumptionDao.addUserConsumption
 + 扣除用户余额：userDao.updateUserProperty
 
 ### 不同事务属性下的表现

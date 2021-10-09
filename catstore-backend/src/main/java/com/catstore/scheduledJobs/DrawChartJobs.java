@@ -6,11 +6,10 @@ import com.catstore.dao.UserDao;
 import com.catstore.entity.Book;
 import com.catstore.entity.Consumption;
 import com.catstore.entity.User;
-import com.catstore.utils.Constant;
+import com.catstore.constants.Constant;
 import com.catstore.utils.drawer.BarChartDrawer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;

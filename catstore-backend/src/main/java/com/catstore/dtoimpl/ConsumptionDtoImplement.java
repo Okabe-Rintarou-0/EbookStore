@@ -5,6 +5,7 @@ import com.catstore.dao.UserDao;
 import com.catstore.dao.UserOrderDao;
 import com.catstore.dto.ConsumptionDto;
 import com.catstore.entity.*;
+import com.catstore.utils.sessionUtils.SessionUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +68,7 @@ public class ConsumptionDtoImplement implements ConsumptionDto {
     public JSONArray getConsumptionsGroupByBooks(Date begin, Date end) {
         JSONArray jsonArray = new JSONArray();
         ArrayList<UserOrder> userOrders = begin == null || end == null ?
-                userOrderDao.getAllOrders() :
+                userOrderDao.getAllOrders(SessionUtil.getUserId()) :
                 userOrderDao.getOrdersInRange(begin, end);
         ArrayList<Book> bookArrayList = new ArrayList<>();
         Map<Integer, JSONArray> bookOrderMap = new HashMap<>();

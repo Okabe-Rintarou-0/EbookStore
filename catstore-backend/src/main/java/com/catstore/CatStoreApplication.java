@@ -2,7 +2,7 @@ package com.catstore;
 
 import com.alibaba.fastjson.JSONObject;
 import com.catstore.entity.Book;
-import com.catstore.index.LuceneIndexer;
+import com.catstore.searching.LuceneIndexer;
 import com.catstore.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -40,7 +40,7 @@ public class CatStoreApplication {
     @Autowired
     private BookRepository bookRepository;
 
-//    @PostConstruct
+    @PostConstruct
     void formBookInfoFiles() throws IOException {
         System.out.println("called");
         List<Book> books = bookRepository.findAll();
@@ -53,16 +53,18 @@ public class CatStoreApplication {
             dataDir.mkdir();
         }
 
-        File bookInfoFile = new File(LuceneIndexer.DATA_DIR + "/book_infos.txt");
+        File bookInfoFile = new File(LuceneIndexer.DATA_DIR + "book_infos.txt");
         if (!bookInfoFile.exists())
             bookInfoFile.createNewFile();
 
         FileWriter fileWriter = new FileWriter(bookInfoFile);
         for (Book book : books) {
             JSONObject jsonObj = new JSONObject();
-            jsonObj.put("title", book.getBookTitle());
             jsonObj.put("details", book.getBookDetails());
+            jsonObj.put("bookId", book.getBookId());
             fileWriter.write(jsonObj.toString() + "\n");
         }
+
+        fileWriter.close();
     }
 }

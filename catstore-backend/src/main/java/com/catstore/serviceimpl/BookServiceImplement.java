@@ -4,6 +4,7 @@ import com.catstore.constants.RedisKeys;
 import com.catstore.dao.BookDao;
 import com.catstore.dto.BookDto;
 import com.catstore.entity.Book;
+import com.catstore.searching.LuceneSearcher;
 import com.catstore.service.BookService;
 import com.catstore.constants.Constant;
 import com.catstore.model.Message;
@@ -80,10 +81,15 @@ public class BookServiceImplement implements BookService {
         return book;
     }
 
-    ///TODO: pagination
     @Override
     public List<Book> getBooksByKeyword(String keyword) {
-        return bookDao.getBooksByKeyword(keyword);
+        List<Integer> bookIdList = LuceneSearcher.searchBooksBy(keyword);
+        List<Book> books = new ArrayList<>();
+        System.out.println("Get book id list from lucene: "+ bookIdList);
+        for (Integer bookId : bookIdList) {
+            books.add(bookDao.getBookById(bookId));
+        }
+        return books;
     }
 
     @Override

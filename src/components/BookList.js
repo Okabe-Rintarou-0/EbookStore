@@ -17,7 +17,10 @@ class BookList extends React.Component {
 
     onSearch = (value) => {
         let keyword = value.toLowerCase();
-        getBooksByKeyword(keyword, this.handleSearch);
+        if (keyword.length === 0)
+            getBooksByPage(0, this.handleBooksInfo);
+        else
+            getBooksByKeyword(keyword, this.handleSearch);
     };
 
     handleSearch = books => {

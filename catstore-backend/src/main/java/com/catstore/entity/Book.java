@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 
 @Data
 @Entity
-@JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer", "fieldHandler"})
+@JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer", "fieldHandler"}, ignoreUnknown = true)
 @NoArgsConstructor
 @AllArgsConstructor
 //@JsonIdentityInfo(

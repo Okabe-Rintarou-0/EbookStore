@@ -1,5 +1,6 @@
 package com.catstore.serviceimpl;
 
+import com.catstore.constants.RedisKeys;
 import com.catstore.dao.UserDao;
 import com.catstore.entity.User;
 import com.catstore.entity.UserAuthority;
@@ -30,12 +31,15 @@ public class UserServiceImplement implements UserService {
 
     @Override
     public User getUser(Integer userId) {
-        User user = redisUtil.get("user" + userId, User.class);
+        String redisKey = RedisKeys.UserKey + ":" + userId;
+        User user = redisUtil.get(redisKey, User.class);
         if (user == null) {
             System.out.println("Fetch user from database.");
             user = userDao.getUser(userId);
-            if (user != null)
-                redisUtil.set("user" + userId, user);
+            if (user != null) {
+                redisUtil.set(redisKey, user);
+                redisUtil.expire(redisKey, 600);
+            }
         } else
             System.out.println("Directly fetch user from redis.");
         return user;

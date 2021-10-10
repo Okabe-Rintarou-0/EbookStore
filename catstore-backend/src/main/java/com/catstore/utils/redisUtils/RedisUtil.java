@@ -29,6 +29,18 @@ public class RedisUtil {
         jedis.close();
     }
 
+    public void expire(String key, int seconds) {
+        Jedis jedis = jedisPool.getResource();
+        jedis.expire(key, seconds);
+        jedis.close();
+    }
+
+    public void expireAt(String key, long unixTime) {
+        Jedis jedis = jedisPool.getResource();
+        jedis.expireAt(key, unixTime);
+        jedis.close();
+    }
+
     public String get(String key) {
         Jedis jedis = jedisPool.getResource();
         String value = jedis.get(key);
@@ -90,6 +102,13 @@ public class RedisUtil {
         jedis.close();
     }
 
+    public <T>void rpushObj(String key, List<T> values) {
+        Jedis jedis = jedisPool.getResource();
+        for (T value : values)
+            jedis.rpush(key, value.toString());
+        jedis.close();
+    }
+
     public void rpush(String key, String... values) {
         Jedis jedis = jedisPool.getResource();
         jedis.rpush(key, values);
@@ -108,6 +127,17 @@ public class RedisUtil {
         List<String> values = jedis.lrange(key, start, stop);
         jedis.close();
         return values;
+    }
+
+    public <T> List<T> lrange(String key, int start, int stop, Type type) {
+        Jedis jedis = jedisPool.getResource();
+        List<String> values = jedis.lrange(key, start, stop);
+        List<T> list = new ArrayList<>();
+        for (String value : values) {
+            list.add(JSONObject.parseObject(value, type));
+        }
+        jedis.close();
+        return list;
     }
 
     public List<String> getWholeList(String key) {

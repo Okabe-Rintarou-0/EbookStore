@@ -1,5 +1,6 @@
 package com.catstore.serviceimpl;
 
+import com.catstore.constants.RedisKeys;
 import com.catstore.dao.BookDao;
 import com.catstore.dto.BookDto;
 import com.catstore.entity.Book;
@@ -38,25 +39,42 @@ public class BookServiceImplement implements BookService {
 
     @Override
     public Message getBooks(int page) {
-        PageRequest pageRequest = PageRequest.of(page, Constant.BOOK_PAGE_SIZE);
-        Page<Book> bookPage = bookDao.getBooks(pageRequest);
-        List<Book> books = bookPage.getContent();
-        if (books.size() == 0)
-            return MessageUtil.createMessage(MessageUtil.STAT_INVALID, MessageUtil.GENERAL_FAIL_MSG);
+        // try fetch from redis:
+        String pageRedisKey = RedisKeys.BookKey + ":page:" + page;
+        String totalRedisKey = RedisKeys.BookKey + ":total:";
+        List<Book> books = redisUtil.getWholeList(pageRedisKey, Book.class);
+        Long total = redisUtil.get(totalRedisKey, Long.class);
+        if (books.size() == 0 || total == null) {
+            PageRequest pageRequest = PageRequest.of(page, Constant.BOOK_PAGE_SIZE);
+            Page<Book> bookPage = bookDao.getBooks(pageRequest);
+            books = bookPage.getContent();
+            total = bookPage.getTotalElements();
+            System.out.println("Fetch books of page = " + page + " from db.");
+            // cache
+            redisUtil.set(totalRedisKey, total);
+            redisUtil.rpushObj(pageRedisKey, books);
+            redisUtil.expire(totalRedisKey, 300);
+            redisUtil.expire(pageRedisKey, 300);
+        } else {
+            System.out.println("Fetch books of page = " + page + " from redis.");
+        }
         JSONObject messageContent = new JSONObject();
-        messageContent.put("total", bookPage.getTotalElements());
-        messageContent.put("books", bookPage.getContent());
+        messageContent.put("total", total);
+        messageContent.put("books", books);
         return MessageUtil.createMessage(MessageUtil.STAT_OK, MessageUtil.GENERAL_SUCCESS_MSG, messageContent);
     }
 
     @Override
     public Book getBookById(Integer bookId) {
-        Book book = redisUtil.get("book" + bookId, Book.class);
+        String redisKey = RedisKeys.BookKey + ":" + bookId;
+        Book book = redisUtil.get(redisKey, Book.class);
         if (book == null) {
             System.out.println("Fetch book " + bookId + " from database.");
             book = bookDao.getBookById(bookId);
-            if (book != null)
-                redisUtil.set("book" + bookId, book);
+            if (book != null) {
+                redisUtil.set(redisKey, book);
+                redisUtil.expire(redisKey, 60);
+            }
         } else
             System.out.println("Directly fetch book " + bookId + " from redis.");
         return book;

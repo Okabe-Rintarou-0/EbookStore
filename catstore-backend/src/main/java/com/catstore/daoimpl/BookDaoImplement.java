@@ -1,5 +1,6 @@
 package com.catstore.daoimpl;
 
+import com.catstore.constants.RedisKeys;
 import com.catstore.crawlers.BookCrawler;
 import com.catstore.dao.BookDao;
 import com.catstore.entity.Book;
@@ -69,7 +70,7 @@ public class BookDaoImplement implements BookDao {
     @Transactional
     public Boolean undercarriageBookByBookId(Integer bookId) {
         if (bookRepository.undercarriageBookByBookId(bookId) > 0) {
-            redisUtil.del("book" + bookId);
+            redisUtil.del(RedisKeys.BookKey + ":" + bookId);
             return true;
         }
         return false;
@@ -81,10 +82,11 @@ public class BookDaoImplement implements BookDao {
     @Transactional
     public Boolean putOnSale(Integer bookId) {
         // delete cache first
-        redisUtil.del("book" + bookId);
+        String redisKey = RedisKeys.BookKey + ":" + bookId;
+        redisUtil.del(redisKey);
         // then modify database
         if (bookRepository.putOnSale(bookId) > 0) {
-            redisUtil.del("book" + bookId, 1000L);
+            redisUtil.del(redisKey, 1000L);
             return true;
         }
         return false;
@@ -96,7 +98,7 @@ public class BookDaoImplement implements BookDao {
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public void adjustStock(Integer bookId, Integer delta) {
         bookRepository.adjustStock(bookId, delta);
-        redisUtil.del("book" + bookId);
+        redisUtil.del(RedisKeys.BookKey + ":" + bookId);
     }
 
     @Override
@@ -108,7 +110,7 @@ public class BookDaoImplement implements BookDao {
     public void saveBook(Book book) {
         if (book != null) {
             bookRepository.save(book);
-            redisUtil.del("book" + book.getBookId());
+            redisUtil.del(RedisKeys.BookKey + ":" + book.getBookId());
         }
     }
 
@@ -131,7 +133,7 @@ public class BookDaoImplement implements BookDao {
 
             bookRepository.modifyBookWithBookId(bookId, bookCover, bookTitle, bookAuthor, bookDescription, bookDetails,
                     bookStock, bookPrice, bookTag, bookType);
-            redisUtil.del("book" + bookId);
+            redisUtil.del(RedisKeys.BookKey + ":" + bookId);
 
         } catch (Exception e) {
             e.printStackTrace();

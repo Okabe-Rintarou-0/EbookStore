@@ -20,36 +20,16 @@ import java.util.List;
 
 @Service
 public class UserOrderServiceImplement implements UserOrderService {
+    @Autowired
     UserOrderDao userOrderDao;
+    @Autowired
     CartDao cartDao;
+    @Autowired
     UserDao userDao;
+    @Autowired
     BookDao bookDao;
+    @Autowired
     ConsumptionDao consumptionDao;
-
-    @Autowired
-    void setConsumptionDao(ConsumptionDao consumptionDao) {
-        this.consumptionDao = consumptionDao;
-    }
-
-    @Autowired
-    void setCartDao(CartDao cartDao) {
-        this.cartDao = cartDao;
-    }
-
-    @Autowired
-    void setUserOrderDao(UserOrderDao userOrderDao) {
-        this.userOrderDao = userOrderDao;
-    }
-
-    @Autowired
-    void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
-
-    @Autowired
-    void setBookDao(BookDao bookDao) {
-        this.bookDao = bookDao;
-    }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)

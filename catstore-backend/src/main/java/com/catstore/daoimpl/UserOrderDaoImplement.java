@@ -41,19 +41,14 @@ public class UserOrderDaoImplement implements UserOrderDao {
     public ArrayList<UserOrder> getAllOrders(Integer userId) {
         if (userId == null) return null;
         String redisKey = RedisKeys.OrderKey + ":" + userId;
-        List<String> values = redisUtil.getWholeList(redisKey);
         List<UserOrder> userOrders = redisUtil.getWholeList(redisKey, UserOrder.class);
-        for (String value : values) {
-            userOrders.add(JSONObject.parseObject(value, UserOrder.class));
-        }
         if (userOrders.size() > 0) {
             System.out.println("Fetch orders from redis.");
         } else {
             System.out.println("Fetch orders from db.");
             userOrders = userOrderRepository.getAllOrders(userId);
-            for (UserOrder userOrder : userOrders) {
-                redisUtil.rpush(redisKey, userOrder.toString());
-            }
+            redisUtil.rpushObj(redisKey, userOrders);
+            redisUtil.expire(redisKey, 300);
         }
         return (ArrayList<UserOrder>) userOrders;
     }

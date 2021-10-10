@@ -33,7 +33,7 @@ class Navigator extends React.Component {
             username: "",
             userIcon: "",
             userId: 0,
-            visit: 0,
+            visit: '',
             userIdentity: -1
         };
     }

@@ -1,7 +1,7 @@
 package com.catstore.searching;
 
 import com.alibaba.fastjson.JSONObject;
-import com.catstore.constants.LuceneFields;
+import com.catstore.constants.SearchingFields;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.CharArraySet;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -46,7 +46,6 @@ public class LuceneIndexer {
     }
 
     private static void index(String indexDirPath, String filePath) throws IOException {
-        String line;
         Directory indexDir = FSDirectory.open(Paths.get(indexDirPath));
         // 可以自定义stop words
         Analyzer analyzer = new StandardAnalyzer(readStopWords());
@@ -58,14 +57,17 @@ public class LuceneIndexer {
         IndexWriter writer = new IndexWriter(indexDir, indexWriterConfig);
 
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8));//构造一个BufferedReader类来读取文件
+
+        String line;
         while ((line = br.readLine()) != null) {//使用readLine方法，一次读一行
             System.out.println("Read line: " + line);
             JSONObject jsonObj = JSONObject.parseObject(line);
             Document document = new Document();
-            document.add(new Field(LuceneFields.Details, jsonObj.getString(LuceneFields.Details), TextField.TYPE_STORED));
-            document.add(new Field(LuceneFields.BookId, jsonObj.getString(LuceneFields.BookId), StringField.TYPE_STORED));
+            document.add(new Field(SearchingFields.Details, jsonObj.getString(SearchingFields.Details), TextField.TYPE_STORED));
+            document.add(new Field(SearchingFields.BookId, jsonObj.getString(SearchingFields.BookId), StringField.TYPE_STORED));
             writer.addDocument(document);
         }
+        br.close();
         writer.close();
     }
 

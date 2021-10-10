@@ -1,7 +1,7 @@
 package com.catstore.searching;
 
 import com.catstore.constants.Constant;
-import com.catstore.constants.LuceneFields;
+import com.catstore.constants.SearchingFields;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
@@ -24,13 +24,13 @@ public class LuceneSearcher {
             IndexReader reader = DirectoryReader.open(indexDir);
             IndexSearcher indexSearcher = new IndexSearcher(reader);
 
-            Term term = new Term(LuceneFields.Details, keyword);
+            Term term = new Term(SearchingFields.Details, keyword);
             Query query = new TermQuery(term);
             TopDocs topDocs = indexSearcher.search(query, Constant.BOOK_PAGE_SIZE);
             ScoreDoc[] scoreDocs = topDocs.scoreDocs;
             for (ScoreDoc scoreDoc : scoreDocs) {
                 Document document = reader.document(scoreDoc.doc);
-                bookIdList.add(Integer.valueOf(document.get(LuceneFields.BookId)));
+                bookIdList.add(Integer.valueOf(document.get(SearchingFields.BookId)));
 //                System.out.println(reader.document(scoreDoc.doc));
 //                System.out.println("Explanation:" + (indexSearcher.explain(query, scoreDoc.doc)));
             }

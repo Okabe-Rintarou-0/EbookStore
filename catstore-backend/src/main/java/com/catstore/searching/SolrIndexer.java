@@ -27,9 +27,9 @@ public class SolrIndexer {
         SolrClient client = SolrUtil.getSolrClient();
 
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8));//构造一个BufferedReader类来读取文件
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8));
         String line;
-        while ((line = br.readLine()) != null) {//使用readLine方法，一次读一行
+        while ((line = br.readLine()) != null) {
             System.out.println("Read line: " + line);
             JSONObject jsonObj = JSONObject.parseObject(line);
             SolrInputDocument document = new SolrInputDocument();

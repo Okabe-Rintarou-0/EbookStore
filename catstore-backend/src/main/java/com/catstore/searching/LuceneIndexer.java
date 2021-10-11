@@ -50,16 +50,15 @@ public class LuceneIndexer {
         // 可以自定义stop words
         Analyzer analyzer = new StandardAnalyzer(readStopWords());
 
-        IndexWriterConfig indexWriterConfig = new IndexWriterConfig();
+        IndexWriterConfig indexWriterConfig = new IndexWriterConfig(analyzer);
         // 是否生成混合文件（把多个文件集合到一起 会影响效率）
         indexWriterConfig.setUseCompoundFile(false);
 
         IndexWriter writer = new IndexWriter(indexDir, indexWriterConfig);
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8));//构造一个BufferedReader类来读取文件
-
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8));
         String line;
-        while ((line = br.readLine()) != null) {//使用readLine方法，一次读一行
+        while ((line = br.readLine()) != null) {
             System.out.println("Read line: " + line);
             JSONObject jsonObj = JSONObject.parseObject(line);
             Document document = new Document();

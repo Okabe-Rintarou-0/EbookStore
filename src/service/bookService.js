@@ -50,5 +50,8 @@ export function getRankedBooks(startNEndDates, callback) {
     if (startNEndDates.length === 2) {
         const url = `http://localhost:8080/book/rank?from=${startNEndDates[0]}&to=${startNEndDates[1]}`;
         getRequest(url, callback)
+    } else {
+        const url = `http://localhost:8080/book/rank/all`;
+        getRequest(url, callback);
     }
 }

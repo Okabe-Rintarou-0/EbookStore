@@ -40,7 +40,7 @@ public class CatStoreApplication {
     @Autowired
     private BookRepository bookRepository;
 
-    @PostConstruct
+    //    @PostConstruct
     void formBookInfoFiles() throws IOException {
         System.out.println("called");
         List<Book> books = bookRepository.findAll();

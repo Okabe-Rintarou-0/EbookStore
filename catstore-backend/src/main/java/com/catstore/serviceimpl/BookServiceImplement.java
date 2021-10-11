@@ -134,9 +134,11 @@ public class BookServiceImplement implements BookService {
 
     @Override
     public ArrayList<Book> getRankedBooks(Date from, Date to) {
-        if (from != null && to != null) {
-            return bookDto.getRankedBooks(from, to);
-        }
+        return bookDto.getRankedBooks(from, to);
+    }
+
+    @Override
+    public ArrayList<Book> getAllRankedBooks() {
         return bookDto.getAllRankedBooks();
     }
 

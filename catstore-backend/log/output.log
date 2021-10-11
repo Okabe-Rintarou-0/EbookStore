@@ -1,0 +1,707 @@
+08:58:21.867 [main] INFO  c.c.SpringbootApplicationTests - Starting SpringbootApplicationTests on DESKTOP-P8I1EU9 with PID 4792 (started by 92304 in D:\CatStore\catstore-backend)
+08:58:21.868 [main] INFO  c.c.SpringbootApplicationTests - No active profile set, falling back to default profiles: default
+08:58:23.039 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+08:58:23.042 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+08:58:23.370 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 317ms. Found 10 repository interfaces.
+08:58:23.401 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+08:58:23.403 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+08:58:23.437 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.BookRepository.
+08:58:23.439 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.CartRepository.
+08:58:23.440 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.CommentRepository.
+08:58:23.441 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.ConsumptionRepository.
+08:58:23.442 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.FavouriteRepository.
+08:58:23.444 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.OrderItemRepository.
+08:58:23.444 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.UserAuthorityRepository.
+08:58:23.445 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.UserCommentActionRepository.
+08:58:23.446 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.UserOrderRepository.
+08:58:23.447 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.UserRepository.
+08:58:23.447 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 30ms. Found 0 repository interfaces.
+08:58:24.242 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08:58:24.961 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+08:58:25.055 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.6.Final}
+08:58:25.219 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+08:58:25.580 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+08:58:26.023 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+08:58:26.045 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+08:58:26.988 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+08:58:26.995 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+08:58:28.292 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+08:58:29.045 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+08:58:29.080 [main] WARN  o.s.w.c.s.GenericWebApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'serverEndpoint' defined in class path resource [com/catstore/config/WebsocketConfig.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: javax.websocket.server.ServerContainer not available
+08:58:29.085 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+08:58:29.087 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+08:58:29.102 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+08:58:29.131 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+08:58:29.134 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'serverEndpoint' defined in class path resource [com/catstore/config/WebsocketConfig.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: javax.websocket.server.ServerContainer not available
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1803)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:595)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:879)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:878)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:125)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:123)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:244)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:98)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$5(ClassBasedTestDescriptor.java:337)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:342)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$6(ClassBasedTestDescriptor.java:337)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1621)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:312)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:658)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:336)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:259)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$2(ClassBasedTestDescriptor.java:252)
+	at java.base/java.util.Optional.orElseGet(Optional.java:362)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$3(ClassBasedTestDescriptor.java:251)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:29)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:106)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:105)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$1(NodeTestTask.java:107)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:107)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:75)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1507)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1507)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:229)
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$6(DefaultLauncher.java:197)
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:211)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:191)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:128)
+	at com.intellij.junit5.JUnit5IdeaTestRunner.startRunnerWithArgs(JUnit5IdeaTestRunner.java:71)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:220)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:53)
+Caused by: java.lang.IllegalStateException: javax.websocket.server.ServerContainer not available
+	at org.springframework.util.Assert.state(Assert.java:73)
+	at org.springframework.web.socket.server.standard.ServerEndpointExporter.afterPropertiesSet(ServerEndpointExporter.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1799)
+	... 78 common frames omitted
+08:58:29.135 [main] ERROR o.s.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@16b2bb0c] to prepare test instance [com.catstore.SpringbootApplicationTests@3bc82aa3]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:132)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:123)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:244)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:98)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$5(ClassBasedTestDescriptor.java:337)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:342)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$6(ClassBasedTestDescriptor.java:337)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1621)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:312)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:658)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:336)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:259)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$2(ClassBasedTestDescriptor.java:252)
+	at java.base/java.util.Optional.orElseGet(Optional.java:362)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$3(ClassBasedTestDescriptor.java:251)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:29)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:106)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:105)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$1(NodeTestTask.java:107)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:107)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:75)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1507)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1507)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:229)
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$6(DefaultLauncher.java:197)
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:211)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:191)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:128)
+	at com.intellij.junit5.JUnit5IdeaTestRunner.startRunnerWithArgs(JUnit5IdeaTestRunner.java:71)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:220)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:53)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'serverEndpoint' defined in class path resource [com/catstore/config/WebsocketConfig.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: javax.websocket.server.ServerContainer not available
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1803)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:595)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:879)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:878)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:125)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	... 63 common frames omitted
+Caused by: java.lang.IllegalStateException: javax.websocket.server.ServerContainer not available
+	at org.springframework.util.Assert.state(Assert.java:73)
+	at org.springframework.web.socket.server.standard.ServerEndpointExporter.afterPropertiesSet(ServerEndpointExporter.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1799)
+	... 78 common frames omitted
+08:59:18.194 [main] INFO  com.catstore.CatStoreApplication - Starting CatStoreApplication on DESKTOP-P8I1EU9 with PID 17480 (D:\CatStore\catstore-backend\target\classes started by 92304 in D:\CatStore\catstore-backend)
+08:59:18.196 [main] INFO  com.catstore.CatStoreApplication - No active profile set, falling back to default profiles: default
+08:59:19.126 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+08:59:19.126 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+08:59:19.203 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 72ms. Found 10 repository interfaces.
+08:59:19.213 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+08:59:19.214 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+08:59:19.227 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.BookRepository.
+08:59:19.228 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.CartRepository.
+08:59:19.228 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.CommentRepository.
+08:59:19.228 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.ConsumptionRepository.
+08:59:19.229 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.FavouriteRepository.
+08:59:19.230 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.OrderItemRepository.
+08:59:19.230 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.UserAuthorityRepository.
+08:59:19.230 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.UserCommentActionRepository.
+08:59:19.231 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.UserOrderRepository.
+08:59:19.231 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.UserRepository.
+08:59:19.231 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 12ms. Found 0 repository interfaces.
+08:59:19.475 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08:59:19.688 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+08:59:19.694 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+08:59:19.695 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+08:59:19.695 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
+08:59:19.804 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+08:59:19.804 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1561 ms
+08:59:20.111 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+08:59:20.160 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.6.Final}
+08:59:20.251 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+08:59:20.334 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+08:59:20.540 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+08:59:20.550 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+08:59:21.244 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+08:59:21.250 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+08:59:22.013 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+08:59:22.350 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+08:59:22.372 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService
+08:59:22.373 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+08:59:22.479 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+08:59:22.695 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+08:59:22.706 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+08:59:22.722 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+08:59:22.878 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+08:59:22.882 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: deleteBooksUsingPOST_1
+08:59:22.885 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllBooksUsingGET_1
+08:59:22.886 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getBookByIdUsingGET_1
+08:59:22.887 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getBooksUsingGET_1
+08:59:22.888 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getBooksByKeywordUsingGET_1
+08:59:22.889 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getConcernedBookInfoUsingGET_1
+08:59:22.891 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getRankedBooksUsingGET_1
+08:59:22.892 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: postModifiedBookUsingPOST_1
+08:59:22.892 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: putOnSaleUsingPOST_1
+08:59:22.893 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: undercarriageUsingPOST_1
+08:59:22.894 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: addToCartUsingGET_1
+08:59:22.895 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: deleteCartItemUsingGET_1
+08:59:22.897 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllCartItemsUsingGET_1
+08:59:22.898 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: searchCartItemsUsingGET_1
+08:59:22.901 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllUsersAndTheirConsumptionUsingGET_1
+08:59:22.902 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getConsumptionInRangeUsingPOST_1
+08:59:22.903 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getConsumptionsGroupByBooksUsingPOST_1
+08:59:22.904 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: addFavouriteBookUsingGET_1
+08:59:22.905 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: deleteFavouriteBookUsingGET_1
+08:59:22.906 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getFavouriteBooksUsingGET_1
+08:59:22.906 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: moveToCartUsingGET_1
+08:59:22.907 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUploadUsingGET_1
+08:59:22.909 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getImageUsingGET_1
+08:59:22.909 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: checkSessionUsingGET_1
+08:59:22.910 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: loginUsingPOST_1
+08:59:22.911 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: logoutUsingGET_1
+08:59:22.912 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: checkDuplicationUsingGET_1
+08:59:22.913 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: registerUsingPOST_1
+08:59:22.915 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: banUsersUsingPOST_1
+08:59:22.915 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllUsersUsingGET_1
+08:59:22.917 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getUserUsingGET_1
+08:59:22.918 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: setUserSignatureUsingGET_1
+08:59:22.919 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: unbanUsersUsingPOST_1
+08:59:22.922 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllOrdersUsingGET_1
+08:59:22.923 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllOrdersForManagerUsingGET_1
+08:59:22.927 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: placeOrderUsingPOST_1
+08:59:22.928 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: searchOrdersUsingPOST_1
+08:59:22.929 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: searchOrdersForManagerUsingPOST_1
+08:59:22.930 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getVisitUsingGET_1
+08:59:22.965 [main] INFO  o.a.activemq.broker.BrokerService - Using Persistence Adapter: MemoryPersistenceAdapter
+08:59:22.988 [JMX connector] INFO  o.a.a.broker.jmx.ManagementContext - JMX consoles can connect to service:jmx:rmi:///jndi/rmi://localhost:1099/jmxrmi
+08:59:23.092 [main] INFO  o.a.activemq.broker.BrokerService - Apache ActiveMQ 5.15.10 (localhost, ID:DESKTOP-P8I1EU9-63555-1633913962968-0:1) is starting
+08:59:23.095 [main] INFO  o.a.activemq.broker.BrokerService - Apache ActiveMQ 5.15.10 (localhost, ID:DESKTOP-P8I1EU9-63555-1633913962968-0:1) started
+08:59:23.095 [main] INFO  o.a.activemq.broker.BrokerService - For help or more information please see: http://activemq.apache.org
+08:59:23.111 [main] INFO  o.a.a.broker.TransportConnector - Connector vm://localhost started
+08:59:23.145 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+08:59:23.357 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+08:59:23.358 [main] INFO  com.catstore.CatStoreApplication - Started CatStoreApplication in 5.473 seconds (JVM running for 6.295)
+09:00:33.838 [main] INFO  com.catstore.LogTest - Starting LogTest on DESKTOP-P8I1EU9 with PID 11992 (started by 92304 in D:\CatStore\catstore-backend)
+09:00:33.840 [main] INFO  com.catstore.LogTest - No active profile set, falling back to default profiles: default
+09:00:35.192 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+09:00:35.194 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+09:00:35.398 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 193ms. Found 10 repository interfaces.
+09:00:35.418 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+09:00:35.419 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+09:00:35.440 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.BookRepository.
+09:00:35.443 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.CartRepository.
+09:00:35.444 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.CommentRepository.
+09:00:35.444 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.ConsumptionRepository.
+09:00:35.444 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.FavouriteRepository.
+09:00:35.445 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.OrderItemRepository.
+09:00:35.446 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.UserAuthorityRepository.
+09:00:35.446 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.UserCommentActionRepository.
+09:00:35.447 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.UserOrderRepository.
+09:00:35.447 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.UserRepository.
+09:00:35.447 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 18ms. Found 0 repository interfaces.
+09:00:36.185 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09:00:37.120 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 0 (http)
+09:00:37.132 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-auto-1"]
+09:00:37.133 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:00:37.133 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
+09:00:37.326 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:00:37.326 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 3450 ms
+09:00:38.077 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:00:38.170 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.6.Final}
+09:00:38.347 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+09:00:38.475 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:00:38.851 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:00:38.865 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+09:00:39.748 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+09:00:39.755 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:00:40.938 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+09:00:41.607 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+09:00:41.643 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService
+09:00:41.651 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+09:00:41.853 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+09:00:42.333 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+09:00:42.351 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+09:00:42.374 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+09:00:42.617 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+09:00:42.624 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: deleteBooksUsingPOST_1
+09:00:42.629 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllBooksUsingGET_1
+09:00:42.631 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getBookByIdUsingGET_1
+09:00:42.632 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getBooksUsingGET_1
+09:00:42.634 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getBooksByKeywordUsingGET_1
+09:00:42.636 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getConcernedBookInfoUsingGET_1
+09:00:42.639 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getRankedBooksUsingGET_1
+09:00:42.640 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: postModifiedBookUsingPOST_1
+09:00:42.642 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: putOnSaleUsingPOST_1
+09:00:42.644 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: undercarriageUsingPOST_1
+09:00:42.646 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: addToCartUsingGET_1
+09:00:42.647 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: deleteCartItemUsingGET_1
+09:00:42.650 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllCartItemsUsingGET_1
+09:00:42.651 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: searchCartItemsUsingGET_1
+09:00:42.656 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllUsersAndTheirConsumptionUsingGET_1
+09:00:42.658 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getConsumptionInRangeUsingPOST_1
+09:00:42.659 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getConsumptionsGroupByBooksUsingPOST_1
+09:00:42.661 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: addFavouriteBookUsingGET_1
+09:00:42.662 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: deleteFavouriteBookUsingGET_1
+09:00:42.663 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getFavouriteBooksUsingGET_1
+09:00:42.665 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: moveToCartUsingGET_1
+09:00:42.666 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUploadUsingGET_1
+09:00:42.668 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getImageUsingGET_1
+09:00:42.669 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: checkSessionUsingGET_1
+09:00:42.671 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: loginUsingPOST_1
+09:00:42.672 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: logoutUsingGET_1
+09:00:42.673 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: checkDuplicationUsingGET_1
+09:00:42.675 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: registerUsingPOST_1
+09:00:42.677 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: banUsersUsingPOST_1
+09:00:42.678 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllUsersUsingGET_1
+09:00:42.681 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getUserUsingGET_1
+09:00:42.682 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: setUserSignatureUsingGET_1
+09:00:42.683 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: unbanUsersUsingPOST_1
+09:00:42.688 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllOrdersUsingGET_1
+09:00:42.690 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllOrdersForManagerUsingGET_1
+09:00:42.696 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: placeOrderUsingPOST_1
+09:00:42.698 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: searchOrdersUsingPOST_1
+09:00:42.700 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: searchOrdersForManagerUsingPOST_1
+09:00:42.701 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getVisitUsingGET_1
+09:00:42.787 [main] INFO  o.a.activemq.broker.BrokerService - Using Persistence Adapter: MemoryPersistenceAdapter
+09:00:42.816 [JMX connector] WARN  o.a.a.broker.jmx.ManagementContext - Failed to start JMX connector Cannot bind to URL [rmi://localhost:1099/jmxrmi]: javax.naming.NameAlreadyBoundException: jmxrmi [Root exception is java.rmi.AlreadyBoundException: jmxrmi]. Will restart management to re-create JMX connector, trying to remedy this issue.
+09:00:42.941 [main] INFO  o.a.activemq.broker.BrokerService - Apache ActiveMQ 5.15.10 (localhost, ID:DESKTOP-P8I1EU9-54508-1633914042806-0:1) is starting
+09:00:42.947 [main] INFO  o.a.activemq.broker.BrokerService - Apache ActiveMQ 5.15.10 (localhost, ID:DESKTOP-P8I1EU9-54508-1633914042806-0:1) started
+09:00:42.947 [main] INFO  o.a.activemq.broker.BrokerService - For help or more information please see: http://activemq.apache.org
+09:00:42.970 [main] INFO  o.a.a.broker.TransportConnector - Connector vm://localhost started
+09:00:43.013 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-auto-1"]
+09:00:43.279 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 54509 (http) with context path ''
+09:00:43.281 [main] INFO  com.catstore.LogTest - Started LogTest in 9.938 seconds (JVM running for 10.884)
+09:00:43.445 [main] INFO  com.catstore.utils.logUtil.LogUtil - Test log
+09:00:43.453 [ActiveMQ ShutdownHook] INFO  o.a.activemq.broker.BrokerService - Apache ActiveMQ 5.15.10 (localhost, ID:DESKTOP-P8I1EU9-54508-1633914042806-0:1) is shutting down
+09:00:43.461 [ActiveMQ Connection Executor: vm://localhost#0] INFO  o.s.j.c.CachingConnectionFactory - Encountered a JMSException - resetting the underlying JMS Connection
+javax.jms.JMSException: peer (vm://localhost#1) stopped.
+	at org.apache.activemq.util.JMSExceptionSupport.create(JMSExceptionSupport.java:54)
+	at org.apache.activemq.ActiveMQConnection.onAsyncException(ActiveMQConnection.java:1960)
+	at org.apache.activemq.ActiveMQConnection.onException(ActiveMQConnection.java:1979)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:114)
+	at org.apache.activemq.transport.ResponseCorrelator.onException(ResponseCorrelator.java:126)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:114)
+	at org.apache.activemq.transport.vm.VMTransport.stop(VMTransport.java:233)
+	at org.apache.activemq.transport.TransportFilter.stop(TransportFilter.java:72)
+	at org.apache.activemq.transport.TransportFilter.stop(TransportFilter.java:72)
+	at org.apache.activemq.transport.ResponseCorrelator.stop(ResponseCorrelator.java:132)
+	at org.apache.activemq.broker.TransportConnection.doStop(TransportConnection.java:1194)
+	at org.apache.activemq.broker.TransportConnection$4.run(TransportConnection.java:1160)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:830)
+Caused by: org.apache.activemq.transport.TransportDisposedIOException: peer (vm://localhost#1) stopped.
+	... 9 common frames omitted
+09:00:43.466 [ActiveMQ ShutdownHook] INFO  o.a.a.broker.TransportConnector - Connector vm://localhost stopped
+09:00:43.467 [ActiveMQ Connection Executor: vm://localhost#0] WARN  o.s.j.c.CachingConnectionFactory - Could not close shared JMS Connection
+javax.jms.JMSException: Disposed due to prior exception
+	at org.apache.activemq.util.JMSExceptionSupport.create(JMSExceptionSupport.java:72)
+	at org.apache.activemq.ActiveMQConnection.syncSendPacket(ActiveMQConnection.java:1421)
+	at org.apache.activemq.ActiveMQConnection.close(ActiveMQConnection.java:688)
+	at org.springframework.jms.connection.SingleConnectionFactory.closeConnection(SingleConnectionFactory.java:502)
+	at org.springframework.jms.connection.SingleConnectionFactory.resetConnection(SingleConnectionFactory.java:390)
+	at org.springframework.jms.connection.CachingConnectionFactory.resetConnection(CachingConnectionFactory.java:223)
+	at org.springframework.jms.connection.SingleConnectionFactory.onException(SingleConnectionFactory.java:368)
+	at org.springframework.jms.connection.SingleConnectionFactory$AggregatedExceptionListener.onException(SingleConnectionFactory.java:716)
+	at org.apache.activemq.ActiveMQConnection$5.run(ActiveMQConnection.java:1967)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:830)
+Caused by: org.apache.activemq.transport.TransportDisposedIOException: Disposed due to prior exception
+	at org.apache.activemq.transport.ResponseCorrelator.onException(ResponseCorrelator.java:125)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:114)
+	at org.apache.activemq.transport.vm.VMTransport.stop(VMTransport.java:233)
+	at org.apache.activemq.transport.TransportFilter.stop(TransportFilter.java:72)
+	at org.apache.activemq.transport.TransportFilter.stop(TransportFilter.java:72)
+	at org.apache.activemq.transport.ResponseCorrelator.stop(ResponseCorrelator.java:132)
+	at org.apache.activemq.broker.TransportConnection.doStop(TransportConnection.java:1194)
+	at org.apache.activemq.broker.TransportConnection$4.run(TransportConnection.java:1160)
+	... 3 common frames omitted
+Caused by: org.apache.activemq.transport.TransportDisposedIOException: peer (vm://localhost#1) stopped.
+	... 9 common frames omitted
+09:00:43.474 [ActiveMQ ShutdownHook] INFO  o.a.activemq.broker.BrokerService - Apache ActiveMQ 5.15.10 (localhost, ID:DESKTOP-P8I1EU9-54508-1633914042806-0:1) uptime 0.717 seconds
+09:00:43.475 [ActiveMQ ShutdownHook] INFO  o.a.activemq.broker.BrokerService - Apache ActiveMQ 5.15.10 (localhost, ID:DESKTOP-P8I1EU9-54508-1633914042806-0:1) is shutdown
+09:00:48.476 [org.springframework.jms.JmsListenerEndpointContainer#0-1] WARN  o.s.j.l.DefaultMessageListenerContainer - Setup of JMS message listener invoker failed for destination 'order' - trying to recover. Cause: The Session is closed
+09:00:48.478 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+09:00:48.479 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+09:00:48.487 [SpringContextShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+09:00:48.490 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+09:00:48.506 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+09:03:16.140 [main] INFO  com.catstore.CatStoreApplication - Starting CatStoreApplication on DESKTOP-P8I1EU9 with PID 1884 (D:\CatStore\catstore-backend\target\classes started by 92304 in D:\CatStore\catstore-backend)
+09:03:16.143 [main] INFO  com.catstore.CatStoreApplication - No active profile set, falling back to default profiles: default
+09:03:17.056 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+09:03:17.057 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+09:03:17.127 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 65ms. Found 10 repository interfaces.
+09:03:17.140 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+09:03:17.141 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+09:03:17.157 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.BookRepository.
+09:03:17.158 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.CartRepository.
+09:03:17.158 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.CommentRepository.
+09:03:17.158 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.ConsumptionRepository.
+09:03:17.158 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.FavouriteRepository.
+09:03:17.159 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.OrderItemRepository.
+09:03:17.160 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.UserAuthorityRepository.
+09:03:17.160 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.UserCommentActionRepository.
+09:03:17.160 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.UserOrderRepository.
+09:03:17.160 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.catstore.repository.UserRepository.
+09:03:17.160 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11ms. Found 0 repository interfaces.
+09:03:17.417 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09:03:17.638 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+09:03:17.645 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+09:03:17.645 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:03:17.645 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
+09:03:17.760 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:03:17.760 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1568 ms
+09:03:18.038 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:03:18.082 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.6.Final}
+09:03:18.163 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+09:03:18.226 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:03:18.430 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:03:18.439 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+09:03:19.049 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+09:03:19.054 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:03:19.777 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+09:03:20.077 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+09:03:20.098 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService
+09:03:20.099 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+09:03:20.193 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+09:03:20.428 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+09:03:20.439 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+09:03:20.457 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+09:03:20.655 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+09:03:20.659 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: deleteBooksUsingPOST_1
+09:03:20.662 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllBooksUsingGET_1
+09:03:20.664 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getBookByIdUsingGET_1
+09:03:20.664 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getBooksUsingGET_1
+09:03:20.665 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getBooksByKeywordUsingGET_1
+09:03:20.667 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getConcernedBookInfoUsingGET_1
+09:03:20.668 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getRankedBooksUsingGET_1
+09:03:20.669 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: postModifiedBookUsingPOST_1
+09:03:20.670 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: putOnSaleUsingPOST_1
+09:03:20.671 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: undercarriageUsingPOST_1
+09:03:20.672 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: addToCartUsingGET_1
+09:03:20.673 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: deleteCartItemUsingGET_1
+09:03:20.675 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllCartItemsUsingGET_1
+09:03:20.676 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: searchCartItemsUsingGET_1
+09:03:20.680 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllUsersAndTheirConsumptionUsingGET_1
+09:03:20.682 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getConsumptionInRangeUsingPOST_1
+09:03:20.683 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getConsumptionsGroupByBooksUsingPOST_1
+09:03:20.684 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: addFavouriteBookUsingGET_1
+09:03:20.684 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: deleteFavouriteBookUsingGET_1
+09:03:20.685 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getFavouriteBooksUsingGET_1
+09:03:20.686 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: moveToCartUsingGET_1
+09:03:20.687 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUploadUsingGET_1
+09:03:20.688 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getImageUsingGET_1
+09:03:20.688 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: checkSessionUsingGET_1
+09:03:20.689 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: loginUsingPOST_1
+09:03:20.690 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: logoutUsingGET_1
+09:03:20.691 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: checkDuplicationUsingGET_1
+09:03:20.692 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: registerUsingPOST_1
+09:03:20.693 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: banUsersUsingPOST_1
+09:03:20.693 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllUsersUsingGET_1
+09:03:20.695 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getUserUsingGET_1
+09:03:20.696 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: setUserSignatureUsingGET_1
+09:03:20.697 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: unbanUsersUsingPOST_1
+09:03:20.700 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllOrdersUsingGET_1
+09:03:20.701 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllOrdersForManagerUsingGET_1
+09:03:20.704 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: placeOrderUsingPOST_1
+09:03:20.705 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: searchOrdersUsingPOST_1
+09:03:20.707 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: searchOrdersForManagerUsingPOST_1
+09:03:20.708 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getVisitUsingGET_1
+09:03:20.747 [main] INFO  o.a.activemq.broker.BrokerService - Using Persistence Adapter: MemoryPersistenceAdapter
+09:03:20.754 [JMX connector] INFO  o.a.a.broker.jmx.ManagementContext - JMX consoles can connect to service:jmx:rmi:///jndi/rmi://localhost:1099/jmxrmi
+09:03:20.880 [main] INFO  o.a.activemq.broker.BrokerService - Apache ActiveMQ 5.15.10 (localhost, ID:DESKTOP-P8I1EU9-64161-1633914200752-0:1) is starting
+09:03:20.883 [main] INFO  o.a.activemq.broker.BrokerService - Apache ActiveMQ 5.15.10 (localhost, ID:DESKTOP-P8I1EU9-64161-1633914200752-0:1) started
+09:03:20.884 [main] INFO  o.a.activemq.broker.BrokerService - For help or more information please see: http://activemq.apache.org
+09:03:20.904 [main] INFO  o.a.a.broker.TransportConnector - Connector vm://localhost started
+09:03:20.946 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+09:03:21.137 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+09:03:21.139 [main] INFO  com.catstore.CatStoreApplication - Started CatStoreApplication in 5.359 seconds (JVM running for 6.326)
+09:04:07.222 [http-nio-8080-exec-1] WARN  o.a.c.util.SessionIdGeneratorBase - Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [208] milliseconds.
+09:04:07.238 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+09:04:07.238 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+09:04:07.248 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 10 ms
+09:07:50.218 [http-nio-8080-exec-8] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool] with root cause
+java.net.ConnectException: Connection refused: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:579)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:549)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:597)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:339)
+	at java.base/java.net.Socket.connect(Socket.java:603)
+	at redis.clients.jedis.Connection.connect(Connection.java:181)
+	at redis.clients.jedis.BinaryClient.connect(BinaryClient.java:100)
+	at redis.clients.jedis.BinaryJedis.connect(BinaryJedis.java:1866)
+	at redis.clients.jedis.JedisFactory.makeObject(JedisFactory.java:117)
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:889)
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:424)
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:349)
+	at redis.clients.jedis.util.Pool.getResource(Pool.java:50)
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:234)
+	at com.catstore.utils.redisUtils.RedisUtil.get(RedisUtil.java:52)
+	at com.catstore.serviceimpl.UserServiceImplement.getUser(UserServiceImplement.java:35)
+	at com.catstore.controller.UserController.getUser(UserController.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.xiaoymin.knife4j.spring.filter.ProductionSecurityFilter.doFilter(ProductionSecurityFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.xiaoymin.knife4j.spring.filter.SecurityBasicAuthFilter.doFilter(SecurityBasicAuthFilter.java:90)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1579)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:830)
+09:07:50.218 [http-nio-8080-exec-9] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool] with root cause
+java.net.ConnectException: Connection refused: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:579)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:549)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:597)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:339)
+	at java.base/java.net.Socket.connect(Socket.java:603)
+	at redis.clients.jedis.Connection.connect(Connection.java:181)
+	at redis.clients.jedis.BinaryClient.connect(BinaryClient.java:100)
+	at redis.clients.jedis.BinaryJedis.connect(BinaryJedis.java:1866)
+	at redis.clients.jedis.JedisFactory.makeObject(JedisFactory.java:117)
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:889)
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:424)
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:349)
+	at redis.clients.jedis.util.Pool.getResource(Pool.java:50)
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:234)
+	at com.catstore.utils.redisUtils.RedisUtil.getWholeList(RedisUtil.java:151)
+	at com.catstore.serviceimpl.BookServiceImplement.getBooks(BookServiceImplement.java:46)
+	at com.catstore.serviceimpl.BookServiceImplement$$FastClassBySpringCGLIB$$2b48eba6.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
+	at com.catstore.serviceimpl.BookServiceImplement$$EnhancerBySpringCGLIB$$575bb0d8.getBooks(<generated>)
+	at com.catstore.controller.BookController.getBooks(BookController.java:32)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.xiaoymin.knife4j.spring.filter.ProductionSecurityFilter.doFilter(ProductionSecurityFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.xiaoymin.knife4j.spring.filter.SecurityBasicAuthFilter.doFilter(SecurityBasicAuthFilter.java:90)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1579)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:830)

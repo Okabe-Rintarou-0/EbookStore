@@ -30,5 +30,7 @@ public interface BookService {
 
     ArrayList<Book> getRankedBooks(Date from, Date to);
 
+    ArrayList<Book> getAllRankedBooks();
+
     void postModifiedBook(Map<String, String> book);
 }

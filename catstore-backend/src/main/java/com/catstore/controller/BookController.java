@@ -90,6 +90,11 @@ public class BookController {
         return bookService.getRankedBooks(from, to);
     }
 
+    @GetMapping("/rank/all")
+    ArrayList<Book> getAllRankedBooks() {
+        return bookService.getAllRankedBooks();
+    }
+
     @PostMapping("/modify")
     void postModifiedBook(@RequestBody Map<String, String> book) {
         System.out.println(book.toString());

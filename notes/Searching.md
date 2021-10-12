@@ -12,7 +12,7 @@
 
 Lucene是跑在Servlet中的一个工具。其结构如下所示：
 
-<img src="./imgs/lucene_structure.png" style="zoom:50%;" />
+<img src="./imgs/lucene_structure.webp" style="zoom:35%;" />
 
 主要分为索引和搜索两个模块。
 

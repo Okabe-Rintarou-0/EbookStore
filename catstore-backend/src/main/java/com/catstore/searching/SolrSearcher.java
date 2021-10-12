@@ -16,9 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SolrSearcher {
-    public static List<Integer> searchBooksBy(String keyword) {
+    public static List<Integer> searchBooksBy(SolrClient client, String keyword) {
         List<Integer> bookIdList = new ArrayList<>();
-        SolrClient client = SolrUtil.getSolrClient();
         final SolrQuery query = new SolrQuery(SearchingFields.Details + ":" + keyword);
         query.addField(SearchingFields.BookId);
         query.setSort("id", SolrQuery.ORDER.desc);
@@ -41,7 +40,7 @@ public class SolrSearcher {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String line;
         while ((line = reader.readLine()) != null) {
-            List<Integer> bookIdList = searchBooksBy(line);
+            List<Integer> bookIdList = searchBooksBy(SolrUtil.getSolrClient(), line);
             System.out.println("Get book id list: " + bookIdList);
         }
     }

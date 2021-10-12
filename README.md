@@ -5,8 +5,12 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
 - [x] Implement websocket.
 - [x] Write multithread notes.
 - [x] Optimize Redis concerned code and implement pageable caching.
-- [ ] Implement Elasticsearch.
-- [ ] Write notes on searching.
+- [x] Write notes on searching.
+- [x] Implement web service.
+- [ ] Restful Apis.
+- [ ] Write notes on web service.
+- [ ] Implement Elasticsearch by java api.
+
 ## Update
 + 2021/9/19: Optimize controller with @Scope annotaion, and implement jms.
 
@@ -35,3 +39,7 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
 + 2021/10/10
 
   Implement Lucene & Solr to index the book details, making it more flexible to search books. 
+
++ 2021/10/12
+
+  Try elasticsearch & kibana; Implement Web Service by SOAP. (Client codes are in ./catstore-backend/Wsclient)

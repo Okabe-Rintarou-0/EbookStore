@@ -13,6 +13,8 @@ public interface BookDao {
 
     Page<Book> getBooks(PageRequest pageRequest);
 
+    String getAuthorByTitle(String title);
+
     Book getBookById(Integer bookId);
 
     List<Book> getBooksByKeyword(String keyword);

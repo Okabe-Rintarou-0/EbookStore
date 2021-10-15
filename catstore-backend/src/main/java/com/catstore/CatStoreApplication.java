@@ -7,12 +7,16 @@ import com.catstore.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
@@ -24,6 +28,8 @@ import java.util.List;
 @EnableScheduling //开启定时任务
 @SpringBootApplication
 @ServletComponentScan
+@EnableEurekaClient
+@EnableFeignClients
 public class CatStoreApplication {
     public static void main(String[] args) {
         SpringApplication.run(CatStoreApplication.class, args);
@@ -35,6 +41,11 @@ public class CatStoreApplication {
         taskScheduler.setPoolSize(10);
         taskScheduler.initialize();
         return taskScheduler;
+    }
+
+    @Bean
+    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+        return builder.build();
     }
 
     @Autowired

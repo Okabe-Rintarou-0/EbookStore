@@ -1,30 +1,41 @@
 package com.catstore.controller;
 
-import com.catstore.entity.Book;
-import com.catstore.service.BookService;
+import com.catstore.annotation.SkipSessionCheck;
 import com.catstore.constants.Constant;
+import com.catstore.entity.Book;
+import com.catstore.feign.BookServiceClient;
 import com.catstore.model.Message;
+import com.catstore.service.BookService;
 import com.catstore.utils.messageUtils.MessageUtil;
 import com.catstore.utils.sessionUtils.SessionUtil;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-///TODO: optimize those interfaces
 @RestController
 @RequestMapping("/book")
 public class BookController {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private BookServiceClient bookServiceClient;
+
     @GetMapping("/getAll")
     List<Book> getAllBooks() {
         return bookService.getBooks();
+    }
+
+    @GetMapping("/author/{title}")
+    @SkipSessionCheck
+    String getAuthorByTitle(@PathVariable(name = "title") String title) {
+        //        return bookService.getAuthorByTitle(title);
+        return bookServiceClient.getAuthorByTitle(title);
     }
 
     @GetMapping

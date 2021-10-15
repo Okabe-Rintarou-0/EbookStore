@@ -21,6 +21,8 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query(value = "from Book where bookTitle like concat('%',:keyword,'%') or bookAuthor like concat('%',:keyword,'%')")
     List<Book> getBooksByKeyword(@Param("keyword") String keyword);
 
+    Book findByBookTitle(String title);
+
     @Modifying
     @Query(value = "delete from Book where bookId = ?1")
     Integer deleteBookByBookId(Integer bookId);

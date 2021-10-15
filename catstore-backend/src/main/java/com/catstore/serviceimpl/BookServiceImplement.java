@@ -93,6 +93,11 @@ public class BookServiceImplement implements BookService {
     }
 
     @Override
+    public String getAuthorByTitle(String title) {
+        return bookDao.getAuthorByTitle(title);
+    }
+
+    @Override
     public String getBookTitleByBookId(Integer bookId) {
         return bookDao.getBookTitleByBookId(bookId);
     }

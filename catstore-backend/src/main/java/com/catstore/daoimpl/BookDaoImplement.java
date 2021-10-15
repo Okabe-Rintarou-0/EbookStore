@@ -41,6 +41,11 @@ public class BookDaoImplement implements BookDao {
     }
 
     @Override
+    public String getAuthorByTitle(String title) {
+        return bookRepository.findByBookTitle(title).getBookAuthor();
+    }
+
+    @Override
     public Book getBookById(Integer bookId) {
         return bookRepository.getBookById(bookId);
     }

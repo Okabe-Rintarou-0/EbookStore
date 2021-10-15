@@ -52,7 +52,3 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
   Deploy Eureka, Spring cloud gateway and Feign. Also try to implement serverless functional programming.
 
   [Notes](https://github.com/Okabe-Rintarou-0/CatStore/blob/master/notes/Micro%20Service%20%26%20Serverless.md)
-
-  <img src="./notes/imgs/eureka+gateway.png" style="zoom: 80%;" />
-
-  

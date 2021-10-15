@@ -7,6 +7,7 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
 - [x] Optimize Redis concerned code and implement pageable caching.
 - [x] Write notes on searching.
 - [x] Implement web service.
+- [x] Implement Micro Service.
 - [ ] Restful Apis.
 - [ ] Write notes on web service.
 - [ ] Implement Elasticsearch by java api.
@@ -45,3 +46,13 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
 + 2021/10/12
 
   Try elasticsearch & kibana; Implement Web Service by SOAP. (Client codes are in ./catstore-backend/Wsclient)
+
++ 2021/10/15
+
+  Deploy Eureka, Spring cloud gateway and Feign. Also try to implement serverless functional programming.
+
+  [Notes](https://github.com/Okabe-Rintarou-0/CatStore/blob/master/notes/Micro Service & Serverless.md)
+
+  <img src="./notes/imgs/eureka+gateway.png" style="zoom: 80%;" />
+
+  

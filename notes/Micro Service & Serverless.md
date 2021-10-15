@@ -175,10 +175,10 @@ public class RouteConfig {
 .
 ├── CatStore
 	├── ...
-    └── catstore-backend
+    	└── catstore-backend
 		├── ...
 		├── bookservice 
-        ├── eureka_server
+        	├── eureka_server
  		└── gateway
 ```
 

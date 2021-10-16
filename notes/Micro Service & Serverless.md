@@ -214,7 +214,7 @@ public interface BookServiceClient {
 }
 ```
 
-自动注入并调用即可，就和在本地调用几乎无区别。AOP让中间的省去了中间请求代码的编写，解放了程序员，好耶！
+自动注入并调用即可，就和在本地调用几乎无区别。AOP省去了中间请求代码的编写，解放了程序员，好耶！
 
 ```java
 @GetMapping("/author/{title}")

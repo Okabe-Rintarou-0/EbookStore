@@ -1,4 +1,4 @@
-# Searching
+# Searching & Web Service
 
 ### 概述
 
@@ -241,3 +241,206 @@ public static List<Integer> searchBooksBy(String keyword) {
 ### Elasticsearch
 
 ELK中的中的“E"，越来越多应用选择使用Elasticsearch。
+
+### Web Service
+
++ **SOAP**
+
+  简单对象访问协议是交换数据的一种协议规范，是一种轻量的、简单的、基于[XML](https://baike.baidu.com/item/XML)（[标准通用标记语言](https://baike.baidu.com/item/标准通用标记语言/6805073)下的一个子集）的协议，它被设计成在WEB上交换结构化的和固化的信息。
+
++ **WSDL**
+
+  **WSDL**（[Web服务描述语言](https://baike.baidu.com/item/Web服务描述语言/2891329)，Web Services Description Language）是为描述[Web服务](https://baike.baidu.com/item/Web服务)发布的[XML](https://baike.baidu.com/item/XML)格式。W3C组织（World Wide Web Consortium）没有批准1.1版的WSDL，当前的WSDL版本是2.0，是W3C的推荐标准（recommendation）（一种官方标准），并将被W3C组织批准为正式标准。
+
++ **XSD**
+
+  XML Schema Definition 缩写.[可扩展标记语言](https://baike.baidu.com/item/可扩展标记语言/2885849)架构是以可扩展标记语言（[标准通用标记语言](https://baike.baidu.com/item/标准通用标记语言/6805073)的子集）为基础的，它用于可替代文档类型定义（外语缩写：[DTD](https://baike.baidu.com/item/DTD)）；一份XML schema文件描述了可扩展标记[语言](https://baike.baidu.com/item/语言/72744)文档的结构。
+
+##### 各语言开发流程
+
++ **Java**
+
+  Server端：
+
+  + 编写接口xsd文件
+
+      ```xml
+      <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="bookSearch"
+                 targetNamespace="bookSearch" elementFormDefault="qualified">
+      
+          <xs:element name="bookSearchRequest">
+              <xs:complexType>
+                  <xs:sequence>
+                      <xs:element name="keyword" type="xs:string"/>
+                  </xs:sequence>
+              </xs:complexType>
+          </xs:element>
+      
+          <xs:element name="bookSearchResponse">
+              <xs:complexType>
+                  <xs:sequence>
+                      <xs:element name="book" type="tns:book" minOccurs="1" maxOccurs="unbounded"/>
+                  </xs:sequence>
+              </xs:complexType>
+          </xs:element>
+      
+          <xs:complexType name="book">
+              <xs:sequence>
+                  <xs:element name="id" type="xs:int"/>
+                  <xs:element name="details" type="xs:string"/>
+                  <xs:element name="title" type="xs:string"/>
+                  <xs:element name="stock" type="xs:int"/>
+                  <xs:element name="price" type="xs:float"/>
+                  <xs:element name="description" type="xs:string"/>
+              </xs:sequence>
+          </xs:complexType>
+      </xs:schema>
+      ```
+
+      如果要描述数组，请使用**minOccurs**和**maxOccurs**属性
+
+  + 使用jaxb2插件中的xjc生成响应辅助类（类似于RPC中的server stub）
+
+    依赖：
+
+    ```xml
+    <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jaxb2-maven-plugin</artifactId>
+        <version>2.5.0</version>
+        <executions>
+            <execution>
+                <id>xjc</id>
+                <goals>
+                    <goal>xjc</goal>
+                </goals>
+            </execution>
+        </executions>
+        <configuration>
+            <sources>
+                <source>${project.basedir}/src/main/resources/xsd/bookSearch.xsd</source>
+            </sources>
+        </configuration>
+    </plugin>
+    ```
+
+    其中**source**代表着用于生成辅助类的xsd文件的路径。
+
+  + 利用生成的辅助类创建Endpoint
+
+    ```java
+    @Endpoint
+    public class BookSearchWsEndpoint {
+        private static final String NAMESPACE = "bookSearch";
+    
+        @Autowired
+        private BookService bookService;
+    
+        @PayloadRoot(namespace = NAMESPACE, localPart = "bookSearchRequest")
+        @ResponsePayload
+        public BookSearchResponse searchBooksBy(@RequestPayload BookSearchRequest request) {
+            BookSearchResponse response = new BookSearchResponse();
+            List<Integer> bookIdList = LuceneSearcher.searchBooksBy(request.getKeyword());
+            for (Integer bookId : bookIdList) {
+                Book book = bookService.getBookById(bookId);
+                com.catstore.webService.Book wsBook = new com.catstore.webService.Book();
+                wsBook.setId(bookId);
+                wsBook.setDetails(book.getBookDetails());
+                wsBook.setTitle(book.getBookTitle());
+                wsBook.setStock(book.getBookStock());
+                wsBook.setPrice(Float.parseFloat(book.getBookPrice().toString()));
+                wsBook.setDescription(book.getBookDescription());
+                response.getBook().add(wsBook);
+            }
+            return response;
+        }
+    }
+    ```
+
+    方法声明上的 `@PayloadRoot`标注中的`namespace`和`localPart`分别就是wsdl中的`targetNamespace`和`soap`方法名称。
+
+    `@ResponsePayload`和 `@RequestPayload` 这两个标注的用法，以及它们对应的数据类型就是此前通过maven插件对wsdl定义生成的java类。
+
+    Server端跑起来之后会在..../ws/namespace.wsdl上显示生成的wsdl文件内容。
+
+  + controller
+
+    ```java
+    @WebService
+    @Component
+    public class BookSearchWsController {
+        @Autowired
+        private BookService bookService;
+    
+        @WebMethod
+        public List<Book> searchBooksBy(@WebParam(name = "parameters") String keyword) {
+            List<Integer> bookIdList = LuceneSearcher.searchBooksBy(keyword);
+            List<Book> books = new ArrayList<>();
+            for (Integer bookId : bookIdList) {
+                books.add(bookService.getBookById(bookId));
+            }
+            return books;
+        }
+    }
+    ```
+
+    注意**@WebService**和**@WebMethod**两个注释。
+
+  Client端：
+
+  + 通过jaxb2插件中的generate生成辅助类（类似于RPC中的client stub）
+
+    ```
+    <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+    </plugin>
+    <plugin>
+        <groupId>org.jvnet.jaxb2.maven2</groupId>
+        <artifactId>maven-jaxb2-plugin</artifactId>
+        <version>0.14.0</version>
+        <executions>
+            <execution>
+                <goals>
+                    <goal>generate</goal>
+                </goals>
+            </execution>
+        </executions>
+        <configuration>
+            <schemaLanguage>WSDL</schemaLanguage>
+            <generatePackage>com.catstore.wsclient.webService</generatePackage>
+            <schemas>
+                <schema>
+                    <url>http://127.0.0.1:8080/ws/bookSearch.wsdl</url>
+                </schema>
+            </schemas>
+        </configuration>
+    </plugin>
+    ```
+
+    + <generatePackage>com.catstore.wsclient.webService</generatePackage> 
+
+      代表生成的辅助类的包名
+
+    + <url>http://127.0.0.1:8080/ws/bookSearch.wsdl</url>
+
+      代表server暴露的wsdl的url
+
+  + 利用辅助类写web service client
+
+    ```java
+    public class BookSearchClient extends WebServiceGatewaySupport {
+        private static final String WS_PATH = "http://localhost:8080/ws/bookSearch";
+    
+        public List<Book> searchBooksBy(String keyword) {
+            BookSearchRequest request = new BookSearchRequest();
+            request.setKeyword(keyword);
+    
+            BookSearchResponse response = (BookSearchResponse) getWebServiceTemplate().
+                    marshalSendAndReceive(WS_PATH, request);
+            return response.getBook();
+        }
+    }
+    ```
+
+    封装一下就和本地调用一样，其实背后还是走了网络协议，只不过走的过程对用户而言是透明的。

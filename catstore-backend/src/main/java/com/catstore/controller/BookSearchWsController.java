@@ -9,7 +9,6 @@ import jakarta.jws.WebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.xml.ws.Endpoint;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,9 +26,5 @@ public class BookSearchWsController {
             books.add(bookService.getBookById(bookId));
         }
         return books;
-    }
-
-    public static void main(String[] args) {
-        Endpoint.publish("http://localhost:9000/bookSearch", new BookSearchWsController());
     }
 }

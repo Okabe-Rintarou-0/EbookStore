@@ -1,48 +1,44 @@
 # CatStore
 CatStore is a simple book store based on React and Spring boot. It's an assignment from lesson SE2321 and SE3353.
-## To-do list
-- [x] Implement transcation.
-- [x] Implement websocket.
-- [x] Write multithread notes.
-- [x] Optimize Redis concerned code and implement pageable caching.
-- [x] Write notes on searching.
-- [x] Implement web service.
-- [x] Implement Micro Service.
-- [ ] Restful Apis.
-- [ ] Write notes on web service.
-- [ ] Implement Elasticsearch by java api.
+
+## Notes
+
+| Topic                      | link                                                         | Remark |
+| -------------------------- | ------------------------------------------------------------ | ------ |
+| Transaction                | [Transaction](./notes/Transaction.md)                        |        |
+| Multithread                | [Multithread](./notes/Multithread.md)                        |        |
+| Caching                    | [Caching](./notes/Caching.md)                                |        |
+| Searching & Web Service    | [Searching & Web Service](./notes/Searching.md)              |        |
+| Micro Service & Serverless | [Micro Service & Serverless](https://github.com/Okabe-Rintarou-0/CatStore/blob/master/notes/Micro%20Service%20%26%20Serverless.md) |        |
 
 ## Update
-+ 2021/9/19: Optimize controller with @Scope annotaion, and implement jms.
 
-+ 2021/9/20: Implement websocket to create an online chatroom (with heart-beat check).
++ 2021/9/19
+
+  Optimize controller with @Scope annotaion, and implement jms.
+
++ 2021/9/20 
   
-  The effect of two browsers.
+  Implement websocket to create an online chatroom (with heart-beat check).
   
-  ![chatroom](https://raw.githubusercontent.com/Okabe-Rintarou-0/web-images/master/books/chatroom.3qfwysfvm7g0.png)
+  Effects: [chatroom](.\notes\imgs\chatroom.png)
 
-+ 2021/9/24: Implement transaction.
++ 2021/9/24
 
-  [Notes](https://github.com/Okabe-Rintarou-0/CatStore/blob/master/notes/Transaction.md)
+   Implement transaction.
 
 + 2021/9/28
 
   Implement multithread to count daily visit of home page. Has passed jmeter tests.
   
-  [Notes](https://github.com/Okabe-Rintarou-0/CatStore/blob/master/notes/Multithread.md)
-
 + 2021/10/1
   
   Implement redis. (Using jedis pool, for jedis is thought to be faster than redisTemplate.)
-  
-  [Notes](https://github.com/Okabe-Rintarou-0/CatStore/blob/master/notes/Caching.md)
   
 + 2021/10/10
 
   Implement Lucene & Solr to index the book details, making it more flexible to search books. 
   
-  [Notes](https://github.com/Okabe-Rintarou-0/CatStore/blob/master/notes/Searching.md)
-
 + 2021/10/12
 
   Try elasticsearch & kibana; Implement Web Service by SOAP. (Client codes are in ./catstore-backend/Wsclient)
@@ -51,4 +47,4 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
 
   Deploy Eureka, Spring cloud gateway and Feign. Also try to implement serverless functional programming.
 
-  [Notes](https://github.com/Okabe-Rintarou-0/CatStore/blob/master/notes/Micro%20Service%20%26%20Serverless.md)
+

@@ -9,7 +9,8 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
 | Multithread                | [Multithread](./notes/Multithread.md)                        |        |
 | Caching                    | [Caching](./notes/Caching.md)                                |        |
 | Searching & Web Service    | [Searching & Web Service](./notes/Searching.md)              |        |
-| Micro Service & Serverless | [Micro Service & Serverless](https://github.com/Okabe-Rintarou-0/CatStore/blob/master/notes/Micro%20Service%20%26%20Serverless.md) |        |
+| Micro Service & Serverless | [Micro Service & Serverless](./notes/Micro Service & Serverless.md) |        |
+| Security                   | [Security](./notes/Security.md)                              |        |
 
 ## Update
 
@@ -46,5 +47,4 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
 + 2021/10/15
 
   Deploy Eureka, Spring cloud gateway and Feign. Also try to implement serverless functional programming.
-
 

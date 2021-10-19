@@ -9,7 +9,7 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
 | Multithread                | [Multithread](./notes/Multithread.md)                        |        |
 | Caching                    | [Caching](./notes/Caching.md)                                |        |
 | Searching & Web Service    | [Searching & Web Service](./notes/Searching.md)              |        |
-| Micro Service & Serverless | [Micro Service & Serverless](./notes/Micro Service & Serverless.md) |        |
+| Micro Service & Serverless | [Micro Service & Serverless](./notes/Micro%20Service%20%26%20Serverless.md) |        |
 | Security                   | [Security](./notes/Security.md)                              |        |
 
 ## Update

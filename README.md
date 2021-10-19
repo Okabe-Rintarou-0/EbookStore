@@ -21,7 +21,7 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
   
   Implement websocket to create an online chatroom (with heart-beat check).
   
-  Effects: [chatroom](.\notes\imgs\chatroom.png)
+  Effects: [chatroom](./notes/imgs/chatroom.png)
 
 + 2021/9/24
 

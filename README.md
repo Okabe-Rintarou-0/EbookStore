@@ -3,16 +3,17 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
 
 ## Notes
 
-| Topic                      | link                                                         | Remark |
-| -------------------------- | ------------------------------------------------------------ | ------ |
-| Transaction                | [Transaction](./notes/Transaction.md)                        |        |
-| Multithread                | [Multithread](./notes/Multithread.md)                        |        |
-| Caching                    | [Caching](./notes/Caching.md)                                |        |
-| Searching & Web Service    | [Searching & Web Service](./notes/Searching.md)              |        |
-| Micro Service & Serverless | [Micro Service & Serverless](./notes/Micro%20Service%20%26%20Serverless.md) |        |
-| Security                   | [Security](./notes/Security.md)                              |        |
+| Topic                      | Link                                                         | Keywords                               |
+| -------------------------- | ------------------------------------------------------------ | -------------------------------------- |
+| Transaction                | [Transaction](./notes/Transaction.md)                        |                                        |
+| Multithread                | [Multithread                                                 |                                        |
+| Caching                    | [Caching](./notes/Caching.md)                                | Redis/Memcached                        |
+| Searching & Web Service    | [Searching & Web Service](./notes/Searching.md)              | Lucene/Solr/Elasticsearch    SOPA&WSDL |
+| Micro Service & Serverless | [Micro Service & Serverless](./notes/Micro%20Service%20%26%20Serverless.md) | Eureka                                 |
+| Security                   | [Security](./notes/Security.md)                              | TSL/SSL/HTTPS/etc                      |
+| MySQL Optimization         | [MySQL Optimization](./notes/MySQL%20Optimization.md)        |                                        |
 
-## Update
+## Update Log
 
 + 2021/9/19
 

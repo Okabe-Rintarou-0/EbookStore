@@ -87,12 +87,12 @@
 + 修改Tomcat的配置文件：
 
   ```xml
-<Connector port=“8443”
+  <Connector port=“8443”
   	protocol="org.apache.coyote.http11.Http11NioProtocol"
   	maxThreads="150" SSLEnabled="true"
   	keystoreFile="/Users/chenhaopeng/apache-tomcat-9.0.31/conf/key/tomcat.keystore"
   	keystorePass="changeit">
-</Connector>
+  </Connector>
   ```
 
 
@@ -119,6 +119,53 @@
 
 用户登陆的时候输入的密码明文传输是不安全的。因而在传递登录信息的时候，只是传递用户名。
 
-AS(Authentication Service)会从数据库中找到用户名对应的密码，把密码Hash得到的结果作为秘钥。AS用该秘钥加密TGS Key（客户端和服务器交互的Key），把加了密的TGS Key发送给客户端。客户端用相同的算法生成秘钥将TGS Key解密。
+AS(Authentication Service)：
 
-TGS(Ticket Granting Service)授权服务器，对TGS key使用公钥加密传给客户端，客户端原封不动发给TGS, TGS用私钥解开获取TGS key。
++ 消息A：AS会从数据库中找到用户名对应的密码，把密码Hash得到的结果作为秘钥，并用该秘钥加密TGS Key（客户端和服务器交互的Key），把加了密的TGS Key发送给客户端。客户端用相同的算法生成秘钥将TGS Key解密；
++ 消息B：AS对TGS key使用公钥加密传给客户端，其中还包括一些有关客户端的信息。
+
+Client:
+
++ 消息C： 客户端把加过密的TGS key原封不动转交给TGS；
++ 消息D：客户端把个人信息和时间戳用TGS Key加密发给TGS。
+
+TGS(Ticket Granting Service)：
+
++ TGS 这边是不会保存TGS Key的；
+
++ 用自己的秘钥解密加密过的TGS Key（消息C）， 获得其中的客户端信息；
++ 用TGS Key 解密消息D，获得用户信息；
++ 核对获取的两个用户信息，确定客户端身份；
++ 消息E：发送用TGS Key加密过的Client和Server交互的Session Key；
++ 消息F：把用Server的公钥加密的Ticket发送给客户端。（Ticket Granting！）
+
+Client:
+
++ 用TGS Key解密消息E获取Session Key；
++ 把Session Key和Ticket发给Server；
+
+Server：
+
++ 用私钥解开加密过的Ticket，如果解得开，认证成功，开启交互；
++ 双向验证（发送时间戳，客户端得以知道Server不是钓鱼网站）
+
+TGS的key一般有效期比较长，短时间内不用再次认证，即单点认证。
+
+缺点：
+
++ 如果AS/TGS崩了，整个系统就崩了=>修改为分布式集群；
+
++ 分布式时间同步存在难度，而该系统对时间准确性要求比较高（很多消息需要传递时间戳（防止被拦截和伪造））；使用Time Service。
+
+### Some Keywords
+
+JDBC的Prepared Statement。
+
+入侵检测，撞库。
+
+### References
+
++ [谈谈基于Kerberos的Windows Network Authentication上篇](https://www.cnblogs.com/artech/archive/2007/07/05/807492.html)
+
++ [谈谈基于Kerberos的Windows Network Authentication - Part II](https://www.cnblogs.com/artech/archive/2007/07/07/809545.html)
+

@@ -16,7 +16,7 @@ public class ServletRequestListenerImpl implements ServletRequestListener {
     @Override
     public void requestInitialized(ServletRequestEvent sre) {
         HttpServletRequest servletRequest = (HttpServletRequest) sre.getServletRequest();
-        System.out.println("requestInitialized() Current thread " + Thread.currentThread().getName() + " with sesison id " + servletRequest.getSession().getId());
+        System.out.println("requestInitialized() Current thread " + Thread.currentThread().getName() + " with session id " + servletRequest.getSession().getId());
     }
 
 }

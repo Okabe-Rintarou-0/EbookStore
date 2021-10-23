@@ -11,7 +11,7 @@
     	└── catstore-backend
 		├── ...
 		├── bookservice 
-        ├── eureka_server
+        	├── eureka_server
  		└── gateway
 ```
 

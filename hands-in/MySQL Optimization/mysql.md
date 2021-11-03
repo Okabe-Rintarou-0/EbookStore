@@ -59,6 +59,8 @@ InnoDB和MyISAM两种存储引擎的主要差异：
 
 ![](./img_1.png)
 
+表结构：
+
 SQL语句：
 
 ```sql
@@ -129,8 +131,6 @@ create table order_item
 ) charset = UTF8;
 ```
 
-表结构：
-
 表与表之间的关联：
 
 user => user_auth
@@ -140,5 +140,7 @@ order_item => book & user_order
 user_order => user
 
 book => book_extra
+
+![](./img_2.png)
 
 具体关系如上图所示。

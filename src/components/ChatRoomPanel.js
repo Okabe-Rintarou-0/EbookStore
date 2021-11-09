@@ -38,7 +38,7 @@ class ChatRoomPanel extends React.Component {
         if (chatMsg.message.length === 0) return;
         ws.send(JSON.stringify(chatMsg));
         chatInput.state.value = '';
-        chatInput.focus()
+        chatInput.focus();
     };
 
     sendPingPongMsg = () => {

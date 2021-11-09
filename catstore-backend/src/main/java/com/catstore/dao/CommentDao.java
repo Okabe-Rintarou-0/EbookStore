@@ -1,20 +1,16 @@
 package com.catstore.dao;
 
-import com.catstore.entity.Comment;
+import com.catstore.dto.CommentDto;
+import com.catstore.entity.CommentAction;
 
 import java.util.List;
-import java.util.Map;
 
 public interface CommentDao {
-    List<Map<String, String>> getCommentsByBookId(Integer bookId);
+    List<CommentDto> getComments(Integer bookId, Integer userId);
 
-    void addLikes(Integer commentId);
+    void addComment(Integer bookId, Integer userId, String content);
 
-    void cancelLikes(Integer commentId);
+    CommentAction getAction(Integer bookId, Integer userId);
 
-    void addDislikes(Integer commentId);
-
-    void cancelDislikes(Integer commentId);
-
-    String existedCommentAction(Integer commentId);
+    Integer updateAction(String commentId, Integer userId, Integer newAction);
 }

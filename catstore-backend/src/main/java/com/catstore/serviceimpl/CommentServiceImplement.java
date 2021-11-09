@@ -1,44 +1,36 @@
 package com.catstore.serviceimpl;
 
 import com.catstore.dao.CommentDao;
-import com.catstore.entity.Comment;
-import com.catstore.entity.UserCommentAction;
+import com.catstore.dto.CommentDto;
 import com.catstore.service.CommentService;
+import com.catstore.utils.sessionUtils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class CommentServiceImplement implements CommentService {
-
-    CommentDao commentDao;
-
     @Autowired
-    void setCommentDao(CommentDao commentDao) {
-        this.commentDao = commentDao;
+    private CommentDao commentDao;
+
+    @Override
+    public List<CommentDto> getComments(Integer bookId, Integer userId) {
+        return commentDao.getComments(bookId, userId);
     }
 
     @Override
-    public List<Map<String, String>> getCommentsByBookId(Integer bookId) {
-        return commentDao.getCommentsByBookId(bookId);
+    public void addComment(int bookId, String content) {
+        commentDao.addComment(bookId, SessionUtil.getUserId(), content);
     }
 
     @Override
-    public void handleUserCommentAction(Integer commentId, Integer like, Integer dislike) {
-        if (like > 0) {
-            commentDao.addLikes(commentId);
-        } else if (like < 0)
-            commentDao.cancelLikes(commentId);
-        if (dislike > 0) {
-            commentDao.addDislikes(commentId);
-        } else if (dislike < 0)
-            commentDao.cancelDislikes(commentId);
+    public void addComment(int bookId, int userId, String content) {
+        commentDao.addComment(bookId, userId, content);
     }
 
     @Override
-    public String getCommentActionByCommentId(Integer commentId) {
-        return commentDao.existedCommentAction(commentId);
+    public Integer updateAction(String commentId, Integer userId, Integer actionId) {
+        return commentDao.updateAction(commentId, userId, actionId);
     }
 }

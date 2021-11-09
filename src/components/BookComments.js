@@ -1,7 +1,8 @@
 import React from "react";
-import {List, Pagination} from 'antd';
+import {List, Button, Row, Col, Input, message} from 'antd';
 import BookComment from "./Comment";
 import '../css/bookComments.css'
+import {addComment, getComments} from "../service/commentService";
 
 class BookComments extends React.Component {
 
@@ -9,16 +10,34 @@ class BookComments extends React.Component {
         super(props);
         this.state = {
             comments: [],
-        }
+        };
     }
 
     handleCommentsInfo = data => {
+        console.log(data);
         this.setState({
             comments: data,
-        })
+        });
+    };
+
+    addComment = () => {
+        let commentInput = this.refs.commentInput;
+        let content = commentInput.input.value;
+        if (content.length === 0) return;
+        commentInput.state.value = '';
+        commentInput.focus();
+        addComment(this.props.bookId, content, msg => {
+            if (msg.status > 0) {
+                message.success(msg.message).then(null);
+                getComments(this.props.bookId, this.handleCommentsInfo);
+            } else {
+                message.warn(msg.message).then(null);
+            }
+        });
     };
 
     componentDidMount() {
+        getComments(this.props.bookId, this.handleCommentsInfo);
     }
 
     render() {
@@ -30,29 +49,33 @@ class BookComments extends React.Component {
                 }}>
                     Hot comments
                 </b>
+                <Row style={{marginBottom: '5px'}}>
+                    <Col span={6}>
+                        <Input ref={"commentInput"} focus={true} placeholder="在此输入"/>
+                    </Col>
+                    <Col>
+                        <Button type="primary" onClick={this.addComment}>评论</Button>
+                    </Col>
+                </Row>
                 <List
                     style={{boxShadow: '0 0 5px #888888'}}
                     className="comment-list"
-                    // header={`Hot comments`}
                     itemLayout="horizontal"
                     dataSource={this.state.comments}
                     renderItem={item => (
                         <li>
                             <BookComment
-                                comment_id={item.comment_id}
+                                commentId={item.commentId}
                                 username={item.username}
-                                imgSrc={item.user_icon}
-                                userComment={item.comment_content}
+                                userIcon={item.userIcon}
+                                content={item.content}
                                 likes={item.likes}
                                 dislikes={item.dislikes}
+                                action={item.action}
                             />
                         </li>
                     )}
                 />
-                <Pagination style={{
-                    margin: "10px",
-                    float: "right"
-                }} simple defaultCurrent={2} total={50}/>
             </div>
         );
     }

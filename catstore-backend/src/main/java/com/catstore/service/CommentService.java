@@ -1,15 +1,15 @@
 package com.catstore.service;
 
-import com.catstore.entity.Comment;
-import com.catstore.entity.UserCommentAction;
+import com.catstore.dto.CommentDto;
 
 import java.util.List;
-import java.util.Map;
 
 public interface CommentService {
-    List<Map<String, String>> getCommentsByBookId(Integer bookId);
+    List<CommentDto> getComments(Integer bookId, Integer userId);
 
-    void handleUserCommentAction(Integer commentId, Integer like, Integer dislike);
+    void addComment(int bookId, String content);
 
-    String getCommentActionByCommentId(Integer commentId);
+    void addComment(int bookId, int userId, String content);
+
+    Integer updateAction(String commentId, Integer userId, Integer actionId);
 }

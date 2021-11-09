@@ -103,7 +103,7 @@ public class CommentDaoImplement implements CommentDao {
                             break;
                     }
                 }
-                
+
                 comment.setLikes(curLikes);
                 comment.setDislikes(curDislikes);
                 commentRepository.save(comment);

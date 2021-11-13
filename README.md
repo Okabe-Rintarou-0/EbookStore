@@ -12,8 +12,13 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
 | Micro Service & Serverless         | [Micro Service & Serverless](./notes/Micro%20Service%20%26%20Serverless.md) | Eureka                                 |
 | Security                           | [Security](./notes/Security.md)                              | TSL/SSL/HTTPS/etc                      |
 | MySQL Optimization                 | [MySQL Optimization](./notes/MySQL%20Optimization.md)        | Index                                  |
+<<<<<<< HEAD
 | MySQL Backup, Recovery & Partition | [MySQL Backup, Recovery & Partition](./notes/MySQL%20Backup%2C%20Recovery%20%26%20Partition.md) | Backup/Partition                       |
 | MongoDB & Neo4j                    | [MongoDB & Neo4j]()                                          | MongoDB                                |
+=======
+| MySQL Backup, Recovery & Partition | [MySQL Backup, Recovery & Partition](./notes/MySQL%20Backup%2C%20Recovery%20%26%20Partition.md)                       | Backup/Partition                       |
+| MongoDB & Neo4j                    | [MongoDB & Neo4j](./notes/MongoDB%20%26%20Neo4j.md)                                          | MongoDB                                |
+>>>>>>> 94a4a838b2b64dcc9b22c6a949c27884a7f2aad3
 
 ## Update Log
 

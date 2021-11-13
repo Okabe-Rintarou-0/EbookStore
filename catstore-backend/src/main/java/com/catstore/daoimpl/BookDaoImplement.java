@@ -4,7 +4,11 @@ import com.catstore.constants.RedisKeys;
 import com.catstore.crawlers.BookCrawler;
 import com.catstore.dao.BookDao;
 import com.catstore.entity.Book;
+import com.catstore.entity.Book4Neo;
+import com.catstore.entity.BookTag;
 import com.catstore.repository.BookRepository;
+import com.catstore.repository.BookRepository4Neo;
+import com.catstore.repository.BookTagRepository;
 import com.catstore.utils.redisUtils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,9 +19,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 public class BookDaoImplement implements BookDao {
@@ -25,10 +27,30 @@ public class BookDaoImplement implements BookDao {
     private BookRepository bookRepository;
 
     @Autowired
+    private BookTagRepository bookTagRepository;
+
+    @Autowired
+    private BookRepository4Neo bookRepository4Neo;
+
+    @Autowired
     private BookCrawler bookCrawler;
 
     @Autowired
     private RedisUtil redisUtil;
+
+    @Override
+    public void saveBookAndTags(Book4Neo book, List<BookTag> tags) {
+        for (BookTag tag : tags) {
+            bookTagRepository.save(tag);
+        }
+        book.addTags(tags);
+        bookRepository4Neo.save(book);
+    }
+
+    @Override
+    public List<Book> findBooksByTags(List<BookTag> tags) {
+        return null;
+    }
 
     @Override
     public List<Book> getBooks() {
@@ -143,5 +165,15 @@ public class BookDaoImplement implements BookDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Book> searchByTags(List<String> tags) {
+        List<Integer> bookIds = new ArrayList<>();
+        List<Book4Neo> books = bookRepository4Neo.searchByTags(tags);
+        for (Book4Neo book : books) {
+            bookIds.add(book.getBookId());
+        }
+        return bookRepository.findAllByBookIdIn(bookIds);
     }
 }

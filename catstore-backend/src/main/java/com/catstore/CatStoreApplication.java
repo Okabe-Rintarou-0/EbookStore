@@ -1,9 +1,9 @@
 package com.catstore;
 
-import com.alibaba.fastjson.JSONObject;
-import com.catstore.entity.Book;
-import com.catstore.searching.LuceneIndexer;
-import com.catstore.repository.BookRepository;
+import com.catstore.entity.Book4Neo;
+import com.catstore.entity.BookTag;
+import com.catstore.repository.BookRepository4Neo;
+import com.catstore.repository.BookTagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,10 +19,10 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 
 @EnableAsync
 @EnableScheduling //开启定时任务
@@ -48,34 +48,71 @@ public class CatStoreApplication {
         return builder.build();
     }
 
+//    @Autowired
+//    private BookRepository bookRepository;
+
     @Autowired
-    private BookRepository bookRepository;
+    private BookTagRepository bookTagRepository;
 
-    //    @PostConstruct
-    void formBookInfoFiles() throws IOException {
-        System.out.println("called");
-        List<Book> books = bookRepository.findAll();
+    @Autowired
+    private BookRepository4Neo bookRepository4Neo;
 
-        File dataDir = new File(LuceneIndexer.DATA_DIR);
-        if (!dataDir.exists()) {
-            dataDir.mkdir();
-        } else if (!dataDir.isDirectory()) {
-            dataDir.delete();
-            dataDir.mkdir();
+//    @PostConstruct
+//    void formBookInfoFiles() throws IOException {
+//        System.out.println("called");
+//        List<Book> books = bookRepository.findAll();
+//
+//        File dataDir = new File(LuceneIndexer.DATA_DIR);
+//        if (!dataDir.exists()) {
+//            dataDir.mkdir();
+//        } else if (!dataDir.isDirectory()) {
+//            dataDir.delete();
+//            dataDir.mkdir();
+//        }
+//
+//        File bookInfoFile = new File(LuceneIndexer.DATA_DIR + "book_infos.txt");
+//        if (!bookInfoFile.exists())
+//            bookInfoFile.createNewFile();
+//
+//        FileWriter fileWriter = new FileWriter(bookInfoFile);
+//        for (Book book : books) {
+//            JSONObject jsonObj = new JSONObject();
+//            jsonObj.put("details", book.getBookDetails());
+//            jsonObj.put("bookId", book.getBookId());
+//            fileWriter.write(jsonObj.toString() + "\n");
+//        }
+//
+//        fileWriter.close();
+//    }
+
+//    @PostConstruct
+    void prepareForNeo4j() throws IOException {
+        String url = "./src/main/resources/neo4j/book.csv";
+        BufferedReader br = new BufferedReader(new FileReader(url));
+        String line;
+        Map<String, BookTag> tagMap = new HashMap<>();
+        List<Book4Neo> books = new ArrayList<>();
+        while (!(line = br.readLine()).isEmpty()) {
+            List<String> tuple = Arrays.asList(line.split(",").clone());
+            System.out.println("Read line: " + tuple.toString());
+            int bookId = Integer.parseInt(tuple.get(0));
+            Book4Neo book = new Book4Neo();
+            book.setBookId(bookId);
+            List<BookTag> tags = new ArrayList<>();
+            for (int i = 1; i < tuple.size(); ++i) {
+                String tag = tuple.get(i);
+                if (!tagMap.containsKey(tag))
+                    tagMap.put(tag, new BookTag(tag));
+                tags.add(tagMap.get(tag));
+            }
+            book.addTags(tags);
+            books.add(book);
         }
-
-        File bookInfoFile = new File(LuceneIndexer.DATA_DIR + "book_infos.txt");
-        if (!bookInfoFile.exists())
-            bookInfoFile.createNewFile();
-
-        FileWriter fileWriter = new FileWriter(bookInfoFile);
-        for (Book book : books) {
-            JSONObject jsonObj = new JSONObject();
-            jsonObj.put("details", book.getBookDetails());
-            jsonObj.put("bookId", book.getBookId());
-            fileWriter.write(jsonObj.toString() + "\n");
+        for (Map.Entry<String, BookTag> entry : tagMap.entrySet()) {
+            bookTagRepository.save(entry.getValue());
         }
-
-        fileWriter.close();
+        for (Book4Neo book : books) {
+            bookRepository4Neo.save(book);
+        }
     }
 }

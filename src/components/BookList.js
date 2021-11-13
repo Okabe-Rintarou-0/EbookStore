@@ -2,8 +2,10 @@ import React from "react";
 import BookPreview from "./BookPreview";
 import {Col, Input, Pagination, Row} from "antd";
 import 'antd/dist/antd.css'
-import {getBooksByKeyword, getBooksByPage} from "../service/bookService";
+import {getBooksByKeyword, getBooksByPage, searchBooksByTags} from "../service/bookService";
 import {scrollBackToTop} from "../utils/auxfunc";
+import EditableTagGroup from "./EditableTagGroup";
+import Button from "antd/es/button";
 
 const {Search} = Input;
 
@@ -17,9 +19,15 @@ class BookList extends React.Component {
 
     onSearch = (value) => {
         let keyword = value.toLowerCase();
-        if (keyword.length === 0)
-            getBooksByPage(0, this.handleBooksInfo);
-        else
+        if (keyword.length === 0) {
+            let tags = this.refs.tags.state.tags;
+            if (tags.length === 0)
+                getBooksByPage(0, this.handleBooksInfo);
+            else {
+                console.log(tags);
+                searchBooksByTags(tags, this.handleSearch)
+            }
+        } else
             getBooksByKeyword(keyword, this.handleSearch);
     };
 
@@ -43,17 +51,24 @@ class BookList extends React.Component {
 
     renderSearchBar = () => {
         return (
-            <Row align={"center"}>
-                <Col span={12} style={{margin: '20px'}}>
-                    <Search
-                        placeholder="请输入搜索关键词"
-                        allowClear
-                        enterButton="Search"
-                        size="large"
-                        onSearch={this.onSearch}
-                    />
-                </Col>
-            </Row>
+            <>
+                <Row align={"center"}>
+                    <Col span={12} style={{marginTop: '20px'}}>
+                        <Search
+                            placeholder="请输入搜索关键词"
+                            allowClear
+                            enterButton="Search"
+                            size="large"
+                            onSearch={this.onSearch}
+                        />
+                    </Col>
+                </Row>
+                <Row align={"center"}>
+                    <Col span={12}>
+                        <EditableTagGroup ref={"tags"} maxNum={3}/>
+                    </Col>
+                </Row>
+            </>
         );
     };
 

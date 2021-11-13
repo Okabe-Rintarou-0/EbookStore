@@ -3,6 +3,7 @@ package com.catstore.controller;
 import com.catstore.annotation.SkipSessionCheck;
 import com.catstore.constants.Constant;
 import com.catstore.entity.Book;
+import com.catstore.entity.BookTag;
 import com.catstore.feign.BookServiceClient;
 import com.catstore.model.Message;
 import com.catstore.service.BookService;
@@ -10,7 +11,6 @@ import com.catstore.utils.messageUtils.MessageUtil;
 import com.catstore.utils.sessionUtils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -110,5 +110,12 @@ public class BookController {
     void postModifiedBook(@RequestBody Map<String, String> book) {
         System.out.println(book.toString());
         bookService.postModifiedBook(book);
+    }
+
+    @SkipSessionCheck
+    @GetMapping("/tag/{tag}")
+    List<Book> findBooksByTag(@PathVariable(name = "tag") List<String> tags) {
+        System.out.println("read tags: " + tags);
+        return bookService.searchByTags(tags);
     }
 }

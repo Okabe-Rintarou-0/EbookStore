@@ -47,4 +47,7 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
             "bookDetails = ?6,bookStock=?7,bookPrice = ?8,bookTag = ?9,bookType = ?10 where bookId = ?1")
     void modifyBookWithBookId(Integer bookId, String bookCover, String bookTitle, String bookAuthor, String bookDescription,
                               String bookDetails, Integer bookStock, BigDecimal bookPrice, String bookTag, String bookType);
+
+
+    List<Book> findAllByBookIdIn(List<Integer> bookId);
 }

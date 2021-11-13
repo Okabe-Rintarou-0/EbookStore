@@ -1,13 +1,15 @@
 package com.catstore.serviceimpl;
 
+import com.catstore.constants.Constant;
 import com.catstore.constants.RedisKeys;
 import com.catstore.dao.BookDao;
 import com.catstore.dto.BookDto;
 import com.catstore.entity.Book;
+import com.catstore.entity.Book4Neo;
+import com.catstore.entity.BookTag;
+import com.catstore.model.Message;
 import com.catstore.searching.LuceneSearcher;
 import com.catstore.service.BookService;
-import com.catstore.constants.Constant;
-import com.catstore.model.Message;
 import com.catstore.utils.messageUtils.MessageUtil;
 import com.catstore.utils.redisUtils.RedisUtil;
 import net.sf.json.JSONObject;
@@ -32,6 +34,11 @@ public class BookServiceImplement implements BookService {
 
     @Autowired
     private RedisUtil redisUtil;
+
+    @Override
+    public void saveBookAndTags(Book4Neo book, List<BookTag> tags) {
+        bookDao.saveBookAndTags(book, tags);
+    }
 
     @Override
     public List<Book> getBooks() {
@@ -85,7 +92,7 @@ public class BookServiceImplement implements BookService {
     public List<Book> getBooksByKeyword(String keyword) {
         List<Integer> bookIdList = LuceneSearcher.searchBooksBy(keyword);
         List<Book> books = new ArrayList<>();
-        System.out.println("Get book id list from lucene: "+ bookIdList);
+        System.out.println("Get book id list from lucene: " + bookIdList);
         for (Integer bookId : bookIdList) {
             books.add(bookDao.getBookById(bookId));
         }
@@ -151,5 +158,10 @@ public class BookServiceImplement implements BookService {
     @Transactional
     public void postModifiedBook(Map<String, String> book) {
         bookDao.postModifiedBook(book);
+    }
+
+    @Override
+    public List<Book> searchByTags(List<String> tags) {
+        return bookDao.searchByTags(tags);
     }
 }

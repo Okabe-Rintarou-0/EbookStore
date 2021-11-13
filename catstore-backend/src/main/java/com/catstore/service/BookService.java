@@ -1,6 +1,8 @@
 package com.catstore.service;
 
 import com.catstore.entity.Book;
+import com.catstore.entity.Book4Neo;
+import com.catstore.entity.BookTag;
 import com.catstore.model.Message;
 
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface BookService {
+    void saveBookAndTags(Book4Neo book, List<BookTag> tags);
 
     List<Book> getBooks();
 
@@ -35,4 +38,6 @@ public interface BookService {
     ArrayList<Book> getAllRankedBooks();
 
     void postModifiedBook(Map<String, String> book);
+
+    List<Book> searchByTags(List<String> tags);
 }

@@ -1,6 +1,8 @@
 package com.catstore.dao;
 
 import com.catstore.entity.Book;
+import com.catstore.entity.Book4Neo;
+import com.catstore.entity.BookTag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -9,6 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 public interface BookDao {
+    void saveBookAndTags(Book4Neo book, List<BookTag> tags);
+
+    List<Book> findBooksByTags(List<BookTag> tags);
+
     List<Book> getBooks();
 
     Page<Book> getBooks(PageRequest pageRequest);
@@ -36,4 +42,6 @@ public interface BookDao {
     void saveBook(Book book);
 
     void postModifiedBook(Map<String, String> book);
+
+    List<Book> searchByTags(List<String> tags);
 }

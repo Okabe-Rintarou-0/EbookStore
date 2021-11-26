@@ -13,8 +13,6 @@ import java.util.Map;
 public interface BookDao {
     void saveBookAndTags(Book4Neo book, List<BookTag> tags);
 
-    List<Book> findBooksByTags(List<BookTag> tags);
-
     List<Book> getBooks();
 
     Page<Book> getBooks(PageRequest pageRequest);

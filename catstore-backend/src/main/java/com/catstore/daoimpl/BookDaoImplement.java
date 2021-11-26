@@ -48,11 +48,6 @@ public class BookDaoImplement implements BookDao {
     }
 
     @Override
-    public List<Book> findBooksByTags(List<BookTag> tags) {
-        return null;
-    }
-
-    @Override
     public List<Book> getBooks() {
         return bookRepository.findAll();
     }

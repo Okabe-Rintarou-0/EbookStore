@@ -1,6 +1,5 @@
 package com.catstore.utils.sessionUtils;
 
-import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -15,6 +14,7 @@ public class SessionUtil {
         if (servletRequestAttributes != null) {
             HttpServletRequest request = servletRequestAttributes.getRequest();
             HttpSession session = request.getSession();
+            System.out.println("Set");
             for (Object thisKey : data.keySet()) {
                 String key = (String) thisKey;
                 Object val = data.get(key);

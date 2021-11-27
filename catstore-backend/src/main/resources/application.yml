@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: catstore
+  datasource:
+    url: jdbc:mysql://mysql:3306/catstore?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    tomcat.max-active: 20
+  jpa:
+    database: mysql
+    show-sql: true
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+  thymeleaf:
+    cache: false
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  session:
+    store-type: redis
+    redis:
+      namespace: spring:session
+  redis:
+    host: redis
+    port: 6379
+    password: 123
+    timeout: 6000
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+    database: 0
+server:
+  port: 8081
+

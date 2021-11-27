@@ -1,7 +1,8 @@
 package com.catstore.config;
 
-import com.catstore.interceptor.SessionValidateInterceptor;
+import com.catstore.interceptor.RedisSessionInterceptor;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -18,13 +19,15 @@ public class InterceptorConfig implements WebMvcConfigurer {
             "classpath:/META-INF/resources/", "classpath:/resources/",
             "classpath:/static/", "classpath:/public/"};
 
-    @Bean
-    public SessionValidateInterceptor sessionValidateInterceptor() {
-        return new SessionValidateInterceptor();
-    }
+//    @Bean
+//    public SessionValidateInterceptor sessionValidateInterceptor() {
+//        return new SessionValidateInterceptor();
+//    }
+    @Autowired
+    RedisSessionInterceptor redisSessionInterceptor;
 
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(this.sessionValidateInterceptor())
+        registry.addInterceptor(this.redisSessionInterceptor)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/login")
                 .excludePathPatterns("/register/**")

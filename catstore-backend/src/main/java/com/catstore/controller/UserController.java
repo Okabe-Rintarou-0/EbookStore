@@ -1,5 +1,6 @@
 package com.catstore.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.catstore.entity.User;
 import com.catstore.model.Message;
 import com.catstore.service.UserService;
@@ -14,22 +15,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-@Scope(value = "session")
 @RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    private Integer userId = null;
-
     @GetMapping
     User getUser() {
-        //store userId
-        if (userId == null) {
-            userId = SessionUtil.getUserId();
-            System.out.println("My userId is: " + userId + ",and I'm " + this);
-        }
-        return userService.getUser(userId);
+        Integer userId = SessionUtil.getUserId();
+        System.out.println("My userId is: " + userId + ",and I'm " + this);
+        User user = userService.getUser(userId);
+        System.out.println("Got " + JSON.toJSONString(user));
+        return user;
     }
 
     @GetMapping("/signature")

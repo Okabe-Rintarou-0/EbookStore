@@ -36,5 +36,8 @@ spring:
         min-idle: 0
     database: 0
 server:
-  port: 8081
-
+  port: 8082
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:8761/eureka

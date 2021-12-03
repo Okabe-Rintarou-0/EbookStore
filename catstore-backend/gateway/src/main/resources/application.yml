@@ -1,0 +1,21 @@
+server:
+  port: 8083
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              "*"
+  application:
+    name: gateway
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka:8761/eureka
+    eureka-service-url-poll-interval-seconds: 300
+

@@ -14,8 +14,8 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
 | MySQL Optimization                 | [MySQL Optimization](./notes/MySQL%20Optimization.md)        | Index                                  |
 | MySQL Backup, Recovery & Partition | [MySQL Backup, Recovery & Partition](./notes/MySQL%20Backup%2C%20Recovery%20%26%20Partition.md) | Backup/Partition                       |
 | MongoDB & Neo4j                    | [MongoDB & Neo4j](./notes/MongoDB%20%26%20Neo4j.md)          | MongoDB                                |
-| LSMT & TS DB                       | [LSMT & TS DB]()                                             | LSMT/RocksDB/Influx DB                 |
-| Cluster                            | [Cluster]()                                                  | Cluster/Docker/Nginx                   |
+| LSMT & TS DB                       | [LSMT & TS DB](./notes/LSMT%20%26%20TS%20DB.md)                                             | LSMT/RocksDB/Influx DB                 |
+| Cluster                            | [Cluster](./notes/Cluster.md)                                                  | Cluster/Docker/Nginx                   |
 
 ## Update Log
 

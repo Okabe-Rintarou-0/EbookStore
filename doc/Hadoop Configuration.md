@@ -46,8 +46,9 @@
 
 + 在/sbin下使用jps指令，若出现以下结果
 
-  ![image-20211210153519858](./imgs/jps.png)
+  ![image-20211210153519858](../imgs/jps.png)
 
   且http://localhost:9870/ 显示如下则配置成功。
 
-<img src="./imgs/hadoop_http.png" alt="image-20211210153611473" style="zoom:50%;" />
+<img src="../imgs/hadoop_http.png" alt="image-20211210153611473" style="zoom:50%;" />
+

@@ -16,7 +16,7 @@ CatStore is a simple book store based on React and Spring boot. It's an assignme
 | MongoDB & Neo4j                    | [MongoDB & Neo4j](./notes/MongoDB%20%26%20Neo4j.md)          | MongoDB                                |
 | LSMT & TS DB                       | [LSMT & TS DB](./notes/LSMT%20%26%20TS%20DB.md)                                             | LSMT/RocksDB/Influx DB                 |
 | Cluster                            | [Cluster](./notes/Cluster.md)                                                  | Cluster/Docker/Nginx                   |
-
+| Hadoop                             | [Hadoop](./notes/hadoop)| Hadoop/MapReduce
 ## Update Log
 
 + 2021/9/19

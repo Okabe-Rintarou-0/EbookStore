@@ -1,0 +1,286 @@
+A fast-paced, thorough introduction to modern C++ written for experienced programmers. After reading C++ Crash Course, you'll be proficient in the core language concepts, the C++ Standard Library, and the Boost Libraries.
+
+C++ is one of the most widely used languages for real-world software. In the hands of a knowledgeable programmer, C++ can produce small, efficient, and readable code that any programmer would be proud of.
+
+Designed for intermediate to advanced programmers, C++ Crash Course cuts through the weeds to get you straight to the core of C++17, the most modern revision of the ISO standard. Part 1 covers the core of the C++ language, where you'll learn about everything from types and functions, to the object life cycle and expressions. Part 2 introduces you to the C++ Standard Library and Boost Libraries, where you'll learn about all of the high-quality, fully-featured facilities available to you. You'll cover special utility classes, data structures, and algorithms, and learn how to manipulate file systems and build high-performance programs that communicate over networks. 
+
+You'll learn all the major features of modern C++, including:
+  •  Fundamental types, reference types, and user-defined types
+  •  The object lifecycle including storage duration, memory management, exceptions, call stacks, and the RAII paradigm 
+  •  Compile-time polymorphism with templates and run-time polymorphism with virtual classes
+  •  Advanced expressions, statements, and functions
+  •  Smart pointers, data structures, dates and times, numerics, and probability/statistics facilities
+  •  Containers, iterators, strings, and algorithms
+  •  Streams and files, concurrency, networking, and application development
+
+With well over 500 code samples and nearly 100 exercises, C++ Crash Course is sure to help you build a strong C++ foundation.
+
+Bestselling Programming Tutorial and Reference Completely Rewritten for the New C11 Standard Fully updated and recast for the newly released C11 standard this authoritative and comprehensive introduction to C will help you to learn the language fast and to use it in modern highly effective ways Highlighting todays best practices the authors show how to use both the core language and its standard library to write efficient readable and powerful code C Primer Fifth Edition introduces the C standard library from the outset drawing on its common functions and facilities to help you write useful programs without first having to master every language detail The books many examples have been revised to use the new language features and demonstrate how to make the best use of them This book is a proven tutorial for those new to C an authoritative discussion of core C concepts and techniques and a valuable resource for experienced programmers especially those eager to see C11 enhancements illuminated Start Fast and Achieve MoreLearn how to use the new C11 language features and the standard library to build robust programs quickly and get comfortable with high-level programming Learn through examples that illuminate todays best coding styles and program design techniques Understand the rationale behind the rules why C11 works as it does Use the extensive crossreferences to help you connect related concepts and insights Benefit from up-to-date learning aids and exercises that emphasize key points help you to avoid pitfalls promote good practices and reinforce what youve learned Access the source code for the extended examples from informit comtitle0321714113 C Primer Fifth Edition features an enhanced layflat binding which allows the book to stay open more easily when placed on a flat surface This special binding method-notable by a small space inside the spine-also increases durability
+An Introduction to Programming by the Inventor of C++
+
+ 
+
+Preparation for Programming in the Real World
+
+The book assumes that you aim eventually to write non-trivial programs, whether for work in software development or in some other technical field.
+
+ 
+
+Focus on Fundamental Concepts and Techniques
+
+The book explains fundamental concepts and techniques in greater depth than traditional introductions. This approach will give you a solid foundation for writing useful, correct, maintainable, and efficient code.
+
+ 
+
+Programming with Today’s C++ (C++11 and C++14)
+
+The book is an introduction to programming in general, including object-oriented programming and generic programming. It is also a solid introduction to the C++ programming language, one of the most widely used languages for real-world software. The book presents modern C++ programming techniques from the start,
+
+introducing the C++ standard library and C++11 and C++14 features to simplify programming tasks.
+
+ 
+
+For Beginners—And Anyone Who Wants to Learn Something New
+
+The book is primarily designed for people who have never programmed before, and it has been tested with many thousands of first-year university students. It has also been extensively used for self-study. Also, practitioners and advanced students have gained new insight and guidance by seeing how a master approaches the elements of his art.
+
+ 
+
+Provides a Broad View
+
+The first half of the book covers a wide range of essential concepts, design and programming techniques, language features, and libraries. Those will enable you to write programs involving input, output, computation, and simple graphics. The second half explores more specialized topics (such as text processing, testing, and the C programming language) and provides abundant reference material. Source code and support supplements are available from the author’s website.
+Coming to grips with C++11 and C++14 is more than a matter of familiarizing yourself with the features they introduce (e.g., auto type declarations, move semantics, lambda expressions, and concurrency support). The challenge is learning to use those features effectively—so that your software is correct, efficient, maintainable, and portable. That’s where this practical book comes in. It describes how to write truly great software using C++11 and C++14—i.e. using modern C++. Topics include: The pros and cons of braced initialization, noexcept specifications, perfect forwarding, and smart pointer make functions The relationships among std::move, std::forward, rvalue references, and universal references Techniques for writing clear, correct, effective lambda expressions How std::atomic differs from volatile, how each should be used, and how they relate to C++'s concurrency API How best practices in "old" C++ programming (i.e., C++98) require revision for software development in modern C++ Effective Modern C++ follows the proven guideline-based, example-driven format of Scott Meyers' earlier books, but covers entirely new material. "After I learned the C++ basics, I then learned how to use C++ in production code from Meyer's series of Effective C++ books. Effective Modern C++ is the most important how-to book for advice on key guidelines, styles, and idioms to use modern C++ effectively and well. Don't own it yet? Buy this one. Now". -- Herb Sutter, Chair of ISO C++ Standards Committee and C++ Software Architect at Microsoft
+In A Tour of C++, Second Edition, Bjarne Stroustrup, the creator of C++, describes what constitutes modern C++. This concise, self-contained guide covers most major language features and the major standard-library components―not, of course, in great depth, but to a level that gives programmers a meaningful overview of the language, some key examples, and practical help in getting started.
+
+ 
+
+Stroustrup presents the C++ features in the context of the programming styles they support, such as object-oriented and generic programming. His tour is remarkably comprehensive. Coverage begins with the basics, then ranges widely through more advanced topics, including many that are new in C++17, such as move semantics, uniform initialization, lambda expressions, improved containers, random numbers, and concurrency. The tour even covers some extensions being made for C++20, such as concepts and modules, and ends with a discussion of the design and evolution of C++.
+
+ 
+
+This guide does not aim to teach you how to program (for that, see Stroustrup’s  Programming: Principles and Practice Using C++, Second Edition), nor will it be the only resource you’ll need for C++ mastery (for that, see Stroustrup’s  The C++ Programming Language, Fourth Edition, and recommended online sources). If, however, you are a C or C++ programmer wanting greater familiarity with the current C++ language, or a programmer versed in another language wishing to gain an accurate picture of the nature and benefits of modern C++, you can’t find a shorter or simpler introduction than this tour provides.
+C++ has come a long way to be one of the most widely used general-purpose languages that is fast, efficient, and high-performance at its core.
+
+The updated second edition of Modern C++ Programming Cookbook addresses the latest features of C++20, such as modules, concepts, coroutines, and the many additions to the standard library, including ranges and text formatting. The book is organized in the form of practical recipes covering a wide range of problems faced by modern developers.
+
+The book also delves into the details of all the core concepts in modern C++ programming, such as functions and classes, iterators and algorithms, streams and the file system, threading and concurrency, smart pointers and move semantics, and many others. It goes into the performance aspects of programming in depth, teaching developers how to write fast and lean code with the help of best practices.
+
+Furthermore, the book explores useful patterns and delves into the implementation of many idioms, including pimpl, named parameter, and attorney-client, teaching techniques such as avoiding repetition with the factory pattern. There is also a chapter dedicated to unit testing, where you are introduced to three of the most widely used libraries for C++: Boost.Test, Google Test, and Catch2.
+
+By the end of the book, you will be able to effectively leverage the features and techniques of C++11/14/17/20 programming to enhance the performance, scalability, and efficiency of your applications.
+
+The new C++11 standard allows programmers to express ideas more clearly, simply, and directly, and to write faster, more efficient code. Bjarne Stroustrup, the designer and original implementer of C++, has reorganized, extended, and completely rewritten his definitive reference and tutorial for programmers who want to use C++ most effectively.
+
+ 
+
+The C++ Programming Language, Fourth Edition, delivers meticulous, richly explained, and integrated coverage of the entire language―its facilities, abstraction mechanisms, standard libraries, and key design techniques. Throughout, Stroustrup presents concise, “pure C++11” examples, which have been carefully crafted to clarify both usage and program design. To promote deeper understanding, the author provides extensive cross-references, both within the book and to the ISO standard.
+
+ 
+
+New C++11 coverage includes
+
+Support for concurrency
+Regular expressions, resource management pointers, random numbers, and improved containers
+General and uniform initialization, simplified for-statements, move semantics, and Unicode support
+Lambdas, general constant expressions, control over class defaults, variadic templates, template aliases, and user-defined literals
+Compatibility issues 
+Topics addressed in this comprehensive book include
+
+Basic facilities: type, object, scope, storage, computation fundamentals, and more
+Modularity, as supported by namespaces, source files, and exception handling
+C++ abstraction, including classes, class hierarchies, and templates in support of a synthesis of traditional programming, object-oriented programming, and generic programming
+Standard Library: containers, algorithms, iterators, utilities, strings, stream I/O, locales, numerics, and more
+The C++ basic memory model, in depth 
+This fourth edition makes C++11 thoroughly accessible to programmers moving from C++98 or other languages, while introducing insights and techniques that even cutting-edge C++11 programmers will find indispensable.
+
+ 
+
+This is a hardcover version of the Fourth Edition. Content in this hardcover and the paperback version is identical.
+
+ 
+
+This book features an enhanced, layflat binding, which allows the book to stay open more easily when placed on a flat surface. This special binding method―noticeable by a small space inside the spine―also increases durability.
+Fully updated for Java SE 17, Java™: The Complete Reference, Twelfth Edition explains how to develop, compile, debug, and run Java programs. Best-selling programming author Herb Schildt covers the entire Java language, including its syntax, keywords, and fundamental programming principles. You’ll also find information on key portions of the Java API library, such as I/O, the Collections Framework, the stream library, and the concurrency utilities. Swing, JavaBeans, and servlets are examined, and numerous examples demonstrate Java in action. Of course, recent additions to the Java language, such as records, sealed classes, and switch expressions are discussed in detail. Best of all, the book is written in the clear, crisp, uncompromising style that has made Schildt the choice of millions worldwide.
+Learning a complex new language is no easy task especially when it s an object-oriented computer programming language like Java. You might think the problem is your brain. It seems to have a mind of its own, a mind that doesn't always want to take in the dry, technical stuff you're forced to study.
+
+The fact is your brain craves novelty. It's constantly searching, scanning, waiting for something unusual to happen. After all, that's the way it was built to help you stay alive. It takes all the routine, ordinary, dull stuff and filters it to the background so it won't interfere with your brain's real work--recording things that matter. How does your brain know what matters? It's like the creators of the Head First approach say, suppose you're out for a hike and a tiger jumps in front of you, what happens in your brain? Neurons fire. Emotions crank up. Chemicals surge. That's how your brain knows.
+
+And that's how your brain will learn Java. Head First Java combines puzzles, strong visuals, mysteries, and soul-searching interviews with famous Java objects to engage you in many different ways. It's fast, it's fun, and it's effective. And, despite its playful appearance, Head First Java is serious stuff: a complete introduction to object-oriented programming and Java. You'll learn everything from the fundamentals to advanced topics, including threads, network sockets, and distributed programming with RMI. And the new. second edition focuses on Java 5.0, the latest version of the Java language and development platform. Because Java 5.0 is a major update to the platform, with deep, code-level changes, even more careful study and implementation is required. So learning the Head First way is more important than ever.
+
+If you've read a Head First book, you know what to expect--a visually rich format designed for the way your brain works. If you haven't, you're in for a treat. You'll see why people say it's unlike any other Java book you've ever read.
+
+By exploiting how your brain works, Head First Java compresses the time it takes to learn and retain--complex information. Its unique approach not only shows you what you need to know about Java syntax, it teaches you to think like a Java programmer. If you want to be bored, buy some other book. But if you want to understand Java, this book's for you.
+The #1 Java Guide for Serious Programmers: Fully Updated through Java 17
+
+Core Java, Volume I: Fundamentals, Twelfth Edition, is the definitive guide to writing robust, maintainable code. Whatever version of Java you are using--up to and including Java 17--this book will help you achieve a deep and practical understanding of the language and APIs. With hundreds of realistic examples, Cay S. Horstmann reveals the most powerful and effective ways to get the job done.
+
+This book is written for readers with prior programming experience who are looking for in-depth coverage of the Java language and platform. You'll learn about all language features in detail, including the recent improvements in Java 17. The applied chapters and code examples cover the most up-to-date capabilities of the vast Java library. For 25 years, Core Java has prepared serious programmers for serious Java programming.
+
+This first of two volumes offers in-depth coverage of fundamental Java programming, including object-oriented programming, generics, collections, lambda expressions, concurrency, and functional programming. Classic material for Swing UI programming is included for those who need it. This edition's new content covers text blocks, switch enhancements, records, pattern matching for instanceof, sealed classes, and more.
+Master foundational techniques, idioms, and best practices for writing superior Java code
+Leverage the power of interfaces, lambda expressions, and inner classes
+Harden programs through effective exception handling and debugging
+Write safer, more reusable code with generic programming
+Improve performance and efficiency with Java's standard collections
+Explore simple programs with JShell and assemble complex programs with archives and modules
+Build cross-platform GUIs with the Swing toolkit
+Fully utilize multicore processors with Java's powerful concurrency model
+See Core Java, Volume II: Advanced Features, Twelfth Edition (coming in 2022), for expert coverage of Java 17 enterprise features, the module system, annotations, networking, security, and advanced UI programming.
+
+Register your book for convenient access to downloads, updates, and/or corrections as they become available. See inside book for details.
+For courses in Java Programming.
+
+
+
+A fundamentals-first introduction to basic programming concepts and techniques                                                                 
+
+Introduction to Java Programming and Data Structures seamlessly integrates programming, data structures, and algorithms into one text. With a fundamentals-first approach, the text builds a strong foundation of basic programming concepts and techniques before teaching students object-oriented programming and advanced Java programming. Liang explains programming in a problem-driven way that focuses on problem solving rather than syntax, illustrating basic concepts by example and providing a large number of exercises with various levels of difficulty for students to practice. The 12th Edition is completely revised in every detail to enhance clarity, presentation, content, examples, and exercises.
+
+
+
+Also available with MyLab Programming
+
+By combining trusted author content with digital tools and a flexible platform, MyLab personalizes the learning experience and improves results for each student. With MyLab Programming, students work through hundreds of short, auto-graded coding exercises and receive immediate and helpful feedback based on their work.
+
+
+
+Note: You are purchasing a standalone product; MyLab Programming does not come packaged with this content. Students, if interested in purchasing this title with MyLab Programming, ask your instructor to confirm the correct package ISBN and Course ID. Instructors, contact your Pearson representative for more information. 
+Publisher's Note: Products purchased from Third Party sellers are not guaranteed by the publisher for quality, authenticity, or access to any online entitlements included with the product.
+
+The Definitive Java Programming Guide
+
+Fully updated for Java SE 11, Java: The Complete Reference, Eleventh Edition explains how to develop, compile, debug, and run Java programs. Best-selling programming author Herb Schildt covers the entire Java language, including its syntax, keywords, and fundamental programming principles. You’ll also find information on key portions of the Java API library, such as I/O, the Collections Framework, the stream library, and the concurrency utilities. Swing, JavaBeans, and servlets are examined and numerous examples demonstrate Java in action. Of course, the very important module system is discussed in detail. This Oracle Press resource also offers an introduction to JShell, Java’s interactive programming tool. Best of all, the book is written in the clear, crisp, uncompromising style that has made Schildt the choice of millions worldwide.
+Go is rapidly becoming the preferred language for building web services. While there are plenty of tutorials available that teach Go's syntax to developers with experience in other programming languages, tutorials aren't enough. They don't teach Go's idioms, so developers end up recreating patterns that don't make sense in a Go context. This practical guide provides the essential background you need to write clear and idiomatic Go.
+
+No matter your level of experience, you'll learn how to think like a Go developer. Author Jon Bodner introduces the design patterns experienced Go developers have adopted and explores the rationale for using them. You'll also get a preview of Go's upcoming generics support and how it fits into the language.
+
+Learn how to write idiomatic code in Go and design a Go project
+Understand the reasons for the design decisions in Go
+Set up a Go development environment for a solo developer or team
+Learn how and when to use reflection, unsafe, and cgo
+Discover how Go's features allow the language to run efficiently
+Know which Go features you should use sparingly or not at all
+Key Features
+Second edition of the bestselling guide to advanced Go programming, expanded to cover machine learning, more Go packages and a range of modern development techniques
+Completes the Go developer's education with real-world guides to building high-performance production systems
+Packed with practical examples and patterns to apply to your own development work
+Clearly explains Go nuances and features to remove the frustration from Go development
+Book Description
+Often referred to (incorrectly) as Golang, Go is the high-performance systems language of the future. Mastering Go, Second Edition helps you become a productive expert Go programmer, building and improving on the groundbreaking first edition.
+
+Mastering Go, Second Edition shows how to put Go to work on real production systems. For programmers who already know the Go language basics, this book provides examples, patterns, and clear explanations to help you deeply understand Go's capabilities and apply them in your programming work.
+
+The book covers the nuances of Go, with in-depth guides on types and structures, packages, concurrency, network programming, compiler design, optimization, and more. Each chapter ends with exercises and resources to fully embed your new knowledge.
+
+This second edition includes a completely new chapter on machine learning in Go, guiding you from the foundation statistics techniques through simple regression and clustering to classification, neural networks, and anomaly detection. Other chapters are expanded to cover using Go with Docker and Kubernetes, Git, WebAssembly, JSON, and more.
+
+If you take the Go programming language seriously, the second edition of this book is an essential guide on expert techniques.
+
+What you will learn
+Clear guidance on using Go for production systems
+Detailed explanations of how Go internals work, the design choices behind the language, and how to optimize your Go code
+A full guide to all Go data types, composite types, and data structures
+Master packages, reflection, and interfaces for effective Go programming
+Build high-performance systems networking code, including server and client-side applications
+Interface with other systems using WebAssembly, JSON, and gRPC
+Write reliable, high-performance concurrent code
+Build machine learning systems in Go, from simple statistical regression to complex neural networks
+Who this book is for
+Mastering Go, Second Edition is for Go programmers who already know the language basics, and want to become expert Go practitioners.
+Ready, set, program with Go! 
+
+Now is the perfect time to learn the Go Programming Language. It’s one of the most in-demand languages among tech recruiters and developers love its simplicity and power. Go Programming Language For Dummies is an easy way to add this top job skill to your toolkit. Written for novice and experienced coders alike, this book traverses basic syntax, writing functions, organizing data, building packages, and interfacing with APIs. 
+
+Go―or GoLang, as it’s also known―has proven to be a strong choice for developers creating applications for the cloud-based world we live in. This book will put you on the path to using the language that’s created some of  today’s leading web applications, so you can steer your career where you want to Go! 
+
+Learn how Go works and start writing programs and modules 
+Install and implement the most powerful third-party Go packages 
+Use Go in conjunction with web services and MySQL databases 
+Keep your codebase organized and use Go to structure data 
+With this book, you can join the growing numbers of developers using Go to create 21st century solutions. Step inside to take start writing code that puts data in users’ hands.
+Summary
+
+Get Programming with Go introduces you to the powerful Go language without confusing jargon or high-level theory. By working through 32 quick-fire lessons, you'll quickly pick up the basics of the innovative Go programming language!
+
+Purchase of the print book includes a free eBook in PDF, Kindle, and ePub formats from Manning Publications.
+
+About the Technology
+
+Go is a small programming language designed by Google to tackle big problems. Large projects mean large teams with people of varying levels of experience. Go offers a small, yet capable, language that can be understood and used by anyone, no matter their experience.
+
+About the Book
+
+Hobbyists, newcomers, and professionals alike can benefit from a fast, modern language; all you need is the right resource! Get Programming with Go provides a hands-on introduction to Go language fundamentals, serving as a solid foundation for your future programming projects. You'll master Go syntax, work with types and functions, and explore bigger ideas like state and concurrency, with plenty of exercises to lock in what you learn.
+
+What's inside
+
+Language concepts like slices, interfaces, pointers, and concurrency
+Seven capstone projects featuring spacefaring gophers, Mars rovers, ciphers, and simulations
+All examples run in the Go Playground - no installation required!
+
+About the Reader
+
+This book is for anyone familiar with computer programming, as well as anyone with the desire to learn.
+
+About the Author
+
+Nathan Youngman organizes the Edmonton Go meetup and is a mentor with Canada Learning Code. Roger Peppé contributes to Go and runs the Newcastle upon Tyne Go meetup.
+The second edition of the best-selling Python book in the world (over 1 million copies sold!). A fast-paced, no-nonsense guide to programming in Python. Updated and thoroughly revised to reflect the latest in Python code and practices.
+
+Python Crash Course is the world's best-selling guide to the Python programming language. This fast-paced, thorough introduction to programming with Python will have you writing programs, solving problems, and making things that work in no time.
+
+In the first half of the book, you'll learn basic programming concepts, such as variables, lists, classes, and loops, and practice writing clean code with exercises for each topic. You'll also learn how to make your programs interactive and test your code safely before adding it to a project. In the second half, you'll put your new knowledge into practice with three substantial projects: a Space Invaders-inspired arcade game, a set of data visualizations with Python's handy libraries, and a simple web app you can deploy online.
+
+As you work through the book, you'll learn how to:
+  •  Use powerful Python libraries and tools, including Pygame, Matplotlib, Plotly, and Django
+  •  Make 2D games that respond to keypresses and mouse clicks, and that increase in difficulty
+  •  Use data to generate interactive visualizations
+  •  Create and customize web apps and deploy them safely online
+  •  Deal with mistakes and errors so you can solve your own programming problems
+
+If you've been thinking about digging into programming, Python Crash Course will get you writing real programs fast. Why wait any longer? Start your engines and code!The second edition of this best-selling Python book (over 500,000 copies sold!) uses Python 3 to teach even the technically uninclined how to write programs that do in minutes what would take hours to do by hand. There is no prior programming experience required and the book is loved by liberal arts majors and geeks alike.
+
+If you've ever spent hours renaming files or updating hundreds of spreadsheet cells, you know how tedious tasks like these can be. But what if you could have your computer do them for you?
+
+In this fully revised second edition of the best-selling classic Automate the Boring Stuff with Python, you'll learn how to use Python to write programs that do in minutes what would take you hours to do by hand--no prior programming experience required. You'll learn the basics of Python and explore Python's rich library of modules for performing specific tasks, like scraping data off websites, reading PDF and Word documents, and automating clicking and typing tasks.
+
+The second edition of this international fan favorite includes a brand-new chapter on input validation, as well as tutorials on automating Gmail and Google Sheets, plus tips on automatically updating CSV files. You'll learn how to create programs that effortlessly perform useful feats of automation to:
+
+
+  •  Search for text in a file or across multiple files
+  •  Create, update, move, and rename files and folders
+  •  Search the Web and download online content
+  •  Update and format data in Excel spreadsheets of any size
+  •  Split, merge, watermark, and encrypt PDFs
+  •  Send email responses and text notifications
+  •  Fill out online forms
+
+Step-by-step instructions walk you through each program, and updated practice projects at the end of each chapter challenge you to improve those programs and use your newfound skills to automate similar tasks.
+
+Don't spend your time doing work a well-trained monkey could do. Even if you've never written a line of code, you can make your computer do the grunt work. Learn how in Automate the Boring Stuff with Python, 2nd Edition.
+Get a comprehensive, in-depth introduction to the core Python language with this hands-on book. Based on author Mark Lutz’s popular training course, this updated fifth edition will help you quickly write efficient, high-quality code with Python. It’s an ideal way to begin, whether you’re new to programming or a professional developer versed in other languages.
+
+Complete with quizzes, exercises, and helpful illustrations, this easy-to-follow, self-paced tutorial gets you started with both Python 2.7 and 3.3— the latest releases in the 3.X and 2.X lines—plus all other releases in common use today. You’ll also learn some advanced language features that recently have become more common in Python code.
+
+Explore Python’s major built-in object types such as numbers, lists, and dictionaries
+Create and process objects with Python statements, and learn Python’s general syntax model
+Use functions to avoid code redundancy and package code for reuse
+Organize statements, functions, and other tools into larger components with modules
+Dive into classes: Python’s object-oriented programming tool for structuring code
+Write large programs with Python’s exception-handling model and development tools
+Learn advanced Python tools, including decorators, descriptors, metaclasses, and Unicode processing
+The history of Python kicked off when Guido van Rossum, the founder of Python, started working on it in the late 1980s. Python is the successor of the ABC programming language. The first Python version was released back in 1991 and has only grown exponentially since then.
+Best-selling author Al Sweigart shows you how to easily build over 80 fun programs with minimal code and maximum creativity.
+
+If you’ve mastered basic Python syntax and you’re ready to start writing programs, you’ll find The Big Book of Small Python Projects both enlightening and fun. This collection of 81 Python projects will have you making digital art, games, animations, counting pro- grams, and more right away. Once you see how the code works, you’ll practice re-creating the programs and experiment by adding your own custom touches.
+ 
+These simple, text-based programs are 256 lines of code or less. And whether it’s a vintage screensaver, a snail-racing game, a clickbait headline generator, or animated strands of DNA, each project is designed to be self-contained so you can easily share it online.
+ 
+You’ll create:
+• Hangman, Blackjack, and other games to play against your friends or the computer
+• Simulations of a forest fire, a million dice rolls, and a Japanese abacus
+• Animations like a virtual fish tank, a rotating cube, and a bouncing DVD logo screensaver
+• A first-person 3D maze game
+• Encryption programs that use ciphers like ROT13 and Vigenère to conceal text
+ 
+If you’re tired of standard step-by-step tutorials, you’ll love the learn-by-doing approach of The Big Book of Small Python Projects. It’s proof that good things come in small programs!

@@ -11,9 +11,13 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.util.StringUtils;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.net.URI;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
@@ -21,19 +25,32 @@ import java.util.StringTokenizer;
 
 public class KeywordCount {
 
-    private static final HashSet<String> givenKeywords = new HashSet<>() {{
-        add("c++");
-        add("java");
-        add("go");
-        add("programming");
-        add("family");
-        add("science");
-        add("love");
-        add("mystery");
-        add("history");
-    }};
-
     public static class TokenizerMapper extends Mapper<Object, Text, Text, IntWritable> {
+
+        private static final HashSet<String> givenKeywords = new HashSet<>();
+
+        void reachKeywords(String path) {
+            try {
+                BufferedReader br = new BufferedReader(new FileReader(path));
+                String keyword;
+                while ((keyword = br.readLine()) != null) {
+                    givenKeywords.add(keyword);
+                }
+            } catch (IOException ioe) {
+                System.err.println("Caught exception while parsing the cached file '"
+                        + StringUtils.stringifyException(ioe));
+            }
+        }
+
+        @Override
+        public void setup(Context context) throws IOException {
+            Configuration conf = context.getConfiguration();
+            URI[] keywordsUri = Job.getInstance(conf).getCacheFiles();
+            for (URI uri : keywordsUri) {
+                String keywordsPath = uri.toString();
+                reachKeywords(keywordsPath);
+            }
+        }
 
         private final static IntWritable one = new IntWritable(1);
         private final Text word = new Text();
@@ -46,7 +63,7 @@ public class KeywordCount {
                     token = token.substring(1);
                 if (token.endsWith(")") || token.endsWith(",") || token.endsWith("\"") || token.endsWith("'"))
                     token = token.substring(0, token.length() - 1);
-                if (KeywordCount.givenKeywords.contains(token)) {
+                if (givenKeywords.contains(token)) {
                     word.set(token);
                     context.write(word, one);
                 }
@@ -83,6 +100,7 @@ public class KeywordCount {
     public static void main(String[] args) throws Exception {
         String[] inputs = {"src/main/resources/data/CS.txt", "src/main/resources/data/Fiction.txt", "src/main/resources/data/Horror.txt", "src/main/resources/data/Mystery.txt"};
         String output = "src/main/resources/output";
+        String keywords = "src/main/resources/data/keywords.txt";
 
         deleteDir(new File(output));
 
@@ -96,6 +114,7 @@ public class KeywordCount {
         job.setReducerClass(IntSumReducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
+        job.addCacheFile(new Path(keywords).toUri());
         for (String input : inputs) {
             FileInputFormat.addInputPath(job, new Path(input));
         }

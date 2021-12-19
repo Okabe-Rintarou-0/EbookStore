@@ -70,7 +70,7 @@ class Navigator extends React.Component {
                             color: '#666666'
                         }}>A store full of books and...cats!</b>
                         <b style={{marginLeft: '8px'}}>
-                            访问量:{this.state.visit}
+                            {/*访问量:{this.state.visit}*/}
                         </b>
                     </Col>
                 </Row>

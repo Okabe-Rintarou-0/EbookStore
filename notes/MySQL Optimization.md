@@ -26,6 +26,7 @@
 + 行格式（Row format）
 
   <img src="./imgs/row_format.png" style="width:500px;" />
+  
   + InnoDB 表默认使用 DYNAMIC 行格式创建。 
   + 要使用 DYNAMIC 以外的行格式，请配置 innodb_default_row_format，或在 CREATE TABLE 或 ALTER TABLE 语句中显式指定 ROW_FORMAT 选项。
   +  紧凑的行格式系列（包括 COMPACT、DYNAMIC 和 COMPRESSED）减少了行存储空间，但代价是增加了某些操作的 CPU 使用率。

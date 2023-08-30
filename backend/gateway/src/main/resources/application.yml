@@ -1,0 +1,29 @@
+server:
+  port: 8081
+  ssl:
+    enabled: true
+    key-store: catstore.p12
+    key-store-type: PKCS12
+    key-alias: catstore
+    key-store-password: catstore
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              "*"
+  application:
+    name: gateway
+
+eureka:
+  instance:
+    ip-address: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    eureka-service-url-poll-interval-seconds: 300
+

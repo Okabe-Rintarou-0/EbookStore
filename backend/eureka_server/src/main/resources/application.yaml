@@ -1,0 +1,19 @@
+server:
+  port: 8761
+#  ssl:
+#    enabled: true
+#    key-store: classpath:eureka_server.p12
+#    key-store-password: eureka_server
+#    key-store-type: PKCS12
+#    key-alias: eureka_server
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+logging:
+  level:
+    com:
+      netflix:
+        eureka: OFF
+        discovery: OFF

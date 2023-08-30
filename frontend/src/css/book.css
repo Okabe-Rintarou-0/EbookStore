@@ -1,0 +1,115 @@
+#book-container {
+    margin: 25px;
+    float: left;
+    width: 350px;
+    height: 200px;
+    background-color: rgba(255, 239, 180, 0.4);
+}
+
+div.preview-book-background {
+    position: relative;
+    left: 20px;
+    top: 30px;
+    height: 140px;
+    width: 310px;
+    background-color: white;
+    box-shadow: 0 0 5px #888888;
+}
+
+div.preview-book-img {
+    position: relative;
+    z-index: 2;
+    left: 40px;
+    bottom: 140px;
+    /*background-color: orange;*/
+    height: 150px;
+    width: 120px;
+}
+
+div.preview-book-img img {
+    width: 120px;
+    height: 100%;
+}
+
+div.preview-book-info {
+    left: 180px;
+    bottom: 250px;
+    z-index: 2;
+    position: relative;
+    width: 140px;
+    height: 120px;
+    /*background-color: orange;*/
+}
+
+div.preview-book-title {
+    position: relative;
+    margin: 0 auto;
+    height: 30px;
+    width: 120px;
+    /*background-color: #817fe3;*/
+    text-align: center;
+    font-weight: bolder;
+    font-family: Arial serif;
+    font-size: 20px;
+}
+
+div.preview-book-description {
+    text-indent: 24px;
+    font-size: 12px;
+    position: relative;
+    margin: 0 auto;
+    height: 90px;
+    width: 140px;
+    color: #666666;
+    /*background-color: gold;*/
+}
+
+div.preview-book-option {
+    position: relative;
+    height: 20px;
+    width: 100px;
+    left: 240px;
+    bottom: 230px;
+    /*background-color: orange;*/
+}
+
+.preview-book-icon {
+    float: right;
+    color: #807FE2;
+    /*font-size: 18px;*/
+    margin-right: 10px;
+}
+
+div.books-container {
+    /*position: relative;*/
+    height: auto;
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    /*background-color: #3a38d2;*/
+}
+
+div.pagination {
+    margin-bottom: 20px;
+    /*float: right;*/
+    /*background-color: #817fe3;*/
+}
+
+/*div.page-chooser button {*/
+/*    cursor: pointer;*/
+/*    font-size: 20px;*/
+/*    background-color: rgba(255, 255, 255, 0.8);*/
+/*    margin: 0 20px;*/
+/*    width: 120px;*/
+/*    height: 60px;*/
+/*    border: #F2F2F2 solid 2px;*/
+/*    outline: none;*/
+/*}*/
+
+/*div.page-chooser button:hover {*/
+/*    color: #ffa652;*/
+/*    !*border: #FD3F31 solid 2px;*!*/
+/*    border: #ffa652 solid 2px;*/
+/*}*/

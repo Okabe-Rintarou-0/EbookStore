@@ -1,0 +1,21 @@
+button.ant-input-search-button {
+    background-color: #e4b885;
+    border: none;
+}
+
+button.ant-input-search-button:hover {
+    background-color: #e4b885;
+    filter: brightness(110%);
+
+}
+
+button.ant-input-search-button:focus {
+    background-color: #e4b885;
+    border: none;
+}
+
+button.ant-input-search-button:active {
+    background-color: #e4b885;
+    border: none;
+}
+

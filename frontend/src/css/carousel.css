@@ -1,0 +1,6 @@
+#book-carousel {
+    /*background-color: #09d3ac;*/
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
